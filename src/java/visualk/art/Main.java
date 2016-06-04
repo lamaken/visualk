@@ -64,25 +64,6 @@ public class Main extends HttpServlet {
             throws ServletException, IOException {
 
         response.setContentType("image/GIF");
-//        
-//        
-//        
-//        response.setContentType("text/html;charset=UTF-8");
-//        PrintWriter out = response.getWriter();
-//        try {
-//            /* TODO output your page here. You may use following sample code. */
-//            out.println("<!DOCTYPE html>");
-//            out.println("<html>");
-//            out.println("<head>");
-//            out.println("<title>Servlet Main</title>");            
-//            out.println("</head>");
-//            out.println("<body>");
-//            out.println("<h1>Servlet Main at " + request.getContextPath() + "</h1>");
-//            out.println("</body>");
-//            out.println("</html>");
-//        } finally {
-//            out.close();
-//        }
 
         String mx = request.getParameter("mx");
         String my = request.getParameter("my");
@@ -93,28 +74,27 @@ public class Main extends HttpServlet {
             try {
                 Main.CANVASX_SIZE = Integer.parseInt(mx);
             } catch (Exception e) {
-                
+
                 Main.CANVASX_SIZE = 100;
             }
-
         }
         if (my != null) {
-             try {
+            try {
                 Main.CANVASY_SIZE = Integer.parseInt(my);
             } catch (Exception e) {
-                
+
                 Main.CANVASY_SIZE = 100;
             }
         }
         if (cell
                 != null) {
-             try {
+            try {
                 Main.cellw = Integer.parseInt(cell);
             } catch (Exception e) {
-                
+
                 Main.cellw = 3;
             }
-           
+
         }
 
         if (Main.counter
@@ -207,19 +187,19 @@ public class Main extends HttpServlet {
                  if((n+m)%m==0)
                  {
                  */
-                    //g2.setColor(Color.getHSBColor(CANVASX_SIZE-(((n+1)*(m+1))/seed), CANVASX_SIZE-(((n+1)*(m+1))/seed*3), 1-n*10*m));
-                    /*}else if((n+m)%n==0){
+                //g2.setColor(Color.getHSBColor(CANVASX_SIZE-(((n+1)*(m+1))/seed), CANVASX_SIZE-(((n+1)*(m+1))/seed*3), 1-n*10*m));
+                /*}else if((n+m)%n==0){
                  g2.setColor(Color.getHSBColor((m+n)/2+seed, (m+n)/2+seed, seed+(m+n)/2));
                  }else {
                  */
                 //         g2.setColor(Color.decode(seed*n*m+""));
-                    /*}*/
+                /*}*/
 
                 g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                         RenderingHints.VALUE_ANTIALIAS_ON);
 
                 g2.setColor(Color.getHSBColor((m * n) / 2 + seed, (m * n) / 2 + seed, (m * n) / 2 + seed));
-                   // g2.setColor(Color.getHSBColor(seed, n, m));
+                // g2.setColor(Color.getHSBColor(seed, n, m));
 
                 //   g2.setColor(Color.getHSBColor((m+n)/2+seed, (m+n)/2+seed, seed+(m+n)/2));
                 //g2.drawLine(n,m,new Float(n*(Math.cos(CANVASX_SIZE-n))).intValue(),new Float(m*(Math.cos(CANVASY_SIZE-m))).intValue());
@@ -236,7 +216,6 @@ public class Main extends HttpServlet {
         return (buf);
     }
 
-    
     public void getMosaic(String name) {
         String[] args = new String[3];
 
