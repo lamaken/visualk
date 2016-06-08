@@ -3,7 +3,7 @@ package visualk.html5;
 public class InputDialog {
 
 	private ClassCSS css;
-	private String question		= "Introdueix un nom per aquest horitzó.";	
+	private String question		= "Introdueix un nom per aquest horitzÃ³.";	
 	private String defaultValue = "anonymous";
         private String title = "ep!";
 

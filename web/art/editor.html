@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Mosaic Editor v0.3</title>
+        <meta name="Keywords"
+              content="mosaic,round, mosaic editor" />
+        <meta name="Description"
+              content="Design your own mosaics. Let computer draw or paint for you." />
+        <meta name="Author" content="lamaken@gmail.com" />
+
+
+        
+
+
+        <script>
+
+            function contrastImage(imageData, contrast) {
+
+                var data = imageData.data;
+                var factor = contrast/100;
+
+                for (var i = 0; i < data.length; i += 4)
+                {
+                    data[i] = factor * (data[i]-128) ;
+                    data[i + 1] = factor * (data[i + 1] - 128) + 128;
+                    data[i + 2] = factor * (data[i + 2] - 128) + 128;
+                }
+                return imageData;
+            }
+
+            function updateCOntrast(){
+                var contrast = document.getElementById("contrast").value;
+                var c = document.getElementById("myCanvas");
+                var mostra = document.getElementById("mostra");
+                
+                var ctx = c.getContext("2d");
+                ctx.drawImage(mostra,0,0);
+                
+                var imgData=ctx.getImageData(0,0,c.width,c.height);
+                ctx.putImageData(contrastImage(imgData,contrast),0,0);
+                
+                //myCanvas();
+                 
+                for (var x = 0; x < w / imgData.width; x++) {
+                    for (var y = 0; y < h / imgData.height; y++) {
+                        ctx.drawImage(imgData.data, imgData.width * x, imgData.height * y);
+                    }
+                }
+            }
+
+            function guid() {
+                function _p8(s) {
+                    var p = (Math.random().toString(16) + "000000000").substr(2, 8);
+                    return s ? "-" + p.substr(0, 4) + "-" + p.substr(4, 4) : p;
+                }
+                return _p8() + _p8(true) + _p8(true) + _p8();
+            }
+
+            function saveData() {
+                setCookie("mx", mx);
+                setCookie("my", my);
+                setCookie("rnd", rnd);
+                setCookie("cellw", cellw);
+            }
+
+            function reload() {
+                document.location.reload();
+            }
+
+            function updateMain() {
+
+                rnd = guid();
+
+                mx = document.getElementById("mx").value;
+                my = document.getElementById("my").value;
+                cellw = document.getElementById("cellw").value;
+                
+
+                rnd = guid();
+
+                saveData();
+
+                var StringImage = "/visualk/art/Main?mx=" + mx + "&my=" + my + "&cellw=" + cellw + "&rnd=" + rnd;
+
+
+                var sharefb = document.getElementById("sharefb");
+                var mostra = document.getElementById("mostra");
+
+
+                mostra.onload = function () {
+                    myCanvas();
+                    //document.getElementById("fb").setAttribute("data-href", StringImage);
+                    sharefb.onclick = function () {
+                        FB.ui({
+                            method: 'share_open_graph',
+                            action_type: 'og.shares',
+                            action_properties: JSON.stringify({
+                                object: {
+                                    'og:url': 'http://alk.hrzmkr.com/',
+                                    'og:title': 'roudn mosaic editor',
+                                    'og:description': 'New round mosaic design only for divertimento.',
+                                    'og:og:image:width': mx,
+                                    'og:image:height': my,
+                                    'og:image': StringImage
+                                }
+                            })
+                        });
+                    };
+
+                };
+                mostra.src = StringImage;
+            }
+
+        </script>
+
+        <script>
+
+            function setCookie(cname, cvalue, exdays) {
+                var d = new Date();
+                d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+                var expires = "expires=" + d.toGMTString();
+                document.cookie = cname + "=" + cvalue + "; " + expires;
+            }
+
+            function getCookie(cname) {
+                var name = cname + "=";
+                var ca = document.cookie.split(';');
+                for (var i = 0; i < ca.length; i++) {
+                    var c = ca[i];
+                    while (c.charAt(0) == ' ')
+                        c = c.substring(1);
+                    if (c.indexOf(name) == 0) {
+                        return c.substring(name.length, c.length);
+                    }
+                }
+                return "";
+            }
+
+            function checkCookie() {
+                var user = getCookie("username");
+                if (user != "") {
+                    alert("Welcome again " + user);
+                } else {
+                    user = prompt("Please enter your name:", "");
+                    if (user != "" && user != null) {
+                        setCookie("username", user, 30);
+                    }
+                }
+            }
+
+            function init() {
+
+                document.getElementById("myCanvas").width = w;
+                document.getElementById("myCanvas").height = h;
+                document.getElementById("myCanvas").top=0;
+                document.getElementById("myCanvas").left=0;
+
+                mx = getCookie("mx");
+                my = getCookie("my");
+                cellw = getCookie("cellw");
+                rnd = getCookie("rnd");
+
+
+
+
+                document.getElementById("mx").value = mx;
+                document.getElementById("my").value = my;
+                document.getElementById("cellw").value = cellw;
+
+
+
+
+            }
+        </script>
+
+        <script>
+            var w = window.innerWidth;
+            var h = window.innerHeight;
+
+            window.fbAsyncInit = function () {
+                FB.init({
+                    appId: '1056391414447569',
+                    xfbml: true,
+                    version: 'v2.5'
+                });
+            };
+
+            (function (d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) {
+                    return;
+                }
+                js = d.createElement(s);
+                js.id = id;
+                js.src = "//connect.facebook.net/en_US/sdk.js";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+        </script>
+    </head>
+    <body onload="init();
+            updateMain();
+          ">
+
+
+
+
+        <div  id="mydiv" style="z-index:10;position: absolute;top: 30px; font-family: sans-serif;color: black; left:30px;padding: 10px;background-color: white; text-align: right">
+            <center>
+                <img id="mostra" />
+
+                <br>
+
+                <br> width: <input onchange="updateMain()" id="mx" type="range" name="mx" min="5" max="250"/> 
+                <br> height: <input onchange="updateMain()" id="my" type="range" name="my" min="5" max="250"/> 
+                <br> cw: <input onchange="updateMain()"  id="cellw" type="range" name="cellw" min="1" max="20"/> 
+                <!--br> contrast: <input onchange="updateCOntrast()" id="contrast" type="range" name="contrast" min="0" max="259"/--> 
+                
+                <br><br><input value="colorize" type="button" onclick="updateMain();"/>
+                <br><br>
+                <!--div id="fb" class="fb-like" data-image='http://hrzmkr.com:8080/facegen/Main' data-href="http://mosaic.hrzmkr.com" data-layout="button" data-action="recommend" data-show-faces="true" data-share="false"></div-->
+                <br><!--input id="sharefb"  style="background-color: #0000aa;color: white" value="- SHARE FB -" type="button"-->
+            </center>
+        </div>
+
+        <canvas id="myCanvas">
+            Your browser does not support the HTML5 canvas tag.
+        </canvas>
+
+
+        <script>
+
+
+            function myCanvas() {
+                var c = document.getElementById("myCanvas");
+                var ctx = c.getContext("2d");
+                var mostra = document.getElementById("mostra");
+                var img = mostra;
+                for (var x = 0; x < w / img.width; x++) {
+                    for (var y = 0; y < h / img.height; y++) {
+                        ctx.drawImage(img, img.width * x, img.height * y);
+                    }
+                }
+            }
+
+
+            var mostra = document.getElementById("mostra");
+            var ENV, FB_ID, BASE_URL;
+
+            ENV = 'production';
+            FB_ID = '1056391414447569';
+            BASE_URL = 'http://107.170.119.163/visualk/art/index.html';
+
+
+
+
+
+        </script>
+
+
+
+    </body>
+</html>

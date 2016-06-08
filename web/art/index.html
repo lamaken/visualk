@@ -1,0 +1,104 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="refresh" content="2">
+        <title>visualk art</title>
+    
+
+
+    <script>
+
+        var w = window.innerWidth;
+        var h = window.innerHeight;
+
+        function guid() {
+            function _p8(s) {
+                var p = (Math.random().toString(16) + "000000000").substr(2, 8);
+                return s ? "-" + p.substr(0, 4) + "-" + p.substr(4, 4) : p;
+            }
+            return _p8() + _p8(true) + _p8(true) + _p8();
+        }
+
+        function start() {
+
+            var countx = 5;
+            var county = 5;
+
+            var x = 0;
+            var y = 0;
+            var imatge = "";
+
+            var newgroup = guid();
+            /*
+             for (x = 0; x < countx; x += 1) {
+             for (y = 0; y < county; y += 1) {
+             var unique;
+             
+             
+             unique = newgroup;
+             
+             
+             var mx = 90;//Math.floor(Math.random(100) * 100);
+             var my = 90;//Math.floor(Math.random(100) * 100);
+             var left = (x * mx) + (window.innerWidth / 2) - (countx * mx / 2);
+             var top = (y * my) + (window.innerHeight / 2) - (county * my / 2);
+             var cellw = 11;
+             
+             var divId = guid();
+             
+             imatge += "<img id=\"" + divId + "\" onclick=\"change('" + divId + "'," + mx + "," + my + "," + cellw + ",'" + unique + "');\" style=\"position:absolute;left:" + left + "px;top:" + top + "px;\" id=\"imatge\" src=\"/visualk/art/Main?rnd=" + unique + "&my=" + my + "&mx=" + mx + "&cellw=" + cellw + "\"/>";
+             
+             }
+             }
+             */
+            //document.getElementById("asaco").innerHTML += imatge;
+            var imatge = "/visualk/art/Main";
+            document.getElementById("mostra").src = imatge;
+
+
+        }
+        function change(mosaic, mx, my, cellw, unique) {
+            var divId = guid();
+            var imatge = "/visualk/art/Main?rnd=" + divId + "&my=" + my + "&mx=" + mx + "&cellw=" + cellw;
+            document.getElementById(mosaic).src = imatge;
+        }
+
+
+        function myCanvas() {
+            var c = document.getElementById("myCanvas");
+            c.width=w;
+            c.height=h;
+            c.left=0;
+            c.top=0;
+            var ctx = c.getContext("2d");
+            var mostra = document.getElementById("mostra");
+            var img = mostra;
+            for (var x = 0; x < w / img.width; x++) {
+                for (var y = 0; y < h / img.height; y++) {
+                    ctx.drawImage(img, img.width * x, img.height * y);
+                }
+            }
+        }
+
+
+
+    </script>
+    </head>
+    <body bgcolor="black" style="color: white"  onresize="myCanvas();"  onload="myCanvas();" >
+        <img id="mostra" hidden src="/visualk/art/Main"/>
+    <center>
+        <!--div id="asaco"></div-->
+        <canvas id="myCanvas">
+            Your browser does not support the HTML5 canvas tag.
+        </canvas>
+    </center>   </body>
+
+
+
+
+
+
+
+</html>
