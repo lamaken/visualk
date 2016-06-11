@@ -7,6 +7,8 @@ package visualk;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,6 +19,31 @@ import javax.servlet.http.HttpServletResponse;
  * @author lamaken
  */
 public class Main extends HttpServlet {
+     private static final long serialVersionUID = 1L;
+
+    private static ResourceBundle bundle;
+
+    public static final String LOCALHOST_URL = "http://localhost:8081/";
+    public static final String HRZMKR_URL = "http://hrzmkr.com:8080/";
+
+    public static final String SERVER_URL = LOCALHOST_URL;
+    
+    public static String getString(String key) {
+        return bundle.getString(key);
+    }
+ /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public Main() {
+        super();
+
+        //language
+        Locale defaultLocale = Locale.getDefault();
+        bundle = ResourceBundle.getBundle("outputTextConstants", defaultLocale);
+
+        //bundle.getString("title")
+    }
+    
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>

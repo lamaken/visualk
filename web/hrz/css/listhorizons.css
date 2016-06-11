@@ -1,0 +1,53 @@
+
+
+
+body{
+	background-color:black;
+	color:white;
+	font-family:monospace;
+	font-size:12px;
+}	
+a{
+	color:yellow;
+}
+
+#error {
+	position: absolute; 
+	top: 100px; 
+	left: 10px; 
+	height: 10px; 
+	overflow: hidden;
+	background: red;
+	color: yellow;
+	right: 10px; 
+	text-align:center;
+	padding:2px 2px 5px 5px;
+	z-index: 100;
+	text-align:center;
+}
+
+#tornarBar{
+	position: absolute; 
+	top:10px;
+	left:10px;
+	z-index: 100;
+	text-align:center;
+	border-color: red;
+	
+	background:rgb(20,30,30);
+	}
+	
+
+
+#HrzListDiv{
+	left:70px;
+	right:70px;
+	top:70px;
+
+	position:absolute;
+	text-align:center;
+	
+	color:yellow;
+	z-index: 10;
+	overflow:auto;
+}

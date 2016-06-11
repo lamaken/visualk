@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Horizon Maker v0.3</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+        <meta name="Keywords"
+              content="horizon maker, horizon, auto draw, computer draw,drawing horizons, computer painter, auto painter" />
+        <meta name="Description"
+              content="Design your own horizons with shadow. Let computer draw or paint for you." />
+        <meta name="Author" content="hrzmkr@hrzmkr.com" />
+        <meta name="ROBOTS" content="INDEX, NOFOLLOW" />
+
+
+    </head>
+
+
+    <body style="color: rgb(10, 20, 30); background-color: rgb(222, 242, 240)">
+
+        <br />
+        <br />
+        <div style="font-size: xx-large; text-align: center;">Horizon
+            Maker v0.3 <br />
+            <br />
+
+            <img 
+                alt="HorizonMaker 0.3" src="hrzmkr01.png"
+                onclick="document.f.submit();" />
+
+            <br />
+            <form name="f" method="post" action="/hrz/Hrz">
+                <input type="hidden" name="where" value="listhorizons" /> 
+                <input type="hidden" name="what" value="carrega" />
+                <input type="hidden" name="canvasW" value="500" /> 
+                <input type="hidden" name="canvasH" value="500" />
+                <input type="submit"/>
+            </form>
+        </div>
+    </body>
+</html>
