@@ -6,20 +6,21 @@
         <title>visualk</title>
     </head>
     <body>
-    
+
 
 
     <body bgcolor="black"  style="color: white">
-        
+
         <div style="font-family: sans-serif;font-size:120%;text-align:center">
-        <h1>
-            <h1>visualk@ main page</h1>
-    <br/>
-    Welcome to visualk<br/></br>
-    <a href="art/editor.html"><img src="/visualk/art/Main"/></br></a>by @hrzmkr
-        </h1>
-        
-    </div>
-    
-</body>
+            <h1>
+                <h1>visualk@ main page</h1>
+                <br/>
+                Welcome to visualk<br/></br>
+                <a href="art/editor.html"><img src="/visualk/art/Main"/></br></a>by @hrzmkr</br>
+                <a href="hrz/index.html"><img src="/visualk/hrz/Hrz?option=firma"/></br></a>by @hrzmkr</br>
+            </h1>
+
+        </div>
+
+    </body>
 </html>

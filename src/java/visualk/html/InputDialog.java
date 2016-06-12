@@ -1,11 +1,12 @@
 package visualk.html;
 
-import visualk.Main;
+import visualk.hrz.Hrz;
+
 
 public class InputDialog {
 
 	private ClassCSS css;
-	private String question		= Main.getString("label.savedialog.artzar.hrzmkr");
+	private String question		= Hrz.getString("label.savedialog.artzar.hrzmkr");
 	private String defaultValue = "anonymous";
 	
 	private String inputName	= "inputAnswer";
@@ -27,12 +28,12 @@ public class InputDialog {
 				+ new LabelHtml(this.defaultValue).toHtml()
 				+ "\""
 				+ " type=\"text\"/><br>"
-				+ "</tr></td><tr><td><input type=\"button\" value=\""+Main.getString("label.buttonAccept.savedialog.artzar.hrzmkr")+"\" onclick=\"doneDialog(document."
+				+ "</tr></td><tr><td><input type=\"button\" value=\""+Hrz.getString("label.buttonAccept.savedialog.artzar.hrzmkr")+"\" onclick=\"doneDialog(document."
 				+ this.formName
 				+ "."
 				+ this.inputName
 				+ ".value)\"/>"
-				+ "<input type=\"button\" value=\""+Main.getString("label.buttonCancel.savedialog.artzar.hrzmkr")+"\" onclick=\"closeDialog('"
+				+ "<input type=\"button\" value=\""+Hrz.getString("label.buttonCancel.savedialog.artzar.hrzmkr")+"\" onclick=\"closeDialog('"
 				+ this.css.getId() + "')\"/>" +
 
 				"</tr></td></table>" +"</tr></td></table>" + "</form>";

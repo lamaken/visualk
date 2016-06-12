@@ -1,0 +1,21 @@
+#logo{
+		z-index:0;
+		left:0px;
+		bottom:0px;
+		position:absolute;
+}
+
+#statusBar{
+	position: absolute; 
+	bottom: 10px; 
+	left: 50px; 
+	height: 10px; 
+	overflow: hidden;
+	color: lime;
+	right: 50px; 
+	text-align:center;
+	padding:2px 2px 5px 5px;
+	cursor:pointer; 	
+	z-index: 100;
+	text-align:center;
+}

@@ -19,30 +19,17 @@ import javax.servlet.http.HttpServletResponse;
  * @author lamaken
  */
 public class Main extends HttpServlet {
-     private static final long serialVersionUID = 1L;
 
-    private static ResourceBundle bundle;
+    private static final long serialVersionUID = 102831173239L;
+
+    
 
     public static final String LOCALHOST_URL = "http://localhost:8081/";
     public static final String HRZMKR_URL = "http://hrzmkr.com:8080/";
 
     public static final String SERVER_URL = LOCALHOST_URL;
-    
-    public static String getString(String key) {
-        return bundle.getString(key);
-    }
- /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public Main() {
-        super();
 
-        //language
-        Locale defaultLocale = Locale.getDefault();
-        bundle = ResourceBundle.getBundle("outputTextConstants", defaultLocale);
-
-        //bundle.getString("title")
-    }
+   
     
 
     /**
@@ -63,7 +50,7 @@ public class Main extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Main</title>");            
+            out.println("<title>Servlet Main</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet Main at " + request.getContextPath() + "</h1>");

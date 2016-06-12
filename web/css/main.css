@@ -1,0 +1,21 @@
+@CHARSET "UTF-8";
+
+
+
+body{
+		font-family:monospace;
+		font-size:10px;
+		background-color: #efffef;
+}
+
+.mainMenu{
+	width:1024px;
+	background-color: #ffffef;
+	text-align:left;
+	
+}
+.menuoption{
+	text-align:left;
+	color: blue;
+	cursor:pointer;
+}

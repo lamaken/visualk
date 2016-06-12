@@ -1,22 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+    <!-- main -->
     <servlet>
         <servlet-name>Main</servlet-name>
         <servlet-class>visualk.Main</servlet-class>
     </servlet>
-    <servlet-mapping>
-        <servlet-name>Main</servlet-name>
-        <url-pattern>/Main</url-pattern>
-    </servlet-mapping>
+    <!-- mosaics -->
     <servlet>
-        <servlet-name>Main</servlet-name>
+        <servlet-name>Art</servlet-name>
         <servlet-class>visualk.art.Main</servlet-class>
     </servlet>
+    <!-- hrzmkr -->
+    <servlet>
+        <servlet-name>Hrz</servlet-name>
+        <servlet-class>visualk.hrz.Hrz</servlet-class>
+    </servlet>
     <servlet-mapping>
-        <servlet-name>Main</servlet-name>
+        <servlet-name>Hrz</servlet-name>
+        <url-pattern>/hrz/Hrz</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Art</servlet-name>
         <url-pattern>/art/Main</url-pattern>
     </servlet-mapping>
-    
     <session-config>
         <session-timeout>
             30

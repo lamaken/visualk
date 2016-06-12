@@ -3,7 +3,7 @@ package visualk.hrz.modules;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import visualk.Main;
+
 
 import visualk.hrz.Hrz;
 import visualk.hrz.db.DbHorizons;
@@ -41,7 +41,7 @@ public class ListHorizons extends Xhtml{
 		
 		upperMenuBar = new MenuBar("tornarBar",cssMenuBar);
 		upperMenuBar.setHorizontal();
-		upperMenuBar.addMenuLink(Main.getString("back.gallery.hrzmkr"),"torna",Main.getString("help.back.gallery.hrzmkr"),cssLink);//label,function,help
+		upperMenuBar.addMenuLink(Hrz.getString("back.gallery.hrzmkr"),"torna",Hrz.getString("help.back.gallery.hrzmkr"),cssLink);//label,function,help
 		
 		cssStyles.addStyle(cssMenuBar);
 		

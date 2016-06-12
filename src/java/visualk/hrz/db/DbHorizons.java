@@ -12,7 +12,7 @@ public class DbHorizons {
 	
 	  
     public DbHorizons() {
-    	prepareDB("localhost","hrzmkr_user","hrzmkr_password","hrzmkr_db");
+    	prepareDB("127.0.0.1","hrzmkr_user","hrzmkr_password","hrzmkr_db");
                    
 
     }
@@ -88,6 +88,12 @@ public class DbHorizons {
     	Horizon temp = new Horizon(name);
     	ResultSet myResult;
         myResult=mySQL.queryDB("SELECT * FROM hrzns where nameHrz='"+name+"'");
+       
+        if(myResult==null){
+            temp.makeRandom();
+            return temp;
+        }
+        
         try {
 			while(myResult.next()){
 			String nameHrz="";
