@@ -28,14 +28,14 @@ public class Horizon implements Serializable {
     private static final long serialVersionUID = 24L;
     private static final String HRZMKR_VERSION = "hrzmkr v0.3";
 
-    private final static int MAX_WIDTH = 401;
-    private final static int MAX_HEIGTH = 401;
+    private final static int MAX_WIDTH = 601;
+    private final static int MAX_HEIGTH = 601;
 
     private int max_width = MAX_WIDTH;
     private int max_height = MAX_HEIGTH;
 
-    private final static int MIN_WIDTH = 210;
-    private final static int MIN_HEIGTH = 210;
+    private final static int MIN_WIDTH = 310;
+    private final static int MIN_HEIGTH = 310;
 
     private Image bmpSuperNova;
     private Image bmpTextura;
@@ -247,6 +247,7 @@ public class Horizon implements Serializable {
     public void makeRandomTextura() {
         Random r = new Random();
         this.textura = (r.nextInt(2) == 1);
+        this.textura = false;
     }
 
     public void makeRandomAureo() {
@@ -271,7 +272,7 @@ public class Horizon implements Serializable {
         if (aureaProp) {
             this.topHrz = getAureo(this.canvasHeigth);
         } else {
-            this.topHrz = r.nextInt(this.canvasHeigth);
+            this.topHrz = 10+r.nextInt(this.canvasHeigth-10);
             // while(this.topHrz<50)this.topHrz=r.nextInt(this.canvasHeigth);
         }
         System.out.println("exit makeRandomAlçadaHoritzo");

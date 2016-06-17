@@ -5,7 +5,7 @@ public class Xhtml {
 
 	private String SERVLET_HRZ_URL="error_URL";
 	
-	private static final String JSXHTML		 = "/js/xhtml.js";
+	private static final String JSXHTML		 = "/visualk/js/xhtml.js";
 	
 	private static final String xmldoc		 = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\" ?>";
 	private static final String doctype 	 = "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">";
@@ -30,7 +30,7 @@ public class Xhtml {
 	private static final String close_head	 =	"</head>";
 	
 	
-	private static final String open_body	 = "<body style=\"background-image:url('/img/fondo.png')\" onload=\"load()\">";
+	private static final String open_body	 = "<body style=\"background-image:url('/visualk/img/fondo.png')\" onload=\"load()\">";
 	
 	private String body="nothing in de body";
 	
@@ -55,7 +55,7 @@ public class Xhtml {
 		this.vsFunctions= new VsFunctions();
 		this.cssStyles = new CssStyles();
 		
-		this.cssStyles.addFileCSS("/css/xhtml.css");
+		this.cssStyles.addFileCSS("/visualk/css/xhtml.css");
 		open_form+="\""+SERVLET_HRZ_URL+"\">";
 		
 		clearBodyData();
@@ -91,7 +91,7 @@ public class Xhtml {
 		DivHtml statusBar = new DivHtml("statusBar");
 		addBodyData(statusBar.toHtml("http://hrzmkr.com"));
 		
-		addBodyData(new DivHtml("logo").toHtml("<img src=\"/img/logo.png\"/>"));
+		addBodyData(new DivHtml("logo").toHtml("<img src=\"/visualk/img/logo.png\"/>"));
 		
 	}
 	public void addBanner(String email){

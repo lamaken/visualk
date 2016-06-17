@@ -18,10 +18,10 @@ import visualk.html.Xhtml;
  */
 public class Artzar extends Xhtml {
 
-    private static final String CSS_ARTZAR_FILE_NAME = "/hrz/css/artzar.css";
-    private static final String JS_ARTZAR_FILE_NAME = "/hrz/js/artzar.js";
+    private static final String CSS_ARTZAR_FILE_NAME = "/visualk/hrz/css/artzar.css";
+    private static final String JS_ARTZAR_FILE_NAME = "/visualk/hrz/js/artzar.js";
 
-    private static final String JS_PINO = "/hrz/js/pino.js";
+    private static final String JS_PINO = "/visualk/hrz/js/pino.js";
 
     private MenuBar upperMenuBar;
     private MenuBar leftMenuBar;
@@ -127,7 +127,7 @@ public class Artzar extends Xhtml {
 
         String styleMarc = "style=\"padding:2px; color:white; border:solid 3px; \"";
 
-        html_image = "<img " + styleMarc + " name=\"HrzCanvasImg\" title=\"Horizon Maker v0.2\" alt=\"carregant...\" src=\"/hrz/Hrz?option=paint\"/>";
+        html_image = "<img " + styleMarc + " name=\"HrzCanvasImg\" title=\"Horizon Maker v0.2\" alt=\"carregant...\" src=\"/visualk/hrz/Hrz?option=paint\"/>";
 
         this.addBodyData(new DivHtml("HrzCanvasDiv").toHtml(html_image));
         this.addBodyData("<div id='pino'></id>");

@@ -5,6 +5,7 @@ var langId;
 
 function getLang(){
 	langId = navigator.browserLanguage;
+        //alert(langId);
 }
 
 function getAgent(){

@@ -24,10 +24,10 @@ public class Main extends HttpServlet {
 
     
 
-    public static final String LOCALHOST_URL = "http://localhost:8081/";
-    public static final String HRZMKR_URL = "http://hrzmkr.com:8080/";
+    public static final String LOCALHOST_URL = "http://localhost:8081";
+    public static final String HRZMKR_URL = "http://107.170.119.163";
 
-    public static final String SERVER_URL = LOCALHOST_URL;
+    public static final String SERVER_URL = HRZMKR_URL;
 
    
     

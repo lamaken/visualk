@@ -7,21 +7,39 @@
     </servlet>
     <!-- mosaics -->
     <servlet>
-        <servlet-name>Art</servlet-name>
-        <servlet-class>visualk.art.Main</servlet-class>
+        <servlet-name>ArtRounded</servlet-name>
+        <servlet-class>visualk.art.Rounded</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ArtSquared</servlet-name>
+        <servlet-class>visualk.art.Squared</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ArtMixed</servlet-name>
+        <servlet-class>visualk.art.Mixed</servlet-class>
     </servlet>
     <!-- hrzmkr -->
     <servlet>
         <servlet-name>Hrz</servlet-name>
         <servlet-class>visualk.hrz.Hrz</servlet-class>
     </servlet>
+ 
     <servlet-mapping>
         <servlet-name>Hrz</servlet-name>
         <url-pattern>/hrz/Hrz</url-pattern>
     </servlet-mapping>
+    <!-- mosaics -->
     <servlet-mapping>
-        <servlet-name>Art</servlet-name>
-        <url-pattern>/art/Main</url-pattern>
+        <servlet-name>ArtSquared</servlet-name>
+        <url-pattern>/art/Squared</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ArtRounded</servlet-name>
+        <url-pattern>/art/Rounded</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ArtMixed</servlet-name>
+        <url-pattern>/art/Mixed</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

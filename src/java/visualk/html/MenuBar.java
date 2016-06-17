@@ -49,7 +49,7 @@ public class MenuBar{
 	public int eliminaOption(String id){
 		for (int n=0;n<optionsMenu.size();n++)
 		{	
-			if(optionsMenu.get(n).getId()==id){
+			if(optionsMenu.get(n).getId().equals(id)){
 				optionsMenu.remove(n);
 				return(0);
 			}
@@ -87,9 +87,9 @@ public class MenuBar{
 		
 		String table= "<div id=\""+this.cssMenuBar.getId()+"\"\">"+
 					  "<table style=\"width: 100%;\" border=\"0\" backgroundcolor=\"black\" cellpadding=\"0\" cellspacing=\"0\">"+
-					  "<tbody><tr><td><img src='/img/c1.png'/></td><td background='/img/c2.png'>"+this.title+"</td><td><img src='/img/c3.png'/></td></tr>"+
-					  "<tr><td background='/img/c4.png'></td><td>"+ returnHtml + "</td><td background='/img/c5.png'></td></tr>"+
-					  "<tr><td><img src='/img/c6.png'/></td><td background='/img/c7.png'></td><td><img src='/img/c8.png'/></td></tr></tbody></table>"+
+					  "<tbody><tr><td><img src='/visualk/img/c1.png'/></td><td background='/visualk/img/c2.png'>"+this.title+"</td><td><img src='/visualk/img/c3.png'/></td></tr>"+
+					  "<tr><td background='/visualk/img/c4.png'></td><td>"+ returnHtml + "</td><td background='/visualk/img/c5.png'></td></tr>"+
+					  "<tr><td><img src='/visualk/img/c6.png'/></td><td background='/visualk/img/c7.png'></td><td><img src='/visualk/img/c8.png'/></td></tr></tbody></table>"+
 					  "</div>";
 	
 	

@@ -13,10 +13,10 @@ import javax.imageio.*;
 import javax.imageio.metadata.*;
 
 import javax.imageio.stream.ImageOutputStream;
-import visualk.art.Main;
-import static visualk.art.Main.CANVASX_SIZE;
-import static visualk.art.Main.CANVASY_SIZE;
-import static visualk.art.Main.cellw;
+import visualk.art.Mixed;
+import static visualk.art.Mixed.CANVASX_SIZE;
+import static visualk.art.Mixed.CANVASY_SIZE;
+import static visualk.art.Mixed.cellw;
 
 
 import visualk.html.UniqueName;
@@ -208,8 +208,8 @@ public class LiveMosaic {
 
                 g2.fillRect(n - cellw, m - cellw, cellw * 2, cellw * 2);
                 g2.fillRect(CANVASX_SIZE - n - cellw, m - cellw, cellw * 2, cellw * 2);
-                g2.fillRect(n - cellw, Main.CANVASY_SIZE - m - cellw, cellw * 2, cellw * 2);
-                g2.fillRect(CANVASX_SIZE - n - cellw, Main.CANVASY_SIZE - m - cellw, cellw * 2, cellw * 2);
+                g2.fillRect(n - cellw, Mixed.CANVASY_SIZE - m - cellw, cellw * 2, cellw * 2);
+                g2.fillRect(CANVASX_SIZE - n - cellw, Mixed.CANVASY_SIZE - m - cellw, cellw * 2, cellw * 2);
 
             }
         }
@@ -239,8 +239,8 @@ public class LiveMosaic {
         }
         BufferedImage[] frames = new BufferedImage[names.length];
         for (int ii = 0; ii < names.length; ii++) {
-            Main.step();
-            frames[ii] = getFace(Main.counter);
+            Mixed.step();
+            frames[ii] = getFace(Mixed.counter);
         }
 
         // deal with the frame rates

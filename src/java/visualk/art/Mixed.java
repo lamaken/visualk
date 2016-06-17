@@ -32,7 +32,7 @@ import visualk.art.graph.LiveMosaic;
  *
  * @author lamaken
  */
-public class Main extends HttpServlet {
+public class Mixed extends HttpServlet {
 
     public static float counter = 0;
 
@@ -76,64 +76,44 @@ public class Main extends HttpServlet {
 
         if (mx != null) {
             try {
-                Main.CANVASX_SIZE = Integer.parseInt(mx);
+                Mixed.CANVASX_SIZE = Integer.parseInt(mx);
             } catch (Exception e) {
 
-                Main.CANVASX_SIZE = 100;
+                Mixed.CANVASX_SIZE = 100;
             }
         }
         if (my != null) {
             try {
-                Main.CANVASY_SIZE = Integer.parseInt(my);
+                Mixed.CANVASY_SIZE = Integer.parseInt(my);
             } catch (Exception e) {
 
-                Main.CANVASY_SIZE = 100;
+                Mixed.CANVASY_SIZE = 100;
             }
         }
         if (cell
                 != null) {
             try {
-                Main.cellw = Integer.parseInt(cell);
+                Mixed.cellw = Integer.parseInt(cell);
             } catch (Exception e) {
 
-                Main.cellw = 3;
+                Mixed.cellw = 3;
             }
 
         }
 
         //coud be infinite of course
-        if (Main.counter
-                > 0.3) {
-            Main.counter = 0;
+        if (Mixed.counter
+                > 223) {
+            Mixed.counter = 0;
         }
-        Main.counter += 0.001;
-/*deactivated
-        if (request.getParameter(
-                "mosaic") != null) {
-            getMosaic("mosaic v0.0.1");
+        Mixed.counter += 1;
 
-            response.setContentType("image/gif");
+        BufferedImage squared = generateSquared(Mixed.counter);
+        BufferedImage rounded = generateRounded(Mixed.counter);
 
-            String pathToWeb = getServletContext().getRealPath(File.separator);
-            String filename = pathToWeb + "mosaic.gif";
-            OutputStream out = response.getOutputStream();
-            InputStream in = new FileInputStream(new File(filename));
-            try {
-                copy(in, out);
-            } catch (Exception e) {
-            } finally {
-                in.close();
-            }
-
-            out.close();
-
-        } else if (request.getParameter(
-                "hrzmkr") == null) {
-           
-
-        }
-        */
- ImageIO.write(generateAMosaic(Main.counter), "png", response.getOutputStream());
+        BufferedImage result = mix(rounded, squared);
+        result = negativo(result);
+        ImageIO.write(result, "png", response.getOutputStream());
 
     }
 
@@ -180,7 +160,7 @@ public class Main extends HttpServlet {
     public static Integer CANVASY_SIZE = 100;
     public static Integer cellw = 10;
 
-    public BufferedImage generateAMosaic(float seed) {
+    public BufferedImage generateSquared(float seed) {
 
         //seed=seed*new Float(Math.random()).intValue();
         BufferedImage buf = new BufferedImage(CANVASX_SIZE, CANVASY_SIZE, 2);
@@ -192,46 +172,77 @@ public class Main extends HttpServlet {
 
         g2.fillRect(0, 0, CANVASX_SIZE + cellw, CANVASY_SIZE + cellw);
 
-        /*for (int n = 0; n < new Float(Main.CANVASX_SIZE / 2).intValue(); n += cellw) {
-            for (int m = 0; m < new Float(Main.CANVASY_SIZE / 2).intValue(); m += cellw) {
-
-                //g2.setColor(Color.getHSBColor((m * n) / 2 + seed, (m * n) / 2 + seed, (m * n) / 2 + seed));
-                //g2.setColor(Color.getHSBColor((m + n) / 2 + seed, (m + n) / 2 + seed, (m + n) / 2 + seed));
+        for (int n = 0; n < new Float(Mixed.CANVASX_SIZE / 2).intValue(); n += cellw) {
+            for (int m = 0; m < new Float(Mixed.CANVASY_SIZE / 2).intValue(); m += cellw) {
                 g2.setColor(Color.getHSBColor((m + n) / 2 + seed, (m + n) / 2 + seed, (m + n) / 2 + seed));
 
                 g2.fillRect(n - cellw, m - cellw, cellw * 2, cellw * 2);
-                g2.fillRect(Main.CANVASX_SIZE - n - cellw, m - cellw, cellw * 2, cellw * 2);
-                g2.fillRect(n - cellw, Main.CANVASY_SIZE - m - cellw, cellw * 2, cellw * 2);
-                g2.fillRect(Main.CANVASX_SIZE - n - cellw, Main.CANVASY_SIZE - m - cellw, cellw * 2, cellw * 2);
-                 
-                g2.fillRect(0, 0, cellw * 2, cellw * 2);
+                g2.fillRect(Mixed.CANVASX_SIZE - n - cellw, m - cellw, cellw * 2, cellw * 2);
+                g2.fillRect(n - cellw, Mixed.CANVASY_SIZE - m - cellw, cellw * 2, cellw * 2);
+                g2.fillRect(Mixed.CANVASX_SIZE - n - cellw, Mixed.CANVASY_SIZE - m - cellw, cellw * 2, cellw * 2);
 
-                // g2.fillRect(-cellw,Main.CANVASY_SIZE-m-cellw,cellw*2,cellw*2);
-                //g2.fillRect(Main.CANVASX_SIZE-n-cellw,-cellw,cellw*2,cellw*2);
             }
 
         }
-        */
-        for (int n = 0; n < new Float(Main.CANVASX_SIZE / 2).intValue()+2; n += cellw) {
-            for (int m = 0; m < new Float(Main.CANVASY_SIZE / 2).intValue()+2; m += cellw) {
-                g2.setColor(Color.getHSBColor((m + n) / 2 + seed, (m + n) / 2 + seed, (m + n) / 2 + seed));
-                g2.fillOval(n - cellw, m - cellw, cellw * 2, cellw * 2);
-                g2.fillOval(Main.CANVASX_SIZE - n - cellw, m - cellw, cellw * 2, cellw * 2);
-                g2.fillOval(n - cellw, Main.CANVASY_SIZE - m - cellw, cellw * 2, cellw * 2);
-                g2.fillOval(Main.CANVASX_SIZE - n - cellw, Main.CANVASY_SIZE - m - cellw, cellw * 2, cellw * 2);
-            }
-        }
-
-        buf = negativo(buf);
-        buf = desaturate(buf);
-        
         g2.dispose();
         return (buf);
     }
 
+    public BufferedImage generateRounded(float seed) {
+        BufferedImage buf = new BufferedImage(CANVASX_SIZE, CANVASY_SIZE, 2);
+        Graphics2D g2 = buf.createGraphics();
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+                RenderingHints.VALUE_ANTIALIAS_ON);
+
+        g2.setColor(Color.red);
+
+        g2.fillRect(0, 0, CANVASX_SIZE + cellw, CANVASY_SIZE + cellw);
+        int mod = 0;
+        for (int n = 0; n < new Float(Mixed.CANVASX_SIZE / 2).intValue() + 2; n += cellw) {
+            for (int m = 0; m < new Float(Mixed.CANVASY_SIZE / 2).intValue() + 2; m += cellw) {
+
+                if (mod++ % 2 == 0) {
+                    g2.setColor(Color.getHSBColor((m + n) / 2 + seed, (m + n) / 2 + seed, (m + n) / 2 + seed));
+                    g2.fillOval(n - cellw, m - cellw, cellw * 2, cellw * 2);
+                    g2.fillOval(Mixed.CANVASX_SIZE - n - cellw, m - cellw, cellw * 2, cellw * 2);
+                    g2.fillOval(n - cellw, Mixed.CANVASY_SIZE - m - cellw, cellw * 2, cellw * 2);
+                    g2.fillOval(Mixed.CANVASX_SIZE - n - cellw, Mixed.CANVASY_SIZE - m - cellw, cellw * 2, cellw * 2);
+                } else {
+                    g2.setColor(Color.getHSBColor((m + n) / 3 + seed, (m + n) / 3 + seed, (m + n) / 3 + seed));
+                    g2.fillRect(n - cellw, m - cellw, cellw * 2, cellw * 2);
+                    g2.fillRect(Mixed.CANVASX_SIZE - n - cellw, m - cellw, cellw * 2, cellw * 2);
+                    g2.fillRect(n - cellw, Mixed.CANVASY_SIZE - m - cellw, cellw * 2, cellw * 2);
+                    g2.fillRect(Mixed.CANVASX_SIZE - n - cellw, Mixed.CANVASY_SIZE - m - cellw, cellw * 2, cellw * 2);
+                }
+            }
+        }
+        g2.dispose();
+        return (buf);
+    }
+
+    public static BufferedImage mix(BufferedImage src1, BufferedImage src2) {
+        int m = 0;
+        for (int i = 0; i < Mixed.CANVASX_SIZE; i++) {
+            for (int j = 0; j < Mixed.CANVASY_SIZE; j++) {
+                int rgb = src1.getRGB(i, j);
+
+                Color color = new Color(rgb);
+
+                //src2.getGraphics().setColor(Color.getHSBColor((i + j) / 2 , (i + j) / 2 , (i + j) / 2 ));
+                //src2.getGraphics().fillOval(i - cellw, Mixed.CANVASY_SIZE - j - cellw, cellw * 2, cellw * 2);
+                //     src2.setRGB(i, j, color.getRGB());
+                // }
+                src1.setRGB(i, j, rgb );
+                
+                m++;
+            }
+        }
+        return src1;
+    }
+
     public static BufferedImage desaturate(BufferedImage source) {
         ColorConvertOp colorConvert = new ColorConvertOp(ColorSpace
-                .getInstance(ColorSpace.CS_GRAY+1), null);
+                .getInstance(ColorSpace.CS_GRAY + 1), null);
         colorConvert.filter(source, source);
 
         return source;
@@ -253,18 +264,4 @@ public class Main extends HttpServlet {
         return image;
     }
 
-    public void getMosaic(String name) {
-        String[] args = new String[3];
-
-        args[0] = name;
-        args[1] = "frm1.gif,frm2.gif,frm3.gif,frm4.gif,frm5.gif,frm6.gif,frm7.gif,frm8.gif,frm9.gif,frm10.gif,frm11.gif,frm12.gif,frm13.gif,frm14.gif";
-        args[2] = "10,10,10,10,10,10,10,10,10,10,10,10,10,10";
-
-        try {
-            LiveMosaic.main(args);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
 }

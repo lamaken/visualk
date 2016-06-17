@@ -16,8 +16,8 @@ import visualk.html.Xhtml;
 
 public class ListHorizons extends Xhtml{
 
-	private static final String CSS_LIST_FILE_NAME="/hrz/css/listhorizons.css";
-	private static final String JS_LIST_FILE_NAME="/hrz/js/listhorizons.js";
+	private static final String CSS_LIST_FILE_NAME="/visualk/hrz/css/listhorizons.css";
+	private static final String JS_LIST_FILE_NAME="/visualk/hrz/js/listhorizons.js";
 	
 	private MenuBar upperMenuBar;
 	
@@ -92,7 +92,7 @@ public class ListHorizons extends Xhtml{
 		    					"alt=\"carregant..\" " +
 		    					"onclick=\"selecciona('"+id_div+"')\" " +
 		    					"ondblclick=\"edita('"+namehrz+"')\" " +
-		    					"src=\"/hrz/Hrz?option=paint&amp;namehrz="+namehrz+"\"/>";
+		    					"src=\"/visualk/hrz/Hrz?option=paint&amp;namehrz="+namehrz+"\"/>";
 				
 				String html_google = googlePlusTagBefore+"http://hrzmkr.com/servlet/Hrz?option=paint&amp;namehrz="+namehrz+googlePlusAfter;
 				
