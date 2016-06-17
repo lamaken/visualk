@@ -133,7 +133,7 @@ public class Squared extends HttpServlet {
 
         }
         */
- ImageIO.write(generateAMosaic(Squared.counter), "png", response.getOutputStream());
+ ImageIO.write(generateAMosaicSquared(Squared.counter), "png", response.getOutputStream());
 
     }
 
@@ -180,7 +180,7 @@ public class Squared extends HttpServlet {
     public static Integer CANVASY_SIZE = 100;
     public static Integer cellw = 10;
 
-    public BufferedImage generateAMosaic(float seed) {
+    public BufferedImage generateAMosaicSquared(float seed) {
 
         //seed=seed*new Float(Math.random()).intValue();
         BufferedImage buf = new BufferedImage(CANVASX_SIZE, CANVASY_SIZE, 2);

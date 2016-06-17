@@ -102,17 +102,19 @@ public class Mixed extends HttpServlet {
         }
 
         //coud be infinite of course
-        if (Mixed.counter
-                > 223) {
+        
+        
+         if (Mixed.counter
+                > 0.3) {
             Mixed.counter = 0;
         }
-        Mixed.counter += 1;
+        Mixed.counter += 0.001;
 
         BufferedImage squared = generateSquared(Mixed.counter);
         BufferedImage rounded = generateRounded(Mixed.counter);
 
         BufferedImage result = mix(rounded, squared);
-        result = negativo(result);
+        //result = negativo(result);
         ImageIO.write(result, "png", response.getOutputStream());
 
     }
@@ -200,15 +202,15 @@ public class Mixed extends HttpServlet {
         int mod = 0;
         for (int n = 0; n < new Float(Mixed.CANVASX_SIZE / 2).intValue() + 2; n += cellw) {
             for (int m = 0; m < new Float(Mixed.CANVASY_SIZE / 2).intValue() + 2; m += cellw) {
-
+            g2.setColor(Color.getHSBColor((m + n) / 2 + seed, (m + n) / 2 + seed, (m + n) / 2 + seed));
                 if (mod++ % 2 == 0) {
-                    g2.setColor(Color.getHSBColor((m + n) / 2 + seed, (m + n) / 2 + seed, (m + n) / 2 + seed));
+                    
                     g2.fillOval(n - cellw, m - cellw, cellw * 2, cellw * 2);
                     g2.fillOval(Mixed.CANVASX_SIZE - n - cellw, m - cellw, cellw * 2, cellw * 2);
                     g2.fillOval(n - cellw, Mixed.CANVASY_SIZE - m - cellw, cellw * 2, cellw * 2);
                     g2.fillOval(Mixed.CANVASX_SIZE - n - cellw, Mixed.CANVASY_SIZE - m - cellw, cellw * 2, cellw * 2);
                 } else {
-                    g2.setColor(Color.getHSBColor((m + n) / 3 + seed, (m + n) / 3 + seed, (m + n) / 3 + seed));
+                   // g2.setColor(Color.getHSBColor((m + n) / 3 + seed, (m + n) / 3 + seed, (m + n) / 3 + seed));
                     g2.fillRect(n - cellw, m - cellw, cellw * 2, cellw * 2);
                     g2.fillRect(Mixed.CANVASX_SIZE - n - cellw, m - cellw, cellw * 2, cellw * 2);
                     g2.fillRect(n - cellw, Mixed.CANVASY_SIZE - m - cellw, cellw * 2, cellw * 2);
@@ -216,6 +218,8 @@ public class Mixed extends HttpServlet {
                 }
             }
         }
+        g2.setColor(Color.BLACK);
+        g2.drawString("Mixed", 0, Mixed.CANVASY_SIZE-4);
         g2.dispose();
         return (buf);
     }

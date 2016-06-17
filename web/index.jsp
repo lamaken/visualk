@@ -30,7 +30,7 @@
         
   
 
-    <body onload="init()" background="/visualk/art/Mixed" bgcolor="black"   style="color: white">
+    <body onload="init()"  bgcolor="black"   style="color: white">
 
         <div style="background-color: blue;font-family: sans-serif;font-size:120%;text-align:center">
             <h1>
