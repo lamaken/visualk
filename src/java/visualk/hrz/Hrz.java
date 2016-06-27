@@ -40,7 +40,7 @@ public class Hrz extends HttpServlet {
     //private static Wizard wizard; 	 	// asistent per la ceracio
 
     private static ResourceBundle bundle;
-    Horizon hrz;
+    Horizon hrz=null;
 
     /**
      * @see HttpServlet#HttpServlet()
@@ -48,14 +48,14 @@ public class Hrz extends HttpServlet {
     public Hrz() {
 
         super();
-        hrz = new Horizon("null");
-        hrz.carrega("wellcome");
+        if(hrz==null){
+            hrz = new Horizon("null");
+        }
+        hrz.carrega("uwrncXu61");
 
+        if(listH==null)listH = new ListHorizons(getString("title.gallery.hrzmkr"));
+        if(artzar==null)artzar = new Artzar(getString("title.artzar.hrzmkr"));
         
-
-        listH = new ListHorizons(getString("title.gallery.hrzmkr"));
-        artzar = new Artzar(getString("title.artzar.hrzmkr"));
-
         // TODO Auto-generated constructor stub 
     }
 
@@ -112,6 +112,9 @@ public class Hrz extends HttpServlet {
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // TODO Auto-generated method stub
+        Locale defaultLocale = request.getLocale();
+        bundle = ResourceBundle.getBundle("outputTextConstants", defaultLocale);
+        
         String option = request.getParameter("option");
         String namehrz = request.getParameter("namehrz");
 

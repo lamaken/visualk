@@ -13,8 +13,7 @@ import java.awt.image.ColorConvertOp;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.FileInputStream;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -35,6 +34,7 @@ import visualk.art.graph.LiveMosaic;
 public class Squared extends HttpServlet {
 
     public static float counter = 0;
+    public static boolean show_number = false;
 
     public void copy(final InputStream in, final OutputStream out) throws IOException {
         byte[] buffer = new byte[1024];
@@ -72,7 +72,12 @@ public class Squared extends HttpServlet {
         String mx = request.getParameter("mx");
         String my = request.getParameter("my");
         String cell = request.getParameter("cellw");
-        String hrzmkr = request.getParameter("hrzmkr");
+        String d = request.getParameter("d");
+
+        Squared.show_number = false;
+        if (d != null) {
+            Squared.show_number = true;
+        }
 
         if (mx != null) {
             try {
@@ -107,33 +112,8 @@ public class Squared extends HttpServlet {
             Squared.counter = 0;
         }
         Squared.counter += 0.001;
-/*deactivated
-        if (request.getParameter(
-                "mosaic") != null) {
-            getMosaic("mosaic v0.0.1");
 
-            response.setContentType("image/gif");
-
-            String pathToWeb = getServletContext().getRealPath(File.separator);
-            String filename = pathToWeb + "mosaic.gif";
-            OutputStream out = response.getOutputStream();
-            InputStream in = new FileInputStream(new File(filename));
-            try {
-                copy(in, out);
-            } catch (Exception e) {
-            } finally {
-                in.close();
-            }
-
-            out.close();
-
-        } else if (request.getParameter(
-                "hrzmkr") == null) {
-           
-
-        }
-        */
- ImageIO.write(generateAMosaicSquared(Squared.counter), "png", response.getOutputStream());
+        ImageIO.write(generateAMosaicSquared(Squared.counter), "png", response.getOutputStream());
 
     }
 
@@ -195,47 +175,33 @@ public class Squared extends HttpServlet {
         for (int n = 0; n < new Float(Squared.CANVASX_SIZE / 2).intValue(); n += cellw) {
             for (int m = 0; m < new Float(Squared.CANVASY_SIZE / 2).intValue(); m += cellw) {
 
-                //g2.setColor(Color.getHSBColor((m * n) / 2 + seed, (m * n) / 2 + seed, (m * n) / 2 + seed));
-                //g2.setColor(Color.getHSBColor((m + n) / 2 + seed, (m + n) / 2 + seed, (m + n) / 2 + seed));
                 g2.setColor(Color.getHSBColor((m + n) / 2 + seed, (m + n) / 2 + seed, (m + n) / 2 + seed));
 
                 g2.fillRect(n - cellw, m - cellw, cellw * 2, cellw * 2);
                 g2.fillRect(Squared.CANVASX_SIZE - n - cellw, m - cellw, cellw * 2, cellw * 2);
                 g2.fillRect(n - cellw, Squared.CANVASY_SIZE - m - cellw, cellw * 2, cellw * 2);
                 g2.fillRect(Squared.CANVASX_SIZE - n - cellw, Squared.CANVASY_SIZE - m - cellw, cellw * 2, cellw * 2);
-                 
-                //g2.fillRect(0, 0, cellw * 2, cellw * 2);
 
-                // g2.fillRect(-cellw,Main.CANVASY_SIZE-m-cellw,cellw*2,cellw*2);
-                //g2.fillRect(Main.CANVASX_SIZE-n-cellw,-cellw,cellw*2,cellw*2);
             }
 
         }
-        
-        
-        
-        
+
         /*
-        for (int n = 0; n < new Float(Squared.CANVASX_SIZE / 2).intValue()+2; n += cellw) {
-            for (int m = 0; m < new Float(Squared.CANVASY_SIZE / 2).intValue()+2; m += cellw) {
-                g2.setColor(Color.getHSBColor((m + n) / 2 + seed, (m + n) / 2 + seed, (m + n) / 2 + seed));
-                g2.fillOval(n - cellw, m - cellw, cellw * 2, cellw * 2);
-                g2.fillOval(Squared.CANVASX_SIZE - n - cellw, m - cellw, cellw * 2, cellw * 2);
-                g2.fillOval(n - cellw, Squared.CANVASY_SIZE - m - cellw, cellw * 2, cellw * 2);
-                g2.fillOval(Squared.CANVASX_SIZE - n - cellw, Squared.CANVASY_SIZE - m - cellw, cellw * 2, cellw * 2);
-            }
-        }
-
+       
         buf = negativo(buf);
         buf = desaturate(buf);
-        */
+         */
+        g2.setColor(Color.BLACK);
+        if (Squared.show_number) {
+            g2.drawString(Math.round(Squared.counter*1000)+"", 0, Squared.CANVASY_SIZE - 4);
+        }
         g2.dispose();
         return (buf);
     }
 
     public static BufferedImage desaturate(BufferedImage source) {
         ColorConvertOp colorConvert = new ColorConvertOp(ColorSpace
-                .getInstance(ColorSpace.CS_GRAY+1), null);
+                .getInstance(ColorSpace.CS_GRAY + 1), null);
         colorConvert.filter(source, source);
 
         return source;

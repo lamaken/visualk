@@ -7,8 +7,6 @@ package visualk;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Locale;
-import java.util.ResourceBundle;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -26,8 +24,9 @@ public class Main extends HttpServlet {
 
     public static final String LOCALHOST_URL = "http://localhost:8081";
     public static final String HRZMKR_URL = "http://107.170.119.163";
-
-    public static final String SERVER_URL = HRZMKR_URL;
+    public static final String ALKASOFT_URL = "http://alkasoft.org";
+    
+    public static final String SERVER_URL = LOCALHOST_URL;
 
    
     
