@@ -19,12 +19,12 @@
 
         <div style="background-color: black;font-family: sans-serif;font-size:120%;text-align:center">
             <h1>
-                <h1>visualk@ main page</h1>
+                <h1>visualk@</h1>
                 
                 <a href="art/editorSquared.html"><img id="squared" style="left:300px;top:100px" src="/visualk/art/Squared?mx=150&my=150&cellw=23&d=1"/></a>
                  <a href="art/editorRounded.html"><img id="roundedd" style="left:300px;top: 300px" src="/visualk/art/Rounded?mx=150&my=150&cellw=23&d=1"/></a>
                 <a href="art/editorMixed.html"><img id="mixed" style="left:500px;top:200px" src="/visualk/art/Mixed?mx=150&my=150&cellw=23&d=1"/></a>
-              
+                <br/>
                 <a href="hrz/index.html"><img style="left:150px;top: 150px" src="/visualk/hrz/Hrz?option=firma"/></br></a></br>
             </h1>
 

@@ -81,6 +81,7 @@ public class Hrz extends HttpServlet {
         hrz2.makeRandomPal();
         hrz2.makeRandomHombra();
         hrz2.makeRandomColors();
+        hrz2.makeRandomSuperNova();
 
         ImageIO.write(hrz2.getHrzImage(), "gif", response.getOutputStream());
     }
@@ -133,7 +134,7 @@ public class Hrz extends HttpServlet {
             peque(namehrz, response);
         }
         if (option.equals("firma")) {// firma petita
-            firma("hrzmkr.com", response);
+            firma("by alk@soft.org", response);
         }
 
     }
