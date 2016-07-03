@@ -8,7 +8,7 @@ public class Xhtml5 {
     private static final String doctype = "<!DOCTYPE html>";
     private static final String open_html = "<html>";
     private static final String open_head = "<head>";
-    private static final String meta = "<meta charset=\"ISO-8859-1\"/>";
+    private static final String meta = "<meta charset=\"ISO-8859-1\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">";
     private static final String open_title = "<title>";
     private String title = "default title";
     private static final String close_title = "</title>";
@@ -24,6 +24,7 @@ public class Xhtml5 {
     private static final String close_form = "</form>";
     public MessageBox messageBox;
     private String form_where = "";//valor del where del formulari
+
 
     public Xhtml5(String title, String action_form, String where) {
 

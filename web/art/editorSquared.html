@@ -4,13 +4,14 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Mosaic Editor v0.3</title>
         <meta name="Keywords"
-              content="mosaic,round, mosaic editor" />
+              content="mosaic,squared, mosaic editor" />
         <meta name="Description"
               content="Design your own mosaics. Let computer draw or paint for you." />
         <meta name="Author" content="lamaken@gmail.com" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-        
+
 
 
         <script>
@@ -18,30 +19,30 @@
             function contrastImage(imageData, contrast) {
 
                 var data = imageData.data;
-                var factor = contrast/100;
+                var factor = contrast / 100;
 
                 for (var i = 0; i < data.length; i += 4)
                 {
-                    data[i] = factor * (data[i]-128) ;
+                    data[i] = factor * (data[i] - 128);
                     data[i + 1] = factor * (data[i + 1] - 128) + 128;
                     data[i + 2] = factor * (data[i + 2] - 128) + 128;
                 }
                 return imageData;
             }
 
-            function updateCOntrast(){
+            function updateCOntrast() {
                 var contrast = document.getElementById("contrast").value;
                 var c = document.getElementById("myCanvas");
                 var mostra = document.getElementById("mostra");
-                
+
                 var ctx = c.getContext("2d");
-                ctx.drawImage(mostra,0,0);
-                
-                var imgData=ctx.getImageData(0,0,c.width,c.height);
-                ctx.putImageData(contrastImage(imgData,contrast),0,0);
-                
+                ctx.drawImage(mostra, 0, 0);
+
+                var imgData = ctx.getImageData(0, 0, c.width, c.height);
+                ctx.putImageData(contrastImage(imgData, contrast), 0, 0);
+
                 //myCanvas();
-                 
+
                 for (var x = 0; x < w / imgData.width; x++) {
                     for (var y = 0; y < h / imgData.height; y++) {
                         ctx.drawImage(imgData.data, imgData.width * x, imgData.height * y);
@@ -75,7 +76,7 @@
                 mx = document.getElementById("mx").value;
                 my = document.getElementById("my").value;
                 cellw = document.getElementById("cellw").value;
-                
+
 
                 rnd = guid();
 
@@ -83,7 +84,7 @@
 
                 var StringImage = "/visualk/art/Squared?mx=" + mx + "&my=" + my + "&cellw=" + cellw + "&rnd=" + rnd;
 
- var mostra = document.getElementById("mostra");
+                var mostra = document.getElementById("mostra");
 
 
                 mostra.onload = function () {
@@ -133,8 +134,8 @@
 
                 document.getElementById("myCanvas").width = w;
                 document.getElementById("myCanvas").height = h;
-                document.getElementById("myCanvas").top=0;
-                document.getElementById("myCanvas").left=0;
+                document.getElementById("myCanvas").top = 0;
+                document.getElementById("myCanvas").left = 0;
 
                 mx = getCookie("mx");
                 my = getCookie("my");
@@ -174,10 +175,10 @@
                 <br> width: <input onchange="updateMain()" id="mx" type="range" name="mx" min="5" max="250"/> 
                 <br> height: <input onchange="updateMain()" id="my" type="range" name="my" min="5" max="250"/> 
                 <br> cw: <input onchange="updateMain()"  id="cellw" type="range" name="cellw" min="1" max="20"/> 
-                
+
                 <br><br><input value="colorize" type="button" onclick="updateMain();"/>
                 <br><br>
-                
+
             </center>
         </div>
 

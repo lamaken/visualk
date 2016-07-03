@@ -8,6 +8,7 @@
         <meta name="Description"
               content="Design your own mosaics. Let computer draw or paint for you." />
         <meta name="Author" content="lamaken@gmail.com" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
 
@@ -160,10 +161,7 @@
         <script>
             var w = window.innerWidth;
             var h = window.innerHeight;
-            mostra.onload = function () {
-                myCanvas();
-            };
-            mostra.src = StringImage;
+           
 
         </script>
     </head>
@@ -178,9 +176,9 @@
 
                 <br>
 
-                <br> width: <input onchange="updateMain()" id="mx" type="range" name="mx" min="5" max="550"/> 
-                <br> height: <input onchange="updateMain()" id="my" type="range" name="my" min="5" max="550"/> 
-                <br> cw: <input onchange="updateMain()"  id="cellw" type="range" name="cellw" min="1" max="20"/> 
+                <br> width: <input onchange="updateMain()" id="mx" type="range" name="mx" min="5" max="250"/> 
+                <br> height: <input onchange="updateMain()" id="my" type="range" name="my" min="5" max="250"/> 
+                <br> cw: <input onchange="updateMain()"  id="cellw" type="range" name="cellw" min="1" max="50"/> 
 
                 <br><br><input value="colorize" type="button" onclick="updateMain();"/>
                 <br><br>

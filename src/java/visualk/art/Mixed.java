@@ -82,7 +82,7 @@ public class Mixed extends HttpServlet {
                 Mixed.CANVASX_SIZE = Integer.parseInt(mx);
             } catch (Exception e) {
 
-                Mixed.CANVASX_SIZE = 100;
+                Mixed.CANVASX_SIZE = 150;
             }
         }
         if (my != null) {
@@ -90,7 +90,7 @@ public class Mixed extends HttpServlet {
                 Mixed.CANVASY_SIZE = Integer.parseInt(my);
             } catch (Exception e) {
 
-                Mixed.CANVASY_SIZE = 100;
+                Mixed.CANVASY_SIZE = 150;
             }
         }
         if (cell
@@ -99,7 +99,7 @@ public class Mixed extends HttpServlet {
                 Mixed.cellw = Integer.parseInt(cell);
             } catch (Exception e) {
 
-                Mixed.cellw = 3;
+                Mixed.cellw = 23;
             }
 
         }
@@ -115,7 +115,7 @@ public class Mixed extends HttpServlet {
         BufferedImage mixed = generateMixed(Mixed.counter);
 
         //BufferedImage result = mix(rounded, squared);
-        //result = negativo(result);
+        mixed = negativo(mixed);
         ImageIO.write(mixed, "png", response.getOutputStream());
 
     }

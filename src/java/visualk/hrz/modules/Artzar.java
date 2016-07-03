@@ -116,6 +116,10 @@ public class Artzar extends Xhtml {
 
         this.addDataForm("<input type=\"hidden\" name=\"canvasW\" value=\"\"/>");
         this.addDataForm("<input type=\"hidden\" name=\"canvasH\" value=\"\"/>");
+        
+        this.addDataForm("<input type=\"hidden\" name=\"mx\" value=\"600\"/>");
+        this.addDataForm("<input type=\"hidden\" name=\"my\" value=\"600\"/>");
+        
 
         //input dialog
         this.addBodyData(inputDialog.toHtml());

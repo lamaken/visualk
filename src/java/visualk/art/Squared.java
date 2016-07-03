@@ -84,7 +84,7 @@ public class Squared extends HttpServlet {
                 Squared.CANVASX_SIZE = Integer.parseInt(mx);
             } catch (Exception e) {
 
-                Squared.CANVASX_SIZE = 100;
+                Squared.CANVASX_SIZE = 150;
             }
         }
         if (my != null) {
@@ -92,7 +92,7 @@ public class Squared extends HttpServlet {
                 Squared.CANVASY_SIZE = Integer.parseInt(my);
             } catch (Exception e) {
 
-                Squared.CANVASY_SIZE = 100;
+                Squared.CANVASY_SIZE = 150;
             }
         }
         if (cell
@@ -101,7 +101,7 @@ public class Squared extends HttpServlet {
                 Squared.cellw = Integer.parseInt(cell);
             } catch (Exception e) {
 
-                Squared.cellw = 3;
+                Squared.cellw = 23;
             }
 
         }
@@ -113,7 +113,9 @@ public class Squared extends HttpServlet {
         }
         Squared.counter += 0.001;
 
-        ImageIO.write(generateAMosaicSquared(Squared.counter), "png", response.getOutputStream());
+        BufferedImage squared = generateAMosaicSquared(Squared.counter);
+        squared=negativo(squared);
+        ImageIO.write(squared, "png", response.getOutputStream());
 
     }
 

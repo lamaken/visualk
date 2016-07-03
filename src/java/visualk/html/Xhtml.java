@@ -17,7 +17,9 @@ public class Xhtml {
 	private static final String open_html	 = "<html xmlns=\"http://www.w3.org/1999/xhtml\">";
 	
 	private static final String open_head 	 = 	"<head>";
-	private String head 		 = 	"<meta http-equiv=\"Content-Type\" content=\"text/html; charset=ISO-8859-1\"/>";
+	
+        private String head = "<meta charset=\"ISO-8859-1\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">";
+    
 	
 	private static final String open_title 	 = 	"<title>";
 	private String title="default title";

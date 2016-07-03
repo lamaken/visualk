@@ -84,7 +84,7 @@ public class Rounded extends HttpServlet {
                 Rounded.CANVASX_SIZE = Integer.parseInt(mx);
             } catch (Exception e) {
 
-                Rounded.CANVASX_SIZE = 100;
+                Rounded.CANVASX_SIZE = 150;
             }
         }
         if (my != null) {
@@ -92,7 +92,7 @@ public class Rounded extends HttpServlet {
                 Rounded.CANVASY_SIZE = Integer.parseInt(my);
             } catch (Exception e) {
 
-                Rounded.CANVASY_SIZE = 100;
+                Rounded.CANVASY_SIZE = 150;
             }
         }
         if (cell
@@ -101,7 +101,7 @@ public class Rounded extends HttpServlet {
                 Rounded.cellw = Integer.parseInt(cell);
             } catch (Exception e) {
 
-                Rounded.cellw = 3;
+                Rounded.cellw = 23;
             }
 
         }
@@ -112,8 +112,9 @@ public class Rounded extends HttpServlet {
             Rounded.counter = 0;
         }
         Rounded.counter += 0.001;
-
-        ImageIO.write(generateRounded(Rounded.counter), "png", response.getOutputStream());
+        BufferedImage rounded = generateRounded(Rounded.counter);
+        rounded = negativo(rounded);
+        ImageIO.write(rounded, "png", response.getOutputStream());
 
     }
 

@@ -68,7 +68,6 @@ public class Horizon implements Serializable {
         setNameHrz(new UniqueName(8).getName());
         db.addHorizon(this, name);
         carrega(this.getNameHrz());
-        
 
     }
 
@@ -92,6 +91,21 @@ public class Horizon implements Serializable {
         this.nameHrz = name;
         max_width = MAX_WIDTH;
         max_height = MAX_HEIGTH;
+
+        this.version = HRZMKR_VERSION;
+
+        loadSuperNova();// carreguem imatge de la llum
+
+        loadTextura();// carreguem textura del terra
+
+        loadCel();// carreguem textura del cel
+
+    }
+
+    public Horizon(String name, int mx, int my) {
+        this.nameHrz = name;
+        max_width = mx;
+        max_height = my;
 
         this.version = HRZMKR_VERSION;
 
@@ -137,6 +151,7 @@ public class Horizon implements Serializable {
 
     }
 
+    /*
     public void makeRandomCanvas() {
         Random r = new Random();
 
@@ -156,47 +171,57 @@ public class Horizon implements Serializable {
 
         // el tamany de la imatge
         if (!horizontal) {
-            this.canvasHeigth = r.nextInt(max_height);
+            this.canvasHeigth =max_height;//; r.nextInt(max_height);
             while (this.canvasHeigth < MIN_HEIGTH) {
-                this.canvasHeigth = r.nextInt(max_height);
+                this.canvasHeigth = max_height;//r.nextInt(max_height);
             }
             if (aureaProp) {
                 this.canvasWidth = getAureo(this.canvasHeigth);
                 while (this.canvasWidth > max_width) {
-                    this.canvasWidth = r.nextInt(max_width);
+                    this.canvasWidth = max_width;//r.nextInt(max_width);
                 }
                 if (this.canvasWidth != getAureo(this.canvasHeigth)) {
                     setAureaProp(false);
                 }
 
             } else {
-                this.canvasWidth = r.nextInt(max_width);
+                this.canvasWidth = max_width;//r.nextInt(max_width);
                 while (this.canvasWidth < MIN_WIDTH) {
-                    this.canvasWidth = r.nextInt(max_width);
+                    this.canvasWidth = max_width;//r.nextInt(max_width);
                 }
             }
 
         } else {
-            this.canvasWidth = r.nextInt(max_width);
+            this.canvasWidth = max_width;//r.nextInt(max_width);
             while (this.canvasWidth < MIN_WIDTH) {
-                this.canvasWidth = r.nextInt(max_width);
+                this.canvasWidth = max_width;//r.nextInt(max_width);
             }
             if (aureaProp) {
                 this.canvasHeigth = getAureo(this.canvasWidth);
                 while (this.canvasHeigth > max_height) {
-                    this.canvasHeigth = r.nextInt(max_height);
+                    this.canvasHeigth = max_height;//r.nextInt(max_height);
                 }
                 if (this.canvasHeigth != getAureo(this.canvasWidth)) {
                     setAureaProp(false);
                 }
 
             } else {
-                this.canvasHeigth = r.nextInt(max_height);
+                this.canvasHeigth = max_height;//r.nextInt(max_height);
                 while (this.canvasHeigth < MIN_HEIGTH) {
-                    this.canvasHeigth = r.nextInt(max_height);
+                    this.canvasHeigth = max_height;//r.nextInt(max_height);
                 }
             }
         }
+
+        System.out.println("rw:" + this.canvasWidth + " rh:"
+                + this.canvasHeigth);
+    }
+     */
+    public void makeRandomCanvas(int mx, int my) {
+        Random r = new Random();
+
+        this.canvasHeigth = my;//; r.nextInt(max_height);
+        this.canvasWidth = mx;//r.nextInt(max_width);
 
         System.out.println("rw:" + this.canvasWidth + " rh:"
                 + this.canvasHeigth);
@@ -247,13 +272,14 @@ public class Horizon implements Serializable {
     public void makeRandomTextura() {
         Random r = new Random();
         this.textura = (r.nextInt(2) == 1);
-        this.textura = false;
+        this.textura = true;
     }
 
     public void makeRandomAureo() {
         Random r = new Random();
         // nuemero aureo
         this.aureaProp = (r.nextInt(2) == 1);
+        this.aureaProp = true;
         System.out.println("exit makeRandomAureo");
 
     }
@@ -272,7 +298,7 @@ public class Horizon implements Serializable {
         if (aureaProp) {
             this.topHrz = getAureo(this.canvasHeigth);
         } else {
-            this.topHrz = 10+r.nextInt(this.canvasHeigth-10);
+            this.topHrz = 10 + r.nextInt(this.canvasHeigth - 10);
             // while(this.topHrz<50)this.topHrz=r.nextInt(this.canvasHeigth);
         }
         System.out.println("exit makeRandomAlçadaHoritzo");
@@ -313,13 +339,13 @@ public class Horizon implements Serializable {
         this.bottomHrzColor = new Color(r.nextInt(255 * 255 * 255));
     }
 
-    public void makeRandom() {
+    public void makeRandom(int mx, int my) {
         makeRandomTextura();
 
         makeRandomHorizontal();
         makeRandomAureo();
 
-        makeRandomCanvas();
+        makeRandomCanvas(mx, my);
 
         makeRandomAlçadaHoritzo();
 
@@ -379,7 +405,7 @@ public class Horizon implements Serializable {
         URL url;
         try {
             url = new URL(URL_IMG + "llum2.png");
-            
+
             bmpSuperNova = Toolkit.getDefaultToolkit().getImage(url);
 
             if (bmpSuperNova == null) {
@@ -453,7 +479,7 @@ public class Horizon implements Serializable {
         g2.setColor(this.getTopHrzColor());
         g2.fillRect(0, 0, this.getCanvasWidth(), this.getTopHrz());
 
-        g2.drawImage(bmpCel, 0, 0, null);
+        g2.drawImage(bmpCel, 0, 0,mx,my, null);
 
         // posem la llum
         g2.drawImage(bmpSuperNova, this.superX - 100, this.superY - 100, null);

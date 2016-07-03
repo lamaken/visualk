@@ -76,7 +76,7 @@ public class Hrz extends HttpServlet {
         hrz2.setAuthorHrz(name);
         hrz2.setHorizontal();
         hrz2.setAureaProp(false);
-        hrz2.makeRandomCanvas(110, 100, 100, 50);
+        hrz2.makeRandomCanvas(150, 100, 100, 70);
         hrz2.makeRandomAlçadaHoritzo();
         hrz2.makeRandomPal();
         hrz2.makeRandomHombra();
@@ -155,6 +155,17 @@ public class Hrz extends HttpServlet {
 
         String option = request.getParameter("option");
         String nom = request.getParameter("nom");
+        
+        String mx = "";
+        String my = "";
+        
+        mx = request.getParameter("mx");
+        my = request.getParameter("my");
+        
+        if (mx==null)mx="250";
+        if (my==null)my="250";
+        
+        
 
         if (pino == null) {
             pino = "0";
@@ -191,7 +202,7 @@ public class Hrz extends HttpServlet {
                 if (what.equals("carrega")) { //entra a artzar
                 } else if (what.equals("gen_atzar")) {
                     hrz.setNameHrz(new UniqueName(8).getName());
-                    hrz.makeRandom();//random de tot
+                    hrz.makeRandom(Integer.parseInt(mx),Integer.parseInt(my));//random de tot
                 } else if (what.equals("colorsRnd")) {
                     hrz.makeRandomColors(); //random de colors
                 } else if (what.equals("posicioRnd")) {

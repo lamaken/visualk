@@ -3,8 +3,11 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-         <meta http-equiv="refresh" content="1">
+         <meta http-equiv="refresh" content="10">
+         <meta name="viewport" content="width=device-width, initial-scale=1">
+         
           <title>visualk v0.1</title>
+          
         <meta name="Keywords"
               content="experiments, horizon maker, hrzmkr, mosaics, mosaic editor" />
         <meta name="Description"
