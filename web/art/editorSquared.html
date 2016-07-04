@@ -59,10 +59,10 @@
             }
 
             function saveData() {
-                setCookie("mx", mx);
-                setCookie("my", my);
-                setCookie("rnd", rnd);
-                setCookie("cellw", cellw);
+                setCookie("smx", mx);
+                setCookie("smy", my);
+                setCookie("srnd", rnd);
+                setCookie("scellw", cellw);
             }
 
             function reload() {
@@ -137,10 +137,10 @@
                 document.getElementById("myCanvas").top = 0;
                 document.getElementById("myCanvas").left = 0;
 
-                mx = getCookie("mx");
-                my = getCookie("my");
-                cellw = getCookie("cellw");
-                rnd = getCookie("rnd");
+                mx = getCookie("smx");
+                my = getCookie("smy");
+                cellw = getCookie("scellw");
+                rnd = getCookie("srnd");
 
 
 
