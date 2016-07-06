@@ -36,9 +36,9 @@ public class Artzar extends Xhtml {
     private void addMyStyles() {
 
         /////////////////////// input dialog
-        cssInputBox.setLeft("30%");
+        cssInputBox.setLeft("30px");
         cssInputBox.setTop("30%");
-        cssInputBox.setRight("30%");
+        cssInputBox.setRight("30px");
         //cssInputBox.setHeight("80px");
         cssInputBox.setPosition("absolute");
         cssInputBox.setTextalign("center");
@@ -117,8 +117,11 @@ public class Artzar extends Xhtml {
         this.addDataForm("<input type=\"hidden\" name=\"canvasW\" value=\"\"/>");
         this.addDataForm("<input type=\"hidden\" name=\"canvasH\" value=\"\"/>");
         
-        this.addDataForm("<input type=\"hidden\" name=\"mx\" value=\"600\"/>");
-        this.addDataForm("<input type=\"hidden\" name=\"my\" value=\"600\"/>");
+        this.addDataForm("<input type=\"hidden\" name=\"mx\" value=\"60\"/>");
+        this.addDataForm("<input type=\"hidden\" name=\"my\" value=\"60\"/>");
+        
+        this.addDataForm("<input type=\"hidden\" name=\"lan\" value=\"ES\"/>");
+        
         
 
         //input dialog
@@ -131,7 +134,7 @@ public class Artzar extends Xhtml {
 
         String styleMarc = "style=\"padding:2px; color:white; border:solid 3px; \"";
 
-        html_image = "<img " + styleMarc + " name=\"HrzCanvasImg\" title=\"Horizon Maker v0.2\" alt=\"carregant...\" src=\"/visualk/hrz/Hrz?option=paint\"/>";
+        html_image = "<img " + styleMarc + " name=\"HrzCanvasImg\" title=\"Horizon Maker v0.3\" alt=\"carregant...\" src=\"/visualk/hrz/Hrz?option=paint\"/>";
 
         this.addBodyData(new DivHtml("HrzCanvasDiv").toHtml(html_image));
         this.addBodyData("<div id='pino'></id>");

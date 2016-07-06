@@ -12,11 +12,21 @@
         <meta name="ROBOTS" content="INDEX, NOFOLLOW" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-
+        <script>
+               function getlan(){
+                   langId = navigator.language || navigator.userLanguage; 
+                   document.forms.f.lan.value=langId;
+                   
+                   document.forms.f.mx.value=window.innerWidth-100;
+                   document.forms.f.my.value=window.innerHeight-100;
+                   
+                   
+               }
+        </script>
     </head>
 
 
-    <body style="color: rgb(10, 20, 30); background-color: rgb(222, 242, 240)">
+    <body onload="getlan()" style="color: rgb(10, 20, 30); background-color: rgb(222, 242, 240)">
 
         <br />
         <br />
@@ -34,6 +44,12 @@
                 <input type="hidden" name="what" value="carrega" />
                 <input type="hidden" name="canvasW" value="500" /> 
                 <input type="hidden" name="canvasH" value="500" />
+                <input type="hidden" name="mx" value=""/> 
+                <input type="hidden" name="my" value=""/>
+                
+                <input type="editbox" name="lan" value="" />
+                
+
                 <input type="submit"/>
             </form>
         </div>

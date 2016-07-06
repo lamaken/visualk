@@ -27,6 +27,7 @@ function refresca() {//genera un horitzo al atzar
     document.fmain.what.value = "gen_atzar";
     document.fmain.mx.value = window.innerWidth-100;
     document.fmain.my.value = window.innerHeight-100;
+    
 
     updateHrz();
 }
@@ -56,11 +57,9 @@ function hombraRnd() {
     updateHrz();
 }
 function updateHrz() {
-
     //if(navId=="ok"){
     xmlhttpPost(SERVLET_HRZ_URL);
     //}else document.fmain.submit();
-
 }
 
 

@@ -3,6 +3,8 @@ package visualk.html;
 import visualk.hrz.Hrz;
 
 
+
+
 public class InputDialog {
 
 	private ClassCSS css;

@@ -24,50 +24,55 @@ public class DbHorizons {
     }
 
     public void addHorizon(Horizon hrz, String authorName) {
-        mySQL.executeDB("insert into hrzns (" + "nameHrz," + "dt," + "topHrz,"
-                + "topHrzColor," + "bottomHrzColor," + "canvasWidth,"
-                + "canvasHeigth," + "authorHrz," + "xPal," + "yPal," + "hPalx,"
-                + "hPaly," + "alcada," + "colPal," + "horizontal,"
-                + "aureaProp," + "superX," + "superY," + "textura," + "version) values ('"
-                + hrz.getNameHrz()
-                + "', "
-                + "NOW()"
-                + ", '"
-                + hrz.getTopHrz()
-                + "', '"
-                + hrz.getTopHrzColor().getRGB()
-                + "', '"
-                + hrz.getBottomHrzColor().getRGB()
-                + "', '"
-                + hrz.getCanvasWidth()
-                + "', '"
-                + hrz.getCanvasHeigth()
-                + "', '"
-                + authorName
-                + "', '"
-                + hrz.getxPal()
-                + "', '"
-                + hrz.getyPal()
-                + "', '"
-                + hrz.gethPalx()
-                + "', '"
-                + hrz.gethPaly()
-                + "', '"
-                + hrz.getAlçada()
-                + "', '"
-                + hrz.getColPal().getRGB()
-                + "', '"
-                + hrz.isHorizontal()
-                + "', '"
-                + hrz.isAureaProp()
-                + "', '"
-                + hrz.getSuperX()
-                + "', '"
-                + hrz.getSuperY()
-                + "', '"
-                + hrz.isTextura()
-                + "', '"
-                + hrz.getVersion() + "')");
+        if (mySQL != null) {
+            try {
+                mySQL.executeDB("insert into hrzns (" + "nameHrz," + "dt," + "topHrz,"
+                        + "topHrzColor," + "bottomHrzColor," + "canvasWidth,"
+                        + "canvasHeigth," + "authorHrz," + "xPal," + "yPal," + "hPalx,"
+                        + "hPaly," + "alcada," + "colPal," + "horizontal,"
+                        + "aureaProp," + "superX," + "superY," + "textura," + "version) values ('"
+                        + hrz.getNameHrz()
+                        + "', "
+                        + "NOW()"
+                        + ", '"
+                        + hrz.getTopHrz()
+                        + "', '"
+                        + hrz.getTopHrzColor().getRGB()
+                        + "', '"
+                        + hrz.getBottomHrzColor().getRGB()
+                        + "', '"
+                        + hrz.getCanvasWidth()
+                        + "', '"
+                        + hrz.getCanvasHeigth()
+                        + "', '"
+                        + authorName
+                        + "', '"
+                        + hrz.getxPal()
+                        + "', '"
+                        + hrz.getyPal()
+                        + "', '"
+                        + hrz.gethPalx()
+                        + "', '"
+                        + hrz.gethPaly()
+                        + "', '"
+                        + hrz.getAlçada()
+                        + "', '"
+                        + hrz.getColPal().getRGB()
+                        + "', '"
+                        + hrz.isHorizontal()
+                        + "', '"
+                        + hrz.isAureaProp()
+                        + "', '"
+                        + hrz.getSuperX()
+                        + "', '"
+                        + hrz.getSuperY()
+                        + "', '"
+                        + hrz.isTextura()
+                        + "', '"
+                        + hrz.getVersion() + "')");
+            } catch (Exception e) {
+            }
+        }
     }
 
     public ResultSet listHrzns() {
@@ -83,7 +88,7 @@ public class DbHorizons {
         Horizon temp = new Horizon(name);
         ResultSet myResult;
         myResult = mySQL.queryDB("SELECT * FROM hrzns where nameHrz='" + name + "'");
-        temp.makeRandom(250,250);
+        temp.makeRandom(100, 300);
         if (myResult == null) {
 
             return temp;

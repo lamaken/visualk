@@ -14,11 +14,11 @@ public class Xhtml {
 	
 	
 	
-	private static final String open_html	 = "<html xmlns=\"http://www.w3.org/1999/xhtml\">";
+	private static final String open_html	 = "<html xmlns=\"http://www.w3.org/1999/xhtml\" lang=\"es\">";
 	
 	private static final String open_head 	 = 	"<head>";
 	
-        private String head = "<meta charset=\"ISO-8859-1\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">";
+        private String head = "<meta charset=\"ISO-8859-1\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0\"/>";
     
 	
 	private static final String open_title 	 = 	"<title>";

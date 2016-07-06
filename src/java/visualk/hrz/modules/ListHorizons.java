@@ -58,7 +58,13 @@ public class ListHorizons extends Xhtml {
         this.addDataForm("<input type=\"hidden\" name=\"where\" value=\"listhorizons\"/>");
         this.addDataForm("<input type=\"hidden\" name=\"what\" value=\"\"/>");
         this.addDataForm("<input type=\"hidden\" name=\"nom\" value=\"\"/>");
+        this.addDataForm("<input type=\"hidden\" name=\"lan\" value=\"ES\"/>");
 
+         
+        this.addDataForm("<input type=\"hidden\" name=\"mx\" value=\"60\"/>");
+        this.addDataForm("<input type=\"hidden\" name=\"my\" value=\"60\"/>");
+        
+        
         this.addBodyData(upperMenuBar.toHtml());
 
         DbHorizons db = new DbHorizons(); //connexio a la BD

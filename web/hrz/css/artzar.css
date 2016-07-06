@@ -20,6 +20,7 @@ a{
     text-align:center;
 
     background:rgb(30,20,50);
+    opacity: 0.5;
 }
 
 #randomBar{
@@ -30,6 +31,7 @@ a{
     text-align:center;
 
     background:rgb(20,30,40);
+    opacity: 0.5;
 
 }
 
@@ -43,6 +45,7 @@ a{
     border-color: red;
 
     background:rgb(20,30,30);
+    opacity: 0.5;
 }
 
 #dialog {

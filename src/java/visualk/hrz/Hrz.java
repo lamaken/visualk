@@ -10,25 +10,31 @@ package visualk.hrz;
 import java.io.IOException;
 
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.LinkedList;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
 import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import visualk.Main;
 
 import visualk.hrz.modules.Artzar;
 import visualk.hrz.modules.ListHorizons;
-//import visualk.hrz.modules.Wizard;
+
 import visualk.hrz.objects.Horizon;
 import visualk.html.UniqueName;
 
 /**
  * Servlet implementation class Hrz
  */
+@WebServlet("/Hrz")
 public class Hrz extends HttpServlet {
 
     private static final long serialVersionUID = 102431973219L;
@@ -40,32 +46,25 @@ public class Hrz extends HttpServlet {
     //private static Wizard wizard; 	 	// asistent per la ceracio
 
     private static ResourceBundle bundle;
-    Horizon hrz=null;
 
+    Hashtable hrzns = new Hashtable();
+    Horizon hrz;
+
+    //Session sessioN;
     /**
      * @see HttpServlet#HttpServlet()
      */
     public Hrz() {
-
         super();
-        if(hrz==null){
-            hrz = new Horizon("null");
-        }
-        hrz.carrega("uwrncXu61");
+        //session=null??
+        //new session
+        //get session
 
-        if(listH==null)listH = new ListHorizons(getString("title.gallery.hrzmkr"));
-        if(artzar==null)artzar = new Artzar(getString("title.artzar.hrzmkr"));
-        
-        // TODO Auto-generated constructor stub 
     }
+    private static final String INICIAL_HORIZON_NAME_SESSION = "Inicial";
 
     public static String getString(String key) {
-        if(bundle!=null)return bundle.getString(key);
-                else {
-            bundle= ResourceBundle.getBundle("outputTextConstants", Locale.getDefault());
-            
-            return bundle.getString(key);
-        }
+        return bundle.getString(key);
     }
 
     //signature for emails
@@ -102,8 +101,30 @@ public class Hrz extends HttpServlet {
     }
 
     //retorna dibuix
-    public void getAtzar(HttpServletResponse response) throws IOException {
+    public void getAtzar(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("image/JPEG");
+
+        HttpSession session = request.getSession(true);
+        String sessionId = "no_session";
+        try {
+            sessionId = session.getId();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        if (hrzns.containsKey(sessionId)) {
+
+            hrz = (Horizon) hrzns.get(sessionId);
+        } else {
+            hrz = (Horizon) hrzns.get(INICIAL_HORIZON_NAME_SESSION);
+            /*hrz = new Horizon(new UniqueName(8).getName());
+
+            hrz.makeRandom(Integer.parseInt("15"), Integer.parseInt("300"));
+            hrz.setNameHrz(new UniqueName(8).getName());
+
+            hrzns.put(sessionId, hrz);
+             */
+        }
         ImageIO.write(hrz.getHrzImage(), "gif", response.getOutputStream());
     }
 
@@ -113,9 +134,7 @@ public class Hrz extends HttpServlet {
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // TODO Auto-generated method stub
-        Locale defaultLocale = request.getLocale();
-        bundle = ResourceBundle.getBundle("outputTextConstants", defaultLocale);
-        
+
         String option = request.getParameter("option");
         String namehrz = request.getParameter("namehrz");
 
@@ -125,10 +144,12 @@ public class Hrz extends HttpServlet {
 
         if (option.equals("paint")) {// a mida real
             if (namehrz == null) {
-                getAtzar(response);
+                getAtzar(request, response);
+
             } else {
                 loadAtzar(namehrz, response);
             }
+
         }
         if (option.equals("peque")) {// mida small
             peque(namehrz, response);
@@ -145,27 +166,56 @@ public class Hrz extends HttpServlet {
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // TODO Auto-generated method stub
-        Locale defaultLocale = request.getLocale();
-        bundle = ResourceBundle.getBundle("outputTextConstants", defaultLocale);
-        
-        
+
+        String lan;
         String where = request.getParameter("where");
         String what = request.getParameter("what");
         String pino = request.getParameter("pino");
 
         String option = request.getParameter("option");
         String nom = request.getParameter("nom");
-        
+
         String mx = "";
         String my = "";
-        
+
         mx = request.getParameter("mx");
         my = request.getParameter("my");
-        
-        if (mx==null)mx="250";
-        if (my==null)my="250";
-        
-        
+
+        lan = request.getParameter("lan");
+
+        if (mx == null) {
+            mx = "250";
+        }
+        if (my == null) {
+            my = "250";
+        }
+
+        if (lan == null) {
+            lan = "EN";//DEFAULT_LANGUAGE
+        }
+
+        bundle = ResourceBundle.getBundle("outputTextConstants", Locale.forLanguageTag(lan));
+        HttpSession session = request.getSession(true);
+        String sessionId = "no_session";
+        try {
+            sessionId = session.getId();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        if (hrzns.containsKey(sessionId)) {
+
+            hrz = (Horizon) hrzns.get(sessionId);
+        } else {
+            hrz = new Horizon(new UniqueName(8).getName());
+            hrz.setNameHrz(new UniqueName(8).getName());
+            hrz.makeRandom(Integer.parseInt(mx), Integer.parseInt(my));//random de tot
+            hrzns.put(sessionId,hrz);// = (Horizon) hrzns.get(INICIAL_HORIZON_NAME_SESSION);
+        }
+
+        if (listH == null) {
+            listH = new ListHorizons(getString("title.gallery.hrzmkr"));
+        }
 
         if (pino == null) {
             pino = "0";
@@ -199,10 +249,17 @@ public class Hrz extends HttpServlet {
 
             ////////// control atzar
             if (where.equals("artzar")) {
+                if (artzar == null) {
+                    artzar = new Artzar(getString("title.artzar.hrzmkr"));
+                }
                 if (what.equals("carrega")) { //entra a artzar
                 } else if (what.equals("gen_atzar")) {
+                    hrz = new Horizon(new UniqueName(8).getName());
                     hrz.setNameHrz(new UniqueName(8).getName());
-                    hrz.makeRandom(Integer.parseInt(mx),Integer.parseInt(my));//random de tot
+                    hrz.makeRandom(Integer.parseInt(mx), Integer.parseInt(my));//random de tot
+                                        
+                    hrzns.put(sessionId, hrz);
+
                 } else if (what.equals("colorsRnd")) {
                     hrz.makeRandomColors(); //random de colors
                 } else if (what.equals("posicioRnd")) {

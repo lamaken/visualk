@@ -2,6 +2,9 @@ var lastSel = "";
 
 function torna(){
 	document.fmain.where.value="artzar";
+        document.fmain.mx.value = window.innerWidth-100;
+        document.fmain.my.value = window.innerHeight-100;
+    
 	document.fmain.what.value="";//carrega inicial
 	
 	document.fmain.submit();

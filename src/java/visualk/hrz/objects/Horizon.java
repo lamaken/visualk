@@ -218,7 +218,7 @@ public class Horizon implements Serializable {
     }
      */
     public void makeRandomCanvas(int mx, int my) {
-        Random r = new Random();
+       // Random r = new Random();
 
         this.canvasHeigth = my;//; r.nextInt(max_height);
         this.canvasWidth = mx;//r.nextInt(max_width);
@@ -501,12 +501,36 @@ public class Horizon implements Serializable {
         }
 
         // ombra
+         // ombra
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+                RenderingHints.VALUE_ANTIALIAS_ON);
+        g2.setColor(Color.black);
+        /*g2.drawLine(this.getxPal(), this.getyPal() + this.getTopHrz(), this
+                .gethPalx(), this.getTopHrz() + this.gethPaly());
+*/
+         int rotation = 0;
+        
+        if (this.gethPaly() < this.getyPal() ) {
+            sethPaly(this.getyPal());
+        }
+        
+        
+        rotation = 2 * this.getxPal() - this.superX - this.bmpSuperNova.getWidth(null)/2;
+        
+
+        g2.drawLine(this.getxPal(), this.getyPal() + this.getTopHrz(), rotation, this.getTopHrz() + this.gethPaly());
+
+        
+        /*ombra antiga
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                 RenderingHints.VALUE_ANTIALIAS_ON);
         g2.setColor(Color.black);
         g2.drawLine(this.getxPal(), this.getyPal() + this.getTopHrz(), this
                 .gethPalx(), this.getTopHrz() + this.gethPaly());
-
+        
+        
+        */
+        
         // pal
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                 RenderingHints.VALUE_ANTIALIAS_OFF);
