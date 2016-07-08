@@ -39,8 +39,8 @@ a{
 }
 
 
-
 #HrzListDiv{
+    
     left:20px;
     right:20px;
     top:20px;
@@ -51,4 +51,5 @@ a{
     color:yellow;
     z-index: 10;
     overflow:auto;
+    
 }

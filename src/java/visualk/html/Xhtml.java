@@ -14,7 +14,7 @@ public class Xhtml {
 	
 	
 	
-	private static final String open_html	 = "<html xmlns=\"http://www.w3.org/1999/xhtml\" lang=\"es\">";
+	private static final String open_html	 = "<html xmlns=\"http://www.w3.org/1999/xhtml\" >";
 	
 	private static final String open_head 	 = 	"<head>";
 	

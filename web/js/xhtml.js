@@ -26,8 +26,15 @@ function getAgent(){
 function init(){
 	getAgent();
 	getLang();
+        
+     
 }
 
 function redirect(){
 	document.location="hrz/index.html";
 }
+
+
+
+
+   

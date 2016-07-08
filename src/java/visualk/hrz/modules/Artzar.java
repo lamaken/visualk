@@ -120,7 +120,7 @@ public class Artzar extends Xhtml {
         this.addDataForm("<input type=\"hidden\" name=\"mx\" value=\"60\"/>");
         this.addDataForm("<input type=\"hidden\" name=\"my\" value=\"60\"/>");
         
-        this.addDataForm("<input type=\"hidden\" name=\"lan\" value=\"ES\"/>");
+       
         
         
 
@@ -134,7 +134,7 @@ public class Artzar extends Xhtml {
 
         String styleMarc = "style=\"padding:2px; color:white; border:solid 3px; \"";
 
-        html_image = "<img " + styleMarc + " name=\"HrzCanvasImg\" title=\"Horizon Maker v0.3\" alt=\"carregant...\" src=\"/visualk/hrz/Hrz?option=paint\"/>";
+        html_image = "<img " + styleMarc + " name=\"HrzCanvasImg\" title=\"Horizon Maker v0.3\" alt=\""+Hrz.getString("label.loading.artzar.hrzmkr")+"\" src=\"/visualk/hrz/Hrz?option=paint\"/>";
 
         this.addBodyData(new DivHtml("HrzCanvasDiv").toHtml(html_image));
         this.addBodyData("<div id='pino'></id>");

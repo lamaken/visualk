@@ -386,9 +386,9 @@ public class Horizon implements Serializable {
         Image img = buf
                 .getScaledInstance(mmx, mmy, BufferedImage.SCALE_DEFAULT);
 
-        if (img instanceof BufferedImage) {
+        /*if (img instanceof BufferedImage) {
             return (BufferedImage) img;
-        }
+        }*/
 
         BufferedImage bimage = new BufferedImage(img.getWidth(null), img
                 .getHeight(null), 1);
@@ -508,20 +508,17 @@ public class Horizon implements Serializable {
         /*g2.drawLine(this.getxPal(), this.getyPal() + this.getTopHrz(), this
                 .gethPalx(), this.getTopHrz() + this.gethPaly());
 */
-         int rotation = 0;
-        
-        if (this.gethPaly() < this.getyPal() ) {
-            sethPaly(this.getyPal());
-        }
         
         
-        rotation = 2 * this.getxPal() - this.superX - this.bmpSuperNova.getWidth(null)/2;
         
-
-        g2.drawLine(this.getxPal(), this.getyPal() + this.getTopHrz(), rotation, this.getTopHrz() + this.gethPaly());
-
+/*
+        int rotation = 0;
+        rotation = this.getxPal()-this.superX*2;
+        g2.drawLine(this.getxPal(), this.getyPal() + this.getTopHrz(), 
+        rotation, this.getyPal() + this.getTopHrz() + Math.abs(this.gethPaly()));
+*/
         
-        /*ombra antiga
+        //ombra antiga
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                 RenderingHints.VALUE_ANTIALIAS_ON);
         g2.setColor(Color.black);
@@ -529,7 +526,7 @@ public class Horizon implements Serializable {
                 .gethPalx(), this.getTopHrz() + this.gethPaly());
         
         
-        */
+        
         
         // pal
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,

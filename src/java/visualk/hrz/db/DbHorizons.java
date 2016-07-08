@@ -8,7 +8,7 @@ import visualk.hrz.objects.Horizon;
 
 public class DbHorizons {
 
-    private MysqlLayer mySQL = new MysqlLayer();
+    private final MysqlLayer mySQL = new MysqlLayer();
 
     public DbHorizons() {
         prepareDB("127.0.0.1", "hrzmkr_user", "hrzmkr_password", "hrzmkr_db");
@@ -20,7 +20,7 @@ public class DbHorizons {
     }
 
     public void prepareDB(String dbServer, String dbUser, String dbPassword, String dbDataBase) {
-        this.mySQL.setDBValues(dbServer, dbUser, dbPassword, dbDataBase);
+        mySQL.setDBValues(dbServer, dbUser, dbPassword, dbDataBase);
     }
 
     public void addHorizon(Horizon hrz, String authorName) {
@@ -71,6 +71,8 @@ public class DbHorizons {
                         + "', '"
                         + hrz.getVersion() + "')");
             } catch (Exception e) {
+            } finally {
+                disconnect();
             }
         }
     }
@@ -89,88 +91,89 @@ public class DbHorizons {
         ResultSet myResult;
         myResult = mySQL.queryDB("SELECT * FROM hrzns where nameHrz='" + name + "'");
         temp.makeRandom(100, 300);
-        if (myResult == null) {
+        if (myResult != null) {
 
-            return temp;
-        }
+            try {
+                while (myResult.next()) {
+                    String nameHrz = "";
+                    String topHrz = "";
+                    String topHrzColor = "";
+                    String bottomHrzColor = "";
+                    String canvasWidth = "";
+                    String canvasHeigth = "";
+                    String authorHrz = "";
+                    String xPal = "";
+                    String yPal = "";
+                    String hPalx = "";
+                    String hPaly = "";
+                    String alcada = "";
+                    String horizontal = "";
+                    String aureaProp = "";
+                    String colPal = "";
+                    String superX = "";
+                    String superY = "";
+                    String textura = "";
 
-        try {
-            while (myResult.next()) {
-                String nameHrz = "";
-                String topHrz = "";
-                String topHrzColor = "";
-                String bottomHrzColor = "";
-                String canvasWidth = "";
-                String canvasHeigth = "";
-                String authorHrz = "";
-                String xPal = "";
-                String yPal = "";
-                String hPalx = "";
-                String hPaly = "";
-                String alcada = "";
-                String horizontal = "";
-                String aureaProp = "";
-                String colPal = "";
-                String superX = "";
-                String superY = "";
-                String textura = "";
+                    String version = "";
+                    try {
+                        nameHrz = myResult.getString("nameHrz");
+                        topHrz = myResult.getString("topHrz");
+                        topHrzColor = myResult.getString("topHrzColor");
+                        bottomHrzColor = myResult.getString("bottomHrzColor");
+                        canvasWidth = myResult.getString("canvasWidth");
+                        canvasHeigth = myResult.getString("canvasHeigth");
+                        authorHrz = myResult.getString("authorHrz");
+                        xPal = myResult.getString("xPal");
+                        yPal = myResult.getString("yPal");
+                        hPalx = myResult.getString("hPalx");
+                        hPaly = myResult.getString("hPaly");
+                        alcada = myResult.getString("alcada");
+                        colPal = myResult.getString("colPal");
+                        horizontal = myResult.getString("horizontal");
+                        aureaProp = myResult.getString("aureaProp");
 
-                String version = "";
-                try {
-                    nameHrz = myResult.getString("nameHrz");
-                    topHrz = myResult.getString("topHrz");
-                    topHrzColor = myResult.getString("topHrzColor");
-                    bottomHrzColor = myResult.getString("bottomHrzColor");
-                    canvasWidth = myResult.getString("canvasWidth");
-                    canvasHeigth = myResult.getString("canvasHeigth");
-                    authorHrz = myResult.getString("authorHrz");
-                    xPal = myResult.getString("xPal");
-                    yPal = myResult.getString("yPal");
-                    hPalx = myResult.getString("hPalx");
-                    hPaly = myResult.getString("hPaly");
-                    alcada = myResult.getString("alcada");
-                    colPal = myResult.getString("colPal");
-                    horizontal = myResult.getString("horizontal");
-                    aureaProp = myResult.getString("aureaProp");
+                        superX = myResult.getString("superX");
+                        superY = myResult.getString("superY");
+                        textura = myResult.getString("textura");
 
-                    superX = myResult.getString("superX");
-                    superY = myResult.getString("superY");
-                    textura = myResult.getString("textura");
+                        version = myResult.getString("version");
+                    } catch (SQLException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
 
-                    version = myResult.getString("version");
-                } catch (SQLException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
+                    temp.setNameHrz(nameHrz);
+                    temp.setTopHrz(Integer.parseInt(topHrz));
+                    temp.setTopHrzColor(new Color(Integer.parseInt(topHrzColor)));
+                    temp.setBottomHrzColor(new Color(Integer.parseInt(bottomHrzColor)));
+                    temp.setCanvasWidth(Integer.parseInt(canvasWidth));
+                    temp.setCanvasHeigth(Integer.parseInt(canvasHeigth));
+                    temp.setAuthorHrz(authorHrz);
+                    temp.setxPal(Integer.parseInt(xPal));
+                    temp.setyPal(Integer.parseInt(yPal));
+                    temp.sethPalx(Integer.parseInt(hPalx));
+                    temp.sethPaly(Integer.parseInt(hPaly));
+                    temp.setAlcada(Integer.parseInt(alcada));
+                    temp.setColPal(new Color(Integer.parseInt(colPal)));
+                    temp.setHorizontal(horizontal.equals("true"));
+                    temp.setAureaProp(aureaProp.equals("true"));
+
+                    temp.setSuperX(Integer.parseInt(superX));
+                    temp.setSuperY(Integer.parseInt(superY));
+                    temp.setTextura(textura.equals("true"));
+
+                    temp.setVersion(version);
                 }
+                myResult.close();
 
-                temp.setNameHrz(nameHrz);
-                temp.setTopHrz(Integer.parseInt(topHrz));
-                temp.setTopHrzColor(new Color(Integer.parseInt(topHrzColor)));
-                temp.setBottomHrzColor(new Color(Integer.parseInt(bottomHrzColor)));
-                temp.setCanvasWidth(Integer.parseInt(canvasWidth));
-                temp.setCanvasHeigth(Integer.parseInt(canvasHeigth));
-                temp.setAuthorHrz(authorHrz);
-                temp.setxPal(Integer.parseInt(xPal));
-                temp.setyPal(Integer.parseInt(yPal));
-                temp.sethPalx(Integer.parseInt(hPalx));
-                temp.sethPaly(Integer.parseInt(hPaly));
-                temp.setAlcada(Integer.parseInt(alcada));
-                temp.setColPal(new Color(Integer.parseInt(colPal)));
-                temp.setHorizontal(horizontal.equals("true"));
-                temp.setAureaProp(aureaProp.equals("true"));
-
-                temp.setSuperX(Integer.parseInt(superX));
-                temp.setSuperY(Integer.parseInt(superY));
-                temp.setTextura(textura.equals("true"));
-
-                temp.setVersion(version);
+            } catch (NumberFormatException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
             }
-        } catch (NumberFormatException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+
         }
         return (temp);
     }

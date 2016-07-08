@@ -16,7 +16,10 @@ public class ListHorizons extends Xhtml {
 
     private static final String CSS_LIST_FILE_NAME = "/visualk/hrz/css/listhorizons.css";
     private static final String JS_LIST_FILE_NAME = "/visualk/hrz/js/listhorizons.js";
-
+    private static final String JS_BLAZYLOAD_FILE_NAME = "/visualk/hrz/js/blazy.min.js";
+    
+    
+   
     private MenuBar upperMenuBar;
 
     private final String googlePlusTagBefore = "<g:plusone href=\"";
@@ -47,18 +50,21 @@ public class ListHorizons extends Xhtml {
     public String toHtml() {
         String html_image = "";
 
-        //this.updateFunctions();
+        
         this.clearBodyData();
         this.clearDataForm();
 
         this.updateFunctions();
 
         vsFunctions.addFile(JS_LIST_FILE_NAME);
+        vsFunctions.addFile(JS_BLAZYLOAD_FILE_NAME);
+        
+        
 
         this.addDataForm("<input type=\"hidden\" name=\"where\" value=\"listhorizons\"/>");
         this.addDataForm("<input type=\"hidden\" name=\"what\" value=\"\"/>");
         this.addDataForm("<input type=\"hidden\" name=\"nom\" value=\"\"/>");
-        this.addDataForm("<input type=\"hidden\" name=\"lan\" value=\"ES\"/>");
+      
 
          
         this.addDataForm("<input type=\"hidden\" name=\"mx\" value=\"60\"/>");
@@ -71,10 +77,13 @@ public class ListHorizons extends Xhtml {
         ResultSet rs = db.listHrzns();
         String namehrz = "";
         String table = "";
+        String notable = "";
+        
         String tds = "";
 
         try {
             table = "<table border=0 cellspacing=10px padding=10px><tr>";
+            
 
             if (rs == null) {
                 namehrz = "UNABLE MYSQL";
@@ -83,18 +92,9 @@ public class ListHorizons extends Xhtml {
                 hrz.carrega(namehrz);
                 String id_div = new UniqueName(8).getName();
 
-                html_image = "<img "
-                        + "title=\"" + hrz.getAuthorHrz() + "\" "
-                        + "alt=\"carregant..\" "
-                        + "onclick=\"selecciona('" + id_div + "')\" "
-                        + "ondblclick=\"edita('" + namehrz + "')\" "
-                        + "src=\"/visualk/hrz/Hrz?option=paint&amp;namehrz=" + namehrz + "\"/>";
+                html_image = "DATABASE ERROR";
 
-                String html_google = googlePlusTagBefore + "http://hrzmkr.com/servlet/Hrz?option=paint&amp;namehrz=" + namehrz + googlePlusAfter;
-
-                String html_facebook = facebookLikeTagBefore + "http://hrzmkr.com/servlet/Hrz?option=paint&amp;namehrz=" + namehrz + facebookLikeTagAfter;
-
-                tds += "<td>" + new DivHtml(id_div).toHtml(html_image + html_google + html_facebook) + "</td>";
+                tds += "<td>" + new DivHtml(id_div).toHtml(html_image) + "</td>";
 
             } else {
                 while (rs.next()) {
@@ -104,20 +104,23 @@ public class ListHorizons extends Xhtml {
                     hrz.carrega(namehrz);
                     String id_div = new UniqueName(8).getName();
 
-                    html_image = "<img "
+                    html_image = "<img class=\"b-lazy\" "
                             + "title=\"" + hrz.getAuthorHrz() + "\" "
-                            + "alt=\"carregant..\" "
-                            + "onclick=\"selecciona('" + id_div + "')\" "
-                            + "ondblclick=\"edita('" + namehrz + "')\" "
-                            + "src=\"/visualk/hrz/Hrz?option=paint&amp;namehrz=" + namehrz + "\"/>";
+                            + "alt=\""+Hrz.getString("label.loading.gallery.hrzmkr")+"\" "
+                            //+ "onclick=\"selecciona('" + id_div + "')\" "
+                            //+ "ondblclick=\"edita('" + namehrz + "')\" "
+                            + "src=\"/visualk/hrz/Hrz?option=paint&amp;namehrz=" + namehrz + "\" "
+                            + "data-src=\"/visualk/hrz/Hrz?option=paint&amp;namehrz=" + namehrz + "\"/>";
 
-                    String html_google = googlePlusTagBefore + "http://hrzmkr.com/servlet/Hrz?option=paint&amp;namehrz=" + namehrz + googlePlusAfter;
+                    String html_google = googlePlusTagBefore + "http://alkasoft.org/visualk/hrz/Hrz?option=paint&amp;namehrz=" + namehrz + googlePlusAfter;
 
-                    String html_facebook = facebookLikeTagBefore + "http://hrzmkr.com/servlet/Hrz?option=paint&amp;namehrz=" + namehrz + facebookLikeTagAfter;
+                    String html_facebook = facebookLikeTagBefore + "http://alkasoft.org/visualk/hrz/Hrz?option=paint&amp;namehrz=" + namehrz + facebookLikeTagAfter;
 
-                    tds += "<td>" + new DivHtml(id_div).toHtml(html_image + html_google + html_facebook) + "</td>";
-
+                    tds += "<td>" + new DivHtml(id_div).toHtml(html_image /*+ html_google + html_facebook*/) + "</td>";
+                    
+                    notable += html_image;
                 }
+                rs.close();
             }
             table += tds + "</tr></table>";
 
@@ -127,6 +130,9 @@ public class ListHorizons extends Xhtml {
         }
 
         this.addBodyData(new DivHtml("HrzListDiv").toHtml(table));
+        //this.addBodyData(new DivHtml("HrzListDiv").toHtml(notable));
+        
+        
         String ret = this.getHtml();
         db.disconnect();
         return (ret);

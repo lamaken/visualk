@@ -28,11 +28,11 @@ public class MysqlLayer {
 
     public void disconnect() {
         try {
-            result.close();
-            sql.close();
-            dbConn.close();
+            if(result!=null)result.close();
+            if(sql!=null)sql.close();
+            if(dbConn!=null)dbConn.close();
         } catch (Exception e) {
-            System.out.print("no puc tancar la bd.");
+            System.out.println("no puc tancar la bd.>>>"+e.getMessage());
         }
     }
 
@@ -73,6 +73,7 @@ public class MysqlLayer {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+        disconnect();
     }
 
     public ResultSet queryDB(String sqlQuery) {
@@ -97,6 +98,7 @@ public class MysqlLayer {
             System.out.println("SQL Error on Open jdbc:mysql://" + dbServer + ":3306/" + dbDataBase);
             System.out.println("SQL Error on Open:" + dbUser + "," + dbPassword);
             //TODO:control d'excepcio
+            disconnect();
 
         }
 
