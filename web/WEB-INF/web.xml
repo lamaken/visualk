@@ -23,7 +23,10 @@
         <servlet-name>Hrz</servlet-name>
         <servlet-class>visualk.hrz.Hrz</servlet-class>
     </servlet>
- 
+    <servlet>
+        <servlet-name>jsTubsWorld</servlet-name>
+        <servlet-class>visualk.games.jstubsworld.jsTubsWorld</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Hrz</servlet-name>
         <url-pattern>/hrz/Hrz</url-pattern>
@@ -40,6 +43,10 @@
     <servlet-mapping>
         <servlet-name>ArtMixed</servlet-name>
         <url-pattern>/art/Mixed</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>jsTubsWorld</servlet-name>
+        <url-pattern>/jsTubsWorld</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
