@@ -1,7 +1,7 @@
-package ss.modules.generator;
+package visualk.ss.modules.generator;
 
-import ss.objects.DivHtml;
-import ss.objects.LinkHtml;
+import visualk.html.DivHtml;
+import visualk.html.LinkHtml;
 
 public class Frame {
 

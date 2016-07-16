@@ -1,11 +1,11 @@
 /**
  * 
  */
-package ss.modules.viewer;
+package visualk.ss.modules.viewer;
 
 
 
-import ss.objects.DivHtml;
+import visualk.html.DivHtml;
 
 
 

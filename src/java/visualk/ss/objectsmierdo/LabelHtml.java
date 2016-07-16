@@ -1,7 +1,7 @@
 /**
  * 
  */
-package ss.objects;
+package visualk.ss.objectsmierdo;
 /**
  * @author �lex
  *

@@ -1,10 +1,10 @@
 /**
  * 
  */
-package ss.modules.viewer;
+package visualk.ss.modules.viewer;
 
-import ss.objects.DivHtml;
-import ss.objects.LinkHtml;
+import visualk.html.DivHtml;
+import visualk.html.LinkHtml;
 
 /**
  * @author alex

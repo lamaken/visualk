@@ -1,12 +1,12 @@
-package ss.db;
+package visualk.ss.db;
 
 import java.sql.*;
 import java.util.LinkedList;
 
-import ss.modules.generator.ComboForm;
-import ss.modules.generator.Enquesta;
-import ss.modules.generator.ObjectForm;
-import ss.objects.UniqueName;
+import visualk.ss.modules.generator.ComboForm;
+import visualk.ss.modules.generator.Enquesta;
+import visualk.ss.modules.generator.ObjectForm;
+import visualk.html.UniqueName;
 
 
 public class EnquestesDb {

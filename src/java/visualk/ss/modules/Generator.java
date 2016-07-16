@@ -1,23 +1,19 @@
 /**
  * 
  */
-package ss.modules;
+package visualk.ss.modules;
 
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import ss.db.EnquestesDb;
-import ss.modules.generator.Enquesta;
-//import ss.modules.generator.Frame;
-//import ss.modules.generator.MapBar;
-import ss.modules.generator.Publicacions;
-//import ss.objects.LinkHtml;
-import ss.objects.MenuBar;
-import ss.objects.UniqueName;
+import visualk.ss.db.EnquestesDb;
+import visualk.ss.modules.generator.Enquesta;
+import visualk.ss.modules.generator.Publicacions;
 
-
-import ss.objects.Xhtml;
+import visualk.html.MenuBar;
+import visualk.html.UniqueName;
+import visualk.html.Xhtml;
 
 /**
  * @author àlex

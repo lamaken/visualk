@@ -1,4 +1,4 @@
-package ss;
+package visualk.ss;
 
 import java.io.*;
 import java.util.LinkedList;
@@ -7,13 +7,13 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 
 
-import ss.db.Auth;
-import ss.modules.Analysis;
-import ss.modules.Generator;
-import ss.modules.Viewer;
+import visualk.ss.db.Auth;
+import visualk.ss.modules.Analysis;
+import visualk.ss.modules.Generator;
+import visualk.ss.modules.Viewer;
 
 
-import ss.objects.UniqueName;
+import visualk.html.UniqueName;
 
 /**
  * Servlet implementation class SurveyServer

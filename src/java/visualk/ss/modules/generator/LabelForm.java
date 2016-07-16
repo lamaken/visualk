@@ -1,10 +1,10 @@
 /**
  * 
  */
-package ss.modules.generator;
+package visualk.ss.modules.generator;
 
 
-import ss.objects.LinkHtml;
+import visualk.html.LinkHtml;
 
 /**
  * @author alex

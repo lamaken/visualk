@@ -1,4 +1,4 @@
-package ss.db;
+package visualk.ss.db;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 
 
 
-import ss.modules.generator.Publicacions;
+import visualk.ss.modules.generator.Publicacions;
 
 public class PublicacionsDb {
 	

@@ -1,14 +1,14 @@
 /**
  * 
  */
-package ss.modules.viewer;
+package visualk.ss.modules.viewer;
 
 import java.util.LinkedList;
 
-import ss.modules.viewer.Pregunta;
+import visualk.ss.modules.viewer.Pregunta;
 
-import ss.objects.DivHtml;
-import ss.objects.LinkHtml;
+import visualk.html.DivHtml;
+import visualk.html.LinkHtml;
 
 
 /**

@@ -1,13 +1,13 @@
-package ss.modules;
+package visualk.ss.modules;
 
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import ss.db.AnalysisDB;
-import ss.modules.analysis.DataGroupAnalysis;
-import ss.objects.MenuBar;
-import ss.objects.Xhtml;
+import visualk.ss.db.AnalysisDB;
+import visualk.ss.modules.analysis.DataGroupAnalysis;
+import visualk.html.MenuBar;
+import visualk.html.Xhtml;
 
 public class Analysis  extends Xhtml{
 

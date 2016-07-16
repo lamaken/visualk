@@ -1,11 +1,11 @@
 /**
  * 
  */
-package ss.modules.generator;
+package visualk.ss.modules.generator;
 
 import java.util.LinkedList;
 
-import ss.objects.DivHtml;
+import visualk.html.DivHtml;
 
 
 /**

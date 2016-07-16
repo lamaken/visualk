@@ -1,4 +1,4 @@
-package ss.objects;
+package visualk.ss.objectsmierdo;
 
 public class MessageBox {
 	private String msg;

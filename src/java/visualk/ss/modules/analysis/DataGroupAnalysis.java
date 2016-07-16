@@ -1,13 +1,13 @@
 /**
  * 
  */
-package ss.modules.analysis;
+package visualk.ss.modules.analysis;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import ss.db.AnalysisDB;
-import ss.objects.DivHtml;
+import visualk.ss.db.AnalysisDB;
+import visualk.html.DivHtml;
 
 /**
  * @author alex

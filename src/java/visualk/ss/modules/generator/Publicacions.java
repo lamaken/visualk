@@ -1,11 +1,11 @@
-package ss.modules.generator;
+package visualk.ss.modules.generator;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import ss.db.PublicacionsDb;
-import ss.objects.DivHtml;
-import ss.objects.LinkHtml;
+import visualk.ss.db.PublicacionsDb;
+import visualk.html.DivHtml;
+import visualk.html.LinkHtml;
 
 public class Publicacions {
 	

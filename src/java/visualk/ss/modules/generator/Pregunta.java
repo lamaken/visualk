@@ -1,7 +1,6 @@
-package ss.modules.generator;
+package visualk.ss.modules.generator;
 
 import java.util.LinkedList;
-import ss.modules.generator.ComboForm;
 
 
 

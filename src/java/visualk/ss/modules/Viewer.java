@@ -1,18 +1,18 @@
 /**
  * 
  */
-package ss.modules;
+package visualk.ss.modules;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
 
-import ss.db.ViewDB;
-import ss.modules.viewer.FluxeSurvey;
-import ss.modules.viewer.UserData;
-import ss.objects.MenuBar;
-import ss.objects.UniqueName;
-import ss.objects.Xhtml;
+import visualk.ss.db.ViewDB;
+import visualk.ss.modules.viewer.FluxeSurvey;
+import visualk.ss.modules.viewer.UserData;
+import visualk.html.MenuBar;
+import visualk.html.UniqueName;
+import visualk.html.Xhtml;
 
 /**
  * @author alex

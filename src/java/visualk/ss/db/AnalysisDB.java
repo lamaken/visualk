@@ -1,4 +1,4 @@
-package ss.db;
+package visualk.ss.db;
 
 import java.sql.ResultSet;
 

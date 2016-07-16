@@ -1,4 +1,4 @@
-package ss.objects;
+package visualk.ss.objectsmierdo;
 
 public class CssStyles {
 	private String html="";
