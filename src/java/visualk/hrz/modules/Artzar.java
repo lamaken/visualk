@@ -5,12 +5,13 @@ package visualk.hrz.modules;
 
 
 import visualk.hrz.Hrz;
+import visualk.html.Xhtml;
 import visualk.html.ClassCSS;
 import visualk.html.DivHtml;
 import visualk.html.InputDialog;
 import visualk.html.MenuBar;
 
-import visualk.html.Xhtml;
+
 
 /**
  * @author alex

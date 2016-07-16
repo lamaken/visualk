@@ -14,7 +14,7 @@ public class MysqlLayer {
     private String dbPassword = null;
     private String dbDataBase = null;
 
-    protected Connection dbConn = null;
+    public Connection dbConn = null;
 
     protected ResultSet result = null;
     protected PreparedStatement sql = null;

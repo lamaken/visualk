@@ -27,6 +27,11 @@
         <servlet-name>jsTubsWorld</servlet-name>
         <servlet-class>visualk.games.jstubsworld.jsTubsWorld</servlet-class>
     </servlet>
+    <servlet>
+        <description>Servlet del programa surveyserver</description>
+        <servlet-name>SurveyServer</servlet-name>
+        <servlet-class>visualk.ss.SurveyServer</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Hrz</servlet-name>
         <url-pattern>/hrz/Hrz</url-pattern>
@@ -47,6 +52,10 @@
     <servlet-mapping>
         <servlet-name>jsTubsWorld</servlet-name>
         <url-pattern>/jsTubsWorld</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SurveyServer</servlet-name>
+        <url-pattern>/ss/SurveyServer</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
