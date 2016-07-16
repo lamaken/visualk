@@ -5,8 +5,8 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 
 
-import ss.modules.viewer.ObjectForm;
-import ss.modules.viewer.FluxeSurvey;
+import visualk.ss.modules.viewer.ObjectForm;
+import visualk.ss.modules.viewer.FluxeSurvey;
 
 public class ViewDB {
 	private MysqlLayer mySQL=new MysqlLayer();
