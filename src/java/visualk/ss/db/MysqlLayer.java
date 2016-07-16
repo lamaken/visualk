@@ -20,7 +20,7 @@ public class MysqlLayer {
    /** Crea la instància de sqlLayer */
    protected MysqlLayer() {
 	   result = null;
-	   this.setDBValues("localhost","ss_user","ss_password","surveyserver_db");//servidor,usuari,password,base de dades
+	   this.setDBValues("127.0.0.1","ss_user","ss_password","surveyserver_db");//servidor,usuari,password,base de dades
    }
 
    private void setDBValues(String dbServer, String dbUser, String dbPassword, String dbDataBase) {
