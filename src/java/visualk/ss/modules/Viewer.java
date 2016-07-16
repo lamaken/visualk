@@ -1,18 +1,18 @@
 /**
  * 
  */
-package visualk.ss.modules;
+package ss.modules;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
 
-import visualk.ss.db.ViewDB;
-import visualk.ss.modules.viewer.FluxeSurvey;
-import visualk.ss.modules.viewer.UserData;
-import visualk.html.MenuBar;
-import visualk.html.UniqueName;
-import visualk.html.Xhtml;
+import ss.db.ViewDB;
+import ss.modules.viewer.FluxeSurvey;
+import ss.modules.viewer.UserData;
+import ss.objects.MenuBar;
+import ss.objects.UniqueName;
+import ss.objects.Xhtml;
 
 /**
  * @author alex
@@ -24,12 +24,14 @@ public class Viewer  extends Xhtml{
 	private static final String JS_VIEWER_FILE_NAME="js/viewer.js";
 	
 	private static final String LNK_MARXAR = "exit";
+	private static final String LNK_CANCELA = "cancela";
 	
 	private FluxeSurvey fluxeSurvey;
 	
 	private MenuBar upperMenuBar;
 	
 	private MenuBar menuAnonimes;
+	private MenuBar menuNoAnonimes;
 	
 	private String email_or_code;
 	private UserData usuariData;
@@ -163,10 +165,14 @@ public class Viewer  extends Xhtml{
 		menuAnonimes = new MenuBar("llistaAnonimes");
 		menuAnonimes.setVertical();
 		
+		menuNoAnonimes = new MenuBar("llistaNoAnonimes");
+		menuNoAnonimes.setVertical();
+		
 		if(eml_or_code==null) this.setEmail_or_code(session);
 		else this.setEmail_or_code(eml_or_code);
 		
-		carregaDadesUsuari(getEmail_or_code());
+		carregaDadesUsuari();
+		continua();
 		
 		this.initMenu();
 		
@@ -192,9 +198,9 @@ public class Viewer  extends Xhtml{
 		return(ret);
 	}
 
-	public void carregaDadesUsuari(String code){
+	public void carregaDadesUsuari(){
 		usuariData=new UserData(getEmail_or_code());
-		this.addBodyData(usuariData.toHtml());
+		//this.addBodyData(usuariData.toHtml());
 	}
 	
 	public void LlistaAnonimes(){
@@ -215,23 +221,49 @@ public class Viewer  extends Xhtml{
 		menuAnonimes.setTitle("S`han trobat les següents enquestes anònimes");
 	}
 		
-	public String LlistaUsuari(String email){
-		return("listat usuari "+email);
+	public void  LlistaNoAnonimes(String email){
+		String ide;
+		String nome;
+		
+		ResultSet myResult = viewDB.getLlistaNoAnonimes(email);
+		try {
+			while(myResult.next()){
+				 ide = myResult.getString("id_enquesta");
+			     nome = myResult.getString("nm_enquesta");
+			     menuNoAnonimes.addMenuLink("n_"+ide, nome , "#","fes","'loadEnquesta','"+ide+"'", "Fes clic per carregar l`enquesta :("+ nome + ")");
+			 }
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		menuNoAnonimes.setTitle("S`han trobat les següents enquestes dirigides a tú.");
 	}
 		
 	public void continua(){
 		this.clearBodyData();
 		menuAnonimes.clear();
+		menuNoAnonimes.clear();
 		LlistaAnonimes();
 		
 		this.addBodyData(menuAnonimes.toHtml());
-		if(!usuariData.isAnonim())this.addBodyData(LlistaUsuari(usuariData.getEmail()));
+		
+		if(!usuariData.isAnonim()){
+				LlistaNoAnonimes(usuariData.getEmail());
+				this.addBodyData(menuNoAnonimes.toHtml());
+		}
 	}
 	public void inicia(String idEnquestaDB){//inicia l'enquesta
 		this.clearBodyData();
+		upperMenuBar.addMenuLink(LNK_CANCELA, "Tornar", "#","fes","'cancela_resp','0'","Cancel·la i torna al menú inicial.");
 		loadEnquesta(idEnquestaDB);
 		this.fluxeSurvey.primera();
 		this.addBodyData(this.fluxeSurvey.toHtml());
+	}
+	public void cancela(){
+		this.fluxeSurvey=null;
+		upperMenuBar.eliminaOption(LNK_CANCELA);
+		continua();
+		
 	}
 	public void anterior(LinkedList<String> respostes){
 		this.clearBodyData();
@@ -247,6 +279,7 @@ public class Viewer  extends Xhtml{
 		}
 		else{
 			viewDB.saveAlltoBD(fluxeSurvey,getEmail_or_code());
+			upperMenuBar.eliminaOption(LNK_CANCELA);
 			continua();
 			this.messageBox.setMessage("Gràcies per respondre l`enquesta.");
 			}

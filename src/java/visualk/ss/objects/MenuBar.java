@@ -60,7 +60,7 @@ public class MenuBar{
 		CrHtml enter = new CrHtml();
 		
 		if(this.orientation==HORIZONTAL_ALIGN)htmlChar=space.toHtml();
-		if(this.orientation==VERTICAL_ALIGN)htmlChar=enter.toHtml()+enter.toHtml();
+		if(this.orientation==VERTICAL_ALIGN)htmlChar=enter.toHtml();
 		
 		
 		String returnHtml="";

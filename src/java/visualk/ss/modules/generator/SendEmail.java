@@ -1,4 +1,4 @@
-package visualk.ss.modules.generator;
+package ss.modules.generator;
 
 //apt-get install sendmail
 

@@ -1,12 +1,12 @@
-package visualk.ss.db;
+package ss.db;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
 
 
-import visualk.ss.modules.viewer.ObjectForm;
-import visualk.ss.modules.viewer.FluxeSurvey;
+import ss.modules.viewer.ObjectForm;
+import ss.modules.viewer.FluxeSurvey;
 
 public class ViewDB {
 	private MysqlLayer mySQL=new MysqlLayer();
@@ -31,13 +31,10 @@ public class ViewDB {
 			return(ret);
 		}
 	
-	 public void prepareDB(String dbServer,String dbUser, String dbPassword,String dbDataBase){   
-	        this.mySQL.setDBValues(dbServer, dbUser, dbPassword, dbDataBase);
-	    } 
+
 	 
 	public ViewDB() {
-		   	prepareDB("localhost","ss_user","pass","surveysdb");
-	    	//prepareDB("mysql-s","s257847rw","segona","s257847_surveyserver");
+		   
 	   
 	}
 	 public ResultSet getPreguntes(String id){
@@ -95,7 +92,7 @@ public class ViewDB {
 	public ResultSet getLlistaNoAnonimes(String email)
     {
       ResultSet myResult;
-      String sentence = "select a.id_pub as id_pub, b.id_enquesta as id_enquesta,b.nm_enquesta as nm_enquesta from publicacions a, enquesta b where a.anonima=0 and a.dt_start<NOW() and NOW()<a.dt_end";
+      String sentence = "select a.id_pub as id_pub, b.id_enquesta as id_enquesta,b.nm_enquesta as nm_enquesta from publicacions a, enquesta b, grups_usuari c,grups d,usuaris e where a.id_grup=d.id_grup and c.id_usuari=e.id_usuari and a.id_enquesta=b.id_enquesta and d.id_grup = c.id_grup and a.anonima=0 and a.activa=1 and a.dt_start<NOW() and NOW()<a.dt_end and e.email=\""+email+"\"";
       myResult=mySQL.queryDB(sentence);
       return (myResult);
     }

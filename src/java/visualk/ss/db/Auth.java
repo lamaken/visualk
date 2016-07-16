@@ -1,4 +1,4 @@
-package visualk.ss.db;
+package ss.db;
 
 import java.sql.*;
 
@@ -7,14 +7,10 @@ public class Auth {
     private MysqlLayer mySQL=new MysqlLayer();
     private ResultSet myResult;
     
-    public void prepareDB(String dbServer,String dbUser, String dbPassword,String dbDataBase){   
-    	this.mySQL.setDBValues(dbServer, dbUser, dbPassword, dbDataBase);
-        
-    } 
+  
                      
     public Auth(){
-    	prepareDB("localhost","ss_user","pass","surveyserver_db");
-    	//prepareDB("mysql-s","s257847rw","segona","s257847_surveyserver");
+    
     }
   
     public boolean canEnter(String alias, String clau){ 
@@ -38,7 +34,7 @@ public class Auth {
     }
     public boolean isEmailActive(String email,String password){
     	String sentence;
-    	sentence = "select * from usuaris where (passw=NULL or passw=\""+password+"\") and email=\""+email+"\"";
+    	sentence = "select * from usuaris where (passw is NULL or passw=\""+password+"\") and email=\""+email+"\"";
     	System.out.print(sentence);
     	this.myResult=mySQL.queryDB(sentence);
         if(myResult!=null){

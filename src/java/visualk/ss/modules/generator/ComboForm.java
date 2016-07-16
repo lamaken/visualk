@@ -1,7 +1,8 @@
+
 /**
  * 
  */
-package visualk.ss.modules.generator;
+package ss.modules.generator;
 
 import java.util.LinkedList;
 
@@ -30,7 +31,7 @@ public class ComboForm extends ObjectForm{
 	public void addOption(String caption,String name){
 		options.add(caption);
 
-		System.out.println("addOption:"+caption);
+		//System.out.println("addOption:"+caption);
 	}
 	private String genOptions(){
 		String temp="";

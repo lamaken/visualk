@@ -1,11 +1,11 @@
-package visualk.ss.modules.generator;
+package ss.modules.generator;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import visualk.ss.db.PublicacionsDb;
-import visualk.html.DivHtml;
-import visualk.html.LinkHtml;
+import ss.db.PublicacionsDb;
+import ss.objects.DivHtml;
+import ss.objects.LinkHtml;
 
 public class Publicacions {
 	
@@ -18,13 +18,13 @@ public class Publicacions {
 	private String dt_start;
 	private String dt_end;
 	private String code;
-	private boolean llista;
+	private String id_grup="";
+	
+	
 	private boolean activada;
+	private boolean anonymous=true;
 	
-	
-
-	private boolean anonymous;
-	private String listEmails;
+	private String listEmails="";
 	private PublicacionsDb pubDB;
 	
 	
@@ -32,15 +32,17 @@ public class Publicacions {
 	
 		
 		String isanon="";
-		if(isAnonymous())isanon="checked";		
+		String isnotanon="";
+		
+		if(isAnonymous())isanon="checked";
+		else isnotanon="checked";
 		
 		String a_nom = new LinkHtml("nom_pub_anch","Nom:","#","Nom de l`enquesta publicada").toHtml();
 		String a_desc = new LinkHtml("desc_pub_anch","Descripció:","#","Descripció breu de l`enquesta publicada").toHtml();
 		String a_dt_start = new LinkHtml("dts_pub_anch","Data inici:","#","Data a partir de la qual l`enquesta estarà activa, FORMAT (AAAA-MM-DD)").toHtml();
 		String a_dt_end = new LinkHtml("dte_pub_anch","Data fí:","#","Data finalització de l`enquesta publicada,  FORMAT (AAAA-MM-DD)").toHtml();
-		String a_code = new LinkHtml("code_pub_anch","Codi:","#","Codi per accedir de forma anonima a l`enquesta publicada").toHtml();
 		String a_anonymous = new LinkHtml("anony_pub_anch","Anònima:","#","Si permet l`accès anònim").toHtml();
-		String a_listEmails = new LinkHtml("lst_pub_anch","Llista d'emails:","#","Llista de correus als que se`ls enviarà l`enquesta publicada").toHtml();
+		String a_listEmails = new LinkHtml("lst_pub_anch","Llista d'emails:","#","Llista d`emails (separats per comes) que realitzaràn l`enquesta publicada").toHtml();
 		String a_estat = new LinkHtml("estat_pub","Estat de l`enquesta:","#","Indica si l`enquesta està activa o innactiva.").toHtml();
 		
 		
@@ -53,7 +55,7 @@ public class Publicacions {
 												"<td style=\"vertical-align: top;\" ><b>ACTIVA! </b>   "+a_desactiva+
 												"</td>";
 		else desactivada_o_activada ="<td style=\"text-align: right;vertical-align: top;\" >"+a_estat+"</td>"+
-		      						"<td style=\"vertical-align: top;\" ><b>DESACTIVA  </b>  "+a_activa+
+		      						"<td style=\"vertical-align: top;\" ><b>DESACTIVADA  </b>  "+a_activa+
 		      						"</td>";
 		   
 
@@ -86,11 +88,13 @@ public class Publicacions {
 			    "</tr>"+
 			    "<tr>"+
 			      "<td style=\"text-align: right;vertical-align: top;\" >"+a_anonymous+"</td>"+
-			      "<td style=\"vertical-align: top;\" ><input "+isanon+" name=\"anonima\" type=\"checkbox\"/></td>"+
+			      "<td style=\"vertical-align: top;\" ><input "+isanon+" value=\"1\" name=\"anonima\" type=\"radio\"/></td>"+
 			    "</tr>"+
 			    "<tr>"+
 			      "<td style=\"text-align: right;vertical-align: top;\" >"+a_listEmails+"</td>"+
-			      "<td style=\"vertical-align: top;\" ><input name=\"llista\" type=\"checkbox\"/><br> <textarea cols=\"30\" rows=\"4\" name=\"emails\">alex@yahoo.es</textarea>"+
+			      "<td  >" +
+			      "<div style=\"float:left;vertical-align: top;\"><input "+isnotanon+" value=\"0\" name=\"anonima\" type=\"radio\"/></div>" +
+			      "<div style=\"float:left;vertical-align: top;\"><textarea cols=\"30\" rows=\"4\" name=\"emails\">"+this.listEmails+"</textarea></div>"+
 			    "  </td>"+
 			   " </tr>"+
 			   "<tr>"+
@@ -119,15 +123,34 @@ public class Publicacions {
 				 setDt_start(myResult.getString("dt_start"));
 				 setDt_end(myResult.getString("dt_end"));
 				 setActivada((myResult.getString("activa").equals("1")));
+				 setId_grup(myResult.getString("grup"));
 				 
 				 if(getDt_end()==null)setDt_end("4000/01/01");
 				 if(getDt_start()==null)setDt_start("4000/01/01");
-				 	 
+				  
 			}
 				 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+		loadUsuaris();
+	}
+	private void loadUsuaris(){
+		String idg = getId_grup();
+		if(idg!=null){
+			ResultSet myResult = pubDB.loadUsuaris(idg);
+			setListEmails("");
+			try {
+				while(myResult.next()){
+					 this.listEmails+=myResult.getString("email")+",";
+				}
+					 
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 		}
 	}
 	public void activa(){
@@ -141,15 +164,15 @@ public class Publicacions {
 		loadDb();
 		genHtml();
 	}
-	public void guardaPub(String nom,String desc,String dt_start,String dt_end,String anonima,String llista,String emails){
+	public void guardaPub(String nom,String desc,String dt_start,String dt_end,String anonima,String emails){
 		
 		setNom(nom);
 		setDesc(desc);
 		setDt_start(dt_start);
 		setDt_end(dt_end);
 		setListEmails(emails);
-		setLlista(!(llista==null));
-		setAnonymous(!(anonima==null));
+		
+		setAnonymous((anonima.equals("1")));
 		
 		
 		this.pubDB.guardaDB(this);
@@ -218,6 +241,12 @@ public class Publicacions {
 	public boolean isAnonymous() {
 		return anonymous;
 	}
+	public void setId_grup(String id_grup) {
+		this.id_grup = id_grup;
+	}
+	public String getId_grup() {
+		return id_grup;
+	}
 	public void setAnonymous(boolean anonymous) {
 		this.anonymous = anonymous;
 	}
@@ -228,12 +257,7 @@ public class Publicacions {
 		this.listEmails = listEmails;
 	}
 
-	public boolean isLlista() {
-		return llista;
-	}
-	public void setLlista(boolean llista) {
-		this.llista = llista;
-	}
+	
 	public boolean isActivada() {
 		return activada;
 	}

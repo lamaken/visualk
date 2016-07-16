@@ -1,4 +1,4 @@
-package visualk.ss;
+package ss;
 
 import java.io.*;
 import java.util.LinkedList;
@@ -7,9 +7,10 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 
 
-import visualk.ss.db.Auth;
-import visualk.ss.modules.Generator;
-import visualk.ss.modules.Viewer;
+import ss.db.Auth;
+import ss.modules.Analysis;
+import ss.modules.Generator;
+import ss.modules.Viewer;
 
 
 import ss.objects.UniqueName;
@@ -22,6 +23,7 @@ public class SurveyServer extends HttpServlet {
 	      
 	private Generator ssGenerator;
 	private Viewer ssViewer;
+	private Analysis ssAnalysis; 
 	private boolean acepted_login;	//acces
 	private boolean acepted_code;	//codi enquestes anonimes
 	
@@ -66,7 +68,7 @@ public class SurveyServer extends HttpServlet {
 	    if	(where		== null) where = "";
 	    
 	  
-	    ///////generator
+	    ///////generator&analysis
 	    if((!where.equals("view"))&&(acepted_login==false)) { 
 	    	 acepted_login = new Auth().canEnter(login_name,login_pass);
 	    }
@@ -75,9 +77,32 @@ public class SurveyServer extends HttpServlet {
 	    if((!where.equals("generator"))&&(acepted_code==false)){
 	    	acepted_code = new Auth().isEmailActive(login_name, login_pass);
 	    	if(login_name.equals("anonimous"))acepted_code=true;
-	    	System.out.print(login_name);
+	   
 	    }
-	
+	    
+	 
+	    
+	    /////////analysis
+	    if((acepted_login)&&(where.equals("analysis"))){ //
+	    	if(actions.equals("start")){
+	    		ssAnalysis = new Analysis(login_name,newname);
+	    	}else 
+	    	if(actions.equals("viewData")){
+	    		ssAnalysis.viewData(params);
+	    	}else
+    		if(actions.equals("tornar")){
+	    		ssAnalysis.tornar();
+	    	}else
+	    	if(actions.equals("marxar")){
+	    		acepted_login=false;
+				response.sendRedirect("/surveyserver/index.html");
+	    	}else error=true;
+	    	
+	    	if(!error){
+				html=ssAnalysis.toHtml();	
+			}
+	    	
+	    }else
 	    if((acepted_code)&&(where.equals("view"))){ //
 	    	if(actions.equals("start")){
 	    		ssViewer = new Viewer(login_name,newname);
@@ -99,6 +124,8 @@ public class SurveyServer extends HttpServlet {
 				int c = Integer.parseInt(request.getParameter("count"));
 				for(int n=1;n<=c;n++)resp.add(request.getParameter("object_"+n));
 				ssViewer.seguent(resp);
+			}else if (actions.equals("cancela_resp")){
+				ssViewer.cancela();
 			}
 			else if(actions.equals("marxar")){
 	    		acepted_code=false;
@@ -152,9 +179,11 @@ public class SurveyServer extends HttpServlet {
 				String dt_start= request.getParameter("dt_start");
 				String dt_end= request.getParameter("dt_end");
 				String anonima= request.getParameter("anonima");
-				String llista= request.getParameter("llista");
 				String emails= request.getParameter("emails");
-				ssGenerator.guardaPub(nom,desc,dt_start,dt_end,anonima,llista,emails); 
+				System.out.println("emails:"+emails);
+				System.out.println("anonima:"+anonima);
+				
+				ssGenerator.guardaPub(nom,desc,dt_start,dt_end,anonima,emails); 
 			}
 			else if(actions.equals("activapub")){
 				ssGenerator.activaPub(); 
@@ -255,7 +284,7 @@ public class SurveyServer extends HttpServlet {
 	    if(error) System.out.println("!error!, where:"+where+" actions:"+actions+" params:"+params);
 		else System.out.println("debug: where:"+where+" actions:"+actions+" params:"+params+ "more:"+more);
 	    
-	    if(error) html="!error!, where:"+where+" actions:"+actions+" params:"+params;
+	    if(error) html="!Acció no desenvolupada!, where:"+where+" actions:"+actions+" params:"+params;
 	
 	    if(login_error){
 	    	//html  = errorPage.toHtml()

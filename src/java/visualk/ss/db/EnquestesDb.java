@@ -1,12 +1,12 @@
-package visualk.ss.db;
+package ss.db;
 
 import java.sql.*;
 import java.util.LinkedList;
 
-import visualk.ss.modules.generator.ComboForm;
-import visualk.ss.modules.generator.Enquesta;
-import visualk.ss.modules.generator.ObjectForm;
-import visualk.html.UniqueName;
+import ss.modules.generator.ComboForm;
+import ss.modules.generator.Enquesta;
+import ss.modules.generator.ObjectForm;
+import ss.objects.UniqueName;
 
 
 public class EnquestesDb {
@@ -57,9 +57,7 @@ public class EnquestesDb {
 	
 	
     
-    public void prepareDB(String dbServer,String dbUser, String dbPassword,String dbDataBase){   
-        this.mySQL.setDBValues(dbServer, dbUser, dbPassword, dbDataBase);
-    } 
+  
     public String addEnquesta(String id, String nom, String desc){
     	if(id.equals("")){
     		//TODO: Guardar be la data
@@ -91,9 +89,7 @@ public class EnquestesDb {
     /** Crea la instància de clients */
     public EnquestesDb(String propietari) {
     	this.propietari = propietari;
-    	prepareDB("localhost","ss_user","pass","surveysdb");
-    	//prepareDB("mysql-s","s257847rw","segona","s257847_surveyserver");
-    }
+      }
     public void eliminaTotaEnquesta(String id_enquesta){
     	eliminaTotAbans(id_enquesta);
     	mySQL.executeDB("delete from enquesta where id_enquesta=\""+id_enquesta+"\";");

@@ -1,4 +1,4 @@
-package visualk.ss.modules.generator;
+package ss.modules.generator;
 
 import ss.objects.DivHtml;
 import ss.objects.LinkHtml;

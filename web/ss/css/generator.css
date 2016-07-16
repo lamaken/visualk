@@ -6,7 +6,24 @@ body{
 }	
 a{
 	color:yellow;
+	font-size:14px;
 }
+
+#a_tancar_div a{
+	color:lime;
+	text-decoration: underline;
+	}
+#a_guarda_div a{
+	color:lime;
+	text-decoration: underline;
+	}
+#a_activa_div a{
+	color:lime;
+	text-decoration: underline;
+	}
+	
+
+
 .objectForm{
 	position:relative;
 	padding:10px 10px 10px 10px; 	
@@ -86,8 +103,20 @@ a{
 	overflow:scroll;
 	left:120px;
 	right:120px;
-	top:80px;
-	bottom:120px;
+	top:50px;
+	bottom:50%;
+	background:gray;
+	position:absolute;
+	color:white;
+	text-align: center;
+	padding:15px 15px 15px 15px; 	
+	}
+#enqPubBar{
+	overflow:scroll;
+	left:120px;
+	right:120px;
+	top:50%;
+	bottom:50px;
 	background:gray;
 	position:absolute;
 	color:white;
@@ -99,9 +128,7 @@ a{
 	right:150px;
 	top:120px;
 	bottom:50px;
-	background:olive;
 	position:absolute;
-	color:yellow;
 	text-align: left;
 	padding:15px 15px 15px 15px; 	
 	}
@@ -127,6 +154,20 @@ a{
 	bottom:3px;
 }
 
+#divPublicacions{
+	left:250px;
+	right:150px;
+	top:50px;
+	bottom:150px;
+	position:absolute;
+	text-align: left;
+	padding:15px 15px 15px 15px; 	
+	color:white;
+	}
+#divPublicacions a{
+	text-decoration: none;
+	
+	}
 
 
 #mapBar a{

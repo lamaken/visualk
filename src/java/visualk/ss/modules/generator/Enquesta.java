@@ -1,7 +1,7 @@
 /**
  * 
  */
-package visualk.ss.modules.generator;
+package ss.modules.generator;
 
 import java.util.LinkedList;
 

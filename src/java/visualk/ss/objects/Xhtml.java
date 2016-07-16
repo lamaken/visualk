@@ -67,7 +67,7 @@ public class Xhtml {
 		
 		this.body="";
 		DivHtml statusBar = new DivHtml("statusBar");
-		addBodyData(statusBar.toHtml("surveyserver v1.0"));
+		addBodyData(statusBar.toHtml("surveyserver v0.1"));
 		
 		
 	}

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package visualk.ss.modules.viewer;
+package ss.modules.viewer;
 
 import ss.objects.DivHtml;
 import ss.objects.LinkHtml;
@@ -68,12 +68,20 @@ public class UserData {
 		
 		
 		String a_segueix = new DivHtml("a_segueix_div").toHtml(new LinkHtml("a_segueix","Ves a l`enquesta","#","fes","'continua',''","No guardis les dades i salta  la pàgina.").toHtml());
-		String a_guarda = new DivHtml("a_guarda_div").toHtml(new LinkHtml("a_guarda","Guarda i segueix","#","fes","'guarda_cont',''","Guarda les dades i continua.").toHtml());
+		String a_guarda = new DivHtml("a_guarda_div").toHtml(new LinkHtml("a_guarda","Guarda i segueix","javascript:document.fUserData.submit()","Guarda les dades i continua.").toHtml());
 	
 		
 		
 		String html_email="";
-		if(isAnonim())html_email = "<input size=\"30\" name=\"email\" value=\""+getEmail()+"\">";
+		String html_passw="";
+		
+		if(isAnonim()){
+				html_email = "<input size=\"30\" name=\"email\" value=\""+getEmail()+"\">";
+				html_passw="<tr>"+	
+			      "<td style=\"text-align: right;vertical-align: top;\" >Clau d'accès</td>"+
+			      "<td style=\"vertical-align: center;\" ><input type=\"\" size=\"30\" name=\"password\" value=\""+getPassword()+"\"></td>"+
+			    "</tr>";
+		}
 		else html_email = getEmail();
 		
 		
@@ -104,11 +112,7 @@ public class UserData {
 			      "<td style=\"text-align: right;vertical-align: top;\" >Cognom</td>"+
 			      "<td style=\"vertical-align: center;\" ><input type=\"\" size=\"30\" name=\"cognom\" value=\""+getCognom()+"\"></td>"+
 			    "</tr>"+
-			    "<tr>"+	
-			      "<td style=\"text-align: right;vertical-align: top;\" >Clau d'accès</td>"+
-			      "<td style=\"vertical-align: center;\" ><input type=\"\" size=\"30\" name=\"password\" value=\""+getPassword()+"\"></td>"+
-			    "</tr>"+
-			   
+			    html_passw+
 			   "<tr>"+
 			    " </tr>"+
 				"<tr >"+
@@ -126,7 +130,10 @@ public class UserData {
 	
 	public UserData(String email){
 		//carrega les dades de la publicacio id_pub
-		if(email.contains("@"))setAnonim(false);
+		if(email.contains("@")){
+			setAnonim(false);
+			this.setEmail(email);
+		}
 		else setAnonim(true);
 		
 		//TODO-Load user data if(!isAnonim())LoadUser(email);

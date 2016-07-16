@@ -1,7 +1,7 @@
 /**
  * 
  */
-package visualk.ss.modules.viewer;
+package ss.modules.viewer;
 
 
 /**

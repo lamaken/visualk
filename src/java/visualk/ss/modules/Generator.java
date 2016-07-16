@@ -1,20 +1,20 @@
 /**
  * 
  */
-package visualk.ss.modules;
+package ss.modules;
 
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import visualk.ss.db.EnquestesDb;
-import visualk.ss.modules.generator.Enquesta;
+import ss.db.EnquestesDb;
+import ss.modules.generator.Enquesta;
 //import ss.modules.generator.Frame;
 //import ss.modules.generator.MapBar;
-import visualk.ss.modules.generator.Publicacions;
+import ss.modules.generator.Publicacions;
 //import ss.objects.LinkHtml;
-import visualk.html.MenuBar;
-import visualk.html.UniqueName;
+import ss.objects.MenuBar;
+import ss.objects.UniqueName;
 
 
 import ss.objects.Xhtml;
@@ -160,8 +160,8 @@ public class Generator extends Xhtml{
 	}
 	
 	
-	public void guardaPub(String nom,String desc,String dt_start,String dt_end,String anonima,String llista, String emails){
-		publicacio.guardaPub(nom,desc,dt_start,dt_end,anonima,llista,emails);
+	public void guardaPub(String nom,String desc,String dt_start,String dt_end,String anonima, String emails){
+		publicacio.guardaPub(nom,desc,dt_start,dt_end,anonima,emails);
 		this.messageBox.setMessage("S'ha guardat!");
 		
 	}
