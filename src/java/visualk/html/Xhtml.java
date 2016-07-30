@@ -3,7 +3,7 @@ package visualk.html;
 
 public class Xhtml {
 
-	private String SERVLET_HRZ_URL="error_URL";
+	private String SERVLET_HRZ_URL="/visualk/ss/SurveyServer";
 	
 	private static final String JSXHTML		 = "/visualk/js/xhtml.js";
 	
@@ -49,7 +49,8 @@ public class Xhtml {
 	public MessageBox messageBox;
 	
         public Xhtml(String title) {
-		this.vsFunctions= new VsFunctions();
+	/*
+            this.vsFunctions= new VsFunctions();
 		this.cssStyles = new CssStyles();
 		
 		
@@ -60,7 +61,21 @@ public class Xhtml {
 		messageBox=new MessageBox("");
 
 		updateFunctions();
+	*/
+		this.vsFunctions= new VsFunctions();
+		cssStyles = new CssStyles();
 		
+		this.cssStyles.addFileCSS("/visualk/css/xhtml.css");
+		open_form+="\""+SERVLET_HRZ_URL+"\">";
+		
+		clearBodyData();
+		clearDataForm();
+		this.title = title;
+		
+		//creo el messageBox
+		messageBox=new MessageBox("");
+
+		updateFunctions();
 	}
 	
 	

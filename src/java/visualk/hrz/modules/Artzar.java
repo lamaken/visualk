@@ -24,15 +24,15 @@ public class Artzar extends Xhtml {
 
     private static final String JS_PINO = "/visualk/hrz/js/pino.js";
 
-    private MenuBar upperMenuBar;
-    private MenuBar leftMenuBar;
-    private MenuBar randomMenuBar;
+    private final MenuBar upperMenuBar;
+    private final MenuBar leftMenuBar;
+    private final MenuBar randomMenuBar;
 
-    private ClassCSS cssLink = new ClassCSS();
-    private ClassCSS cssMenuBar = new ClassCSS();
-    private ClassCSS cssInputBox = new ClassCSS();
+    private final ClassCSS cssLink;
+    private final ClassCSS cssMenuBar = new ClassCSS();
+    private final ClassCSS cssInputBox = new ClassCSS();
 
-    private InputDialog inputDialog;
+    private final InputDialog inputDialog;
 
     private void addMyStyles() {
 
@@ -63,6 +63,7 @@ public class Artzar extends Xhtml {
 
     public Artzar(String title) {
         super(title, Hrz.SERVELT_URL);
+        this.cssLink = new ClassCSS();
 
         addMyStyles(); 
 

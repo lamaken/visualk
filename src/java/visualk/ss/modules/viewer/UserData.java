@@ -89,7 +89,7 @@ public class UserData {
 		
 		
 		
-		this.setHtml("<form method=\"post\" action=\"/surveyserver/SurveyServer\" name=\"fUserData\">" +
+		this.setHtml("<form method=\"post\" action=\"/visualk/ss/SurveyServer\" name=\"fUserData\">" +
 				"<table border=\"0\" style=\"background-color:gray\" width=\"100%\" cellpadding=\"5\" cellspacing=\"5\">"+
 				"<tr align=\"center\">"+
 				"<td colspan=\"2\" rowspan=\"1\">Introdueix les teves dades si ho consideres oportú.</td>"+

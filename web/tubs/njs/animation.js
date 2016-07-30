@@ -18,12 +18,65 @@ var nextgate = 0;
 
 var balls = new Array();
 
+var pathinit = 1;
+var percentage = 0;
+var ggate = 0;
+var ppath = 0;
+var antpath = 0;
+var antgate = 0;
+
 
 var POINTS_GATE = 100;
 var POINTS_PATH = 100;
 
 var nextPathNotExists = 99999;
 var error_gate = 99999;
+
+
+function reloadAnime() {
+    percentPath = 0;
+    percentGate = 0;
+
+    path = 0;
+    timeout = null;
+    gate = 0;
+    pathName = "";
+    gateName = "";
+    direction = 1;
+    pathIndex = 0;
+    nextpath = 0;
+    nextgate = 0;
+
+
+    balls = new Array();
+
+
+    POINTS_GATE = 100;
+    POINTS_PATH = 100;
+
+    nextPathNotExists = 99999;
+    error_gate = 99999;
+
+    pathinit = 1;
+
+    percentGate = 0;
+    percentPath = 0;
+
+    percentage = 0;
+    ggate = 0;
+    ppath = 0;
+    antpath = 0;
+    antgate = 0;
+
+
+    swapgates = new Array();
+
+    for (n = 0; n < 200; n++)
+        swapgates[n] = 0;
+
+    balls[1] = new cBall();
+
+}
 
 function fnextpath(actualindex) {
 
@@ -85,24 +138,7 @@ function stop() {
     clearTimeout(timeout);
 }
 
-var pathinit = 1;
 
-percentGate = 0;
-percentPath = 0;
-
-var percentage = 0;
-var ggate = 0;
-var ppath = 0;
-var antpath = 0;
-var antgate = 0;
-
-
-var swapgates = new Array();
-
-for (n = 0; n < 200; n++)
-    swapgates[n] = 0;
-
-balls[1] = new cBall();
 
 function swapp() {
     for (s = 0; s < circuitXML.gates.length; s++) {
@@ -126,7 +162,7 @@ function animate2() {
 
 
     drawBall();
-    
+
     drawIcons();
 
 
@@ -142,6 +178,7 @@ function drawBall() {
             percentGate = 0;
             percentPath = 0;
             ppath = fnextPathfromGate(ggate);
+            if(ppath==nextPathNotExists){finish_game(circuitXML.id);};//last gate
             drawPilotaThrowPath(percentPath, ppath);
         } else
             drawPilotaThrowGate(percentGate, ggate);
@@ -153,9 +190,11 @@ function drawBall() {
             ppath = fnextpath(ppath);
             if (ppath === nextPathNotExists) {
                 ggate = fnextgate(antpath);
-                
+                if(ggate==nextPathNotExists){finish_game(circuitXML.id);};//last path
+
                 drawPilotaThrowGate(percentGate, ggate);
-            }else drawPilotaThrowPath(percentPath, ppath);
+            } else
+                drawPilotaThrowPath(percentPath, ppath);
         } else
             drawPilotaThrowPath(percentPath, ppath);
     }
@@ -516,4 +555,27 @@ function CubicN(pct, a, b, c, d) {
     var t2 = pct * pct;
     var t3 = t2 * pct;
     return a + (-a * 3 + pct * (3 * a - a * pct)) * pct + (3 * b + pct * (-6 * b + b * 3 * pct)) * pct + (c * 3 - c * 3 * pct) * t2 + d * t3;
+}
+
+
+
+function finish_game(msg){
+    alert(msg);//nom del circuit
+    actual_level=newGame(msg);
+    switch (actual_level) {
+        case "1b":
+            nstart("circuit1b.xml");
+            break;
+        case "2":
+            nstart("circuit2.xml");
+            break;
+    }
+    updateImages
+    
+    reloadAnime();
+    //
+//affageix a la llista com a ja complert
+   //fer un random i selecionar el seguent
+   
+    
 }

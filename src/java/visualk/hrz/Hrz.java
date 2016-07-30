@@ -92,7 +92,7 @@ public class Hrz extends HttpServlet {
         response.setContentType("image/JPEG");
         Horizon hrz2 = new Horizon(new UniqueName(8).getName());
         hrz2.carrega(name);
-        ImageIO.write(hrz2.getHrzSmallImage(300,300), "jpeg", response.getOutputStream());
+        ImageIO.write(hrz2.getHrzImage()/*.getHrzSmallImage(300,300)*/, "jpeg", response.getOutputStream());
     }
 
     //retorna dibuix

@@ -61,7 +61,7 @@ function update() {
 }
 
 function start() {
-    load(document.forms.fmain.circuits.value);
+    load('circuit1b.xml');
     
 }
 

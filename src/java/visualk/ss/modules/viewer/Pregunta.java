@@ -8,7 +8,7 @@ import java.util.LinkedList;
 public class Pregunta {
 	
 
-	private String open_form_xml = "<form method=\"post\" name=\"fPagina\" action=\"/surveyserver/SurveyServer\">";;
+	private String open_form_xml = "<form method=\"post\" name=\"fPagina\" action=\"/visualk/ss/SurveyServer\">";;
 	private String form_data_xml = "<input type=\"hidden\" value=\"view\" name=\"where\"/><input type=\"hidden\" name=\"actions\" value=\"\"/>";
 	
 	private String close_form_xml="</form>";

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<circuit id="3" name="three" author="tubsworld" md5="0b747a31f5075153bcdee94688212981"	version="1">
+<circuit id="3" name="three" author="tubsworld" md5=""	version="1">
 
 	<paths>
 		<path name="a" nextpath="b">

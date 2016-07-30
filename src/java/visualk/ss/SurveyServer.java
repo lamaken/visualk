@@ -95,7 +95,7 @@ public class SurveyServer extends HttpServlet {
 	    	}else
 	    	if(actions.equals("marxar")){
 	    		acepted_login=false;
-				response.sendRedirect("/ss/index.html");
+				response.sendRedirect("/visualk/ss/index.html");
 	    	}else error=true;
 	    	
 	    	if(!error){
@@ -129,7 +129,7 @@ public class SurveyServer extends HttpServlet {
 			}
 			else if(actions.equals("marxar")){
 	    		acepted_code=false;
-				response.sendRedirect("/ss/index.html");
+				response.sendRedirect("/visualk/ss/index.html");
 	    	}
 	    	else error = true;
 	    	
@@ -265,7 +265,7 @@ public class SurveyServer extends HttpServlet {
 			}
 			else if(actions.equals("marxar")){
 				acepted_login=false;
-				response.sendRedirect("/ss/index.html");
+				response.sendRedirect("/visualk/ss/index.html");
 			}
 			else error = true;
 			

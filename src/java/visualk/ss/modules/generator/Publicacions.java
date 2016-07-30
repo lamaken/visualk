@@ -63,7 +63,7 @@ public class Publicacions {
 		String a_guarda = new DivHtml("a_guarda_div").toHtml(new LinkHtml("a_guarda","Guardar","javascript:document.fPub.submit()","Guarda els canvis.").toHtml());
 		String a_tanca = new DivHtml("a_tancar_div").toHtml(new LinkHtml("a_tanca","Tornar","#","fes","'closePub',''","Torna pantalla anterior sense guardar.").toHtml());
 		
-		this.setHtml("<form method=\"post\" action=\"/surveyserver/SurveyServer\" name=\"fPub\">" +
+		this.setHtml("<form method=\"post\" action=\"/visualk/ss/SurveyServer\" name=\"fPub\">" +
 				"<table border=\"0\" style=\"background-color:gray\" width=\"100%\" cellpadding=\"5\" cellspacing=\"5\">"+
 				"<tr align=\"center\">"+
 				"<td colspan=\"2\" rowspan=\"1\">Dades de l`enquesta <b>publicada</b></td>"+
