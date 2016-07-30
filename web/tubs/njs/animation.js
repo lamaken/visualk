@@ -74,7 +74,7 @@ function reloadAnime() {
     for (n = 0; n < 200; n++)
         swapgates[n] = 0;
 
-    balls[1] = new cBall();
+    balls[0] = new cBall();
 
 }
 
@@ -178,7 +178,10 @@ function drawBall() {
             percentGate = 0;
             percentPath = 0;
             ppath = fnextPathfromGate(ggate);
-            if(ppath==nextPathNotExists){finish_game(circuitXML.id);};//last gate
+            if (ppath == nextPathNotExists) {
+                finish_game(circuitXML.id);
+            }
+            ;//last gate
             drawPilotaThrowPath(percentPath, ppath);
         } else
             drawPilotaThrowGate(percentGate, ggate);
@@ -190,7 +193,10 @@ function drawBall() {
             ppath = fnextpath(ppath);
             if (ppath === nextPathNotExists) {
                 ggate = fnextgate(antpath);
-                if(ggate==nextPathNotExists){finish_game(circuitXML.id);};//last path
+                if (ggate == nextPathNotExists) {
+                    finish_game(circuitXML.id);
+                }
+                ;//last path
 
                 drawPilotaThrowGate(percentGate, ggate);
             } else
@@ -559,9 +565,11 @@ function CubicN(pct, a, b, c, d) {
 
 
 
-function finish_game(msg){
-    alert(msg);//nom del circuit
-    actual_level=newGame(msg);
+function finish_game(msg) {
+    //alert(msg);//nom del circuit
+    actual_level = newGame(msg);
+    setCookie(actual_level, "donet");
+
     switch (actual_level) {
         case "1b":
             nstart("circuit1b.xml");
@@ -569,13 +577,41 @@ function finish_game(msg){
         case "2":
             nstart("circuit2.xml");
             break;
+        case "3":
+            nstart("circuit3.xml");
+            break;
+        case "4b":
+            nstart("circuit4b.xml");
+            break;
+        case "5":
+            nstart("circuit5.xml");
+            break;
+        case "6":
+            nstart("circuit6.xml");
+            break;
+        case "7":
+            nstart("circuit7.xml");
+            break;
+        case "8":
+            nstart("circuit8.xml");
+            break;
+        case "9":
+            nstart("circuit9.xml");
+            break;
+        case "10":
+            nstart("circuit10.xml");
+            break;
+        case "11":
+            nstart("circuit11.xml");
+            break;
+        case "12":
+            nstart("circuit12.xml");
+            break;
+
     }
-    updateImages
-    
-    reloadAnime();
     //
 //affageix a la llista com a ja complert
-   //fer un random i selecionar el seguent
-   
-    
+    //fer un random i selecionar el seguent
+
+
 }

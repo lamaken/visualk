@@ -8,9 +8,13 @@
         <script type="text/javascript" src = "njs/gameOne.js"></script>
         <script type="text/javascript" src = "njs/simpleGame.js"></script>
         <script type="text/javascript" src="njs/debug.js"></script>
+        <script type="text/javascript" src="njs/ball.js"></script>
+      
         <script type="text/javascript" src="njs/tubsworld.js"></script>
-        <script type="text/javascript" src="njs/animation.js"></script>
+      
+        
         <script type="text/javascript" src="njs/circuitdyn.js"></script>
+          <script type="text/javascript" src="njs/animation.js"></script>
         <script type="text/javascript" src="njs/index.js"></script>
         <script type="text/javascript" src="njs/Manifest.js"></script>
 
@@ -38,6 +42,7 @@
 
                 load(filename);
                 reloadAnime();
+                updateImages();
             }
 
             function is_touch_device() {
@@ -112,61 +117,34 @@
                 c.innerHTML = "";
 
                 if (getCookie("1b"))
-                    c.innerHTML += "<img onclick='nstart('circuit1b.xml');' width='50' height='50'  src='img/glifos/glifo1.png' alt=''/>";
+                    c.innerHTML += "<img onclick=\"nstart('circuit1b.xml');\" width='50' height='50'  src='img/glifos/glifo1.png' alt=''/>";
                 if (getCookie("2"))
-                    c.innerHTML += "<img onclick='nstart('circuit2.xml');' width='50' height='50'  src='img/glifos/glifo2.png' alt=''/>";
+                    c.innerHTML += "<img onclick=\"nstart('circuit2.xml');\" width='50' height='50'  src='img/glifos/glifo2.png' alt=''/>";
                 if (getCookie("3"))
-                    c.innerHTML += "<img onclick='nstart('circuit3.xml');' width='50' height='50'  src='img/glifos/glifo3.png' alt=''/>";
-                if (getCookie("4"))
-                    c.innerHTML += "<img onclick='nstart('circuit4.xml');' width='50' height='50'  src='img/glifos/glifo4.png' alt=''/>";
+                    c.innerHTML += "<img onclick=\"nstart('circuit3.xml');\" width='50' height='50'  src='img/glifos/glifo3.png' alt=''/>";
+                if (getCookie("4b"))
+                    c.innerHTML += "<img onclick=\"nstart('circuit4b.xml');\" width='50' height='50'  src='img/glifos/glifo4.png' alt=''/>";
                 if (getCookie("5"))
-                    c.innerHTML += "<img onclick='nstart('circuit5.xml');' width='50' height='50'  src='img/glifos/glifo5.png' alt=''/>";
+                    c.innerHTML += "<img onclick=\"nstart('circuit5.xml');\" width='50' height='50'  src='img/glifos/glifo5.png' alt=''/>";
                 if (getCookie("6"))
-                    c.innerHTML += "<img onclick='nstart('circuit6.xml');' width='50' height='50'  src='img/glifos/glifo6.png' alt=''/>";
+                    c.innerHTML += "<img onclick=\"nstart('circuit6.xml');\" width='50' height='50'  src='img/glifos/glifo6.png' alt=''/>";
                 if (getCookie("7"))
-                    c.innerHTML += "<img onclick='nstart('circuit7.xml');' width='50' height='50'  src='img/glifos/glifo7.png' alt=''/>";
+                    c.innerHTML += "<img onclick=\"nstart('circuit7.xml');\" width='50' height='50'  src='img/glifos/glifo7.png' alt=''/>";
                 if (getCookie("8"))
-                    c.innerHTML += "<img onclick='nstart('circuit8.xml');' width='50' height='50'  src='img/glifos/glifo8.png' alt=''/>";
+                    c.innerHTML += "<img onclick=\"nstart('circuit8.xml');\" width='50' height='50'  src='img/glifos/glifo8.png' alt=''/>";
                 if (getCookie("9"))
-                    c.innerHTML += "<img onclick='nstart('circuit9.xml');' width='50' height='50'  src='img/glifos/glifo9.png' alt=''/>";
+                    c.innerHTML += "<img onclick=\"nstart('circuit9.xml');\" width='50' height='50'  src='img/glifos/glifo9.png' alt=''/>";
                 if (getCookie("10"))
-                    c.innerHTML += "<img onclick='nstart('circuit10.xml');' width='50' height='50'  src='img/glifos/glio10.png' alt=''/>";
+                    c.innerHTML += "<img onclick=\"nstart('circuit10.xml');\" width='50' height='50'  src='img/glifos/glifo10b.png' alt=''/>";
                 if (getCookie("11"))
-                    c.innerHTML += "<img onclick='nstart('circuit11.xml');' width='50' height='50'  src='img/glifos/glifo11.png' alt=''/>";
+                    c.innerHTML += "<img onclick=\"nstart('circuit11.xml');\" width='50' height='50'  src='img/glifos/glifo11.png' alt=''/>";
                 if (getCookie("12"))
-                    c.innerHTML += "<img onclick='nstart('circuit12.xml');' width='50' height='50'  src='img/glifos/glifo12.png' alt=''/>";
+                    c.innerHTML += "<img onclick=\"nstart('circuit12.xml');\" width='50' height='50'  src='img/glifos/glifo12.png' alt=''/>";
 
 
 
 
 
-
-
-                /*
-                 *             <img onclick="nstart('circuit1b.xml');" width="50" height="50" src="img/glifos/glifo1.png"  alt=""/>
-                 
-                 <img onclick="nstart('circuit2.xml');" width="50" height="50"  src="img/glifos/glifo2.png" alt=""/>
-                 
-                 <img onclick="nstart('circuit3.xml');" width="50" height="50"  src="img/glifos/glifo3.png" alt=""/>
-                 
-                 <img onclick="nstart('circuit4.xml');" width="50" height="50"  src="img/glifos/glifo4.png" alt=""/>
-                 
-                 <img onclick="nstart('circuit5.xml');" width="50" height="50"  src="img/glifos/glifo5.png" alt=""/>
-                 
-                 <img onclick="nstart('circuit6.xml');" width="50" height="50"  src="img/glifos/glifo6.png" alt=""/>
-                 
-                 <img onclick="nstart('circuit7.xml');" width="50" height="50"  src="img/glifos/glifo7.png" alt=""/>
-                 
-                 <img onclick="nstart('circuit8.xml');" width="50" height="50"  src="img/glifos/glifo8.png" alt=""/>
-                 
-                 <img onclick="nstart('circuit9.xml');" width="50" height="50"  src="img/glifos/glifo9.png" alt=""/>
-                 
-                 <img onclick="nstart('circuit10.xml');" width="50" height="50"  src="img/glifos/glifo10b.png" alt=""/>
-                 
-                 <img onclick="nstart('circuit11.xml');" width="50" height="50"  src="img/glifos/glifo11.png" alt=""/>
-                 
-                 <img onclick="nstart('circuit12.xml');" width="50" height="50"  src="img/glifos/glifo12.png" alt=""/>
-                 */
             }
         </script>
     </head>

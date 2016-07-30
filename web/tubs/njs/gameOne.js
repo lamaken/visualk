@@ -10,7 +10,7 @@ var levels_complete;
 
 
 
-var actual_level;
+var actual_level="1b";
 
 
 function setCookie(cname, cvalue, exdays) {
@@ -52,7 +52,7 @@ function isDonet(level){
 
 function newGame(level) {
 
-    switch (actual_level) {
+    switch (level) {
         case "1b":
             level = "2";
             break;
@@ -60,9 +60,9 @@ function newGame(level) {
             level = "3";
             break;
         case "3":
-            level = "4";
+            level = "4b";
             break;
-        case "4":
+        case "4b":
             level = "5";
             break;
         case "5":
@@ -87,8 +87,9 @@ function newGame(level) {
             level = "12";
             break;
         case "12":
-            level = "1";
+            level = "1b";
             break;
     }
+    actual_level=level;
     return level;
 }
