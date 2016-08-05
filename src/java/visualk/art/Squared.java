@@ -114,7 +114,7 @@ public class Squared extends HttpServlet {
         Squared.counter += 0.001;
 
         BufferedImage squared = generateAMosaicSquared(Squared.counter);
-        squared=negativo(squared);
+        squared = negativo(squared);
         ImageIO.write(squared, "png", response.getOutputStream());
 
     }
@@ -177,13 +177,13 @@ public class Squared extends HttpServlet {
         for (int n = 0; n < new Float(Squared.CANVASX_SIZE / 2).intValue(); n += cellw) {
             for (int m = 0; m < new Float(Squared.CANVASY_SIZE / 2).intValue(); m += cellw) {
 
-                g2.setColor(Color.getHSBColor((m + n) / 2 + seed, (m + n) / 2 + seed, (m + n) / 2 + seed));
+                g2.setColor(Color.getHSBColor((m + n) / seed, (m + n) / seed, (m + n) / seed));
 
                 g2.fillRect(n - cellw, m - cellw, cellw * 2, cellw * 2);
                 g2.fillRect(Squared.CANVASX_SIZE - n - cellw, m - cellw, cellw * 2, cellw * 2);
                 g2.fillRect(n - cellw, Squared.CANVASY_SIZE - m - cellw, cellw * 2, cellw * 2);
                 g2.fillRect(Squared.CANVASX_SIZE - n - cellw, Squared.CANVASY_SIZE - m - cellw, cellw * 2, cellw * 2);
-
+                
             }
 
         }
@@ -195,7 +195,7 @@ public class Squared extends HttpServlet {
          */
         g2.setColor(Color.BLACK);
         if (Squared.show_number) {
-            g2.drawString(Math.round(Squared.counter*1000)+"", 0, Squared.CANVASY_SIZE - 4);
+            g2.drawString(Math.round(Squared.counter * 1000) + "", 0, Squared.CANVASY_SIZE - 4);
         }
         g2.dispose();
         return (buf);

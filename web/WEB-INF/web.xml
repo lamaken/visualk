@@ -32,6 +32,11 @@
         <servlet-name>SurveyServer</servlet-name>
         <servlet-class>visualk.ss.SurveyServer</servlet-class>
     </servlet>
+    <servlet>
+        <description>Arab Mosaics</description>
+        <servlet-name>ArtArab</servlet-name>
+        <servlet-class>visualk.art.Arab</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Hrz</servlet-name>
         <url-pattern>/hrz/Hrz</url-pattern>
@@ -56,6 +61,10 @@
     <servlet-mapping>
         <servlet-name>SurveyServer</servlet-name>
         <url-pattern>/ss/SurveyServer</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ArtArab</servlet-name>
+        <url-pattern>/art/Arab</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

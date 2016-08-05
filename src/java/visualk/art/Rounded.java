@@ -175,7 +175,7 @@ public class Rounded extends HttpServlet {
 
         for (int n = 0; n < new Float(Rounded.CANVASX_SIZE / 2).intValue() + 2; n += cellw) {
             for (int m = 0; m < new Float(Rounded.CANVASY_SIZE / 2).intValue() + 2; m += cellw) {
-                g2.setColor(Color.getHSBColor((m + n) / 2 + seed, (m + n) / 2 + seed, (m + n) / 2 + seed));
+                g2.setColor(Color.getHSBColor((m + n) / seed, (m + n) / seed, (m + n) / seed));
                 g2.fillOval(n - cellw, m - cellw, cellw * 2, cellw * 2);
                 g2.fillOval(Rounded.CANVASX_SIZE - n - cellw, m - cellw, cellw * 2, cellw * 2);
                 g2.fillOval(n - cellw, Rounded.CANVASY_SIZE - m - cellw, cellw * 2, cellw * 2);

@@ -175,7 +175,7 @@ public class Mixed extends HttpServlet {
         int mod = 0;
         for (int n = 0; n < new Float(Mixed.CANVASX_SIZE / 2).intValue() + 2; n += cellw) {
             for (int m = 0; m < new Float(Mixed.CANVASY_SIZE / 2).intValue() + 2; m += cellw) {
-                g2.setColor(Color.getHSBColor((m + n) / 2 + seed, (m + n) / 2 + seed, (m + n) / 2 + seed));
+                g2.setColor(Color.getHSBColor((m + n) / seed, (m + n) / seed, (m + n) / seed));
                 if (mod++ % 2 != 0) {
 
                     g2.fillOval(n - cellw, m - cellw, cellw * 2, cellw * 2);
