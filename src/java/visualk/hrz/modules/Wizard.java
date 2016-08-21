@@ -2,10 +2,10 @@ package visualk.hrz.modules;
 
 
 
-import visualk.html.*;
+import visualk.html5.*;
 
 
-public class Wizard extends Xhtml{
+public class Wizard extends Xhtml5{
 
 	private static final String CSS_WIZARD_FILE_NAME="/hrz/css/wizard.css";
 	private static final String JS_WIZARD_FILE_NAME="/hrz/js/wizard.js";
@@ -16,7 +16,7 @@ public class Wizard extends Xhtml{
 	
 	
 	public Wizard(String title) {
-		super(title,"/servlet/Hrz");
+		super(title,"/servlet/Hrz","Wizard");
 		
 		ClassCSS cssLink = new ClassCSS();
 		

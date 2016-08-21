@@ -6,10 +6,11 @@ import java.sql.SQLException;
 
 import visualk.ss.db.AnalysisDB;
 import visualk.ss.modules.analysis.DataGroupAnalysis;
-import visualk.html.MenuBar;
-import visualk.html.Xhtml;
+import visualk.html5.MenuBar;
+import visualk.html5.MenuLinkBar;
+import visualk.html5.Xhtml5;
 
-public class Analysis  extends Xhtml{
+public class Analysis  extends Xhtml5{
 
 	private static final String CSS_VIEWER_FILE_NAME="css/analysis.css";
 	private static final String JS_VIEWER_FILE_NAME="js/analysis.js";
@@ -18,9 +19,9 @@ public class Analysis  extends Xhtml{
 	private static final String LNK_TORNAR = "tornar";
 	
 	
-	private MenuBar upperMenuBar;
+	private MenuLinkBar upperMenuBar;
 	
-	private MenuBar menuEnquestes;
+	private MenuLinkBar menuEnquestes;
 	
 	private AnalysisDB analysisDB;
 	private DataGroupAnalysis dataGroup;
@@ -28,14 +29,14 @@ public class Analysis  extends Xhtml{
 	private String email;
 	
 	public Analysis(String email,String title) {
-		super(title);
+		super(title,"action","Anañysis");
 
 		analysisDB= new AnalysisDB();
 		
 		this.email=email;
 		
-		upperMenuBar = new MenuBar("mainMenuBar");
-		menuEnquestes = new MenuBar("llistaEnquestes");
+		upperMenuBar = new MenuLinkBar("mainMenuBar");
+		menuEnquestes = new MenuLinkBar("llistaEnquestes");
 		menuEnquestes.setVertical();
 		
 		this.initMenu();

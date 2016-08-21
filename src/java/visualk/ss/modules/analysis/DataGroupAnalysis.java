@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import visualk.ss.db.AnalysisDB;
-import visualk.html.DivHtml;
+import visualk.html5.DivHtml;
 
 /**
  * @author alex

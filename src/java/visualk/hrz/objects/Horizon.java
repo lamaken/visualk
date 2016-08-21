@@ -17,7 +17,7 @@ import java.util.Random;
 import visualk.hrz.Hrz;
 
 import visualk.hrz.db.DbHorizons;
-import visualk.html.UniqueName;
+import visualk.html5.UniqueName;
 
 public class Horizon implements Serializable {
 

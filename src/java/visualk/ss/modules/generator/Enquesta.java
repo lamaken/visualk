@@ -5,8 +5,8 @@ package visualk.ss.modules.generator;
 
 import java.util.LinkedList;
 
-import visualk.html.DivHtml;
-import visualk.html.LinkHtml;
+import visualk.html5.DivHtml;
+import visualk.html5.LinkHtml;
 
 
 /**

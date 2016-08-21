@@ -1,0 +1,71 @@
+/* 
+    Document   : xhtml5
+    Created on : 05/04/2013, 17:44:32
+    Author     : alex
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+body{
+    background-color:black;
+    color:white;
+    font-family:monospace;
+    font-size:12px;
+}
+a:link {color:#000000;text-decoration:none;}    /* unvisited link */
+a:visited {color:#000000;text-decoration:none;} /* visited link */
+a:hover {color:yellow;text-decoration:none;}   /* mouse over link */
+a:active {color:yellow;text-decoration:none;}  /* selected link */
+
+
+
+#logo{
+    z-index:0;
+    left:0px;
+    bottom:0px;
+    position:absolute;
+}
+
+#statusBar{
+    position: absolute; 
+    bottom: 10px; 
+    left: 50px; 
+    height: 10px; 
+    overflow: hidden;
+    color: lime;
+    right: 50px; 
+    padding:2px 2px 5px 5px;
+    cursor:pointer; 	
+    z-index: 100;
+    text-align:center;
+}
+#titleBar{
+    position: absolute; 
+    top: 10px; 
+    right: 50px; 
+    height: 10px; 
+    overflow: hidden;
+    color: white;
+    right: 50px; 
+    padding:2px 2px 5px 5px;
+    z-index: 100;
+    text-align:center;
+    visibility: visible;
+}
+
+#desconectar{
+    position: absolute; 
+    bottom: 10px; 
+    right: 10px; 
+    height: 10px; 
+    overflow: hidden;
+    color: magenta;
+    right: 50px; 
+    padding:5px 5px 5px 5px;
+    z-index: 100;
+    text-align:center;
+    background: red;
+}

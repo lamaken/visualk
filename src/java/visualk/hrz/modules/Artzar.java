@@ -5,11 +5,9 @@ package visualk.hrz.modules;
 
 
 import visualk.hrz.Hrz;
-import visualk.html.Xhtml;
-import visualk.html.ClassCSS;
-import visualk.html.DivHtml;
-import visualk.html.InputDialog;
-import visualk.html.MenuBar;
+import visualk.html5.*;
+
+
 
 
 
@@ -17,7 +15,7 @@ import visualk.html.MenuBar;
  * @author alex
  *
  */
-public class Artzar extends Xhtml {
+public class Artzar extends Xhtml5 {
 
     private static final String CSS_ARTZAR_FILE_NAME = "/visualk/hrz/css/artzar.css";
     private static final String JS_ARTZAR_FILE_NAME = "/visualk/hrz/js/artzar.js";
@@ -62,7 +60,7 @@ public class Artzar extends Xhtml {
     }
 
     public Artzar(String title) {
-        super(title, Hrz.SERVELT_URL);
+        super(title, Hrz.SERVELT_URL,"Artzar");
         this.cssLink = new ClassCSS();
 
         addMyStyles(); 
@@ -76,7 +74,7 @@ public class Artzar extends Xhtml {
         leftMenuBar = new MenuBar("optionsBar", cssMenuBar);
         leftMenuBar.setVertical();
         leftMenuBar.addMenuLink(Hrz.getString("label.generate.artzar.hrzmkr"), "refresca", Hrz.getString("help.generate.artzar.hrzmkr"), cssLink);//label,function,help
-        leftMenuBar.addMenuLink(Hrz.getString("label.save.artzar.hrzmkr"), "guarda", "'" + cssInputBox.getId() + "'", Hrz.getString("help.save.artzar.hrzmkr"), cssLink);//label,function,help
+        leftMenuBar.addMenuLink(Hrz.getString("label.save.artzar.hrzmkr"), "guarda", "'" + cssInputBox.getId() + "'"+ Hrz.getString("help.save.artzar.hrzmkr"), cssLink);//label,function,help
         leftMenuBar.addMenuLink(Hrz.getString("label.load.artzar.hrzmkr"), "carrega", Hrz.getString("help.load.artzar.hrzmkr"), cssLink);//label,function,help
 
         randomMenuBar = new MenuBar("randomBar", cssMenuBar);
@@ -100,7 +98,7 @@ public class Artzar extends Xhtml {
 
         this.updateFunctions();
 
-        vsFunctions.addFile(JS_ARTZAR_FILE_NAME);
+        this.vsFunctions.addFile(JS_ARTZAR_FILE_NAME);
         vsFunctions.addFile(JS_PINO);
 
         vsFunctions.addFunction("vols_marxar","","if(confirm(\""+Hrz.getString("label.exit.dialog.artzar.hrzmkr")+"\")){document.fmain.what.value='marxar';document.fmain.submit();}");

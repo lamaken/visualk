@@ -45,9 +45,12 @@ public class MenuBar {
 
     }
 
-    public void addMenuItem(String id, String label, String onclick, String params, String status, String parent) {
-        optionsMenu.add(new MenuItem(id, label, onclick, params, status, parent, did));
+
+    public void addMenuLink(String label, String onclick, String status, ClassCSS css) {
+        optionsMenu.add(new MenuItem(css.getId(), label, "#", onclick, "", status,"parent"));
     }
+
+
 
     public int eliminaOption(String id) {
         for (int n = 0; n < optionsMenu.size(); n++) {

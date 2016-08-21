@@ -6,7 +6,7 @@ package visualk.ss.modules.generator;
 
 import java.util.LinkedList;
 
-import visualk.html.LinkHtml;
+import visualk.html5.LinkHtml;
 
 /**
  * @author alex
