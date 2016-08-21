@@ -6,6 +6,7 @@ package visualk.ss.modules;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import visualk.html5.ClassCSS;
 
 import visualk.ss.db.EnquestesDb;
 import visualk.ss.modules.generator.Enquesta;
@@ -118,10 +119,10 @@ public class Generator extends Xhtml5{
 	//	mapBar=new MapBar("mapBar");
 	}
 	private void createEnquestesDB(){
-		menuEnquesta = new MenuLinkBar("enqBar");
+		menuEnquesta = new MenuLinkBar("enqBar",new ClassCSS("err"));
 		menuEnquesta.setVertical();
 		
-		menuPublicades= new MenuLinkBar("enqPubBar");
+		menuPublicades= new MenuLinkBar("enqPubBar",new ClassCSS("err"));
 		menuPublicades.setVertical();
 		
 	}
@@ -131,12 +132,12 @@ public class Generator extends Xhtml5{
 	}
 
 	private void createObjectsBar(){
-		objectsBar = new MenuLinkBar("objectsBar");
+		objectsBar = new MenuLinkBar("objectsBar",new ClassCSS("err"));
 		objectsBar.setVertical();
 	}	
 
 	private void createMenu(){
-		upperMenuBar = new MenuLinkBar("mainMenuBar");
+		upperMenuBar = new MenuLinkBar("mainMenuBar",new ClassCSS("err"));
 		upperMenuBar.setHorizontal();
 	}	
 	private void initObjectsBar(){

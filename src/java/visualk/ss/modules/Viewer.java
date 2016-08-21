@@ -29,6 +29,9 @@ public class Viewer  extends Xhtml5{
 	
 	private MenuLinkBar menuAnonimes;
 	private MenuLinkBar menuNoAnonimes;
+        
+        private final ClassCSS cssMenuBar = new ClassCSS();
+        
 	
 	private String email_or_code;
 	private UserData usuariData;
@@ -158,11 +161,11 @@ public class Viewer  extends Xhtml5{
 		
 		viewDB= new ViewDB();
 		
-		upperMenuBar = new MenuLinkBar("mainMenuBar");
-		menuAnonimes = new MenuLinkBar("llistaAnonimes");
+		upperMenuBar = new MenuLinkBar("mainMenuBar",cssMenuBar);
+		menuAnonimes = new MenuLinkBar("llistaAnonimes",cssMenuBar);
 		menuAnonimes.setVertical();
 		
-		menuNoAnonimes = new MenuLinkBar("llistaNoAnonimes");
+		menuNoAnonimes = new MenuLinkBar("llistaNoAnonimes",cssMenuBar);
 		menuNoAnonimes.setVertical();
 		
 		if(eml_or_code==null) this.setEmail_or_code(session);
@@ -213,6 +216,8 @@ public class Viewer  extends Xhtml5{
 			 }
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
+                             menuAnonimes.addMenuLink("a_", "nome" , "#","fes","'loadEnquesta','ide'", "Fes clic per carregar l`enquesta :("+ "nome" + ")");
+			
 			e.printStackTrace();
 		}
 		menuAnonimes.setTitle("S`han trobat les següents enquestes anònimes");

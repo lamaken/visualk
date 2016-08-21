@@ -3,10 +3,11 @@ package visualk.ss.modules;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import visualk.html5.ClassCSS;
 
 import visualk.ss.db.AnalysisDB;
 import visualk.ss.modules.analysis.DataGroupAnalysis;
-import visualk.html5.MenuBar;
+
 import visualk.html5.MenuLinkBar;
 import visualk.html5.Xhtml5;
 
@@ -22,11 +23,14 @@ public class Analysis  extends Xhtml5{
 	private MenuLinkBar upperMenuBar;
 	
 	private MenuLinkBar menuEnquestes;
-	
+	private final ClassCSS cssMenuBar = new ClassCSS();
+        
 	private AnalysisDB analysisDB;
 	private DataGroupAnalysis dataGroup;
 	
 	private String email;
+        
+       
 	
 	public Analysis(String email,String title) {
 		super(title,"action","Anañysis");
@@ -35,8 +39,8 @@ public class Analysis  extends Xhtml5{
 		
 		this.email=email;
 		
-		upperMenuBar = new MenuLinkBar("mainMenuBar");
-		menuEnquestes = new MenuLinkBar("llistaEnquestes");
+		upperMenuBar = new MenuLinkBar("mainMenuBar",cssMenuBar);
+		menuEnquestes = new MenuLinkBar("llistaEnquestes",cssMenuBar);
 		menuEnquestes.setVertical();
 		
 		this.initMenu();

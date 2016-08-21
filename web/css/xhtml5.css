@@ -4,7 +4,7 @@
     Author     : alex
     Description:
         Purpose of the stylesheet follows.
-*/
+
 
 root { 
     display: block;
@@ -15,12 +15,12 @@ body{
     font-family:monospace;
     font-size:12px;
 }
-a:link {color:#000000;text-decoration:none;}    /* unvisited link */
-a:visited {color:#000000;text-decoration:none;} /* visited link */
-a:hover {color:yellow;text-decoration:none;}   /* mouse over link */
-a:active {color:yellow;text-decoration:none;}  /* selected link */
+a:link {color:#000000;text-decoration:none;}   
+a:visited {color:#000000;text-decoration:none;}
+a:hover {color:yellow;text-decoration:none;}  
+a:active {color:yellow;text-decoration:none;} 
 
-
+*/
 
 #logo{
     z-index:0;

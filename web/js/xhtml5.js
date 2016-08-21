@@ -1,8 +1,3 @@
-/* 
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 
 var navId;
 var langId;
@@ -10,6 +5,7 @@ var langId;
 
 function getLang(){
 	langId = navigator.browserLanguage;
+        
 }
 
 function getAgent(){
@@ -30,15 +26,15 @@ function getAgent(){
 function init(){
 	getAgent();
 	getLang();
+        
+     
 }
 
 function redirect(){
-	document.location="index.html";
+	document.location="hrz/index.html";
 }
 
-function vols_marxar(){
-if(confirm("Segur que vols Marxar?")){
-	document.fmain.what.value="marxar";
-	document.fmain.submit();
- }
-}
+
+
+
+   

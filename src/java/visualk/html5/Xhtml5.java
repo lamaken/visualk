@@ -1,21 +1,23 @@
 package visualk.html5;
 
+import visualk.Main;
+
 
 public class Xhtml5 {
 
-    private String SERVLET_HRZ_URL = "error_URL";
-    private static final String JSXHTML = "js/xhtml5.js";
+    private String SERVLET_HRZ_URL = Main.SERVER_URL+"/visualk/hrz/Hrz";
+    private static final String JSXHTML = Main.SERVER_URL+"/visualk/js/xhtml5.js";
     private static final String doctype = "<!DOCTYPE html>";
     private static final String open_html = "<html>";
     private static final String open_head = "<head>";
-    private static final String meta = "<meta charset=\"ISO-8859-1\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">";
+    private static final String meta = "<meta charset=\"ISO-8859-1\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">";
     private static final String open_title = "<title>";
     private String title = "default title";
     private static final String close_title = "</title>";
     public VsFunctions vsFunctions;
     public CssStyles cssStyles;
     private static final String close_head = "</head>";
-    private static final String open_body = "<body style=\"background-image:url('img/fondo.png')\" onload=\"load()\">";
+    private static final String open_body = "<body style=\"background-image:url('"+visualk.Main.SERVER_URL+"/visualk/img/fondo.png')\" onload=\"load()\">";
     private String body = "nothing in de body";
     private static final String close_body = "</body>";
     private static final String close_html = "</html>";
@@ -34,7 +36,7 @@ public class Xhtml5 {
 
         this.form_where = where;
 
-        this.cssStyles.addFileCSS("css/xhtml5.css");
+        this.cssStyles.addFileCSS(visualk.Main.SERVER_URL+"/visualk/css/xhtml5.css");
         open_form += "\"" + SERVLET_HRZ_URL + "\">";
 
         clearBodyData();
@@ -72,7 +74,7 @@ public class Xhtml5 {
         DivHtml statusBar = new DivHtml("statusBar");
         addBodyData(statusBar.toHtml("PAGENAME"));
 
-        addBodyData(new DivHtml("logo").toHtml("<img src=\"img/logo.png\"/>"));
+        addBodyData(new DivHtml("logo").toHtml("<img src=\""+visualk.Main.SERVER_URL+"/visualk/img/logo.png\"/>"));
 
         DivHtml desconectarDiv = new DivHtml("desconectar");
 

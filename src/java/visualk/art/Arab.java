@@ -55,8 +55,8 @@ public class Arab extends HttpServlet {
                 int joe = (int) ((n + m) * Math.cos(angle));
                 angle += ratio;
 
-//                g2.setColor(Color.getHSBColor((m + n) / seed, (m + n) / seed, (m + n) / seed));
-                g2.setColor(Color.white);//getHSBColor((m + n) / seed, (m + n) / seed, (m + n) / seed));
+                g2.setColor(Color.getHSBColor((m + n) / seed, (m + n) / seed, (m + n) / seed));
+               // g2.setColor(Color.white);//getHSBColor((m + n) / seed, (m + n) / seed, (m + n) / seed));
                 //g2.fillOval(n, m, cellw, cellw);
                 int x = n + joe;
                 int y = m + joe;

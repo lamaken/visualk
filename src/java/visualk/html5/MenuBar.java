@@ -14,7 +14,7 @@ public class MenuBar {
 
     private static final int VERTICAL_ALIGN = 1;
     private static final int HORIZONTAL_ALIGN = 2;
-    private static final String FILE_JS = "js/MenuBar.js";
+    private static final String FILE_JS = visualk.Main.SERVER_URL+"/visualk/js/MenuBar.js";
     private String did = "MenuBar";
     private String title = "";
     private int orientation = HORIZONTAL_ALIGN;
@@ -158,9 +158,9 @@ public class MenuBar {
 
         String table =
                 "<table style=\"width: 100%;background:rgb(210,210,210);line-height: 0;\" border=\"0\"  cellpadding=\"0\" cellspacing=\"0\">"
-                + "<tbody><tr><td><img src='img/c1.png'/></td><td background='img/c2.png'>" + this.title + "</td><td><img src='img/c3.png'/></td></tr>"
-                + "<tr><td background='img/c4.png'></td><td>" + returnHtml + "</td><td background='img/c5.png'></td></tr>"
-                + "<tr><td><img src='img/c6.png'/></td><td background='img/c7.png'></td><td><img src='img/c8.png'/></td></tr></tbody></table>";
+                + "<tbody><tr><td><img src='"+visualk.Main.SERVER_URL+"/visualk/imgmenubar/c1.png'/></td><td background='"+visualk.Main.SERVER_URL+"/visualk/imgmenubar/c2.png'>" + this.title + "</td><td><img src='"+visualk.Main.SERVER_URL+"/visualk/imgmenubar/c3.png'/></td></tr>"
+                + "<tr><td background='"+visualk.Main.SERVER_URL+"/visualk/imgmenubar/c4.png'></td><td>" + returnHtml + "</td><td background='"+visualk.Main.SERVER_URL+"/visualk/imgmenubar/c5.png'></td></tr>"
+                + "<tr><td><img src='"+visualk.Main.SERVER_URL+"/visualk/imgmenubar/c6.png'/></td><td background='"+visualk.Main.SERVER_URL+"/visualk/imgmenubar/c7.png'></td><td><img src='"+visualk.Main.SERVER_URL+"/visualk/imgmenubar/c8.png'/></td></tr></tbody></table>";
 
 
 
@@ -170,11 +170,11 @@ public class MenuBar {
         String htmlFills =
                 "<div id=\"submenu\">"
                 + "<table style=\"width: 100%;background:rgb(210,210,210);line-height: 0;\" border=\"0\"  cellpadding=\"0\" cellspacing=\"0\">"
-                + " <tbody><tr><td><img src='img/c9.png'/></td><td ></td><td><img src='img/c10.png'/></td></tr> <tr><td background='img/c4.png'></td><td><div id=\"kk\">";
+                + " <tbody><tr><td><img src='"+visualk.Main.SERVER_URL+"/visualk/imgmenubar/c9.png'/></td><td ></td><td><img src='"+visualk.Main.SERVER_URL+"visualk/imgmenubar/c10.png'/></td></tr> <tr><td background='"+visualk.Main.SERVER_URL+"visualk/imgmenubar/c4.png'></td><td><div id=\"kk\">";
 
         htmlFills += returnFillsHtml;
-        htmlFills += "</div></td><td background='img/c5.png'></td></tr>"
-                + "<tr><td><img src='img/c6.png'/></td><td background='img/c7.png'></td><td><img src='img/c8.png'/></td></tr></tbody></table>"
+        htmlFills += "</div></td><td background='"+visualk.Main.SERVER_URL+"/visualk/imgmenubar/c5.png'></td></tr>"
+                + "<tr><td><img src='"+visualk.Main.SERVER_URL+"/visualk/imgmenubar/c6.png'/></td><td background='"+visualk.Main.SERVER_URL+"/visualk/imgmenubar/c7.png'></td><td><img src='"+visualk.Main.SERVER_URL+"/visualk/imgmenubar/c8.png'/></td></tr></tbody></table>"
                 + "</div>";
 
         DivHtml divfills = new DivHtml("fills_" + this.did);

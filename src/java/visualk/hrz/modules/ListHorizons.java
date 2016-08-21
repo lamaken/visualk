@@ -8,7 +8,7 @@ import visualk.hrz.db.DbHorizons;
 import visualk.hrz.objects.Horizon;
 import visualk.html5.ClassCSS;
 import visualk.html5.DivHtml;
-import visualk.html5.MenuBar;
+import visualk.html5.MenuLinkBar;
 import visualk.html5.UniqueName;
 import visualk.html5.Xhtml5;
 
@@ -20,7 +20,7 @@ public class ListHorizons extends Xhtml5 {
     
     
    
-    private MenuBar upperMenuBar;
+    private MenuLinkBar upperMenuBar;
 
     private final String googlePlusTagBefore = "<g:plusone href=\"";
     private final String googlePlusAfter = "\" size=\"small\" count=\"false\"></g:plusone>";
@@ -36,7 +36,7 @@ public class ListHorizons extends Xhtml5 {
         ClassCSS cssMenuBar = new ClassCSS();
         cssMenuBar.setColor("green");
 
-        upperMenuBar = new MenuBar("tornarBar", cssMenuBar);
+        upperMenuBar = new MenuLinkBar("tornarBar", cssMenuBar);
         upperMenuBar.setHorizontal();
         upperMenuBar.addMenuLink(Hrz.getString("back.gallery.hrzmkr"), "torna", Hrz.getString("help.back.gallery.hrzmkr"), cssLink);//label,function,help
 
