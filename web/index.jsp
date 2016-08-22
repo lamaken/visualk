@@ -51,10 +51,10 @@
                 <a href="art/editorMixed.html"><img id="mixed" style="left:500px;top:200px" src="/visualk/art/Mixed?mx=150&my=150&cellw=23&d=1"/></a>
                 <a href="art/editorArab.html"><img id="mixed" style="left:500px;top:100px" src="/visualk/art/Arab?mx=75&my=75&cellw=9&d=1"/></a>
                 <br/>
-                <a href="hrz/index.html"><img style="left:150px;top: 150px" src="/visualk/hrz/Hrz?option=firma"/></br></a></br>
+                <a href="hrz/index.html"><img style="left:150px;top: 150px" src="/visualk/hrz/Hrz?option=firma"/></a>
 
-                <a href="tubs/index.html"><img style="left:150px;top: 150px" src="/visualk/tubs/img/logo.png"/></br></a>
-                <a href="ss/index.html">SurveyServer 0.1</a></br>
+                <a href="tubs/index.html"><img style="left:150px;top: 150px" src="/visualk/tubs/img/logo.png"/></a>
+                <!--a href="ss/index.html">SurveyServer 0.1</a></br-->
 
             </h1>
 

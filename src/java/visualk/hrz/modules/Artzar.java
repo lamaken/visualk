@@ -74,7 +74,7 @@ public class Artzar extends Xhtml5 {
         leftMenuBar = new MenuLinkBar("optionsBar", cssMenuBar);
         leftMenuBar.setVertical();
         leftMenuBar.addMenuLink(Hrz.getString("label.generate.artzar.hrzmkr"), "refresca", Hrz.getString("help.generate.artzar.hrzmkr"), cssLink);//label,function,help
-        leftMenuBar.addMenuLink(Hrz.getString("label.save.artzar.hrzmkr"), "guarda", "'" + cssInputBox.getId(), Hrz.getString("help.save.artzar.hrzmkr"), cssLink);//label,function,help
+        leftMenuBar.addMenuLink(Hrz.getString("label.save.artzar.hrzmkr"), "guarda", "'" + cssInputBox.getId()+"'", Hrz.getString("help.save.artzar.hrzmkr"), cssLink);//label,function,help
         leftMenuBar.addMenuLink(Hrz.getString("label.load.artzar.hrzmkr"), "carrega", Hrz.getString("help.load.artzar.hrzmkr"), cssLink);//label,function,help
 
         randomMenuBar = new MenuLinkBar("randomBar", cssMenuBar);
