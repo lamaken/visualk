@@ -413,7 +413,7 @@ public class Horizon implements Serializable {
             } else {
                 System.out.println("... ok");
             }
-        } catch (MalformedURLException e) {
+        } catch (Exception e) {
             // TODO Auto-generated catch block
             System.out.print(".. ERROR url.");
             e.printStackTrace();
@@ -434,7 +434,7 @@ public class Horizon implements Serializable {
             } else {
                 System.out.println("... ok");
             }
-        } catch (MalformedURLException e) {
+        } catch (Exception e) {
             // TODO Auto-generated catch block
             System.out.print(".. ERROR url.");
             e.printStackTrace();
@@ -454,7 +454,7 @@ public class Horizon implements Serializable {
             } else {
                 System.out.println("... ok");
             }
-        } catch (MalformedURLException e) {
+        } catch ( Exception e) {
             // TODO Auto-generated catch block
             System.out.print(".. ERROR url.");
             e.printStackTrace();

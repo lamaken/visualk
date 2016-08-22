@@ -54,7 +54,7 @@
                 <a href="hrz/index.html"><img style="left:150px;top: 150px" src="/visualk/hrz/Hrz?option=firma"/></br></a></br>
             
                 <a href="tubs/index.html"><img style="left:150px;top: 150px" src="/visualk/tubs/img/logo.png"/></br></a></br>
-            <href="ss/index.html">SurveyServer 0.1</a></br>
+            <!--a href="ss/index.html">SurveyServer 0.1</a></br-->
             
             </h1>
 

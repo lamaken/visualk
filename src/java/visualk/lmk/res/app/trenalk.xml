@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<app version="0.1" signature="7A32Y7BU3U37H">
+
+
+	<desktop theme="lmkgrf.theme">
+		
+		<app app="Map Creator v0.1">
+		
+			<window name="Draw" class="CanvasWindow">
+					
+			</window>
+			
+			<window name="Tools" class="CanvasButtons">
+				
+			</window>
+			
+			<window name="Menu" class="CanvasMenu">
+				<menu name="menu">
+					<menuItem></menuItem>
+					<menuItem></menuItem>
+					<menuItem></menuItem>
+					<menuItem></menuItem>
+				</menu>
+			</window>
+		</app>
+
+
+	<app app="lmkgrf design">
+		
+			<window name="Draw" class="CanvasWindow">
+					
+			</window>
+			
+			<window name="Tools" class="CanvasButtons">
+				
+			</window>
+			
+			<window name="Menu" class="CanvasMenu">
+				<menu name="menu">
+					<menuItem></menuItem>
+					<menuItem></menuItem>
+					<menuItem></menuItem>
+					<menuItem></menuItem>
+				</menu>
+			</window>
+		</app>
+	
+
+	</desktop>
+
+</app>
+
+

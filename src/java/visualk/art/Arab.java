@@ -42,7 +42,7 @@ public class Arab extends HttpServlet {
 
         g2.fillRect(0, 0, CANVASX_SIZE + cellw, CANVASY_SIZE + cellw);
 
-        g2.setStroke(new BasicStroke(2));
+        g2.setStroke(new BasicStroke(1));
         double angle = 0;
         float ratio = (float) 0.001;
 
@@ -52,28 +52,21 @@ public class Arab extends HttpServlet {
 
             for (int m = 0; m < new Float(Arab.CANVASY_SIZE).intValue(); m += cellw) {
 
-                int joe = (int) ((n + m) * Math.cos(angle));
+                int joe = (int) (seed * Math.cos(angle));
                 angle += ratio;
 
-//                g2.setColor(Color.getHSBColor((m + n) / seed, (m + n) / seed, (m + n) / seed));
-                g2.setColor(Color.white);//getHSBColor((m + n) / seed, (m + n) / seed, (m + n) / seed));
-                //g2.fillOval(n, m, cellw, cellw);
+                g2.setColor(Color.getHSBColor((m + n) / seed, (m + n) / seed, (m + n) / seed));
+                //g2.setColor(Color.white);//getHSBColor((m + n) / seed, (m + n) / seed, (m + n) / seed));
+                
+                g2.setColor(Color.getHSBColor((m + n) / seed, (m + n) / seed, (m + n) / seed));
+               
+                g2.fillOval(n, m, cellw, cellw);
                 int x = n + joe;
                 int y = m + joe;
 
-               
-                g2.drawLine(x, y + cellw, x + cellw, y);
-                g2.drawLine(x, y + cellw, x, y);
-                g2.drawLine(x, y + cellw, x, y + cellw);
+                g2.fillArc((int) (x+seed), y, cellw, cellw, 0, m);
+                g2.fillArc((int)(x+seed), y, cellw, cellw, n, 0);
 
-                g2.drawLine(x+cellw, y , x + cellw, y);
-                g2.drawLine(x+cellw, y , x, y);
-                g2.drawLine(x+cellw, y , x, y + cellw);
-                
-                g2.drawLine(x+cellw, y+ cellw , x + cellw, y);
-                g2.drawLine(x+cellw, y+ cellw , x, y);
-                g2.drawLine(x+cellw, y+ cellw , x, y + cellw);
-    
             }
         }
 
