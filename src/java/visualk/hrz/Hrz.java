@@ -37,12 +37,12 @@ import visualk.html5.UniqueName;
 public class Hrz extends HttpServlet {
 
     private static final long serialVersionUID = 102431973219L;
-    public static final String SERVELT_URL = "/visualk/hrz/Hrz";
+    public static final String SERVLET_URL = "/visualk/hrz/Hrz";
     public static final String URL_PATH = Main.SERVER_URL + "/visualk/hrz";
 
   
 
-    private Hashtable hrzns = new Hashtable();
+    private Hashtable hrzns = new Hashtable<>();
     private static ResourceBundle bundle;
     
     private Horizon hrz;
@@ -204,7 +204,7 @@ public class Hrz extends HttpServlet {
             hrz = new Horizon(new UniqueName(8).getName());
             hrz.setNameHrz(new UniqueName(8).getName());
             hrz.makeRandom(Integer.parseInt(mx), Integer.parseInt(my));//random de tot
-            hrzns.put(sessionId, hrz);// = (Horizon) hrzns.get(INICIAL_HORIZON_NAME_SESSION);
+            hrzns.put(sessionId, (Horizon) hrz);
         }
 
        

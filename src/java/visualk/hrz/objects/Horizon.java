@@ -399,7 +399,7 @@ public class Horizon implements Serializable {
     }
 
     private void loadSuperNova() {
-        System.out.print("Loading supernova");
+        System.out.print("Loading supernova: "+URL_IMG + "llum2.png");
 
         URL url;
         try {

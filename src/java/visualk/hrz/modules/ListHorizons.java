@@ -29,7 +29,7 @@ public class ListHorizons extends Xhtml5 {
     private final String facebookLikeTagAfter = "\" layout=\"button\" show-faces=\"true\" action=\"like\" colorscheme=\"light\" />";
 
     public ListHorizons(String title) {
-        super(title, Hrz.SERVELT_URL,"listhorizons");
+        super(title, Hrz.SERVLET_URL,"listhorizons");
         ClassCSS cssLink = new ClassCSS();
         cssLink.setColor("yellow");
 

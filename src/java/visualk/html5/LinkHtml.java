@@ -3,7 +3,7 @@
  */
 package visualk.html5;
 
-import sun.applet.Main;
+
 
 
 /**

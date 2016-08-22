@@ -5,7 +5,7 @@ package visualk.ss.modules.generator;
 import java.io.IOException;
 import java.io.PrintStream;
 
-import sun.net.smtp.SmtpClient;
+//import sun.net.smtp.SmtpClient;
 
 public class SendEmail {
 
@@ -14,8 +14,8 @@ public class SendEmail {
 	}
 	public void sendInvitation(String to,String code){
 	String from="camps.alex@gmail.com";
-		try{
-			SmtpClient client = new SmtpClient("localhost");
+/*		try{
+			SmtpClient client = null;//TODO: ERROR new SmtpClient("localhost");
 			client.from(from);
 			client.to(to);
 			PrintStream message = client.startMessage();
@@ -30,7 +30,7 @@ public class SendEmail {
 		}
 		catch (IOException e){
 			System.out.println("ERROR SENDING EMAIL:"+e);
-		}
+		}*/
 	}
 }
 
