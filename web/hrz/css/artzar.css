@@ -1,13 +1,12 @@
+
 body{
     background-color:black;
     color:white;
-    font-family: sans-serif;
+    font-family:monospace;
     
-    
-}
-
+}	
 a{
-    color:white;
+    color:yellow;
 }
 
 

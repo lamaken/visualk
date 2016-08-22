@@ -36,9 +36,9 @@ public class MenuBar {
 
     public MenuBar(String id, ClassCSS cssMenuBar2) {
         did = id;
-        cssMenuBar = new LinkedList<>();
+        cssMenuBar = new LinkedList();
         this.cssMenuBar.add(cssMenuBar2);
-        optionsMenu = new LinkedList<>();
+        optionsMenu = new LinkedList();
 
         my_js = new VsFunctions();
         my_js.addFile(FILE_JS);

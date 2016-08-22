@@ -36,13 +36,13 @@ import visualk.html5.UniqueName;
 @WebServlet("/Hrz")
 public class Hrz extends HttpServlet {
 
-    private static final long serialVersionUID = 102431973219L;
+    private static final long serialVersionUID = 1024371973219L;
     public static final String SERVLET_URL = "/visualk/hrz/Hrz";
     public static final String URL_PATH = Main.SERVER_URL + "/visualk/hrz";
 
   
 
-    private Hashtable hrzns = new Hashtable<>();
+    private Hashtable hrzns = new Hashtable();
     private static ResourceBundle bundle;
     
     private Horizon hrz;
@@ -65,7 +65,7 @@ public class Hrz extends HttpServlet {
     //signature for emails
     public void firma(String name, HttpServletResponse response) throws IOException {
 
-        response.setContentType("image/JPEG");
+        response.setContentType("image/PNG");
         Horizon hrz2 = new Horizon(new UniqueName(8).getName());
         hrz2.setAuthorHrz(name);
         hrz2.setHorizontal();
@@ -77,27 +77,27 @@ public class Hrz extends HttpServlet {
         hrz2.makeRandomColors();
         hrz2.makeRandomSuperNova();
 
-        ImageIO.write(hrz2.getHrzImage(), "gif", response.getOutputStream());
+        ImageIO.write(hrz2.getHrzImage(), "png", response.getOutputStream());
     }
 
     //For the list to load. Small image
     public void peque(String name, HttpServletResponse response) throws IOException {
-        response.setContentType("image/JPEG");
+        response.setContentType("image/PNG");
         hrz.carrega(name);
-        ImageIO.write(hrz.getHrzSmallImage(200, 200), "jpeg", response.getOutputStream());
+        ImageIO.write(hrz.getHrzSmallImage(200, 200), "png", response.getOutputStream());
     }
 
     //carrega un dibuix existent
     public void loadAtzar(String name, HttpServletResponse response) throws IOException {
-        response.setContentType("image/JPEG");
+        response.setContentType("image/PNG");
         Horizon hrz2 = new Horizon(new UniqueName(8).getName());
         hrz2.carrega(name);
-        ImageIO.write(hrz2.getHrzImage()/*.getHrzSmallImage(300,300)*/, "jpeg", response.getOutputStream());
+        ImageIO.write(hrz2.getHrzImage()/*.getHrzSmallImage(300,300)*/, "png", response.getOutputStream());
     }
 
     //retorna dibuix
     public void getAtzar(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.setContentType("image/JPEG");
+        response.setContentType("image/PNG");
         HttpSession session = request.getSession(true);
         String sessionId = "no_session";
         try {
@@ -110,7 +110,7 @@ public class Hrz extends HttpServlet {
         } else {
             hrz = (Horizon) hrzns.get(INICIAL_HORIZON_NAME_SESSION);
         }
-        ImageIO.write(hrz.getHrzImage(), "jpeg", response.getOutputStream());
+        ImageIO.write(hrz.getHrzImage(), "png", response.getOutputStream());
     }
 
     /**
