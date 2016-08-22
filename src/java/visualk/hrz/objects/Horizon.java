@@ -478,6 +478,16 @@ public class Horizon implements Serializable {
         g2.setColor(this.getTopHrzColor());
         g2.fillRect(0, 0, this.getCanvasWidth(), this.getTopHrz());
 
+        
+        if(bmpCel==null){
+            System.out.println("\nreloading images");
+            loadCel();
+            loadSuperNova();
+            loadTextura();
+        }
+        
+        
+        
         g2.drawImage(bmpCel, 0, 0,mx,my, null);
 
         // posem la llum
