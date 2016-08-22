@@ -28,7 +28,7 @@ import visualk.hrz.modules.Artzar;
 import visualk.hrz.modules.ListHorizons;
 
 import visualk.hrz.objects.Horizon;
-import visualk.html.UniqueName;
+import visualk.html5.UniqueName;
 
 /**
  * Servlet implementation class Hrz
@@ -58,7 +58,7 @@ public class Hrz extends HttpServlet {
     private static final String INICIAL_HORIZON_NAME_SESSION = "Inicial";
 
     public static String getString(String key) {
-        
+        if(bundle==null)bundle = ResourceBundle.getBundle("outputTextConstants", Locale.ENGLISH);
         return bundle.getString(key);
     }
 
@@ -194,7 +194,9 @@ public class Hrz extends HttpServlet {
         }
 
         ResourceBundle.clearCache();
+       
         bundle = ResourceBundle.getBundle("outputTextConstants", lan);
+        
         
         if (hrzns.containsKey(sessionId)) {
             hrz = (Horizon) hrzns.get(sessionId);

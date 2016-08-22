@@ -1,0 +1,27 @@
+/* 
+    Document   : login
+    Created on : 19/04/2013, 18:55:29
+    Author     : alex
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+body{
+	background-color:black;
+	color:white;
+	font-family:monospace;
+	font-size:12px;
+}
+a{
+	color:yellow;
+}	
+
+
+
+
+
+

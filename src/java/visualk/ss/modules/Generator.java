@@ -6,14 +6,16 @@ package visualk.ss.modules;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import visualk.html5.ClassCSS;
 
 import visualk.ss.db.EnquestesDb;
 import visualk.ss.modules.generator.Enquesta;
 import visualk.ss.modules.generator.Publicacions;
 
-import visualk.html.MenuBar;
-import visualk.html.UniqueName;
-import visualk.html.Xhtml;
+import visualk.html5.MenuBar;
+import visualk.html5.MenuLinkBar;
+import visualk.html5.UniqueName;
+import visualk.html5.Xhtml5;
 
 /**
  * @author àlex
@@ -21,7 +23,7 @@ import visualk.html.Xhtml;
  * 
  *
  */
-public class Generator extends Xhtml{
+public class Generator extends Xhtml5{
 
 	private static final String CSS_GENERATOR_FILE_NAME="css/generator.css";
 	private static final String JS_GENERATOR_FILE_NAME="js/generator.js";
@@ -49,12 +51,12 @@ public class Generator extends Xhtml{
 	private String email="";//email del usuari
 	private Enquesta enquesta;
 
-	private MenuBar upperMenuBar;
+	private MenuLinkBar upperMenuBar;
 	//private MapBar mapBar;	
-	private MenuBar objectsBar;    
+	private MenuLinkBar objectsBar;    
 	
-	private MenuBar menuEnquesta;
-	private MenuBar menuPublicades;
+	private MenuLinkBar menuEnquesta;
+	private MenuLinkBar menuPublicades;
 	
 	//private MenuBar conditionsBar; 
 	
@@ -117,10 +119,10 @@ public class Generator extends Xhtml{
 	//	mapBar=new MapBar("mapBar");
 	}
 	private void createEnquestesDB(){
-		menuEnquesta = new MenuBar("enqBar");
+		menuEnquesta = new MenuLinkBar("enqBar",new ClassCSS("err"));
 		menuEnquesta.setVertical();
 		
-		menuPublicades= new MenuBar("enqPubBar");
+		menuPublicades= new MenuLinkBar("enqPubBar",new ClassCSS("err"));
 		menuPublicades.setVertical();
 		
 	}
@@ -130,12 +132,12 @@ public class Generator extends Xhtml{
 	}
 
 	private void createObjectsBar(){
-		objectsBar = new MenuBar("objectsBar");
+		objectsBar = new MenuLinkBar("objectsBar",new ClassCSS("err"));
 		objectsBar.setVertical();
 	}	
 
 	private void createMenu(){
-		upperMenuBar = new MenuBar("mainMenuBar");
+		upperMenuBar = new MenuLinkBar("mainMenuBar",new ClassCSS("err"));
 		upperMenuBar.setHorizontal();
 	}	
 	private void initObjectsBar(){
@@ -506,7 +508,7 @@ public class Generator extends Xhtml{
 	}
 	
 	public Generator(String email, String session) {
-		super(session);
+		super(session,"action","Generator");
 		this.email = email;
 		publicacio=null;
 		enquestaDB= new EnquestesDb(email);

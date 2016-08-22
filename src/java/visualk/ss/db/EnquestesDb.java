@@ -6,7 +6,7 @@ import java.util.LinkedList;
 import visualk.ss.modules.generator.ComboForm;
 import visualk.ss.modules.generator.Enquesta;
 import visualk.ss.modules.generator.ObjectForm;
-import visualk.html.UniqueName;
+import visualk.html5.UniqueName;
 
 
 public class EnquestesDb {

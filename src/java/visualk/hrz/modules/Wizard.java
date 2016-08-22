@@ -2,30 +2,30 @@ package visualk.hrz.modules;
 
 
 
-import visualk.html.*;
+import visualk.html5.*;
 
 
-public class Wizard extends Xhtml{
+public class Wizard extends Xhtml5{
 
 	private static final String CSS_WIZARD_FILE_NAME="/hrz/css/wizard.css";
 	private static final String JS_WIZARD_FILE_NAME="/hrz/js/wizard.js";
 	
 		
-	private MenuBar upperMenuBar;
-	private MenuBar leftMenuBar;
+	private MenuLinkBar upperMenuBar;
+	private MenuLinkBar leftMenuBar;
 	
 	
 	public Wizard(String title) {
-		super(title,"/servlet/Hrz");
+		super(title,"/servlet/Hrz","Wizard");
 		
 		ClassCSS cssLink = new ClassCSS();
 		
 		cssLink.setColor("yellow");
 		
-	/**	upperMenuBar = new MenuBar("marxarBar");
+	/**	upperMenuBar = new MenuLinkBar("marxarBar");
 		upperMenuBar.addMenuLink("Marxar","vols_marxar","Marxar del wizard",cssLink);//label,function,help
 		
-		leftMenuBar = new MenuBar("optionsBar");
+		leftMenuBar = new MenuLinkBar("optionsBar");
 		leftMenuBar.setVertical();
 		leftMenuBar.addMenuLink("Genera!!","refresca","En genera un a l`arzar!",cssLink);//label,function,help
 		*/

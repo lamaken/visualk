@@ -13,7 +13,7 @@ import visualk.ss.modules.Generator;
 import visualk.ss.modules.Viewer;
 
 
-import visualk.html.UniqueName;
+import visualk.html5.UniqueName;
 
 /**
  * Servlet implementation class SurveyServer

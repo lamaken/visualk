@@ -14,7 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import visualk.db.MysqlLayer;
 import visualk.hrz.objects.Horizon;
-import visualk.html.UniqueName;
+import visualk.html5.UniqueName;
+
 
 public class Api  extends HttpServlet {
 	/**

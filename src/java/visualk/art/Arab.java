@@ -56,11 +56,16 @@ public class Arab extends HttpServlet {
                 angle += ratio;
 
                 g2.setColor(Color.getHSBColor((m + n) / seed, (m + n) / seed, (m + n) / seed));
+
                 //g2.setColor(Color.white);//getHSBColor((m + n) / seed, (m + n) / seed, (m + n) / seed));
                 
                 g2.setColor(Color.getHSBColor((m + n) / seed, (m + n) / seed, (m + n) / seed));
                
                 g2.fillOval(n, m, cellw, cellw);
+
+               // g2.setColor(Color.white);//getHSBColor((m + n) / seed, (m + n) / seed, (m + n) / seed));
+                //g2.fillOval(n, m, cellw, cellw);
+
                 int x = n + joe;
                 int y = m + joe;
 

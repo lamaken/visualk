@@ -1,0 +1,36 @@
+/* 
+    Document   : login
+    Created on : 19/04/2013, 18:55:29
+    Author     : alex
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+#menuMant{
+    position: absolute; 
+    top:10px;
+    left:10px;
+    background: none repeat scroll 0 0 #141E28;
+    position: absolute;
+    text-align: center;
+    z-index: 100;
+}
+#submenu {
+position: absolute;
+top: 54px;
+left: 30px;
+
+position: absolute;
+text-align: center;
+z-index: 100;
+visibility: hidden;
+}
+#cmenuitem{
+    padding: 8px;
+    
+    
+}

@@ -19,7 +19,7 @@ import static visualk.art.Mixed.CANVASY_SIZE;
 import static visualk.art.Mixed.cellw;
 
 
-import visualk.html.UniqueName;
+import visualk.html5.UniqueName;
 
 /**
  * Creates an animated GIF from GIF frames. A thin wrapper to code written by

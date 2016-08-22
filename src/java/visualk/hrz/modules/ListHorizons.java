@@ -6,13 +6,13 @@ import java.sql.SQLException;
 import visualk.hrz.Hrz;
 import visualk.hrz.db.DbHorizons;
 import visualk.hrz.objects.Horizon;
-import visualk.html.ClassCSS;
-import visualk.html.DivHtml;
-import visualk.html.MenuBar;
-import visualk.html.UniqueName;
-import visualk.html.Xhtml;
+import visualk.html5.ClassCSS;
+import visualk.html5.DivHtml;
+import visualk.html5.MenuLinkBar;
+import visualk.html5.UniqueName;
+import visualk.html5.Xhtml5;
 
-public class ListHorizons extends Xhtml {
+public class ListHorizons extends Xhtml5 {
 
     private static final String CSS_LIST_FILE_NAME = "/visualk/hrz/css/listhorizons.css";
     private static final String JS_LIST_FILE_NAME = "/visualk/hrz/js/listhorizons.js";
@@ -20,7 +20,7 @@ public class ListHorizons extends Xhtml {
     
     
    
-    private MenuBar upperMenuBar;
+    private MenuLinkBar upperMenuBar;
 
     private final String googlePlusTagBefore = "<g:plusone href=\"";
     private final String googlePlusAfter = "\" size=\"small\" count=\"false\"></g:plusone>";
@@ -29,14 +29,14 @@ public class ListHorizons extends Xhtml {
     private final String facebookLikeTagAfter = "\" layout=\"button\" show-faces=\"true\" action=\"like\" colorscheme=\"light\" />";
 
     public ListHorizons(String title) {
-        super(title, Hrz.SERVELT_URL);
+        super(title, Hrz.SERVELT_URL,"listhorizons");
         ClassCSS cssLink = new ClassCSS();
         cssLink.setColor("yellow");
 
         ClassCSS cssMenuBar = new ClassCSS();
         cssMenuBar.setColor("green");
 
-        upperMenuBar = new MenuBar("tornarBar", cssMenuBar);
+        upperMenuBar = new MenuLinkBar("tornarBar", cssMenuBar);
         upperMenuBar.setHorizontal();
         upperMenuBar.addMenuLink(Hrz.getString("back.gallery.hrzmkr"), "torna", Hrz.getString("help.back.gallery.hrzmkr"), cssLink);//label,function,help
 

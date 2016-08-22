@@ -4,7 +4,7 @@
 package visualk.ss.modules.generator;
 
 
-import visualk.html.LinkHtml;
+import visualk.html5.LinkHtml;
 
 /**
  * @author alex

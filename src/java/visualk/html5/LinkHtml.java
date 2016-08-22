@@ -3,6 +3,8 @@
  */
 package visualk.html5;
 
+import sun.applet.Main;
+
 
 /**
  * @author àlex
@@ -61,7 +63,8 @@ public class LinkHtml {
     public String toHtml() {
         String tagStatus = "";
         String tagOnClick = "";
-        tagStatus = "onmouseout=\"statusBar('" + "CMCB.MAIN_TITLE" + "')\" onmouseover=\"statusBar(\'" + this.status + "\')\"";
+        
+        tagStatus = "onmouseout=\"statusBar('visualk experiments v0.1')\" onmouseover=\"statusBar(\'" + this.status + "\')\"";
         if (!this.onclick.equals("")) {
             tagOnClick = "onclick=\"" + this.onclick + "(" + this.params + ")\"";
         }

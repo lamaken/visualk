@@ -7,8 +7,8 @@ import java.util.LinkedList;
 
 import visualk.ss.modules.viewer.Pregunta;
 
-import visualk.html.DivHtml;
-import visualk.html.LinkHtml;
+import visualk.html5.DivHtml;
+import visualk.html5.LinkHtml;
 
 
 /**
