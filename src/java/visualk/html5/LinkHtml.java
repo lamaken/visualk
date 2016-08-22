@@ -63,7 +63,8 @@ public class LinkHtml {
     public String toHtml() {
         String tagStatus = "";
         String tagOnClick = "";
-        tagStatus = "onmouseout=\"statusBar('" + Main.theVersion + "')\" onmouseover=\"statusBar(\'" + this.status + "\')\"";
+        
+        tagStatus = "onmouseout=\"statusBar('visualk experiments v0.1')\" onmouseover=\"statusBar(\'" + this.status + "\')\"";
         if (!this.onclick.equals("")) {
             tagOnClick = "onclick=\"" + this.onclick + "(" + this.params + ")\"";
         }

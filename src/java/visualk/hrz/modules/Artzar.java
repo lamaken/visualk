@@ -38,7 +38,7 @@ public class Artzar extends Xhtml5 {
         cssInputBox.setLeft("30px");
         cssInputBox.setTop("30%");
         cssInputBox.setRight("30px");
-        //cssInputBox.setHeight("80px");
+        cssInputBox.setHeight("80px");
         cssInputBox.setPosition("absolute");
         cssInputBox.setTextalign("center");
         cssInputBox.setColor("black");
@@ -60,7 +60,7 @@ public class Artzar extends Xhtml5 {
     }
 
     public Artzar(String title) {
-        super(title, visualk.Main.SERVER_URL+Hrz.SERVELT_URL,"Artzar");
+        super(title, Hrz.SERVELT_URL,"artzar");
         this.cssLink = new ClassCSS();
 
         addMyStyles(); 
@@ -74,7 +74,7 @@ public class Artzar extends Xhtml5 {
         leftMenuBar = new MenuLinkBar("optionsBar", cssMenuBar);
         leftMenuBar.setVertical();
         leftMenuBar.addMenuLink(Hrz.getString("label.generate.artzar.hrzmkr"), "refresca", Hrz.getString("help.generate.artzar.hrzmkr"), cssLink);//label,function,help
-        leftMenuBar.addMenuLink(Hrz.getString("label.save.artzar.hrzmkr"), "guarda", "'" + cssInputBox.getId() + "'"+ Hrz.getString("help.save.artzar.hrzmkr"), cssLink);//label,function,help
+        leftMenuBar.addMenuLink(Hrz.getString("label.save.artzar.hrzmkr"), "guarda", "'" + cssInputBox.getId(), Hrz.getString("help.save.artzar.hrzmkr"), cssLink);//label,function,help
         leftMenuBar.addMenuLink(Hrz.getString("label.load.artzar.hrzmkr"), "carrega", Hrz.getString("help.load.artzar.hrzmkr"), cssLink);//label,function,help
 
         randomMenuBar = new MenuLinkBar("randomBar", cssMenuBar);
@@ -134,7 +134,7 @@ public class Artzar extends Xhtml5 {
 
         String styleMarc = "style=\"padding:2px; color:white; border:solid 3px; \"";
 
-        html_image = "<img " + styleMarc + " name=\"HrzCanvasImg\" title=\"Horizon Maker v0.3\" alt=\""+Hrz.getString("label.loading.artzar.hrzmkr")+"\" src=\"/visualk/hrz/Hrz?option=paint\"/>";
+        html_image = "<img " + styleMarc + " name=\"HrzCanvasImg\" title=\"hrzmkr img\" alt=\""+Hrz.getString("label.loading.artzar.hrzmkr")+"\" src=\"/visualk/hrz/Hrz?option=paint\"/>";
 
         this.addBodyData(new DivHtml("HrzCanvasDiv").toHtml(html_image));
         this.addBodyData("<div id='pino'></id>");

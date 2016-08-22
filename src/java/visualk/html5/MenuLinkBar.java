@@ -40,9 +40,11 @@ public class MenuLinkBar{
 		optionsMenu= new LinkedList<LinkHtml>();
 	}
 	public void addMenuLink(String label,String onclick, String status,ClassCSS css){
+            this.cssMenuBar=css;
 		optionsMenu.add(new LinkHtml(css.getId(),label,"#",onclick,"",status));
 	}
 	public void addMenuLink(String label,String onclick, String params,String status,ClassCSS css){
+            this.cssMenuBar=css;
 		optionsMenu.add(new LinkHtml(css.getId(),label,"#",onclick,params,status));
 	}
 	
