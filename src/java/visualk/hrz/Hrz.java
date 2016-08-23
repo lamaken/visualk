@@ -38,7 +38,7 @@ public class Hrz extends HttpServlet {
 
     private static final long serialVersionUID = 1024371973219L;
     public static final String SERVLET_URL = "/visualk/hrz/Hrz";
-    public static final String URL_PATH = Main.SERVER_URL + "/visualk/hrz";
+    public static final String URL_PATH = "http://alkasoft.org" + "/visualk/hrz";
 
   
 
