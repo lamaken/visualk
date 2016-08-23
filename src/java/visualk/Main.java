@@ -27,7 +27,7 @@ public class Main extends HttpServlet {
     public static final String ALEX_DESKTOP_URL="http://localhost:8084";
     public static final String ALKASOFT_URL = "http://www.alkasoft.org";
     
-    public static final String SERVER_URL = ALEX_DESKTOP_URL;
+    public static final String SERVER_URL = ALKASOFT_URL;
 
    
     

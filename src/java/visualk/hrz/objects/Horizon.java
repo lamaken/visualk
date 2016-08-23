@@ -20,7 +20,7 @@ import visualk.html5.UniqueName;
 
 public class Horizon implements Serializable {
 
-    private static final String URL_IMG = Hrz.URL_PATH + "/img/";
+    private static final String URL_IMG = "http://alkasoft.org/visualk/hrz/img/";//TODO:URL IMAGES A PELO CONTRA ALKASOFTT
     /**
      *
      */
