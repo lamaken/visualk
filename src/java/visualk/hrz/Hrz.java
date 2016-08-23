@@ -42,7 +42,8 @@ public class Hrz extends HttpServlet {
 
   
 
-    private Hashtable hrzns = new Hashtable();
+    private Hashtable<String,Horizon> hrzns = new Hashtable<String,Horizon>();
+    
     private static ResourceBundle bundle;
     
     private Horizon hrz;
