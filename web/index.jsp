@@ -6,16 +6,13 @@
         <meta http-equiv="refresh" content="10">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>visualk v0.1</title>
+        <title>Welcome to visualk v0.1</title>
 
         <meta name="Keywords"
               content="experiments, horizon maker, hrzmkr, mosaics, mosaic editor" />
         <meta name="Description"
               content="Let computer draw or paint for you." />
         <meta name="Author" content="lamaken@gmail.com" />
-
-
-        <title>visualk</title>
 
 
         <!-- google analytics-->
@@ -43,9 +40,8 @@
     <body bgcolor="black"   style="color: white">
 
         <div style="background-color: black;font-family: monospace;text-align:center">
-            <h1>
-                <h3>visualk@</h3>
-
+            <h3>
+               
                 <a href="art/editorSquared.html"><img id="squared" style="left:300px;top:100px" src="/visualk/art/Squared?mx=150&my=150&cellw=23&d=1"/></a>
                 <a href="art/editorRounded.html"><img id="roundedd" style="left:300px;top: 300px" src="/visualk/art/Rounded?mx=150&my=150&cellw=23&d=1"/></a>
                 <a href="art/editorMixed.html"><img id="mixed" style="left:500px;top:200px" src="/visualk/art/Mixed?mx=150&my=150&cellw=23&d=1"/></a>
@@ -54,10 +50,10 @@
                 <a href="hrz/index.html"><img style="left:150px;top: 150px" src="/visualk/hrz/Hrz?option=firma"/></a>
             
                 <a href="tubs/index.html"><img style="left:150px;top: 150px" src="/visualk/tubs/img/logo.png"/></br></a></br>
-                <a href="art/liveMosaic.html"><img style="left:150px;top: 150px" src="/visualk/art/LiveMosaic?mx=95&my=95&cellw=13&d=1"/></a></br>
+                <a href="art/liveMosaic.html"><img style="left:150px;top: 150px" src="/visualk/art/LiveMosaic?mx=195&my=45&cellw=13&d=1"/></a></br>
 <!--a href="ss/index.html">SurveyServer 0.1</a></br-->
             
-            </h1>
+            </h3>
 
         </div>
 

@@ -13,6 +13,7 @@ import java.io.Serializable;
 import java.net.URL;
 
 import java.util.Random;
+import javax.imageio.ImageIO;
 import visualk.hrz.Hrz;
 
 import visualk.hrz.db.DbHorizons;
@@ -20,7 +21,8 @@ import visualk.html5.UniqueName;
 
 public class Horizon implements Serializable {
 
-    private static final String URL_IMG = "http://alkasoft.org/visualk/hrz/img/";//TODO:URL IMAGES A PELO CONTRA ALKASOFTT
+//    private static final String URL_IMG = "http://alkasoft.org/visualk/hrz/img/";//TODO:URL IMAGES A PELO CONTRA ALKASOFTT
+    private static final String URL_IMG = "http://hrzmkr.com/img/";
     /**
      *
      */
@@ -403,9 +405,13 @@ public class Horizon implements Serializable {
 
         URL url;
         try {
-            url = new URL(URL_IMG + "llum2.png");
+        //    url = new URL(URL_IMG + "llum2.png");
 
-            bmpSuperNova = Toolkit.getDefaultToolkit().getImage(url);
+            //bmpSuperNova = Toolkit.getDefaultToolkit().getImage(url);
+            
+            url = new URL(URL_IMG + "llum2.png");
+            bmpSuperNova = ImageIO.read(url);
+
 
             if (bmpSuperNova == null) {
                 System.out.println("... error");
