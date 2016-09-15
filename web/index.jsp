@@ -54,7 +54,8 @@
                 <a href="hrz/index.html"><img style="left:150px;top: 150px" src="/visualk/hrz/Hrz?option=firma"/></a>
             
                 <a href="tubs/index.html"><img style="left:150px;top: 150px" src="/visualk/tubs/img/logo.png"/></br></a></br>
-            <!--a href="ss/index.html">SurveyServer 0.1</a></br-->
+                <a href="art/liveMosaic.html"><img style="left:150px;top: 150px" src="/visualk/art/LiveMosaic?mx=95&my=95&cellw=13&d=1"/></a></br>
+<!--a href="ss/index.html">SurveyServer 0.1</a></br-->
             
             </h1>
 
