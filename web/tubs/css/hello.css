@@ -1,3 +1,28 @@
+@font-face
+{
+font-family: myFirstFont;
+src: url('../fonts/ARCHRISTY.ttf')
+    
+}
+
+x1 
+{
+font-family:myFirstFont;
+font-size:20px;
+color:yellow;
+}
+
+a:link   
+{   
+ text-decoration:none;   
+}   
+
+
+
+version{
+    color:greenyellow;
+}
+
 p {
 	margin-left: 20px;
 }
@@ -5,6 +30,8 @@ body {
 	background-image: url("../img/fondo.png");
 	font-family:monospace;
     font-size:12px;
+    text-decoration: none;
+    color: white;
 	
 }
 
@@ -34,7 +61,7 @@ body {
 
 #myCanvas {
 	left: 15px;
-	top: 15px;
+	top: 35px;
 	right:15px;
 	bottom:15px;
         
