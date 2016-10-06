@@ -18,7 +18,7 @@ import visualk.nine.model.NineGen;
  *
  * @author alex
  */
-@WebServlet(name = "Main", urlPatterns = {"/Main"})
+@WebServlet(name = "Nine", urlPatterns = {"/Nine"})
 public class Nine extends HttpServlet {
 
     /**
@@ -35,25 +35,37 @@ public class Nine extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            NineGen nine = new NineGen(request.getParameter("number"));
+            String number = request.getParameter("number");
+            if(number==null)number="10";
+            if(Integer.parseInt(number)<9)number="10";
+            NineGen nine = new NineGen(number);
+            
 
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
             out.println("<title>Servlet Main</title>");
             out.println("</head>");
-            out.println("<body>");
-            out.println("<form action='/visualk.nine/Main' method='GET'>");
-            out.println("<input name='number' type='number' value='"+request.getParameter("number")+"'/>");
+            out.println("<body style=\"text-align:center;font-family: monospace \">");
+            out.println("<form action='/visualk/nine/Nine' method='GET'>");
+            out.println("<h1>Magic Nine</h1>");
+            
+            out.println("<input name='number' type='number' value='"+number+"'/>");
             out.println("<input type='Submit' value='Submit'/>");
             out.println("</form>");
-            out.println("<h1>Nine magic for " + request.getParameter("number") + "</h1>");
-            out.println("<h3>Iterations:" + nine.getIterations() + "</h3>");
+            if(nine.getIterations()>1)out.println("<h1>It has "+nine.getIterations()+" iterations</h1>");
+            else out.println("<h1>It has only "+nine.getIterations()+" iteration</h1>");
+            //out.println("<h3>Iterations:" + nine.getIterations() + "</h3>");
+            //out.println("<h3>Diff:" + nine.getDiff() + "</h3>");
+            //out.println("<h3>OldDiff:" + nine.getOldiff() + "</h3>");
+            
+            
             out.println(nine.toString());
             out.println("</body>");
             out.println("</html>");
 
         }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
