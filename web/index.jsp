@@ -48,6 +48,8 @@
                 <a href="art/editorArab.html"><img id="mixed" style="left:500px;top:100px" src="/visualk/art/Arab?mx=75&my=75&cellw=9&d=1"/></a>
                 <br/>
                 <a href="hrz/index.html"><img style="left:150px;top: 150px" src="/visualk/hrz/Hrz?option=firma"/></a>
+                <!--a href="nine/index.html"><img style="left:50px;top: 150px" src="favico.ico"/></a-->
+            
             
                 <a href="tubs/index.html"><img style="left:150px;top: 150px" src="/visualk/tubs/img/logo.png"/></br></a></br>
                 <a href="art/liveMosaic.html"><img style="left:150px;top: 150px" src="/visualk/art/LiveMosaic?mx=195&my=45&cellw=13&d=1"/></a></br>

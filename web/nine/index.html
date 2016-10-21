@@ -1,22 +1,63 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
+<!--DOCTYPE html>
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>visualk.nine</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="refresh" content="0; url=/visualk/nine/Nine?number=90"/>
     </head>
     <body>
-        <div>TODO write content</div>
+        
 
-        <form action="/visualk/nine/Nine" method="GET">
-            <input name="number" type="number" value="11"/>
-            <input type="Submit" value="Submit"/>
-        </form>
+        
+    </body>
+</html-->
 
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Horizon Maker v0.3</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+        <meta name="Keywords"
+              content="nine, magic, numbers" />
+        <meta name="Description"
+              content="Play with nine magic nunmbers." />
+        <meta name="Author" content="lamaken@gmail.com" />
+        <meta name="ROBOTS" content="INDEX, NOFOLLOW" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+        <script>
+            function getwindowsize() {
+                document.forms.f.mx.value = window.innerWidth - 100;
+                document.forms.f.my.value = window.innerHeight - 100;
+
+
+            }
+        </script>
+
+        
+    </head>
+
+
+    <body onload="getwindowsize()" style="color: rgb(10, 20, 30); background-color: rgb(222, 242, 240)">
+
+        <br />
+        <br />
+        <div style="font-size: xx-large; text-align: center;">Magic Nine v0.1 <br />
+            <br />
+
+            <img 
+                alt="MagicNine 0.1" src="magicnine01.png"
+                onclick="document.f.submit();" />
+
+            <br />
+            <form name="f" method="post" action="/visualk/nine/Nine?number=34">
+                <input type="submit"/>
+            </form>
+        </div>
     </body>
 </html>
+
+
