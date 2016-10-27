@@ -26,7 +26,6 @@ import visualk.Main;
 
 import visualk.hrz.modules.Artzar;
 import visualk.hrz.modules.ListHorizons;
-
 import visualk.hrz.objects.Horizon;
 import visualk.html5.UniqueName;
 
@@ -38,14 +37,12 @@ public class Hrz extends HttpServlet {
 
     private static final long serialVersionUID = 1024371973219L;
     public static final String SERVLET_URL = "/visualk/hrz/Hrz";
-    public static final String URL_PATH = "http://alkasoft.org" + "/visualk/hrz";
+    public static final String URL_PATH = Main.HOST_NAME + Main.HOST_VISUALK + "/hrz";
 
-  
+    private Hashtable<String, Horizon> hrzns = new Hashtable<String, Horizon>();
 
-    private Hashtable<String,Horizon> hrzns = new Hashtable<String,Horizon>();
-    
     private static ResourceBundle bundle;
-    
+
     private Horizon hrz;
 
     //Session sessioN;
@@ -59,7 +56,9 @@ public class Hrz extends HttpServlet {
     private static final String INICIAL_HORIZON_NAME_SESSION = "Inicial";
 
     public static String getString(String key) {
-        if(bundle==null)bundle = ResourceBundle.getBundle("outputTextConstants", Locale.ENGLISH);
+        if (bundle == null) {
+            bundle = ResourceBundle.getBundle("outputTextConstants", Locale.ENGLISH);
+        }
         return bundle.getString(key);
     }
 
@@ -153,11 +152,10 @@ public class Hrz extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // TODO Auto-generated method stub
 
-        Artzar artzar=null; 		// artzar horitzons a l'atzar
-        ListHorizons listH=null;  // galeria d'horitzons
+        Artzar artzar = null; 		// artzar horitzons a l'atzar
+        ListHorizons listH = null;  // galeria d'horitzons
         // Wizard wizard; 	 	// asistent per la ceracio
-    
-    
+
         Locale lan;
         String where = request.getParameter("where");
         String what = request.getParameter("what");
@@ -184,8 +182,6 @@ public class Hrz extends HttpServlet {
             lan = Locale.getDefault();//DEFAULT_LANGUAGE
         }
 
-        
-
         HttpSession session = request.getSession(true);
         String sessionId = "no_session";
         try {
@@ -195,10 +191,9 @@ public class Hrz extends HttpServlet {
         }
 
         ResourceBundle.clearCache();
-       
+
         bundle = ResourceBundle.getBundle("outputTextConstants", lan);
-        
-        
+
         if (hrzns.containsKey(sessionId)) {
             hrz = (Horizon) hrzns.get(sessionId);
         } else {
@@ -207,8 +202,6 @@ public class Hrz extends HttpServlet {
             hrz.makeRandom(Integer.parseInt(mx), Integer.parseInt(my));//random de tot
             hrzns.put(sessionId, (Horizon) hrz);
         }
-
-       
 
         if (pino == null) {
             pino = "0";
@@ -244,7 +237,7 @@ public class Hrz extends HttpServlet {
             if (where.equals("artzar")) {
                 //if (artzar == null) {
                 artzar = new Artzar(getString("title.artzar.hrzmkr"));
-               // }
+                // }
                 if (what.equals("carrega")) { //entra a artzar
                 } else if (what.equals("gen_atzar")) {
                     hrz = new Horizon(new UniqueName(8).getName());
@@ -278,6 +271,7 @@ public class Hrz extends HttpServlet {
             if (where.equals("listhorizons")) {
                 listH = new ListHorizons(getString("title.gallery.hrzmkr"));
                 if (what.equals("carrega")) {
+                    listH.setSize(Integer.parseInt(mx),Integer.parseInt(my));
                     out.println(listH.toHtml());
                     out.close();
                 } else if (what.equals("selecciona")) {
@@ -291,7 +285,7 @@ public class Hrz extends HttpServlet {
         } else {
             response.sendRedirect("/visualk/");
         }
-       
+
     }
 
 }
