@@ -12,7 +12,7 @@ import visualk.gallery.db.DbAuthors;
  *
  * @author lamaken
  */
-public class Obra {
+public class Work {
     private String uuid;
     private String title;
     private String type;
@@ -20,12 +20,21 @@ public class Obra {
     private String price;
     private String stars;
     
-    private ArrayList<Tecnica> tecniques = new ArrayList<>();             // autors d'aquesta obra
+    private ArrayList<Tecnica> tecniques = new ArrayList<>();             // tecniques d'aquesta obra
     private ArrayList<Author> authors = new ArrayList<>();             // autors d'aquesta obra
+    private ArrayList<User> likes = new ArrayList<>();       //usuaris que han fet like a a obra
+
+    public ArrayList<User> getLikes() {
+        return likes;
+    }
+
+    public void setLikes(ArrayList<User> likes) {
+        this.likes = likes;
+    }
     
     private DbAuthors dbAuthors;
 
-    public Obra(){
+    public Work(){
         dbAuthors=new DbAuthors();
     }
     

@@ -13,5 +13,5 @@ public class Tecnica {
     String uuid;
     String title;
     String descrption;
-    Obra[] obres;               // Obres fetes en aquesta tecnica
+    Work[] obres;               // Obres fetes en aquesta tecnica
 }

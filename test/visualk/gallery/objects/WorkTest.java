@@ -18,9 +18,9 @@ import visualk.gallery.db.DbAuthors;
  *
  * @author lamaken
  */
-public class ObraTest {
+public class WorkTest {
     
-    public ObraTest() {
+    public WorkTest() {
     }
     
     @BeforeClass
@@ -40,24 +40,24 @@ public class ObraTest {
     }
 
     /**
-     * Test of populateDb method, of class Obra.
+     * Test of populateDb method, of class Work.
      */
     @Test
     public void testPopulateDb() {
         System.out.println("populateDb");
-        Obra instance = new Obra();
+        Work instance = new Work();
         instance.populateDb();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of getUuid method, of class Obra.
+     * Test of getUuid method, of class Work.
      */
     @Test
     public void testGetUuid() {
         System.out.println("getUuid");
-        Obra instance = new Obra();
+        Work instance = new Work();
         String expResult = "";
         String result = instance.getUuid();
         assertEquals(expResult, result);
@@ -66,25 +66,25 @@ public class ObraTest {
     }
 
     /**
-     * Test of setUuid method, of class Obra.
+     * Test of setUuid method, of class Work.
      */
     @Test
     public void testSetUuid() {
         System.out.println("setUuid");
         String uuid = "";
-        Obra instance = new Obra();
+        Work instance = new Work();
         instance.setUuid(uuid);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of getTitle method, of class Obra.
+     * Test of getTitle method, of class Work.
      */
     @Test
     public void testGetTitle() {
         System.out.println("getTitle");
-        Obra instance = new Obra();
+        Work instance = new Work();
         String expResult = "";
         String result = instance.getTitle();
         assertEquals(expResult, result);
@@ -93,25 +93,25 @@ public class ObraTest {
     }
 
     /**
-     * Test of setTitle method, of class Obra.
+     * Test of setTitle method, of class Work.
      */
     @Test
     public void testSetTitle() {
         System.out.println("setTitle");
         String title = "";
-        Obra instance = new Obra();
+        Work instance = new Work();
         instance.setTitle(title);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of getType method, of class Obra.
+     * Test of getType method, of class Work.
      */
     @Test
     public void testGetType() {
         System.out.println("getType");
-        Obra instance = new Obra();
+        Work instance = new Work();
         String expResult = "";
         String result = instance.getType();
         assertEquals(expResult, result);
@@ -120,25 +120,25 @@ public class ObraTest {
     }
 
     /**
-     * Test of setType method, of class Obra.
+     * Test of setType method, of class Work.
      */
     @Test
     public void testSetType() {
         System.out.println("setType");
         String type = "";
-        Obra instance = new Obra();
+        Work instance = new Work();
         instance.setType(type);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of getImages method, of class Obra.
+     * Test of getImages method, of class Work.
      */
     @Test
     public void testGetImages() {
         System.out.println("getImages");
-        Obra instance = new Obra();
+        Work instance = new Work();
         String[] expResult = null;
         String[] result = instance.getImages();
         assertArrayEquals(expResult, result);
@@ -147,25 +147,25 @@ public class ObraTest {
     }
 
     /**
-     * Test of setImages method, of class Obra.
+     * Test of setImages method, of class Work.
      */
     @Test
     public void testSetImages() {
         System.out.println("setImages");
         String[] images = null;
-        Obra instance = new Obra();
+        Work instance = new Work();
         instance.setImages(images);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of getPrice method, of class Obra.
+     * Test of getPrice method, of class Work.
      */
     @Test
     public void testGetPrice() {
         System.out.println("getPrice");
-        Obra instance = new Obra();
+        Work instance = new Work();
         String expResult = "";
         String result = instance.getPrice();
         assertEquals(expResult, result);
@@ -174,25 +174,25 @@ public class ObraTest {
     }
 
     /**
-     * Test of setPrice method, of class Obra.
+     * Test of setPrice method, of class Work.
      */
     @Test
     public void testSetPrice() {
         System.out.println("setPrice");
         String price = "";
-        Obra instance = new Obra();
+        Work instance = new Work();
         instance.setPrice(price);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of getStars method, of class Obra.
+     * Test of getStars method, of class Work.
      */
     @Test
     public void testGetStars() {
         System.out.println("getStars");
-        Obra instance = new Obra();
+        Work instance = new Work();
         String expResult = "";
         String result = instance.getStars();
         assertEquals(expResult, result);
@@ -201,25 +201,25 @@ public class ObraTest {
     }
 
     /**
-     * Test of setStars method, of class Obra.
+     * Test of setStars method, of class Work.
      */
     @Test
     public void testSetStars() {
         System.out.println("setStars");
         String stars = "";
-        Obra instance = new Obra();
+        Work instance = new Work();
         instance.setStars(stars);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of getTecniques method, of class Obra.
+     * Test of getTecniques method, of class Work.
      */
     @Test
     public void testGetTecniques() {
         System.out.println("getTecniques");
-        Obra instance = new Obra();
+        Work instance = new Work();
         ArrayList<Tecnica> expResult = null;
         ArrayList<Tecnica> result = instance.getTecniques();
         assertEquals(expResult, result);
@@ -228,25 +228,25 @@ public class ObraTest {
     }
 
     /**
-     * Test of setTecniques method, of class Obra.
+     * Test of setTecniques method, of class Work.
      */
     @Test
     public void testSetTecniques() {
         System.out.println("setTecniques");
         ArrayList<Tecnica> tecniques = null;
-        Obra instance = new Obra();
+        Work instance = new Work();
         instance.setTecniques(tecniques);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of getAuthors method, of class Obra.
+     * Test of getAuthors method, of class Work.
      */
     @Test
     public void testGetAuthors() {
         System.out.println("getAuthors");
-        Obra instance = new Obra();
+        Work instance = new Work();
         ArrayList<Author> expResult = null;
         ArrayList<Author> result = instance.getAuthors();
         assertEquals(expResult, result);
@@ -255,25 +255,25 @@ public class ObraTest {
     }
 
     /**
-     * Test of setAuthors method, of class Obra.
+     * Test of setAuthors method, of class Work.
      */
     @Test
     public void testSetAuthors() {
         System.out.println("setAuthors");
         ArrayList<Author> authors = null;
-        Obra instance = new Obra();
+        Work instance = new Work();
         instance.setAuthors(authors);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of getDbAuthors method, of class Obra.
+     * Test of getDbAuthors method, of class Work.
      */
     @Test
     public void testGetDbAuthors() {
         System.out.println("getDbAuthors");
-        Obra instance = new Obra();
+        Work instance = new Work();
         DbAuthors expResult = null;
         DbAuthors result = instance.getDbAuthors();
         assertEquals(expResult, result);
@@ -282,13 +282,13 @@ public class ObraTest {
     }
 
     /**
-     * Test of setDbAuthors method, of class Obra.
+     * Test of setDbAuthors method, of class Work.
      */
     @Test
     public void testSetDbAuthors() {
         System.out.println("setDbAuthors");
         DbAuthors dbAuthors = null;
-        Obra instance = new Obra();
+        Work instance = new Work();
         instance.setDbAuthors(dbAuthors);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");

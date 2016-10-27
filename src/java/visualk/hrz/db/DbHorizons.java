@@ -12,6 +12,7 @@ public class DbHorizons {
 
     public DbHorizons() {
         prepareDB("127.0.0.1", "hrzmkr_user", "hrzmkr_password", "hrzmkr_db");
+        //prepareDB("127.0.0.1", "git-user", "password", "github");
 
     }
 
@@ -81,6 +82,15 @@ public class DbHorizons {
         ResultSet myResult;
         myResult = mySQL.queryDB("SELECT * FROM hrzns WHERE namehrz<>'wellcome' order by dt desc;");
 
+        return (myResult);
+
+    }
+
+    public ResultSet listHrzns(Integer offset, Integer limit, Integer width, Integer height) {
+        ResultSet myResult;
+        String onlySize = "(canvasWidth<" + width + " and  canvasHeigth<" + height + ")";
+        myResult = mySQL.queryDB("SELECT * FROM hrzns WHERE namehrz<>'wellcome' and " + onlySize + " order by dt desc limit " + offset + "," + limit + " ;");
+        System.out.print(onlySize);
         return (myResult);
 
     }

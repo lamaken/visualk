@@ -5,7 +5,7 @@ import visualk.Main;
 public class Xhtml5 {
 
     private String SERVLET_HRZ_URL = "/visualk/hrz/Hrz";
-    private static final String JSXHTML = "http://alkasoft.org/visualk/js/xhtml5.js";
+    private static final String JSXHTML = Main.HOST_NAME + Main.HOST_VISUALK + "/js/xhtml5.js";
     private static final String doctype = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\" ?><!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\"><html xmlns=\"http://www.w3.org/1999/xhtml\" >";
     private static final String open_html = "<html>";
     private static final String open_head = "<head>";
@@ -16,7 +16,7 @@ public class Xhtml5 {
     public VsFunctions vsFunctions;
     public CssStyles cssStyles;
     private static final String close_head = "</head>";
-    private static final String open_body = "<body style=\"background-image:url('" + "http://alkasoft.org" + "/visualk/img/fondo.png')\" onload=\"load()\">";
+    private static final String open_body = "<body style=\"background-image:url('" + Main.HOST_NAME + Main.HOST_VISUALK + "/img/fondo.png')\" onload=\"load()\">";
     private String body = "nothing in de body";
     private static final String close_body = "</body>";
     private static final String close_html = "</html>";
@@ -26,7 +26,6 @@ public class Xhtml5 {
     public MessageBox messageBox;
     private String form_where = "";//valor del where del formulari
 
-
     public Xhtml5(String title, String action_form, String where) {
 
         //SERVLET_HRZ_URL = action_form;
@@ -35,7 +34,7 @@ public class Xhtml5 {
 
         this.form_where = where;
 
-        this.cssStyles.addFileCSS("http://alkasoft.org" + "/visualk/css/xhtml5.css");
+        this.cssStyles.addFileCSS(Main.HOST_NAME + Main.HOST_VISUALK + "/css/xhtml5.css");
         open_form += "\"" + SERVLET_HRZ_URL + "\">";
 
         clearBodyData();
@@ -72,7 +71,7 @@ public class Xhtml5 {
         DivHtml statusBar = new DivHtml("statusBar");
         addBodyData(statusBar.toHtml(this.title));
 
-        addBodyData(new DivHtml("logo").toHtml("<img src=\"" + "http://alkasoft.org" + "/visualk/img/logo.png\"/>"));
+        addBodyData(new DivHtml("logo").toHtml("<img src=\"" + Main.HOST_NAME + Main.HOST_VISUALK + "/img/logo.png\"/>"));
 
         DivHtml desconectarDiv = new DivHtml("desconectar");
 
@@ -92,7 +91,7 @@ public class Xhtml5 {
     }
 
     public final void clearDataForm() {
-       
+
         this.data_form
                 = "<input type=\"hidden\" name=\"more\"/>"
                 + "<input name=\"actions\" type=\"hidden\"/>"

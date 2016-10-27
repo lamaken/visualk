@@ -41,6 +41,11 @@
         <servlet-name>Nine</servlet-name>
         <servlet-class>visualk.nine.Nine</servlet-class>
     </servlet>
+    <servlet>
+        <description>Gallery Editor</description>
+        <servlet-name>Gallery</servlet-name>
+        <servlet-class>visualk.gallery.Gallery</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Hrz</servlet-name>
         <url-pattern>/hrz/Hrz</url-pattern>
@@ -73,6 +78,10 @@
     <servlet-mapping>
         <servlet-name>Nine</servlet-name>
         <url-pattern>/nine/Nine</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Gallery</servlet-name>
+        <url-pattern>/gallery/Gallery</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

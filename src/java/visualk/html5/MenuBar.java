@@ -4,6 +4,7 @@
 package visualk.html5;
 
 import java.util.LinkedList;
+import visualk.Main;
 
 /**
  * @author �lex
@@ -14,7 +15,7 @@ public class MenuBar {
 
     private static final int VERTICAL_ALIGN = 1;
     private static final int HORIZONTAL_ALIGN = 2;
-    private static final String FILE_JS = "http://alkasoft.org"+"/visualk/js/MenuBar.js";
+    private static final String FILE_JS = Main.HOST_NAME + Main.HOST_VISUALK + "/js/MenuBar.js";
     private String did = "MenuBar";
     private String title = "";
     private int orientation = HORIZONTAL_ALIGN;
@@ -45,12 +46,9 @@ public class MenuBar {
 
     }
 
-
     public void addMenuLink(String label, String onclick, String status, ClassCSS css) {
-        optionsMenu.add(new MenuItem(css.getId(), label, "#", onclick, "", status,"parent"));
+        optionsMenu.add(new MenuItem(css.getId(), label, "#", onclick, "", status, "parent"));
     }
-
-
 
     public int eliminaOption(String id) {
         for (int n = 0; n < optionsMenu.size(); n++) {
@@ -79,15 +77,12 @@ public class MenuBar {
             htmlChar = enter.toHtml();
         }
 
-
         String returnHtml = my_js.toHtml()
                 + "<div id=\"" + this.cssMenuBar.get(0).getId() + "\">";
-
 
         if (!this.title.equals("")) {
             returnHtml += this.title + htmlChar + MenuSeparatorHtml + htmlChar;
         }
-
 
         String rawMenu = "";
 
@@ -103,7 +98,6 @@ public class MenuBar {
         String returnFillsHtml = "";
         returnFillsHtml += "<table>";
 
-
         //mostrem nomes les cap�aleres
         LinkedList<String> listparent = new LinkedList<String>();
         for (int n = 0; n < optionsMenu.size(); n++) {
@@ -118,27 +112,26 @@ public class MenuBar {
             rawMenu += optionsMenu.get(n).raw(",");
         }
 
-        
         for (int p = 0; p < listparent.size(); p++) {
 
             for (int n = 0; n < optionsMenu.size(); n++) {
                 if (optionsMenu.get(n).parent.equals(listparent.get(p)))//nomes el principal
                 {
-                    
-                    ClassCSS css=new ClassCSS("menuitem_"+optionsMenu.get(n).id);
+
+                    ClassCSS css = new ClassCSS("menuitem_" + optionsMenu.get(n).id);
                     css.setVisible("hidden");
                     css.setBackground("red");
                     css.setPadding("10px");
-                    
+
                     this.cssMenuBar.add(css);
-                    
-                    returnFillsHtml += "<tr><td class="+css.getId()+">";
-                    
+
+                    returnFillsHtml += "<tr><td class=" + css.getId() + ">";
+
                     DivHtml div = new DivHtml(css.getId());
                     returnFillsHtml += div.toHtml(optionsMenu.get(n).toHtml());
-                    
+
                     //returnFillsHtml += optionsMenu.get(n).toHtml();
-                   /* if (n < numItems + 1) {
+                    /* if (n < numItems + 1) {
                         returnFillsHtml += enter.toHtml();
                     }*/
                     returnFillsHtml += "</td></tr>";
@@ -146,39 +139,29 @@ public class MenuBar {
             }
         }
 
-
-
-
-
-
         returnHtml += "</div>";
         returnFillsHtml += "</table>";
 
-
-
-        String table =
-                "<table style=\"width: 100%;background:rgb(210,210,210);line-height: 0;\" border=\"0\"  cellpadding=\"0\" cellspacing=\"0\">"
-                + "<tbody><tr><td><img src='"+"http://alkasoft.org"+"/visualk/img/c1.png'/></td><td background='"+"http://alkasoft.org"+"/visualk/img/c2.png'>" + this.title + "</td><td><img src='"+"http://alkasoft.org"+"/visualk/img/c3.png'/></td></tr>"
-                + "<tr><td background='"+"http://alkasoft.org"+"/visualk/img/c4.png'></td><td>" + returnHtml + "</td><td background='"+"http://alkasoft.org"+"/visualk/img/c5.png'></td></tr>"
-                + "<tr><td><img src='"+"http://alkasoft.org"+"/visualk/img/c6.png'/></td><td background='"+"http://alkasoft.org"+"/visualk/img/c7.png'></td><td><img src='"+"http://alkasoft.org"+"/visualk/img/c8.png'/></td></tr></tbody></table>";
-
-
+        String table
+                = "<table style=\"width: 100%;background:rgb(210,210,210);line-height: 0;\" border=\"0\"  cellpadding=\"0\" cellspacing=\"0\">"
+                + "<tbody><tr><td><img src='" + " + Main.HOST_NAME + Main.HOST_VISUALK + " + "/img/c1.png'/></td><td background='" + Main.HOST_NAME + Main.HOST_VISUALK + "/img/c2.png'>" + this.title + "</td><td><img src='" + " + Main.HOST_NAME + Main.HOST_VISUALK + " + "/img/c3.png'/></td></tr>"
+                + "<tr><td background='" + " + Main.HOST_NAME + Main.HOST_VISUALK + " + "/img/c4.png'></td><td>" + returnHtml + "</td><td background='" + " + Main.HOST_NAME + Main.HOST_VISUALK + " + "/img/c5.png'></td></tr>"
+                + "<tr><td><img src='" + " + Main.HOST_NAME + Main.HOST_VISUALK + " + "/img/c6.png'/></td><td background='" + " + Main.HOST_NAME + Main.HOST_VISUALK + " + "/img/c7.png'></td><td><img src='" + " + Main.HOST_NAME + Main.HOST_VISUALK + " + "/img/c8.png'/></td></tr></tbody></table>";
 
         /*
          creem els popups
          */
-        String htmlFills =
-                "<div id=\"submenu\">"
+        String htmlFills
+                = "<div id=\"submenu\">"
                 + "<table style=\"width: 100%;background:rgb(210,210,210);line-height: 0;\" border=\"0\"  cellpadding=\"0\" cellspacing=\"0\">"
-                + " <tbody><tr><td><img src='"+"http://alkasoft.org"+"/visualk/img/c9.png'/></td><td ></td><td><img src='"+"http://alkasoft.org"+"visualk/img/c10.png'/></td></tr> <tr><td background='"+"http://alkasoft.org"+"visualk/img/c4.png'></td><td><div id=\"kk\">";
+                + " <tbody><tr><td><img src='" + " + Main.HOST_NAME + Main.HOST_VISUALK + " + "/img/c9.png'/></td><td ></td><td><img src='" + " + Main.HOST_NAME + Main.HOST_VISUALK + " + "/img/c10.png'/></td></tr> <tr><td background='" + " + Main.HOST_NAME + Main.HOST_VISUALK + " + "img/c4.png'></td><td><div id=\"kk\">";
 
         htmlFills += returnFillsHtml;
-        htmlFills += "</div></td><td background='"+"http://alkasoft.org"+"/visualk/img/c5.png'></td></tr>"
-                + "<tr><td><img src='"+"http://alkasoft.org"+"/visualk/img/c6.png'/></td><td background='"+"http://alkasoft.org"+"/visualk/img/c7.png'></td><td><img src='"+"http://alkasoft.org"+"/visualk/img/c8.png'/></td></tr></tbody></table>"
+        htmlFills += "</div></td><td background='" + " + Main.HOST_NAME + Main.HOST_VISUALK + " + "/img/c5.png'></td></tr>"
+                + "<tr><td><img src='" + " + Main.HOST_NAME + Main.HOST_VISUALK + " + "/img/c6.png'/></td><td background='" + " + Main.HOST_NAME + Main.HOST_VISUALK + " + "/img/c7.png'></td><td><img src='" + " + Main.HOST_NAME + Main.HOST_VISUALK + " + "/img/c8.png'/></td></tr></tbody></table>"
                 + "</div>";
 
         DivHtml divfills = new DivHtml("fills_" + this.did);
-
 
         DivHtml dv = new DivHtml(this.did);
         DivHtml div_raw = new DivHtml("raw_" + this.did);

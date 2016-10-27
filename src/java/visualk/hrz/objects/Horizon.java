@@ -14,6 +14,7 @@ import java.net.URL;
 
 import java.util.Random;
 import javax.imageio.ImageIO;
+import visualk.Main;
 import visualk.hrz.Hrz;
 
 import visualk.hrz.db.DbHorizons;
@@ -21,8 +22,8 @@ import visualk.html5.UniqueName;
 
 public class Horizon implements Serializable {
 
-//    private static final String URL_IMG = "http://alkasoft.org/visualk/hrz/img/";//TODO:URL IMAGES A PELO CONTRA ALKASOFTT
-    private static final String URL_IMG = "http://hrzmkr.com/img/";
+    private static final String URL_IMG = Main.HOST_NAME + Main.HOST_VISUALK + "/hrz/img/";
+
     /**
      *
      */
@@ -219,7 +220,7 @@ public class Horizon implements Serializable {
     }
      */
     public void makeRandomCanvas(int mx, int my) {
-       // Random r = new Random();
+        // Random r = new Random();
 
         this.canvasHeigth = my;//; r.nextInt(max_height);
         this.canvasWidth = mx;//r.nextInt(max_width);
@@ -390,7 +391,6 @@ public class Horizon implements Serializable {
         /*if (img instanceof BufferedImage) {
             return (BufferedImage) img;
         }*/
-
         BufferedImage bimage = new BufferedImage(img.getWidth(null), img
                 .getHeight(null), 1);
         Graphics g = bimage.createGraphics();
@@ -401,17 +401,15 @@ public class Horizon implements Serializable {
     }
 
     private void loadSuperNova() {
-        System.out.print("Loading supernova: "+URL_IMG + "llum2.png");
+        System.out.print("Loading supernova: " + URL_IMG + "llum2.png");
 
         URL url;
         try {
-        //    url = new URL(URL_IMG + "llum2.png");
+            //    url = new URL(URL_IMG + "llum2.png");
 
             //bmpSuperNova = Toolkit.getDefaultToolkit().getImage(url);
-            
             url = new URL(URL_IMG + "llum2.png");
             bmpSuperNova = ImageIO.read(url);
-
 
             if (bmpSuperNova == null) {
                 System.out.println("... error");
@@ -459,7 +457,7 @@ public class Horizon implements Serializable {
             } else {
                 System.out.println("... ok");
             }
-        } catch ( Exception e) {
+        } catch (Exception e) {
             // TODO Auto-generated catch block
             System.out.print(".. ERROR url.");
             e.printStackTrace();
@@ -484,17 +482,14 @@ public class Horizon implements Serializable {
         g2.setColor(this.getTopHrzColor());
         g2.fillRect(0, 0, this.getCanvasWidth(), this.getTopHrz());
 
-        
-        if(bmpCel==null){
+        if (bmpCel == null) {
             System.out.println("\nreloading images");
             loadCel();
             loadSuperNova();
             loadTextura();
         }
-        
-        
-        
-        g2.drawImage(bmpCel, 0, 0,mx,my, null);
+
+        g2.drawImage(bmpCel, 0, 0, mx, my, null);
 
         // posem la llum
         g2.drawImage(bmpSuperNova, this.superX - 100, this.superY - 100, null);
@@ -516,33 +511,27 @@ public class Horizon implements Serializable {
         }
 
         // ombra
-         // ombra
+        // ombra
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                 RenderingHints.VALUE_ANTIALIAS_ON);
         g2.setColor(Color.black);
         /*g2.drawLine(this.getxPal(), this.getyPal() + this.getTopHrz(), this
                 .gethPalx(), this.getTopHrz() + this.gethPaly());
-*/
-        
-        
-        
-/*
+         */
+
+ /*
         int rotation = 0;
         rotation = this.getxPal()-this.superX*2;
         g2.drawLine(this.getxPal(), this.getyPal() + this.getTopHrz(), 
         rotation, this.getyPal() + this.getTopHrz() + Math.abs(this.gethPaly()));
-*/
-        
+         */
         //ombra antiga
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                 RenderingHints.VALUE_ANTIALIAS_ON);
         g2.setColor(Color.black);
         g2.drawLine(this.getxPal(), this.getyPal() + this.getTopHrz(), this
                 .gethPalx(), this.getTopHrz() + this.gethPaly());
-        
-        
-        
-        
+
         // pal
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                 RenderingHints.VALUE_ANTIALIAS_OFF);

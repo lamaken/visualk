@@ -14,4 +14,6 @@ public class User {
     String email;
     String password;
     String secret;
+    String photo;
+    String estrelles;
 }

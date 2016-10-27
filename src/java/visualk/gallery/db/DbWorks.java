@@ -9,6 +9,6 @@ package visualk.gallery.db;
  *
  * @author lamaken
  */
-public class DbObres {
+public class DbWorks {
     
 }

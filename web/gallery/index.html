@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Gallery Editor</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+        <meta name="Keywords"
+              content="authors, art, pictures" />
+        <meta name="Description"
+              content="Gallery." />
+        <meta name="Author" content="hrzmkr@hrzmkr.com" />
+        <meta name="ROBOTS" content="INDEX, NOFOLLOW" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+        <script>
+            function getwindowsize() {
+                document.forms.f.mx.value = window.innerWidth - 100;
+                document.forms.f.my.value = window.innerHeight - 100;
+
+
+            }
+        </script>
+
+        
+    </head>
+
+
+    <body onload="getwindowsize()" style="color: rgb(10, 20, 30); background-color: rgb(222, 242, 240)">
+
+        <br />
+        <br />
+        <div style="font-size: xx-large; text-align: center;">Gallery Editor<br />
+            <br />
+
+           
+
+            <br />
+            <form name="f" method="post" action="/visualk/gallery/Gallery">
+                <input type="hidden" name="where" value="artzar" /> 
+                <input type="hidden" name="what" value="carrega" />
+                <input type="hidden" name="canvasW" value="500" /> 
+                <input type="hidden" name="canvasH" value="500" />
+                <input type="hidden" name="mx" value=""/> 
+                <input type="hidden" name="my" value=""/>
+                <input type="submit"/>
+            </form>
+        </div>
+    </body>
+</html>

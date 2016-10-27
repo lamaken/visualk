@@ -10,7 +10,7 @@ public class Author {
     String name;
     String surname;
     
-    ArrayList<Obra> obres = new ArrayList<>();  
+    ArrayList<Work> obres = new ArrayList<>();  
     ArrayList<User> user = new ArrayList<>();  // users can manage authors
 
 }

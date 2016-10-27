@@ -2,6 +2,7 @@ package visualk.hrz.modules;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import visualk.Main;
 
 import visualk.hrz.Hrz;
 import visualk.hrz.db.DbHorizons;
@@ -17,9 +18,7 @@ public class ListHorizons extends Xhtml5 {
     private static final String CSS_LIST_FILE_NAME = "/visualk/hrz/css/listhorizons.css";
     private static final String JS_LIST_FILE_NAME = "/visualk/hrz/js/listhorizons.js";
     private static final String JS_BLAZYLOAD_FILE_NAME = "/visualk/hrz/js/blazy.min.js";
-    
-    
-   
+
     private MenuLinkBar upperMenuBar;
 
     private final String googlePlusTagBefore = "<g:plusone href=\"";
@@ -28,8 +27,11 @@ public class ListHorizons extends Xhtml5 {
     private final String facebookLikeTagBefore = "<fb:like href=\"";
     private final String facebookLikeTagAfter = "\" layout=\"button\" show-faces=\"true\" action=\"like\" colorscheme=\"light\" />";
 
+    private int maxWidth;
+    private int maxHeight;
+
     public ListHorizons(String title) {
-        super(title, Hrz.SERVLET_URL,"listhorizons");
+        super(title, Hrz.SERVLET_URL, "listhorizons");
         ClassCSS cssLink = new ClassCSS();
         cssLink.setColor("yellow");
 
@@ -47,10 +49,14 @@ public class ListHorizons extends Xhtml5 {
 
     }
 
+    public void setSize(int mx, int my) {
+        maxWidth = mx;
+        maxHeight = my;
+    }
+
     public String toHtml() {
         String html_image = "";
 
-        
         this.clearBodyData();
         this.clearDataForm();
 
@@ -58,32 +64,28 @@ public class ListHorizons extends Xhtml5 {
 
         vsFunctions.addFile(JS_LIST_FILE_NAME);
         vsFunctions.addFile(JS_BLAZYLOAD_FILE_NAME);
-        
-        
 
         this.addDataForm("<input type=\"hidden\" name=\"where\" value=\"listhorizons\"/>");
         this.addDataForm("<input type=\"hidden\" name=\"what\" value=\"\"/>");
         this.addDataForm("<input type=\"hidden\" name=\"nom\" value=\"\"/>");
-      
 
-         
         this.addDataForm("<input type=\"hidden\" name=\"mx\" value=\"60\"/>");
         this.addDataForm("<input type=\"hidden\" name=\"my\" value=\"60\"/>");
         
-        
+       
+
         this.addBodyData(upperMenuBar.toHtml());
 
         DbHorizons db = new DbHorizons(); //connexio a la BD
-        ResultSet rs = db.listHrzns();
+        ResultSet rs = db.listHrzns(0, 20, maxWidth, maxHeight);
         String namehrz = "";
         String table = "";
         String notable = "";
-        
+
         String tds = "";
 
         try {
             table = "<table border=0 cellspacing=10px padding=10px><tr>";
-            
 
             if (rs == null) {
                 namehrz = "UNABLE MYSQL";
@@ -106,18 +108,18 @@ public class ListHorizons extends Xhtml5 {
 
                     html_image = "<img class=\"b-lazy\" "
                             + "title=\"" + hrz.getAuthorHrz() + "\" "
-                            + "alt=\""+Hrz.getString("label.loading.gallery.hrzmkr")+"\" "
+                            + "alt=\"" + Hrz.getString("label.loading.gallery.hrzmkr") + "\" "
                             //+ "onclick=\"selecciona('" + id_div + "')\" "
                             //+ "ondblclick=\"edita('" + namehrz + "')\" "
                             + "src=\"/visualk/hrz/Hrz?option=paint&amp;namehrz=" + namehrz + "\" "
                             + "data-src=\"/visualk/hrz/Hrz?option=paint&amp;namehrz=" + namehrz + "\"/>";
 
-                    String html_google = googlePlusTagBefore + "http://alkasoft.org/visualk/hrz/Hrz?option=paint&amp;namehrz=" + namehrz + googlePlusAfter;
+                    String html_google = googlePlusTagBefore + Main.HOST_NAME + Main.HOST_VISUALK + "/hrz/Hrz?option=paint&amp;namehrz=" + namehrz + googlePlusAfter;
 
-                    String html_facebook = facebookLikeTagBefore + "http://alkasoft.org/visualk/hrz/Hrz?option=paint&amp;namehrz=" + namehrz + facebookLikeTagAfter;
+                    String html_facebook = facebookLikeTagBefore + Main.HOST_NAME + Main.HOST_VISUALK + "/hrz/Hrz?option=paint&amp;namehrz=" + namehrz + facebookLikeTagAfter;
 
                     tds += "<td>" + new DivHtml(id_div).toHtml(html_image /*+ html_google + html_facebook*/) + "</td>";
-                    
+
                     notable += html_image;
                 }
                 rs.close();
@@ -131,8 +133,7 @@ public class ListHorizons extends Xhtml5 {
 
         this.addBodyData(new DivHtml("HrzListDiv").toHtml(table));
         //this.addBodyData(new DivHtml("HrzListDiv").toHtml(notable));
-        
-        
+
         String ret = this.getHtml();
         db.disconnect();
         return (ret);

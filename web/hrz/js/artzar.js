@@ -16,6 +16,8 @@ function guarda(id_div) {//genera un horitzo al atzar
 }
 function carrega() {
 
+    document.fmain.mx.value = window.innerWidth-100;
+    document.fmain.my.value = window.innerHeight-100;
     document.fmain.what.value = "carrega";
     document.fmain.where.value = "listhorizons";
     document.fmain.submit();
