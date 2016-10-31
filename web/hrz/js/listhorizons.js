@@ -2,23 +2,8 @@ var lastSel = "";
 
 
 
-//lasy load images
-var bLazy;
 
 
-document.addEventListener("DOMContentLoaded", loadLazy, false);
-
-
-function loadLazy() {
-    bLazy = new Blazy({
-        
-         success: function (element) {
-            setTimeout(function () {
-               console.log("Element loaded: ", element.nodeName); 
-            }, 200);
-        }
-    });
-}
 
 function torna() {
     document.fmain.where.value = "artzar";

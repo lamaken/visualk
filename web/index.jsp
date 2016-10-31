@@ -40,21 +40,47 @@
     <body bgcolor="black"   style="color: white">
 
         <div style="background-color: black;font-family: monospace;text-align:center">
-            <h3>
-               
-                <a href="art/editorSquared.html"><img id="squared" style="left:300px;top:100px" src="/visualk/art/Squared?mx=150&my=150&cellw=23&d=1"/></a>
-                <a href="art/editorRounded.html"><img id="roundedd" style="left:300px;top: 300px" src="/visualk/art/Rounded?mx=150&my=150&cellw=23&d=1"/></a>
-                <a href="art/editorMixed.html"><img id="mixed" style="left:500px;top:200px" src="/visualk/art/Mixed?mx=150&my=150&cellw=23&d=1"/></a>
-                <a href="art/editorArab.html"><img id="mixed" style="left:500px;top:100px" src="/visualk/art/Arab?mx=75&my=75&cellw=9&d=1"/></a>
-                <br/>
-                <a href="hrz/index.html"><img style="left:150px;top: 150px" src="/visualk/hrz/Hrz?option=firma"/></a>
-                <!--a href="nine/index.html"><img style="left:50px;top: 150px" src="favico.ico"/></a-->
+
+            <table width="100%">
+                <tr>
+                    <td>
+                        <a href="art/editorSquared.html"><img id="squared"  src="/visualk/art/Squared?mx=150&my=150&cellw=23&d=1"/></a>
+                    </td>
+                    <td>
+                        <a href="art/editorRounded.html"><img id="roundedd"  src="/visualk/art/Rounded?mx=150&my=150&cellw=23&d=1"/></a>
+                    </td>
+                    <td>
+                        <a href="art/editorMixed.html"><img id="mixed"  src="/visualk/art/Mixed?mx=150&my=150&cellw=23&d=1"/></a>
+                    </td>
+                   
+                   
+                </tr>
+                <tr>
+                      <td>
+                        <a href="art/editorArab.html"><img id="arab"  src="/visualk/art/Arab?mx=75&my=75&cellw=9&d=1"/></a>
+                    </td>
+                    <td>
+                        <a href="hrz/index.html"><img  src="/visualk/hrz/Hrz?option=firma"/></a>
+                    </td>
+                    <td>
+                        <a href="tubs/index.html"><img  src="/visualk/tubs/img/logo.png"/></br></a></br>
+                    </td>
+                   
             
-            
-                <a href="tubs/index.html"><img style="left:150px;top: 150px" src="/visualk/tubs/img/logo.png"/></br></a></br>
-                <a href="art/liveMosaic.html"><img style="left:150px;top: 150px" src="/visualk/art/LiveMosaic?mx=195&my=45&cellw=13&d=1"/></a></br>
-<!--a href="ss/index.html">SurveyServer 0.1</a></br-->
-            
+                </tr>
+                <tr>
+                    <td>
+                        <a href="art/liveMosaic.html"><img  src="/visualk/art/LiveMosaic?mx=75&my=75&cellw=9&d=1"/></a></br>
+                    </td>
+                   <td>
+                        <a href="nine/index.html"><img src="/visualk/nine/img/logo.png"/></a>
+                    </td>
+                    <td>
+                        <a href="ss/index.html"><img  src="/visualk/art/LiveMosaic?mx=75&my=75&cellw=9&d=1"/></a></br>
+                    </td>
+                </tr>
+            </table>
+                               
             </h3>
 
         </div>

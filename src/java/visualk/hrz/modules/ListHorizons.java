@@ -17,7 +17,7 @@ public class ListHorizons extends Xhtml5 {
 
     private static final String CSS_LIST_FILE_NAME = "/visualk/hrz/css/listhorizons.css";
     private static final String JS_LIST_FILE_NAME = "/visualk/hrz/js/listhorizons.js";
-    private static final String JS_BLAZYLOAD_FILE_NAME = "/visualk/hrz/js/blazy.min.js";
+
 
     private MenuLinkBar upperMenuBar;
 
@@ -61,9 +61,13 @@ public class ListHorizons extends Xhtml5 {
         this.clearDataForm();
 
         this.updateFunctions();
+        
+        //////google
+        
+        //////facebook
 
         vsFunctions.addFile(JS_LIST_FILE_NAME);
-        vsFunctions.addFile(JS_BLAZYLOAD_FILE_NAME);
+        
 
         this.addDataForm("<input type=\"hidden\" name=\"where\" value=\"listhorizons\"/>");
         this.addDataForm("<input type=\"hidden\" name=\"what\" value=\"\"/>");
@@ -77,7 +81,7 @@ public class ListHorizons extends Xhtml5 {
         this.addBodyData(upperMenuBar.toHtml());
 
         DbHorizons db = new DbHorizons(); //connexio a la BD
-        ResultSet rs = db.listHrzns(0, 20, maxWidth, maxHeight);
+        ResultSet rs = db.listHrzns(0, 5, maxWidth, maxHeight);
         String namehrz = "";
         String table = "";
         String notable = "";
@@ -118,7 +122,7 @@ public class ListHorizons extends Xhtml5 {
 
                     String html_facebook = facebookLikeTagBefore + Main.HOST_NAME + Main.HOST_VISUALK + "/hrz/Hrz?option=paint&amp;namehrz=" + namehrz + facebookLikeTagAfter;
 
-                    tds += "<td>" + new DivHtml(id_div).toHtml(html_image /*+ html_google + html_facebook*/) + "</td>";
+                    tds += "<td>" + new DivHtml(id_div).toHtml(html_google + html_image + html_facebook) + "</td>";
 
                     notable += html_image;
                 }
