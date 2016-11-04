@@ -13,9 +13,13 @@ public class PublicacionsDb {
     private MysqlLayer mySQL = new MysqlLayer();
 
     public PublicacionsDb() {
-
+        prepareDB("127.0.0.1", "hrzmkr_user", "hrzmkr_password", "hrzmkr_db");
+        //prepareDB("127.0.0.1", "git-user", "password", "github");
     }
 
+    public void prepareDB(String dbServer, String dbUser, String dbPassword, String dbDataBase) {
+        mySQL.setDBValues(dbServer, dbUser, dbPassword, dbDataBase);
+    }
     private String getUserId(String eml) {
         String ret = "mm";
         ResultSet myResult = mySQL.queryDB("select id_usuari from usuaris where email=\"" + eml + "\"");

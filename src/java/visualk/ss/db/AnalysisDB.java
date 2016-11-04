@@ -11,6 +11,9 @@ public class AnalysisDB {
 
     }
 
+    public void prepareDB(String dbServer, String dbUser, String dbPassword, String dbDataBase) {
+        mySQL.setDBValues(dbServer, dbUser, dbPassword, dbDataBase);
+    }
     public ResultSet getRespostes(int tipus, String tp) {
         ResultSet myResult;
         String sentence = "";

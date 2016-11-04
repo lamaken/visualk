@@ -18,6 +18,10 @@ public class EnquestesDb {
     private MysqlLayer mySQL = new MysqlLayer();
     private String propietari = "";
 
+    
+    public void prepareDB(String dbServer, String dbUser, String dbPassword, String dbDataBase) {
+        mySQL.setDBValues(dbServer, dbUser, dbPassword, dbDataBase);
+    }
     private String getNextAutonum(String table) {
         String id = "";
         String ret = "-1";//error
@@ -82,6 +86,10 @@ public class EnquestesDb {
     /**
      * Crea la instància de clients
      */
+    public EnquestesDb(){
+         prepareDB("127.0.0.1", "hrzmkr_user", "hrzmkr_password", "hrzmkr_db");
+        //prepareDB("127.0.0.1", "git-user", "password", "github");
+    }
     public EnquestesDb(String propietari) {
         this.propietari = propietari;
     }

@@ -12,6 +12,16 @@ public class ViewDB {
 
     private MysqlLayer mySQL = new MysqlLayer();
 
+    public ViewDB() {
+        prepareDB("127.0.0.1", "hrzmkr_user", "hrzmkr_password", "hrzmkr_db");
+        //prepareDB("127.0.0.1", "git-user", "password", "github");
+
+    }
+
+    private void prepareDB(String dbServer, String dbUser, String dbPassword, String dbDataBase) {
+        mySQL.setDBValues(dbServer, dbUser, dbPassword, dbDataBase);
+    }
+
     private String getNextAutonum() {
         String ret = "-1";//error
 
@@ -31,10 +41,6 @@ public class ViewDB {
             e.printStackTrace();
         }
         return (ret);
-    }
-
-    public ViewDB() {
-
     }
 
     public ResultSet getPreguntes(String id) {

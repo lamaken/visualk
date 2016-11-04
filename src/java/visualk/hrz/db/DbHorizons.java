@@ -20,7 +20,7 @@ public class DbHorizons {
         mySQL.disconnect();
     }
 
-    public void prepareDB(String dbServer, String dbUser, String dbPassword, String dbDataBase) {
+    private void prepareDB(String dbServer, String dbUser, String dbPassword, String dbDataBase) {
         mySQL.setDBValues(dbServer, dbUser, dbPassword, dbDataBase);
     }
 

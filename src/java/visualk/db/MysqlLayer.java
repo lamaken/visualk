@@ -28,11 +28,17 @@ public class MysqlLayer {
 
     public void disconnect() {
         try {
-            if(result!=null)result.close();
-            if(sql!=null)sql.close();
-            if(dbConn!=null)dbConn.close();
+            if (result != null) {
+                result.close();
+            }
+            if (sql != null) {
+                sql.close();
+            }
+            if (dbConn != null) {
+                dbConn.close();
+            }
         } catch (Exception e) {
-            System.out.println("no puc tancar la bd.>>>"+e.getMessage());
+            System.out.println("no puc tancar la bd.>>>" + e.getMessage());
         }
     }
 
@@ -68,7 +74,7 @@ public class MysqlLayer {
         }
         try {
             sql.execute();
-           
+
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -90,9 +96,8 @@ public class MysqlLayer {
             dbConn = DriverManager.getConnection(cadenaConn, dbUser, dbPassword);
             sql = dbConn.prepareStatement(sqlQuery);
             result = sql.executeQuery();
-           
-            // Close the result set, statement and the connection
 
+            // Close the result set, statement and the connection
         } catch (SQLException s) {
             s.printStackTrace();
             System.out.println("SQL Error on Open jdbc:mysql://" + dbServer + ":3306/" + dbDataBase);
