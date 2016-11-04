@@ -2,15 +2,15 @@ package visualk.ss.db;
 
 import java.sql.*;
 import visualk.db.AuthAdapter;
+import visualk.db.MysqlLayer;
 
 public class Auth implements AuthAdapter {
 
     private MysqlLayer mySQL;
     private ResultSet myResult;
 
-    public Auth(MysqlLayer mySQL, ResultSet myResult) {
-        this.mySQL = mySQL;
-        this.myResult = myResult;
+    public Auth() {
+        this.mySQL = new MysqlLayer();
     }
 
     public boolean canEnter(String alias, String clau) {

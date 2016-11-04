@@ -191,9 +191,14 @@ public class Hrz extends HttpServlet {
         }
 
         ResourceBundle.clearCache();
-
-        bundle = ResourceBundle.getBundle("outputTextConstants", lan);
-
+        try {
+            System.out.println("language:" + lan);
+            bundle = ResourceBundle.getBundle("outputTextConstants", lan);
+        } catch (Exception e) {
+            System.out.println("language:" + e.getMessage());
+            e.printStackTrace();
+        }
+        
         if (hrzns.containsKey(sessionId)) {
             hrz = (Horizon) hrzns.get(sessionId);
         } else {
@@ -271,7 +276,7 @@ public class Hrz extends HttpServlet {
             if (where.equals("listhorizons")) {
                 listH = new ListHorizons(getString("title.gallery.hrzmkr"));
                 if (what.equals("carrega")) {
-                    listH.setSize(Integer.parseInt(mx),Integer.parseInt(my));
+                    listH.setSize(Integer.parseInt(mx), Integer.parseInt(my));
                     out.println(listH.toHtml());
                     out.close();
                 } else if (what.equals("selecciona")) {

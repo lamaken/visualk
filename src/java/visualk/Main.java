@@ -14,10 +14,9 @@ public class Main {
 
     private static final long serialVersionUID = 102831173239L;
 
-    //public static String HOST_NAME="http://localhost:8081";
-    public static String HOST_NAME="http://alkasoft.org";
-    
-    public static String HOST_VISUALK="/visualk";
+    private final static String LOCAL_HOST_NAME="http://localhost:8081";
+    public final static String HOST_NAME="http://alkasoft.org";
+    public final static String HOST_VISUALK="/visualk";
     
 
 
