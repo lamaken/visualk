@@ -7,7 +7,7 @@
 
 #statusBar{
 	position: absolute; 
-	bottom: 10px; 
+	bottom: 0px; 
 	left: 50px; 
 	height: 10px; 
 	overflow: hidden;

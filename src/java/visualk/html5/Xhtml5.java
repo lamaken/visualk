@@ -26,16 +26,16 @@ public class Xhtml5 {
     public MessageBox messageBox;
     private String form_where = "";//valor del where del formulari
 
-    private final String google_scripts= "<script src=\"https://apis.google.com/js/platform.js\" async defer></script>";
-    private final String facebook_scripts="<div id=\"fb-root\"></div>\n" +
-"<script>(function(d, s, id) {" +
-"  var js, fjs = d.getElementsByTagName(s)[0];" +
-"  if (d.getElementById(id)) return;" +
-"  js = d.createElement(s); js.id = id;" +
-"  js.src = \"//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8\";" +
-"  fjs.parentNode.insertBefore(js, fjs);" +
-"}(document, 'script', 'facebook-jssdk'));</script>";
-    
+    private final String google_scripts = "<script src=\"https://apis.google.com/js/platform.js\" async defer></script>";
+    private final String facebook_scripts = "<div id=\"fb-root\"></div>\n"
+            + "<script>(function(d, s, id) {"
+            + "  var js, fjs = d.getElementsByTagName(s)[0];"
+            + "  if (d.getElementById(id)) return;"
+            + "  js = d.createElement(s); js.id = id;"
+            + "  js.src = \"//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8\";"
+            + "  fjs.parentNode.insertBefore(js, fjs);"
+            + "}(document, 'script', 'facebook-jssdk'));</script>";
+
     public Xhtml5(String title, String action_form, String where) {
 
         //SERVLET_HRZ_URL = action_form;

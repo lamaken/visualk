@@ -81,7 +81,7 @@ public class ListHorizons extends Xhtml5 {
         this.addBodyData(upperMenuBar.toHtml());
 
         DbHorizons db = new DbHorizons(); //connexio a la BD
-        ResultSet rs = db.listHrzns(0, 5, maxWidth, maxHeight);
+        ResultSet rs = db.listHrzns(0, 25, maxWidth, maxHeight-100);//TODO:search good number till 100
         String namehrz = "";
         String table = "";
         String notable = "";
@@ -110,7 +110,7 @@ public class ListHorizons extends Xhtml5 {
                     hrz.carrega(namehrz);
                     String id_div = new UniqueName(8).getName();
 
-                    html_image = "<img class=\"b-lazy\" "
+                    html_image = "<img "
                             + "title=\"" + hrz.getAuthorHrz() + "\" "
                             + "alt=\"" + Hrz.getString("label.loading.gallery.hrzmkr") + "\" "
                             //+ "onclick=\"selecciona('" + id_div + "')\" "
@@ -122,7 +122,9 @@ public class ListHorizons extends Xhtml5 {
 
                     String html_facebook = facebookLikeTagBefore + Main.HOST_NAME + Main.HOST_VISUALK + "/hrz/Hrz?option=paint&amp;namehrz=" + namehrz + facebookLikeTagAfter;
 
-                    tds += "<td>" + new DivHtml(id_div).toHtml(html_google + html_image + html_facebook) + "</td>";
+                    tds += "<td><table border=0 padding=5px><tr><td colspan=2>" + new DivHtml(id_div).toHtml(html_image) + "</td></tr><tr><td width=50% align=right>"+html_facebook+"</td><td align=left width=50% >"+html_google+"</td></tr></table></td>";
+                   
+                    
 
                     notable += html_image;
                 }

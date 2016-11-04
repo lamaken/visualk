@@ -16,7 +16,7 @@ body{
 
 
 #logo{
-    z-index:0;
+    z-index:-100;
     left:0px;
     bottom:0px;
     position:absolute;
@@ -24,13 +24,13 @@ body{
 
 #statusBar{
     position: absolute; 
-    bottom: 20px; 
+    bottom: 0px; 
     left: 50px; 
     height: 10px; 
     overflow: hidden;
     color: lime;
     right: 50px; 
-    padding:2px 2px 5px 5px;
+    padding:2px 2px 2px 2px;
     cursor:pointer; 	
     z-index: 100;
     text-align:center;

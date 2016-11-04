@@ -56,10 +56,27 @@ public class Hrz extends HttpServlet {
     private static final String INICIAL_HORIZON_NAME_SESSION = "Inicial";
 
     public static String getString(String key) {
+        String result="";
         if (bundle == null) {
-            bundle = ResourceBundle.getBundle("outputTextConstants", Locale.ENGLISH);
+            try {
+                bundle = ResourceBundle.getBundle("outputTextConstants", Locale.US);
+            }catch(Exception e){
+                e.printStackTrace();
+                return e.getMessage();
+            }
         }
-        return bundle.getString(key);
+        
+        try{
+            result = bundle.getString(key);
+        }catch (Exception e){
+            e.printStackTrace();
+            return e.getMessage();
+        }
+        
+        
+        return result;
+                
+                
     }
 
     //signature for emails
