@@ -23,6 +23,7 @@ public class MysqlLayer {
      * Crea la instÃ ncia de sqlLayer
      */
     public MysqlLayer() {
+        setDBValues("127.0.0.1", "hrzmkr_user", "hrzmkr_password", "hrzmkr_db");
         result = null;
     }
 
@@ -42,7 +43,7 @@ public class MysqlLayer {
         }
     }
 
-    public void setDBValues(String dbServer, String dbUser, String dbPassword, String dbDataBase) {
+    private void setDBValues(String dbServer, String dbUser, String dbPassword, String dbDataBase) {
         this.dbPassword = dbPassword;
         this.dbServer = dbServer;
         this.dbPassword = dbPassword;

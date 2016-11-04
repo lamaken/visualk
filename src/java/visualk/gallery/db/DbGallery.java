@@ -8,23 +8,10 @@ import visualk.gallery.objects.Author;
 import visualk.gallery.objects.Work;
 
 
-public class DbGallery {
+public class DbGallery extends MysqlLayer{
 
     private final MysqlLayer mySQL = new MysqlLayer();
-
-    public DbGallery() {
-        prepareDB("127.0.0.1", "hrzmkr_user", "hrzmkr_password", "hrzmkr_db");
-
-    }
-
-    public void disconnect() {
-        mySQL.disconnect();
-    }
-
-    public void prepareDB(String dbServer, String dbUser, String dbPassword, String dbDataBase) {
-        mySQL.setDBValues(dbServer, dbUser, dbPassword, dbDataBase);
-    }
-
+    
     public void addObra(Work obra, Author author) {
         if (mySQL != null) {
             try {

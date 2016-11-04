@@ -6,28 +6,12 @@ import java.sql.*;
 import visualk.db.MysqlLayer;
 import visualk.hrz.objects.Horizon;
 
-public class DbHorizons {
-
-    private final MysqlLayer mySQL = new MysqlLayer();
-
-    public DbHorizons() {
-        prepareDB("127.0.0.1", "hrzmkr_user", "hrzmkr_password", "hrzmkr_db");
-        //prepareDB("127.0.0.1", "git-user", "password", "github");
-
-    }
-
-    public void disconnect() {
-        mySQL.disconnect();
-    }
-
-    private void prepareDB(String dbServer, String dbUser, String dbPassword, String dbDataBase) {
-        mySQL.setDBValues(dbServer, dbUser, dbPassword, dbDataBase);
-    }
+public class DbHorizons extends MysqlLayer {
 
     public void addHorizon(Horizon hrz, String authorName) {
-        if (mySQL != null) {
+        if (this != null) {
             try {
-                mySQL.executeDB("insert into hrzns (" + "nameHrz," + "dt," + "topHrz,"
+                this.executeDB("insert into hrzns (" + "nameHrz," + "dt," + "topHrz,"
                         + "topHrzColor," + "bottomHrzColor," + "canvasWidth,"
                         + "canvasHeigth," + "authorHrz," + "xPal," + "yPal," + "hPalx,"
                         + "hPaly," + "alcada," + "colPal," + "horizontal,"
@@ -73,14 +57,14 @@ public class DbHorizons {
                         + hrz.getVersion() + "')");
             } catch (Exception e) {
             } finally {
-                disconnect();
+                this.disconnect();
             }
         }
     }
 
     public ResultSet listHrzns() {
         ResultSet myResult;
-        myResult = mySQL.queryDB("SELECT * FROM hrzns WHERE namehrz<>'wellcome' order by dt desc;");
+        myResult = this.queryDB("SELECT * FROM hrzns WHERE namehrz<>'wellcome' order by dt desc;");
 
         return (myResult);
 
@@ -89,7 +73,7 @@ public class DbHorizons {
     public ResultSet listHrzns(Integer offset, Integer limit, Integer width, Integer height) {
         ResultSet myResult;
         String onlySize = "(canvasWidth<" + width + " and  canvasHeigth<" + height + ")";
-        myResult = mySQL.queryDB("SELECT * FROM hrzns WHERE namehrz<>'wellcome' and " + onlySize + " order by dt desc limit " + offset + "," + limit + " ;");
+        myResult = this.queryDB("SELECT * FROM hrzns WHERE namehrz<>'wellcome' and " + onlySize + " order by dt desc limit " + offset + "," + limit + " ;");
         System.out.print(onlySize);
         return (myResult);
 
@@ -99,8 +83,8 @@ public class DbHorizons {
 
         Horizon temp = new Horizon(name);
         ResultSet myResult;
-        myResult = mySQL.queryDB("SELECT * FROM hrzns where nameHrz='" + name + "'");
-        temp.makeRandom(100, 300);
+        myResult = this.queryDB("SELECT * FROM hrzns where nameHrz='" + name + "'");
+        temp.makeRandom(100, 300);//TODO:REGLES DE NEGOCI AQUI NO
         if (myResult != null) {
 
             try {
