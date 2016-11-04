@@ -6,12 +6,8 @@ import visualk.db.MysqlLayer;
 
 public class Auth implements AuthAdapter {
 
-    private MysqlLayer mySQL;
+    private MysqlLayer mySQL=new MysqlLayer("ss_user","ss_password","surveyserver_db");;
     private ResultSet myResult;
-
-    public Auth() {
-        this.mySQL = new MysqlLayer();
-    }
 
     public boolean canEnter(String alias, String clau) {
         this.myResult = mySQL.queryDB("select * from login where USER_NAME=\"" + alias + "\" and USER_PASSW=\"" + clau + "\"");

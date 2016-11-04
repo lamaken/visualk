@@ -27,6 +27,11 @@ public class MysqlLayer {
         result = null;
     }
 
+    public MysqlLayer(String user,String pass,String db) {
+        setDBValues("127.0.0.1",user,pass,db);
+        result = null;
+    }
+
     public void disconnect() {
         try {
             if (result != null) {
