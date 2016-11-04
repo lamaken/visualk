@@ -115,8 +115,8 @@ public class ListHorizons extends Xhtml5 {
                             + "alt=\"" + Hrz.getString("label.loading.gallery.hrzmkr") + "\" "
                             //+ "onclick=\"selecciona('" + id_div + "')\" "
                             //+ "ondblclick=\"edita('" + namehrz + "')\" "
-                            + "src=\"/visualk/hrz/Hrz?option=paint&amp;namehrz=" + namehrz + "\" "
-                            + "data-src=\"/visualk/hrz/Hrz?option=paint&amp;namehrz=" + namehrz + "\"/>";
+                            + "src=\""+Main.HOST_NAME + Main.HOST_VISUALK + "/hrz/Hrz?option=paint&amp;namehrz=" + namehrz + "\" "
+                            + "data-src=\""+Main.HOST_NAME + Main.HOST_VISUALK + "/hrz/Hrz?option=paint&amp;namehrz=" + namehrz + "\"/>";
 
                     String html_google = googlePlusTagBefore + Main.HOST_NAME + Main.HOST_VISUALK + "/hrz/Hrz?option=paint&amp;namehrz=" + namehrz + googlePlusAfter;
 
