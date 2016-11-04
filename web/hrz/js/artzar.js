@@ -1,4 +1,7 @@
-
+window.addEventListener('resize', function(event){
+ console.log('resized');
+ refresca();
+})
 
 function doneDialog(name) {
     document.fmain.option.value = name;

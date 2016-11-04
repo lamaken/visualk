@@ -40,33 +40,15 @@
     <body bgcolor="black"   style="color: white">
 
         <div style="background-color: black;font-family: monospace;text-align:center">
-
-          
-                        <a href="art/editorSquared.html"><img id="squared"  src="/visualk/art/Squared?mx=150&my=150&cellw=23&d=1"/></a>
-                    
-                        <a href="art/editorRounded.html"><img id="roundedd"  src="/visualk/art/Rounded?mx=150&my=150&cellw=23&d=1"/></a>
-                   
-                        <a href="art/editorMixed.html"><img id="mixed"  src="/visualk/art/Mixed?mx=150&my=150&cellw=23&d=1"/></a>
-                    
-                   
-               
-                        <a href="art/editorArab.html"><img id="arab"  src="/visualk/art/Arab?mx=75&my=75&cellw=9&d=1"/></a>
-                   <a href="art/liveMosaic.html"><img  src="/visualk/art/LiveMosaic?mx=75&my=75&cellw=9&d=1"/></a>
-                        
-                  
-                        <a href="tubs/index.html"><img  src="/visualk/tubs/img/logo.png"/></a>
-                 
-           
-          
-                        
-                        <a href="hrz/index.html"><img  src="/visualk/hrz/Hrz?option=firma"/></a>
-          
-                        <a href="nine/index.html"><img src="/visualk/nine/img/logo.png"/></a>
-               
-                        <a href="ss/index.html"><img  src="/visualk/ss/img/logo.jpeg"/></a>
-             
-
-
+            <a href="art/editorSquared.html"><img id="squared"  src="/visualk/art/Squared?mx=150&my=150&cellw=23&d=1"/></a>
+            <a href="art/editorRounded.html"><img id="roundedd"  src="/visualk/art/Rounded?mx=150&my=150&cellw=23&d=1"/></a>
+            <a href="art/editorMixed.html"><img id="mixed"  src="/visualk/art/Mixed?mx=150&my=150&cellw=23&d=1"/></a>
+            <a href="art/editorArab.html"><img id="arab"  src="/visualk/art/Arab?mx=75&my=75&cellw=9&d=1"/></a>
+            <a href="art/liveMosaic.html"><img  src="/visualk/art/LiveMosaic?mx=75&my=75&cellw=9&d=1"/></a>
+            <a href="tubs/index.html"><img  src="/visualk/tubs/img/logo.png"/></a>
+            <a href="hrz/index.html"><img  src="/visualk/hrz/Hrz?option=firma"/></a>
+            <!--a href="nine/index.html"><img src="/visualk/nine/img/logo.png"/></a>
+               <a href="ss/index.html"><img  src="/visualk/ss/img/logo.jpeg"/></a-->
         </div>
 
     </body>

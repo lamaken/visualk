@@ -2,6 +2,7 @@ package visualk.hrz.modules;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Random;
 import visualk.Main;
 
 import visualk.hrz.Hrz;
@@ -62,9 +63,7 @@ public class ListHorizons extends Xhtml5 {
 
         this.updateFunctions();
         
-        //////google
-        
-        //////facebook
+       
 
         vsFunctions.addFile(JS_LIST_FILE_NAME);
         
@@ -81,7 +80,9 @@ public class ListHorizons extends Xhtml5 {
         this.addBodyData(upperMenuBar.toHtml());
 
         DbHorizons db = new DbHorizons(); //connexio a la BD
-        ResultSet rs = db.listHrzns(0, 25, maxWidth, maxHeight-100);//TODO:search good number till 100
+        int tre=new Random().nextInt(50) ;
+        
+        ResultSet rs = db.listHrzns(tre, 17, maxWidth, maxHeight-100);//TODO:search good number till 100
         String namehrz = "";
         String table = "";
         String notable = "";
