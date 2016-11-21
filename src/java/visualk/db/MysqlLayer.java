@@ -22,11 +22,11 @@ public class MysqlLayer {
     /**
      * Crea la instÃ ncia de sqlLayer
      */
-    public MysqlLayer() {
+ /*   public MysqlLayer() {
         setDBValues("127.0.0.1", "hrzmkr_user", "hrzmkr_password", "hrzmkr_db");
         result = null;
     }
-
+*/
     public MysqlLayer(String user,String pass,String db) {
         setDBValues("127.0.0.1",user,pass,db);
         result = null;
@@ -102,6 +102,11 @@ public class MysqlLayer {
             dbConn = DriverManager.getConnection(cadenaConn, dbUser, dbPassword);
             sql = dbConn.prepareStatement(sqlQuery);
             result = sql.executeQuery();
+            
+            if (result == null){
+                System.out.println("SQL Error mysql, result is null");
+                
+            }
 
             // Close the result set, statement and the connection
         } catch (SQLException s) {

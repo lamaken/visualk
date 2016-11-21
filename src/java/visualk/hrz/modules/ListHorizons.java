@@ -19,7 +19,6 @@ public class ListHorizons extends Xhtml5 {
     private static final String CSS_LIST_FILE_NAME = "/visualk/hrz/css/listhorizons.css";
     private static final String JS_LIST_FILE_NAME = "/visualk/hrz/js/listhorizons.js";
 
-
     private MenuLinkBar upperMenuBar;
 
     private final String googlePlusTagBefore = "<g:plusone href=\"";
@@ -32,7 +31,7 @@ public class ListHorizons extends Xhtml5 {
     private int maxHeight;
 
     public ListHorizons(String title) {
-        super("hrz/Hrz",title, "listhorizons");
+        super("hrz/Hrz", title, "listhorizons");
         ClassCSS cssLink = new ClassCSS();
         cssLink.setColor("yellow");
 
@@ -62,11 +61,8 @@ public class ListHorizons extends Xhtml5 {
         this.clearDataForm();
 
         this.updateFunctions();
-        
-       
 
         vsFunctions.addFile(JS_LIST_FILE_NAME);
-        
 
         this.addDataForm("<input type=\"hidden\" name=\"where\" value=\"listhorizons\"/>");
         this.addDataForm("<input type=\"hidden\" name=\"what\" value=\"\"/>");
@@ -74,15 +70,13 @@ public class ListHorizons extends Xhtml5 {
 
         this.addDataForm("<input type=\"hidden\" name=\"mx\" value=\"60\"/>");
         this.addDataForm("<input type=\"hidden\" name=\"my\" value=\"60\"/>");
-        
-       
 
         this.addBodyData(upperMenuBar.toHtml());
 
-        DbHorizons db = new DbHorizons(); //connexio a la BD
-        int tre=new Random().nextInt(50) ;
-        
-        ResultSet rs = db.listHrzns(tre, 17, maxWidth, maxHeight-100);//TODO:search good number till 100
+        DbHorizons db = new DbHorizons("hrzmkr_user", "hrzmkr_password", "hrzmkr_db"); //connexio a la BD
+        int tre = new Random().nextInt(50);
+
+        ResultSet rs = db.listHrzns(tre, 10, maxWidth, maxHeight - 100);//TODO:search good number till 100
         String namehrz = "";
         String table = "";
         String notable = "";
@@ -106,26 +100,24 @@ public class ListHorizons extends Xhtml5 {
             } else {
                 while (rs.next()) {
                     namehrz = rs.getString("nameHrz");
-
+                    System.out.println("nameHrz:" + namehrz);
                     Horizon hrz = new Horizon(namehrz);
-                    hrz.carrega(namehrz);
+                    //hrz.carrega(namehrz);
                     String id_div = new UniqueName(8).getName();
 
                     html_image = "<img "
-                            + "title=\"" + hrz.getAuthorHrz() + "\" "
+                            + "title=\"" +namehrz+ "\" "
                             + "alt=\"" + Hrz.getString("label.loading.gallery.hrzmkr") + "\" "
                             //+ "onclick=\"selecciona('" + id_div + "')\" "
                             //+ "ondblclick=\"edita('" + namehrz + "')\" "
-                            + "src=\""+Main.HOST_NAME + Main.HOST_VISUALK + "/hrz/Hrz?option=paint&amp;namehrz=" + namehrz + "\" "
-                            + "data-src=\""+Main.HOST_NAME + Main.HOST_VISUALK + "/hrz/Hrz?option=paint&amp;namehrz=" + namehrz + "\"/>";
+                            + "src=\"" + Main.HOST_NAME + Main.HOST_VISUALK + "/hrz/Hrz?option=paint&amp;namehrz=" + namehrz + "\" "
+                            + "data-src=\"" + Main.HOST_NAME + Main.HOST_VISUALK + "/hrz/Hrz?option=paint&amp;namehrz=" + namehrz + "\"/>";
 
                     String html_google = googlePlusTagBefore + Main.HOST_NAME + Main.HOST_VISUALK + "/hrz/Hrz?option=paint&amp;namehrz=" + namehrz + googlePlusAfter;
 
                     String html_facebook = facebookLikeTagBefore + Main.HOST_NAME + Main.HOST_VISUALK + "/hrz/Hrz?option=paint&amp;namehrz=" + namehrz + facebookLikeTagAfter;
 
-                    tds += "<td><table border=0 padding=5px><tr><td colspan=2>" + new DivHtml(id_div).toHtml(html_image) + "</td></tr><tr><td width=50% align=right>"+html_facebook+"</td><td align=left width=50% >"+html_google+"</td></tr></table></td>";
-                   
-                    
+                    tds += "<td><table border=0 padding=5px><tr><td colspan=2>" + new DivHtml(id_div).toHtml(html_image) + "</td></tr><tr><td width=50% align=right>" + html_facebook + "</td><td align=left width=50% >" + html_google + "</td></tr></table></td>";
 
                     notable += html_image;
                 }

@@ -63,7 +63,7 @@ public class Horizon implements Serializable {
     private int superY = 50;
     private boolean textura = true;
 
-    private DbHorizons db = new DbHorizons(); // connexio a la BD
+    private DbHorizons db = new DbHorizons("hrzmkr_user", "hrzmkr_password", "hrzmkr_db"); // connexio a la BD
 
     public void save2Db(String name) {
         name = name.replace("'", "`");
@@ -127,7 +127,7 @@ public class Horizon implements Serializable {
     public void carrega(String nom) {
 
         Horizon tmp = db.getHrznBD(nom);
-        db.disconnect();
+       
         
         this.nameHrz = tmp.nameHrz;
         this.topHrz = tmp.topHrz;

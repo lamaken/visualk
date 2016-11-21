@@ -10,10 +10,13 @@ import visualk.gallery.objects.Work;
 
 public class DbGallery extends MysqlLayer{
 
-    private final MysqlLayer mySQL = new MysqlLayer();
+
+    public DbGallery(String user, String pass, String db) {
+        super(user, pass, db);
+    }
     
     public void addObra(Work obra, Author author) {
-        if (mySQL != null) {
+        if (this != null) {
             try {
                 /*mySQL.executeDB("insert into hrzns (" + "nameHrz," + "dt," + "topHrz,"
                         + "topHrzColor," + "bottomHrzColor," + "canvasWidth,"
@@ -68,7 +71,7 @@ public class DbGallery extends MysqlLayer{
 
     public ResultSet listHrzns() {
         ResultSet myResult;
-        myResult = mySQL.queryDB("SELECT * FROM hrzns WHERE namehrz<>'wellcome' order by dt desc;");
+        myResult = queryDB("SELECT * FROM hrzns WHERE namehrz<>'wellcome' order by dt desc;");
 
         return (myResult);
 

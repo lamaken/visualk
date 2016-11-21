@@ -6,7 +6,7 @@ import visualk.db.MysqlLayer;
 
 public class Auth implements AuthAdapter {
 
-    private MysqlLayer mySQL=new MysqlLayer("ss_user","ss_password","surveyserver_db");;
+    private MysqlLayer mySQL=new MysqlLayer("ss_user","ss_password","surveyserver_db");
     private ResultSet myResult;
 
     public boolean canEnter(String alias, String clau) {

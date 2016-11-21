@@ -5,6 +5,10 @@ import visualk.db.MysqlLayer;
 
 public class AnalysisDB extends MysqlLayer {
 
+    public AnalysisDB(String user, String pass, String db) {
+        super(user, pass, db);
+    }
+
     public ResultSet getRespostes(int tipus, String tp) {
         ResultSet myResult;
         String sentence = "";

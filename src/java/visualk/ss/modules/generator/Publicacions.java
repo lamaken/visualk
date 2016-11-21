@@ -111,7 +111,7 @@ public class Publicacions {
 			   "</form>");
 	}
 	public void loadDb(){
-		pubDB= new PublicacionsDb();
+		pubDB= new PublicacionsDb("ss_user","ss_password","surveyserver_db");
 		ResultSet myResult = pubDB.loadPub(this.id_pub);
 		setNom("Error loading name ...");
 		try {

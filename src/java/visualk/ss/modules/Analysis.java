@@ -33,9 +33,9 @@ public class Analysis  extends Xhtml5{
        
 	
 	public Analysis(String email,String title) {
-		super("SurveyServer",title,"Analysis");
+		super("ss/SurveyServer",title,"Analysis");
 
-		analysisDB= new AnalysisDB();
+		analysisDB= new AnalysisDB("ss_user","ss_password","surveyserver_db");
 		
 		this.email=email;
 		

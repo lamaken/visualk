@@ -17,6 +17,13 @@ public class EnquestesDb extends MysqlLayer {
 
     private String propietari = "";
 
+    public EnquestesDb(String user, String pass, String db,String propietari) {
+        super(user, pass, db);
+        this.propietari = propietari;
+    }
+
+    
+
     private String getNextAutonum(String table) {
         String id = "";
         String ret = "-1";//error
@@ -78,12 +85,7 @@ public class EnquestesDb extends MysqlLayer {
         return (id_dst);
     }
 
-    /**
-     * Crea la instància de clients
-     */
-    public EnquestesDb(String propietari) {
-        this.propietari = propietari;
-    }
+    
 
     public void eliminaTotaEnquesta(String id_enquesta) {
         eliminaTotAbans(id_enquesta);

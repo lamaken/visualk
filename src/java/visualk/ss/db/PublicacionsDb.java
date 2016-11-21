@@ -10,6 +10,10 @@ import visualk.ss.modules.generator.Publicacions;
 
 public class PublicacionsDb extends MysqlLayer {
 
+    public PublicacionsDb(String user, String pass, String db) {
+        super(user, pass, db);
+    }
+
     private String getUserId(String eml) {
         String ret = "mm";
         ResultSet myResult = this.queryDB("select id_usuari from usuaris where email=\"" + eml + "\"");

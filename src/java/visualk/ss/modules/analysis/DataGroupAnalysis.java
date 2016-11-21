@@ -22,7 +22,7 @@ public class DataGroupAnalysis {
 	
 	public DataGroupAnalysis(String id_enq){
 		this.id_enq=id_enq;
-		analysisDB=new AnalysisDB();
+		analysisDB=new AnalysisDB("ss_user","ss_password","surveyserver_db");
 	}
 	
 	private void genTable(){

@@ -103,7 +103,7 @@ public class MenuLinkBar{
         optionsMenu.add(new LinkHtml("link_"+id+"_"+label,label,"#",onclick,"",status));
     }
 
-    public void addMenuLink(String label, String onclick, String params, String status, String id, String id2) {
+    public void addMenuLink(String id, String label, String ref,String onclick, String params, String status) {
         optionsMenu.add(new LinkHtml("link_"+id+"_"+label,label,"#",onclick,params,status));
     }
 

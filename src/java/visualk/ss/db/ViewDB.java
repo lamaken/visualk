@@ -10,6 +10,10 @@ import visualk.ss.modules.viewer.FluxeSurvey;
 
 public class ViewDB extends MysqlLayer {
 
+    public ViewDB(String user, String pass, String db) {
+        super(user, pass, db);
+    }
+
     private String getNextAutonum() {
         String ret = "-1";//error
 
