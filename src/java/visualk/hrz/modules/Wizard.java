@@ -16,7 +16,7 @@ public class Wizard extends Xhtml5{
 	
 	
 	public Wizard(String title) {
-		super(title,"/servlet/Hrz","Wizard");
+		super("hrz/Hrz",title,"Wizard");
 		
 		ClassCSS cssLink = new ClassCSS();
 		

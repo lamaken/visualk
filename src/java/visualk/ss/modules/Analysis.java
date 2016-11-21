@@ -33,7 +33,7 @@ public class Analysis  extends Xhtml5{
        
 	
 	public Analysis(String email,String title) {
-		super(title,"action","Anañysis");
+		super("SurveyServer",title,"Analysis");
 
 		analysisDB= new AnalysisDB();
 		

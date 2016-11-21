@@ -1,12 +1,17 @@
-window.addEventListener('resize', function(event){
- console.log('resized');
- refresca();
+//var SERVLET_HRZ_URL = "/visualk/hrz/Hrz";
+
+
+
+window.addEventListener('resize', function (event) {
+    console.log('resized');
+    refresca();
 })
 
 function doneDialog(name) {
     document.fmain.option.value = name;
     document.fmain.what.value = "guarda";
-    document.fmain.submit();
+    updateHrz();
+  
 }
 function closeDialog(id_div) {
     document.getElementById(id_div).style.visibility = "hidden";
@@ -19,20 +24,20 @@ function guarda(id_div) {//genera un horitzo al atzar
 }
 function carrega() {
 
-    document.fmain.mx.value = window.innerWidth-100;
-    document.fmain.my.value = window.innerHeight-100;
+    document.fmain.mx.value = window.innerWidth - 100;
+    document.fmain.my.value = window.innerHeight - 100;
     document.fmain.what.value = "carrega";
     document.fmain.where.value = "listhorizons";
-    document.fmain.submit();
+    updateHrz();
 
 }
 
 function refresca() {//genera un horitzo al atzar
 
     document.fmain.what.value = "gen_atzar";
-    document.fmain.mx.value = window.innerWidth-100;
-    document.fmain.my.value = window.innerHeight-100;
-    
+    document.fmain.mx.value = window.innerWidth - 100;
+    document.fmain.my.value = window.innerHeight - 100;
+
 
     updateHrz();
 }
@@ -61,10 +66,12 @@ function hombraRnd() {
     document.fmain.what.value = "hombraRnd";
     updateHrz();
 }
+
 function updateHrz() {
     //if(navId=="ok"){
-    xmlhttpPost(SERVLET_HRZ_URL);
-    //}else document.fmain.submit();
+//    xmlhttpPost(SERVLET_HRZ_URL);
+    //}else 
+    document.fmain.submit();
 }
 
 

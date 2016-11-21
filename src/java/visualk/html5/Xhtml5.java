@@ -16,7 +16,10 @@ public class Xhtml5 {
     private static final String close_body = "</body>";
     private static final String close_html = "</html>";
     private static final String close_form = "</form>";
-    private String SERVLET_HRZ_URL = "/visualk/hrz/Hrz";
+    
+    private static String SERVLET_URL;
+    
+    
     private String title = "default title";
     public VsFunctions vsFunctions;
     public CssStyles cssStyles;
@@ -36,16 +39,16 @@ public class Xhtml5 {
             + "  fjs.parentNode.insertBefore(js, fjs);"
             + "}(document, 'script', 'facebook-jssdk'));</script>";
 
-    public Xhtml5(String title, String action_form, String where) {
+    public Xhtml5(String appServlet,String title, String where) {
 
-        //SERVLET_HRZ_URL = action_form;
+        SERVLET_URL = Main.HOST_NAME + Main.HOST_VISUALK +"/"+ appServlet;
         this.vsFunctions = new VsFunctions();
         this.cssStyles = new CssStyles();
 
         this.form_where = where;
 
         this.cssStyles.addFileCSS(Main.HOST_NAME + Main.HOST_VISUALK + "/css/xhtml5.css");
-        open_form += "\"" + SERVLET_HRZ_URL + "\">";
+        open_form += "\"" + SERVLET_URL + "\">";
 
         clearBodyData();
         clearDataForm();
@@ -60,7 +63,7 @@ public class Xhtml5 {
     public final void updateFunctions() {
         vsFunctions.clear();
 
-        vsFunctions.addVar("SERVLET_HRZ_URL", SERVLET_HRZ_URL);
+        vsFunctions.addVar("SERVLET_URL", SERVLET_URL);
         vsFunctions.addFile(JSXHTML);
 
         vsFunctions.addFunction("statusBar", "content", "document.getElementById('statusBar').innerHTML=content;");

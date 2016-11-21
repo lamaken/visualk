@@ -127,6 +127,8 @@ public class Horizon implements Serializable {
     public void carrega(String nom) {
 
         Horizon tmp = db.getHrznBD(nom);
+        db.disconnect();
+        
         this.nameHrz = tmp.nameHrz;
         this.topHrz = tmp.topHrz;
         this.topHrzColor = tmp.topHrzColor;
@@ -146,7 +148,8 @@ public class Horizon implements Serializable {
         this.superX = tmp.superX;
         this.superY = tmp.superY;
         this.textura = tmp.textura;
-        db.disconnect();
+        
+        
     }
 
     public void saveToFile(String name) {
@@ -223,7 +226,7 @@ public class Horizon implements Serializable {
     public void makeRandomCanvas(int mx, int my) {
         // Random r = new Random();
 
-        this.canvasHeigth = my;//; r.nextInt(max_height);
+        this.canvasHeigth = my;//;r.nextInt(max_height);
         this.canvasWidth = mx;//r.nextInt(max_width);
 
         System.out.println("rw:" + this.canvasWidth + " rh:"
@@ -282,7 +285,7 @@ public class Horizon implements Serializable {
         Random r = new Random();
         // nuemero aureo
         this.aureaProp = (r.nextInt(2) == 1);
-        this.aureaProp = true;
+        //this.aureaProp = true;
         System.out.println("exit makeRandomAureo");
 
     }

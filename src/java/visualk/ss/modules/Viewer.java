@@ -157,7 +157,7 @@ public class Viewer  extends Xhtml5{
 		
 	public Viewer(String eml_or_code, String session) {
 		// TODO Auto-generated constructor stub
-		super(session,"action","Viewer");
+		super("SurveyServer",session,"Viewer");
 		
 		viewDB= new ViewDB();
 		

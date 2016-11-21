@@ -83,6 +83,7 @@
         <servlet-name>Gallery</servlet-name>
         <url-pattern>/gallery/Gallery</url-pattern>
     </servlet-mapping>
+   
     <session-config>
         <session-timeout>
             30

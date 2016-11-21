@@ -84,7 +84,7 @@ public class DbHorizons extends MysqlLayer {
         Horizon temp = new Horizon(name);
         ResultSet myResult;
         myResult = this.queryDB("SELECT * FROM hrzns where nameHrz='" + name + "'");
-        temp.makeRandom(100, 300);//TODO:REGLES DE NEGOCI AQUI NO
+        //temp.makeRandom(100, 300);//TODO:REGLES DE NEGOCI AQUI NO
         if (myResult != null) {
 
             try {

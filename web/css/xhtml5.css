@@ -24,7 +24,7 @@ body{
 
 #statusBar{
     position: absolute; 
-    bottom: 0px; 
+    bottom: 10px; 
     left: 50px; 
     height: 10px; 
     overflow: hidden;

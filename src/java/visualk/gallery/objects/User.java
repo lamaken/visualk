@@ -1,19 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package visualk.gallery.objects;
 
-/**
- *
- * @author lamaken
- */
+import java.util.ArrayList;
+
 public class User {
-    String uuid;
-    String email;
-    String password;
-    String secret;
-    String photo;
-    String estrelles;
+    private String uuid;
+    private String email;
+    private String password;
+    private String secret;
+    private String estrelles;    
+    private Picture photo;
+    private ArrayList<Author> autors = new ArrayList<>();  //autors que gestiona aquest usuari
 }

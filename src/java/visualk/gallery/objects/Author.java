@@ -3,14 +3,13 @@ package visualk.gallery.objects;
 import java.util.ArrayList;
 
 public class Author {
-    String uuid;
-    String email;
-    String telef;    
-    String bio;  
-    String name;
-    String surname;
+    private String uuid;
+    private String email;
+    private String telef;    
+    private String bio;  
+    private String name;
+    private String surname;
+    private String curriculum;
     
-    ArrayList<Work> obres = new ArrayList<>();  
-    ArrayList<User> user = new ArrayList<>();  // users can manage authors
-
+    private ArrayList<Work> obres = new ArrayList<>();  //obres fetes per aquest artista
 }

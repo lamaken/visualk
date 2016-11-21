@@ -32,7 +32,7 @@ public class ListHorizons extends Xhtml5 {
     private int maxHeight;
 
     public ListHorizons(String title) {
-        super(title, Hrz.SERVLET_URL, "listhorizons");
+        super("hrz/Hrz",title, "listhorizons");
         ClassCSS cssLink = new ClassCSS();
         cssLink.setColor("yellow");
 

@@ -60,7 +60,7 @@ public class Artzar extends Xhtml5 {
     }
 
     public Artzar(String title) {
-        super(title, Hrz.SERVLET_URL,"artzar");
+        super("hrz/Hrz",title,"artzar");
         this.cssLink = new ClassCSS();
 
         addMyStyles(); 

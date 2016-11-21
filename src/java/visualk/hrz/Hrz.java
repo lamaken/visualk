@@ -36,8 +36,8 @@ import visualk.html5.UniqueName;
 public class Hrz extends HttpServlet {
 
     private static final long serialVersionUID = 1024371973219L;
-    public static final String SERVLET_URL = "/visualk/hrz/Hrz";
-    public static final String URL_PATH = Main.HOST_NAME + Main.HOST_VISUALK + "/hrz";
+    //public static final String SERVLET_URL = "/visualk/hrz/Hrz";
+    //public static final String URL_PATH = Main.HOST_NAME + Main.HOST_VISUALK + "/hrz";
 
     private Hashtable<String, Horizon> hrzns = new Hashtable<String, Horizon>();
 
@@ -279,11 +279,11 @@ public class Hrz extends HttpServlet {
                 } else if (what.equals("guarda")) {
                     hrz.saveToFile(option); // random del pal
                 }
-
+               
                 if (pino.equals("0")) {
                     out.println(artzar.toHtml());// + "<script>alert(\"" + lan.getDisplayLanguage()+ "\")</script>");
                 } else {
-                    out.println("");
+                    out.println("Hola");
                 }
 
                 out.close();

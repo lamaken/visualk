@@ -11,12 +11,12 @@ import java.util.ArrayList;
  *
  * @author lamaken
  */
-public class Tecnica {
+public class Exposition {
     private String uuid;
     private String title;
-    private String descrption;
-    
-    private ArrayList<Work> obres = new ArrayList<>();  // Obres fetes en aquesta tecnica
-    
+    private String type;
+    private String images[];
+    private String stars;
+    private ArrayList<Work> obres = new ArrayList<>();  //obres d'aquesta exposició
     
 }

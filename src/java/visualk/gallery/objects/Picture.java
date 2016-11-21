@@ -5,18 +5,12 @@
  */
 package visualk.gallery.objects;
 
-import java.util.ArrayList;
-
 /**
  *
  * @author lamaken
  */
-public class Tecnica {
+public class Picture {
     private String uuid;
-    private String title;
-    private String descrption;
-    
-    private ArrayList<Work> obres = new ArrayList<>();  // Obres fetes en aquesta tecnica
-    
-    
+    private String url;
+    private String name;
 }

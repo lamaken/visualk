@@ -1,4 +1,4 @@
-/**
+ /**
  * 
  */
 package visualk.ss.modules;
@@ -508,7 +508,7 @@ public class Generator extends Xhtml5{
 	}
 	
 	public Generator(String email, String session) {
-		super(session,"action","Generator");
+		super("SurveyServer",session,"Generator");
 		this.email = email;
 		publicacio=null;
 		enquestaDB= new EnquestesDb(email);
