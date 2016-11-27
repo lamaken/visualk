@@ -47,8 +47,9 @@
             <a href="art/liveMosaic.html"><img  src="/visualk/art/LiveMosaic?mx=75&my=75&cellw=9&d=1"/></a>
             <a href="tubs/index.html"><img  src="/visualk/tubs/img/logo.png"/></a>
             <a href="hrz/index.html"><img  src="/visualk/hrz/Hrz?option=firma"/></a>
-            <!--a href="nine/index.html"><img src="/visualk/nine/img/logo.png"/></a>
-               <a href="ss/index.html"><img  src="/visualk/ss/img/logo.jpeg"/></a-->
+            <a href="nine/index.html"><img src="/visualk/nine/img/logo.png"/></a>
+            <a href="ss/index.html"><img  src="/visualk/ss/img/logo.jpeg"/></a>
+            <a href="gallery/index.html"><img src="/visualk/gallery/img/logo.jpeg"/></a>
         </div>
 
     </body>

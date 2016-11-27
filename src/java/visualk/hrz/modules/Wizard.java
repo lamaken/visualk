@@ -34,7 +34,7 @@ public class Wizard extends Xhtml5{
 	private String testSVG(){
 	
 
-		return("<iframe align=\"center\" width=\"50%\" frameborder=\"0\" height=\"100%\" src=\"/servlet/Hrz?option=svg\"/>"); 
+		return("<iframe align=\"center\" width=\"50%\" frameborder=\"0\" height=\"100%\" src=\"/visualk/hrz/Hrz?option=svg\"/>"); 
 
 	}
 	

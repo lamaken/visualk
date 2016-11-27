@@ -22,8 +22,8 @@ import visualk.html5.UniqueName;
 
 public class Horizon implements Serializable {
 
-    //private static final String URL_IMG = Main.HOST_NAME + Main.HOST_VISUALK + "/hrz/img/";
-    private static final String URL_IMG = "http://hrzmkr.com/img/";
+        private static final String URL_IMG = Main.HOST_NAME + Main.HOST_VISUALK + "/hrz/img/";
+//    private static final String URL_IMG = "http://hrzmkr.com/img/";
 
     /**
      *
@@ -127,8 +127,7 @@ public class Horizon implements Serializable {
     public void carrega(String nom) {
 
         Horizon tmp = db.getHrznBD(nom);
-       
-        
+
         this.nameHrz = tmp.nameHrz;
         this.topHrz = tmp.topHrz;
         this.topHrzColor = tmp.topHrzColor;
@@ -148,8 +147,7 @@ public class Horizon implements Serializable {
         this.superX = tmp.superX;
         this.superY = tmp.superY;
         this.textura = tmp.textura;
-        
-        
+
     }
 
     public void saveToFile(String name) {
@@ -157,72 +155,6 @@ public class Horizon implements Serializable {
 
     }
 
-    /*
-    public void makeRandomCanvas() {
-        Random r = new Random();
-
-        if (max_width <= MIN_WIDTH) {
-            max_width = MIN_WIDTH - 15;
-        }
-        if (max_height <= MIN_HEIGTH) {
-            max_height = MIN_HEIGTH - 15;
-        }
-
-        if (max_width >= MAX_WIDTH) {
-            max_width = MAX_WIDTH - 15;
-        }
-        if (max_height >= MAX_HEIGTH) {
-            max_height = MAX_HEIGTH - 15;
-        }
-
-        // el tamany de la imatge
-        if (!horizontal) {
-            this.canvasHeigth =max_height;//; r.nextInt(max_height);
-            while (this.canvasHeigth < MIN_HEIGTH) {
-                this.canvasHeigth = max_height;//r.nextInt(max_height);
-            }
-            if (aureaProp) {
-                this.canvasWidth = getAureo(this.canvasHeigth);
-                while (this.canvasWidth > max_width) {
-                    this.canvasWidth = max_width;//r.nextInt(max_width);
-                }
-                if (this.canvasWidth != getAureo(this.canvasHeigth)) {
-                    setAureaProp(false);
-                }
-
-            } else {
-                this.canvasWidth = max_width;//r.nextInt(max_width);
-                while (this.canvasWidth < MIN_WIDTH) {
-                    this.canvasWidth = max_width;//r.nextInt(max_width);
-                }
-            }
-
-        } else {
-            this.canvasWidth = max_width;//r.nextInt(max_width);
-            while (this.canvasWidth < MIN_WIDTH) {
-                this.canvasWidth = max_width;//r.nextInt(max_width);
-            }
-            if (aureaProp) {
-                this.canvasHeigth = getAureo(this.canvasWidth);
-                while (this.canvasHeigth > max_height) {
-                    this.canvasHeigth = max_height;//r.nextInt(max_height);
-                }
-                if (this.canvasHeigth != getAureo(this.canvasWidth)) {
-                    setAureaProp(false);
-                }
-
-            } else {
-                this.canvasHeigth = max_height;//r.nextInt(max_height);
-                while (this.canvasHeigth < MIN_HEIGTH) {
-                    this.canvasHeigth = max_height;//r.nextInt(max_height);
-                }
-            }
-        }
-
-        System.out.println("rw:" + this.canvasWidth + " rh:"
-                + this.canvasHeigth);
-    }
-     */
     public void makeRandomCanvas(int mx, int my) {
         // Random r = new Random();
 
@@ -235,7 +167,7 @@ public class Horizon implements Serializable {
 
     public void makeRandomCanvas(int maxx, int maxy, int minx, int miny) {
         Random r = new Random();
-
+        /*
         // el tamany de la imatge
         if (!horizontal) {
             this.canvasHeigth = r.nextInt(maxy);
@@ -265,7 +197,9 @@ public class Horizon implements Serializable {
                 }
             }
         }
-
+         */
+        this.canvasWidth = maxx;
+        this.canvasHeigth = maxy;
     }
 
     public void makeRandomSuperNova() {
@@ -299,41 +233,63 @@ public class Horizon implements Serializable {
 
     public void makeRandomAlçadaHoritzo() {
         Random r = new Random();
-
-        // l'alçada de l'horitzó
-        if (aureaProp) {
-            this.topHrz = getAureo(this.canvasHeigth);
-        } else {
-            this.topHrz = 10 + r.nextInt(this.canvasHeigth - 10);
-            // while(this.topHrz<50)this.topHrz=r.nextInt(this.canvasHeigth);
-        }
+        this.topHrz = getAureo(r.nextInt(this.canvasHeigth));
         System.out.println("exit makeRandomAlçadaHoritzo");
     }
 
     public void makeRandomPal() {
         Random r = new Random();
 
-        // pal
-        if (aureaProp) {
-            this.xPal = getAureo(r.nextInt(this.canvasWidth));
-            this.yPal = getAureo(r.nextInt(this.canvasHeigth - this.topHrz));
-            this.alcada = getAureo(r.nextInt(this.canvasHeigth - this.yPal));
-        } else {
-            this.xPal = r.nextInt(this.canvasWidth);
-            this.yPal = r.nextInt(this.canvasHeigth - this.topHrz);
-            this.alcada = r.nextInt(this.canvasHeigth - this.yPal);
-        }
-        System.out.println("exit makeRandomPal");
+        this.xPal = getAureo(r.nextInt(this.canvasWidth));
+        this.yPal = this.topHrz + getAureo(r.nextInt(this.canvasHeigth - this.topHrz));
+        this.alcada = getAureo(r.nextInt(this.canvasHeigth - this.yPal));
+
     }
 
     public void makeRandomHombra() {
-        Random r = new Random();
+        //Random r = new Random();
+/*
+        float m = (-this.yPal + this.superY) / (this.xPal - this.superX);
 
+        this.hPaly = this.canvasHeigth - 50;
+        this.hPalx = (int) ((this.hPaly - this.superY) / m) + this.superX;
+        //this.hPalx = this.xPal;
+*/
+        if(superX>xPal)hPalx=xPal-(superX-xPal);
+        if(superX<=xPal)hPalx=xPal+(xPal-superX);
+        
+        this.hPaly = this.canvasHeigth - 50;
+       
+        
+        /*
+        
         // hombra
-        this.hPalx = r.nextInt(this.canvasWidth);
-        this.hPaly = r.nextInt(this.canvasHeigth - this.topHrz);
+       // this.hPalx = r.nextInt(this.canvasWidth);
+       // this.hPaly = r.nextInt(this.canvasHeigth - this.topHrz);
+
+        this.hPalx = this.xPal * 2 - this.superX;
+        
+        if (this.xPal * 2 - this.superX > this.canvasWidth) {
+            this.hPalx = this.canvasWidth;
+        }
+        if (this.xPal * 2 - this.superX < 0) {
+            this.hPalx = 0;
+        }
+        
+        this.hPaly = this.yPal+(this.canvasHeigth - this.topHrz+this.superY);//(this.yPal) + Math.abs(this.canvasHeigth - this.topHrz);
+
+        
+        
+        
+         */
         System.out.println("exit makeRandomHombra");
 
+        /*
+        if (this.gethPaly() < this.getyPal() ) {
+            sethPaly(this.getyPal());
+        }
+         */
+//        g2.drawLine(this.getxPal(), this.getyPal() + this.getTopHrz(), rotation, this.getTopHrz() + this.gethPaly());
     }
 
     public void makeRandomColors() {
@@ -516,39 +472,38 @@ public class Horizon implements Serializable {
 
         // ombra
         // ombra
-        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-                RenderingHints.VALUE_ANTIALIAS_ON);
+  //      g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+  //              RenderingHints.VALUE_ANTIALIAS_ON);
         g2.setColor(Color.black);
         /*g2.drawLine(this.getxPal(), this.getyPal() + this.getTopHrz(), this
                 .gethPalx(), this.getTopHrz() + this.gethPaly());
          */
 
- /*
-        int rotation = 0;
-        rotation = this.getxPal()-this.superX*2;
-        g2.drawLine(this.getxPal(), this.getyPal() + this.getTopHrz(), 
-        rotation, this.getyPal() + this.getTopHrz() + Math.abs(this.gethPaly()));
-         */
         //ombra antiga
-        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-                RenderingHints.VALUE_ANTIALIAS_ON);
+  //      g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+  //              RenderingHints.VALUE_ANTIALIAS_ON);
         g2.setColor(Color.black);
-        g2.drawLine(this.getxPal(), this.getyPal() + this.getTopHrz(), this
-                .gethPalx(), this.getTopHrz() + this.gethPaly());
+        g2.drawLine(this.getxPal(), this.getyPal(), this
+                .gethPalx(), this.gethPaly());
+
+
 
         // pal
+
+
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                 RenderingHints.VALUE_ANTIALIAS_OFF);
         g2.setColor(this.getColPal());
-        g2.drawLine(this.getxPal(), this.getyPal() + this.getTopHrz(), this
-                .getxPal(), this.getTopHrz() + this.getyPal()
+        g2.drawLine(this.getxPal(), this.getyPal(), this
+                .getxPal(), this.getyPal()
                 - this.getAlçada());
-        g2.drawLine(this.getxPal() + 1, this.getyPal() + this.getTopHrz(), this
-                .getxPal() + 1, this.getTopHrz() + this.getyPal()
+        g2.drawLine(this.getxPal() + 1, this.getyPal(), this
+                .getxPal() + 1, this.getyPal()
                 - this.getAlçada());
 
-        // firma
-        // pal
+   
+        
+// firma
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                 RenderingHints.VALUE_ANTIALIAS_ON);
         g2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,
