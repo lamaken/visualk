@@ -167,37 +167,6 @@ public class Horizon implements Serializable {
 
     public void makeRandomCanvas(int maxx, int maxy, int minx, int miny) {
         Random r = new Random();
-        /*
-        // el tamany de la imatge
-        if (!horizontal) {
-            this.canvasHeigth = r.nextInt(maxy);
-            while (this.canvasHeigth < miny) {
-                this.canvasHeigth = r.nextInt(maxy);
-            }
-            if (aureaProp) {
-                this.canvasWidth = getAureo(this.canvasHeigth);
-            } else {
-                this.canvasWidth = r.nextInt(maxx);
-                while (this.canvasWidth < minx) {
-                    this.canvasWidth = r.nextInt(maxx);
-                }
-            }
-
-        } else {
-            this.canvasWidth = r.nextInt(maxx);
-            while (this.canvasWidth < minx) {
-                this.canvasWidth = r.nextInt(maxx);
-            }
-            if (aureaProp) {
-                this.canvasHeigth = getAureo(this.canvasWidth);
-            } else {
-                this.canvasHeigth = r.nextInt(maxy);
-                while (this.canvasHeigth < miny) {
-                    this.canvasHeigth = r.nextInt(maxy);
-                }
-            }
-        }
-         */
         this.canvasWidth = maxx;
         this.canvasHeigth = maxy;
     }
@@ -206,20 +175,22 @@ public class Horizon implements Serializable {
         Random r = new Random();
         this.superX = r.nextInt(this.canvasWidth);
         this.superY = r.nextInt(this.topHrz);
+        
+        makeRandomHombra();
 
     }
 
     public void makeRandomTextura() {
-        Random r = new Random();
-        this.textura = (r.nextInt(2) == 1);
+        //Random r = new Random();
+        //this.textura = (r.nextInt(2) == 1);
         this.textura = true;
     }
 
     public void makeRandomAureo() {
         Random r = new Random();
         // nuemero aureo
-        this.aureaProp = (r.nextInt(2) == 1);
-        //this.aureaProp = true;
+        //this.aureaProp = (r.nextInt(2) == 1);
+        this.aureaProp = true;
         System.out.println("exit makeRandomAureo");
 
     }
@@ -243,10 +214,15 @@ public class Horizon implements Serializable {
         this.xPal = getAureo(r.nextInt(this.canvasWidth));
         this.yPal = this.topHrz + getAureo(r.nextInt(this.canvasHeigth - this.topHrz));
         this.alcada = getAureo(r.nextInt(this.canvasHeigth - this.yPal));
-
+        
+        makeRandomHombra();
     }
 
     public void makeRandomHombra() {
+        
+        
+        
+        
         //Random r = new Random();
 /*
         float m = (-this.yPal + this.superY) / (this.xPal - this.superX);
@@ -313,7 +289,7 @@ public class Horizon implements Serializable {
 
         makeRandomSuperNova();
         makeRandomPal();
-        makeRandomHombra();
+        
         makeRandomColors();
 
         if (isAurea()) {
@@ -452,7 +428,7 @@ public class Horizon implements Serializable {
         g2.drawImage(bmpCel, 0, 0, mx, my, null);
 
         // posem la llum
-        g2.drawImage(bmpSuperNova, this.superX - 100, this.superY - 100, null);
+        g2.drawImage(bmpSuperNova, this.superX - 50, this.superY - 50, null);
 
         // posem el terra
         g2.setColor(this.getBottomHrzColor());
