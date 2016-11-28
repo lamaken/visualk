@@ -14,6 +14,7 @@ import java.util.Hashtable;
 import java.util.Locale;
 
 import java.util.ResourceBundle;
+import java.util.UUID;
 
 import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
@@ -22,6 +23,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import sun.security.provider.MD5;
 import visualk.Main;
 
 import visualk.hrz.modules.Artzar;
@@ -84,15 +86,23 @@ public class Hrz extends HttpServlet {
 
         response.setContentType("image/PNG");
         Horizon hrz2 = new Horizon(new UniqueName(8).getName());
+        
+
         hrz2.setAuthorHrz(name);
-        hrz2.setHorizontal();
+        hrz2.makeRandom(150, 100);
+        
+        //hrz2.save2Db(hrz2.getNameHrz());
+        
+        /*hrz2.setHorizontal();
         hrz2.setAureaProp(false);
         hrz2.makeRandomCanvas(150, 100, 100, 70);
         hrz2.makeRandomAlçadaHoritzo();
         hrz2.makeRandomPal();
-        hrz2.makeRandomHombra();
+        
         hrz2.makeRandomColors();
         hrz2.makeRandomSuperNova();
+        
+       */
 
         ImageIO.write(hrz2.getHrzImage(), "png", response.getOutputStream());
     }
@@ -157,7 +167,7 @@ public class Hrz extends HttpServlet {
             peque(namehrz, response);
         }
         if (option.equals("firma")) {// firma petita
-            firma("by alk@soft.org", response);
+            firma(UUID.randomUUID().toString(), response);
         }
 
     }

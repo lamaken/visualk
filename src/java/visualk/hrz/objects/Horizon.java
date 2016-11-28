@@ -22,7 +22,7 @@ import visualk.html5.UniqueName;
 
 public class Horizon implements Serializable {
 
-        private static final String URL_IMG = Main.HOST_NAME + Main.HOST_VISUALK + "/hrz/img/";
+    private static final String URL_IMG = Main.HOST_NAME + Main.HOST_VISUALK + "/hrz/img/";
 //    private static final String URL_IMG = "http://hrzmkr.com/img/";
 
     /**
@@ -175,7 +175,7 @@ public class Horizon implements Serializable {
         Random r = new Random();
         this.superX = r.nextInt(this.canvasWidth);
         this.superY = r.nextInt(this.topHrz);
-        
+
         makeRandomHombra();
 
     }
@@ -214,15 +214,12 @@ public class Horizon implements Serializable {
         this.xPal = getAureo(r.nextInt(this.canvasWidth));
         this.yPal = this.topHrz + getAureo(r.nextInt(this.canvasHeigth - this.topHrz));
         this.alcada = getAureo(r.nextInt(this.canvasHeigth - this.yPal));
-        
+
         makeRandomHombra();
     }
 
     public void makeRandomHombra() {
-        
-        
-        
-        
+
         //Random r = new Random();
 /*
         float m = (-this.yPal + this.superY) / (this.xPal - this.superX);
@@ -230,13 +227,16 @@ public class Horizon implements Serializable {
         this.hPaly = this.canvasHeigth - 50;
         this.hPalx = (int) ((this.hPaly - this.superY) / m) + this.superX;
         //this.hPalx = this.xPal;
-*/
-        if(superX>xPal)hPalx=xPal-(superX-xPal);
-        if(superX<=xPal)hPalx=xPal+(xPal-superX);
-        
-        this.hPaly = this.canvasHeigth - 50;
-       
-        
+         */
+        if (superX > xPal) {
+            hPalx = xPal - (superX - xPal);
+        }
+        if (superX <= xPal) {
+            hPalx = xPal + (xPal - superX);
+        }
+
+        this.hPaly = yPal + 15;//this.canvasHeigth - 50;
+
         /*
         
         // hombra
@@ -286,10 +286,9 @@ public class Horizon implements Serializable {
         makeRandomCanvas(mx, my);
 
         makeRandomAlçadaHoritzo();
-
-        makeRandomSuperNova();
         makeRandomPal();
-        
+        makeRandomSuperNova();
+
         makeRandomColors();
 
         if (isAurea()) {
@@ -337,7 +336,7 @@ public class Horizon implements Serializable {
     }
 
     private void loadSuperNova() {
-        System.out.print("Loading supernova: " + URL_IMG + "llum2.png");
+        System.out.println("Loading supernova: " + URL_IMG + "llum2.png");
 
         URL url;
         try {
@@ -428,7 +427,7 @@ public class Horizon implements Serializable {
         g2.drawImage(bmpCel, 0, 0, mx, my, null);
 
         // posem la llum
-        g2.drawImage(bmpSuperNova, this.superX - 50, this.superY - 50, null);
+        g2.drawImage(bmpSuperNova, this.superX - 100, this.superY - 100, null);
 
         // posem el terra
         g2.setColor(this.getBottomHrzColor());
@@ -446,39 +445,45 @@ public class Horizon implements Serializable {
             }
         }
 
-        // ombra
-        // ombra
-  //      g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-  //              RenderingHints.VALUE_ANTIALIAS_ON);
-        g2.setColor(Color.black);
-        /*g2.drawLine(this.getxPal(), this.getyPal() + this.getTopHrz(), this
-                .gethPalx(), this.getTopHrz() + this.gethPaly());
-         */
+        //cenit
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+                RenderingHints.VALUE_ANTIALIAS_ON);
+
+        g2.setColor(Color.gray);
+        g2.drawLine(0, this.topHrz, this.getCanvasWidth(), this.topHrz);
 
         //ombra antiga
-  //      g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-  //              RenderingHints.VALUE_ANTIALIAS_ON);
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+                RenderingHints.VALUE_ANTIALIAS_ON);
         g2.setColor(Color.black);
         g2.drawLine(this.getxPal(), this.getyPal(), this
                 .gethPalx(), this.gethPaly());
-
-
+        g2.drawLine(this.getxPal() + 1, this.getyPal(), this
+                .gethPalx() + 1, this.gethPaly());
 
         // pal
-
-
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                 RenderingHints.VALUE_ANTIALIAS_OFF);
-        g2.setColor(this.getColPal());
+
+        Color c1 = Color.lightGray, 
+              c2 = Color.darkGray;
+
+        if (superX >=xPal) {
+            c1 = Color.darkGray;
+            c2 = Color.lightGray;
+        }
+
+        g2.setColor(c1);//
+
         g2.drawLine(this.getxPal(), this.getyPal(), this
                 .getxPal(), this.getyPal()
                 - this.getAlçada());
+        g2.setColor(c2);//
+
         g2.drawLine(this.getxPal() + 1, this.getyPal(), this
                 .getxPal() + 1, this.getyPal()
                 - this.getAlçada());
 
-   
-        
 // firma
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                 RenderingHints.VALUE_ANTIALIAS_ON);
@@ -490,6 +495,7 @@ public class Horizon implements Serializable {
         g2.setColor(Color.gray);
         g2.drawString(this.authorHrz, 2, this.getCanvasHeigth() + 15);
 
+        g2.drawRect(0, 0, this.getCanvasWidth() - 1, this.getCanvasHeigth() + 20);
         g2.dispose();
 
         return (buf);

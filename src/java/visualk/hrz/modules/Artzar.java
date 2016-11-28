@@ -80,7 +80,7 @@ public class Artzar extends Xhtml5 {
         randomMenuBar = new MenuLinkBar("randomBar", cssMenuBar);
         randomMenuBar.addMenuLink(Hrz.getString("label.changeColors.artzar.hrzmkr"), "colorsRnd", Hrz.getString("help.changeColors.artzar.hrzmkr"), cssLink);//label,function,help
         randomMenuBar.addMenuLink(Hrz.getString("label.changePosition.artzar.hrzmkr"), "posicioRnd", Hrz.getString("help.changePosition.artzar.hrzmkr"), cssLink);//label,function,help
-        randomMenuBar.addMenuLink(Hrz.getString("label.changeShadow.artzar.hrzmkr"), "hombraRnd", Hrz.getString("help.changeShadow.artzar.hrzmkr"), cssLink);//label,function,help
+        //randomMenuBar.addMenuLink(Hrz.getString("label.changeShadow.artzar.hrzmkr"), "hombraRnd", Hrz.getString("help.changeShadow.artzar.hrzmkr"), cssLink);//label,function,help
         randomMenuBar.addMenuLink(Hrz.getString("label.changeSun.artzar.hrzmkr"), "superRnd", Hrz.getString("help.changeSun.artzar.hrzmkr"), cssLink);//label,function,help
 
         randomMenuBar.setVertical();
