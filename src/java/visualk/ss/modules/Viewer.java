@@ -39,6 +39,8 @@ public class Viewer extends Xhtml5 {
 
     private void initMenu() {
         upperMenuBar.addMenuLink(LNK_MARXAR, "Marxar del programa", "#", "vols_marxar", "'marxar'", "Si vols marxar.. tu mateix");
+        
+
     }
     //carrega el combo amb les opcions
 

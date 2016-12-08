@@ -89,7 +89,7 @@ public class Hrz extends HttpServlet {
         
 
         hrz2.setAuthorHrz(name);
-        hrz2.makeRandom(150, 100);
+        hrz2.makeRandom(200, 100);
         
         //hrz2.save2Db(hrz2.getNameHrz());
         

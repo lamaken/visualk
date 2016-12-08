@@ -76,7 +76,7 @@ public class DbHorizons extends MysqlLayer {
 
     public ResultSet listHrzns(Integer offset, Integer limit, Integer width, Integer height) {
         ResultSet myResult;
-        String onlySize = "(canvasWidth<" + width + " and  canvasHeigth<" + height + ")";
+        String onlySize = "(canvasWidth<=" + width + " and  canvasHeigth<=" + height + ")";
         myResult = this.queryDB("SELECT * FROM hrzns WHERE namehrz<>'wellcome' and " + onlySize + " order by dt desc limit " + offset + "," + limit + " ;");
         System.out.print(onlySize);
         return (myResult);

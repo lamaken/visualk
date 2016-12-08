@@ -76,7 +76,7 @@ public class ListHorizons extends Xhtml5 {
         DbHorizons db = new DbHorizons("hrzmkr_user", "hrzmkr_password", "hrzmkr_db"); //connexio a la BD
         int tre = new Random().nextInt(50);
 
-        ResultSet rs = db.listHrzns();//(tre, 10, maxWidth, maxHeight - 100);//TODO:search good number till 100
+        ResultSet rs = db.listHrzns(0, 100, maxWidth, maxHeight);//TODO:search good number till 100
         String namehrz = "";
         String table = "";
         String notable = "";

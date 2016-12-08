@@ -29,7 +29,7 @@ public class Horizon implements Serializable {
      *
      */
     private static final long serialVersionUID = 24L;
-    private static final String HRZMKR_VERSION = "hrzmkr v0.3";
+    private static final String HRZMKR_VERSION = "hrzmkr v0.32";
 
     private final static int MAX_WIDTH = 601;
     private final static int MAX_HEIGTH = 601;
@@ -173,9 +173,13 @@ public class Horizon implements Serializable {
 
     public void makeRandomSuperNova() {
         Random r = new Random();
+        try{
         this.superX = r.nextInt(this.canvasWidth);
         this.superY = r.nextInt(this.topHrz);
-
+        }catch (Exception e){
+        this.superX = this.canvasWidth/2;
+        this.superY = this.topHrz/2;    
+        }
         makeRandomHombra();
 
     }
@@ -449,13 +453,13 @@ public class Horizon implements Serializable {
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                 RenderingHints.VALUE_ANTIALIAS_ON);
 
-        g2.setColor(Color.gray);
+        g2.setColor(getBottomHrzColor());
         g2.drawLine(0, this.topHrz, this.getCanvasWidth(), this.topHrz);
 
         //ombra antiga
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                 RenderingHints.VALUE_ANTIALIAS_ON);
-        g2.setColor(Color.black);
+        g2.setColor(Color.darkGray);
         g2.drawLine(this.getxPal(), this.getyPal(), this
                 .gethPalx(), this.gethPaly());
         g2.drawLine(this.getxPal() + 1, this.getyPal(), this
@@ -465,12 +469,12 @@ public class Horizon implements Serializable {
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                 RenderingHints.VALUE_ANTIALIAS_OFF);
 
-        Color c1 = Color.lightGray, 
+        Color c1 = Color.white, 
               c2 = Color.darkGray;
 
         if (superX >=xPal) {
             c1 = Color.darkGray;
-            c2 = Color.lightGray;
+            c2 = Color.white;
         }
 
         g2.setColor(c1);//
@@ -487,8 +491,8 @@ public class Horizon implements Serializable {
 // firma
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                 RenderingHints.VALUE_ANTIALIAS_ON);
-        g2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,
-                RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+        //g2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,
+        //        RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 
         g2.setColor(Color.white);
         g2.fillRect(0, this.getCanvasHeigth() + 1, this.getCanvasWidth(), 20);

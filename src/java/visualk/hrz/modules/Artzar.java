@@ -38,7 +38,7 @@ public class Artzar extends Xhtml5 {
         cssInputBox.setLeft("30px");
         cssInputBox.setTop("30%");
         cssInputBox.setRight("30px");
-        cssInputBox.setHeight("80px");
+        cssInputBox.setHeight("102px");
         cssInputBox.setPosition("absolute");
         cssInputBox.setTextalign("center");
         cssInputBox.setColor("black");
