@@ -19,14 +19,6 @@ public class MysqlLayer {
     protected ResultSet result = null;
     protected PreparedStatement sql = null;
 
-    /**
-     * Crea la instÃ ncia de sqlLayer
-     */
- /*   public MysqlLayer() {
-        setDBValues("127.0.0.1", "hrzmkr_user", "hrzmkr_password", "hrzmkr_db");
-        result = null;
-    }
-*/
     public MysqlLayer(String user,String pass,String db) {
         setDBValues("127.0.0.1",user,pass,db);
         result = null;

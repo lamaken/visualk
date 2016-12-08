@@ -73,7 +73,7 @@ public class ListHorizons extends Xhtml5 {
 
         this.addBodyData(upperMenuBar.toHtml());
 
-        DbHorizons db = new DbHorizons("hrzmkr_user", "hrzmkr_password", "hrzmkr_db"); //connexio a la BD
+        DbHorizons db = new DbHorizons(); //connexio a la BD
         int tre = new Random().nextInt(50);
 
         ResultSet rs = db.listHrzns(0, 100, maxWidth, maxHeight);//TODO:search good number till 100

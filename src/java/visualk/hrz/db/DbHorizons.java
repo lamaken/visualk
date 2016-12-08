@@ -7,8 +7,18 @@ import visualk.db.MysqlLayer;
 import visualk.hrz.objects.Horizon;
 
 public class DbHorizons extends MysqlLayer {
+    
+    private static final String dbUser = "hrzmkr_user";
+    private static final String dbPassword = "hrzmkr_password";
+    private static final String dbDb = "hrzmkr_db";
+    
+    
+    public DbHorizons() {
+        super(dbUser, dbPassword, dbDb);
+    }
+    
 
-    public DbHorizons(String user, String pass, String db) {
+    private DbHorizons(String user, String pass, String db) {
         super(user, pass, db);
     }
 

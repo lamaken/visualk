@@ -89,7 +89,7 @@ public class Hrz extends HttpServlet {
         
 
         hrz2.setAuthorHrz(name);
-        hrz2.makeRandom(200, 100);
+        hrz2.makeRandom(150, 93);
         
         //hrz2.save2Db(hrz2.getNameHrz());
         
@@ -200,10 +200,10 @@ public class Hrz extends HttpServlet {
         lan = request.getLocale();
 
         if (mx == null) {
-            mx = "250";
+            mx = "150";
         }
         if (my == null) {
-            my = "250";
+            my = "150";
         }
         if (lan == null) {
             lan = Locale.getDefault();//DEFAULT_LANGUAGE
