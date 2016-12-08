@@ -14,16 +14,14 @@ import java.net.URL;
 
 import java.util.Random;
 import javax.imageio.ImageIO;
-import visualk.Main;
-import visualk.hrz.Hrz;
 
 import visualk.hrz.db.DbHorizons;
 import visualk.html5.UniqueName;
 
 public class Horizon implements Serializable {
 
-    private static final String URL_IMG = Main.HOST_NAME + Main.HOST_VISUALK + "/hrz/img/";
-//    private static final String URL_IMG = "http://hrzmkr.com/img/";
+//    private static final String URL_IMG = Main.HOST_NAME + Main.HOST_VISUALK + "/hrz/img/";
+    private static final String URL_IMG = "http://hrzmkr.com/img/";
 
     /**
      *
@@ -64,7 +62,6 @@ public class Horizon implements Serializable {
     private boolean textura = true;
 
     private DbHorizons db = new DbHorizons();
-
 
     public void save2Db(String name) {
         name = name.replace("'", "`");
@@ -174,12 +171,12 @@ public class Horizon implements Serializable {
 
     public void makeRandomSuperNova() {
         Random r = new Random();
-        try{
-        this.superX = r.nextInt(this.canvasWidth);
-        this.superY = r.nextInt(this.topHrz);
-        }catch (Exception e){
-        this.superX = this.canvasWidth/2;
-        this.superY = this.topHrz/2;    
+        try {
+            this.superX = r.nextInt(this.canvasWidth);
+            this.superY = r.nextInt(this.topHrz);
+        } catch (Exception e) {
+            this.superX = this.canvasWidth / 2;
+            this.superY = this.topHrz / 2;
         }
         makeRandomHombra();
 
@@ -470,10 +467,10 @@ public class Horizon implements Serializable {
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                 RenderingHints.VALUE_ANTIALIAS_OFF);
 
-        Color c1 = Color.white, 
-              c2 = Color.darkGray;
+        Color c1 = Color.white,
+                c2 = Color.darkGray;
 
-        if (superX >=xPal) {
+        if (superX >= xPal) {
             c1 = Color.darkGray;
             c2 = Color.white;
         }

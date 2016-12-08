@@ -38,8 +38,7 @@ import visualk.html5.UniqueName;
 public class Hrz extends HttpServlet {
 
     private static final long serialVersionUID = 1024371973219L;
-    //public static final String SERVLET_URL = "/visualk/hrz/Hrz";
-    //public static final String URL_PATH = Main.HOST_NAME + Main.HOST_VISUALK + "/hrz";
+    
 
     private Hashtable<String, Horizon> hrzns = new Hashtable<String, Horizon>();
 
