@@ -5,7 +5,7 @@ import visualk.html5.ClassCSS;
 import visualk.html5.MenuLinkBar;
 import visualk.html5.Xhtml5;
 
-public class ListAuthors extends Xhtml5 {
+public class ListWorks extends Xhtml5 {
 
     private static final String CSS_LIST_FILE_NAME = "/visualk/hrz/css/listhorizons.css";
     private static final String JS_LIST_FILE_NAME = "/visualk/hrz/js/listhorizons.js";
@@ -21,7 +21,7 @@ public class ListAuthors extends Xhtml5 {
     private final String facebookLikeTagBefore = "<fb:like href=\"";
     private final String facebookLikeTagAfter = "\" layout=\"button\" show-faces=\"true\" action=\"like\" colorscheme=\"light\" />";
 
-    public ListAuthors(String title) {
+    public ListWorks(String title) {
         super("Gallery",title,"listhorizons");
         ClassCSS cssLink = new ClassCSS();
         cssLink.setColor("yellow");
@@ -69,7 +69,10 @@ public class ListAuthors extends Xhtml5 {
         
         
         
-        String ret="listAuthors";
+        
+        
+        
+        String ret="listObres";
         return (ret);
     }
 

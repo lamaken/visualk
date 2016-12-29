@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.sql.*;
 
 import visualk.db.MysqlLayer;
-import visualk.gallery.objects.Author;
+import visualk.gallery.objects.Artist;
 import visualk.gallery.objects.Work;
 
 
@@ -15,7 +15,7 @@ public class DbGallery extends MysqlLayer{
         super(user, pass, db);
     }
     
-    public void addObra(Work obra, Author author) {
+    public void addObra(Work obra, Artist author) {
         if (this != null) {
             try {
                 /*mySQL.executeDB("insert into hrzns (" + "nameHrz," + "dt," + "topHrz,"

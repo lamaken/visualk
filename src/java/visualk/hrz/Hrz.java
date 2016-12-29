@@ -23,8 +23,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import sun.security.provider.MD5;
-import visualk.Main;
+
 
 import visualk.hrz.modules.Artzar;
 import visualk.hrz.modules.ListHorizons;
@@ -38,7 +37,6 @@ import visualk.html5.UniqueName;
 public class Hrz extends HttpServlet {
 
     private static final long serialVersionUID = 1024371973219L;
-    
 
     private Hashtable<String, Horizon> hrzns = new Hashtable<String, Horizon>();
 
@@ -57,27 +55,25 @@ public class Hrz extends HttpServlet {
     private static final String INICIAL_HORIZON_NAME_SESSION = "Inicial";
 
     public static String getString(String key) {
-        String result="";
+        String result = "";
         if (bundle == null) {
             try {
                 bundle = ResourceBundle.getBundle("outputTextConstants", Locale.US);
-            }catch(Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
                 return e.getMessage();
             }
         }
-        
-        try{
+
+        try {
             result = bundle.getString(key);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return e.getMessage();
         }
-        
-        
+
         return result;
-                
-                
+
     }
 
     //signature for emails
@@ -85,13 +81,11 @@ public class Hrz extends HttpServlet {
 
         response.setContentType("image/PNG");
         Horizon hrz2 = new Horizon(new UniqueName(8).getName());
-        
 
         hrz2.setAuthorHrz(name);
         hrz2.makeRandom(150, 93);
-        
+
         //hrz2.save2Db(hrz2.getNameHrz());
-        
         /*hrz2.setHorizontal();
         hrz2.setAureaProp(false);
         hrz2.makeRandomCanvas(150, 100, 100, 70);
@@ -101,8 +95,7 @@ public class Hrz extends HttpServlet {
         hrz2.makeRandomColors();
         hrz2.makeRandomSuperNova();
         
-       */
-
+         */
         ImageIO.write(hrz2.getHrzImage(), "png", response.getOutputStream());
     }
 
@@ -224,7 +217,7 @@ public class Hrz extends HttpServlet {
             System.out.println("language:" + e.getMessage());
             e.printStackTrace();
         }
-        
+
         if (hrzns.containsKey(sessionId)) {
             hrz = (Horizon) hrzns.get(sessionId);
         } else {
@@ -288,7 +281,7 @@ public class Hrz extends HttpServlet {
                 } else if (what.equals("guarda")) {
                     hrz.saveToFile(option); // random del pal
                 }
-               
+
                 if (pino.equals("0")) {
                     out.println(artzar.toHtml());// + "<script>alert(\"" + lan.getDisplayLanguage()+ "\")</script>");
                 } else {

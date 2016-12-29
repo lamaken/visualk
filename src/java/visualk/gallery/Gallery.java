@@ -15,6 +15,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.json.JSONObject;
+
 import visualk.Main;
 import visualk.gallery.modules.Detail;
 import visualk.gallery.objects.User;
@@ -45,6 +48,7 @@ public class Gallery extends HttpServlet {
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // TODO Auto-generated method stub
+        response.sendRedirect("/visualk/gallery");
     }
 
     /**
@@ -56,8 +60,29 @@ public class Gallery extends HttpServlet {
         out = response.getWriter();
         response.setContentType("text/html");
         try {
-            Detail  detail = new Detail("work detail");
-            out.println(detail.getHtml());
+            String where = request.getParameter("where");
+            String what = request.getParameter("what");
+
+            if (!what.equals("marxar")) {
+
+                if (where.equals("detail")) {
+                    String idWork = request.getParameter("idWork");
+                    if ((idWork == null) || (idWork.isEmpty())) {
+                        idWork = "0";
+                    }
+
+                    JSONObject parameters = new JSONObject();
+                    parameters.put("idWork", idWork);
+
+                    Detail detail = new Detail("work detail", parameters.toString());
+                    out.println(detail.toHtml());
+                } else {
+                    response.sendRedirect("/visualk/gallery");
+                }
+            } else {
+                response.sendRedirect("/visualk");
+            }
+
         } finally {
             out.close();  // Always close the output writer
         }

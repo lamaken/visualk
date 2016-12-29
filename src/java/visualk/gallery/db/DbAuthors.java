@@ -6,7 +6,7 @@
 package visualk.gallery.db;
 
 import java.util.ArrayList;
-import visualk.gallery.objects.Author;
+import visualk.gallery.objects.Artist;
 
 /**
  *
@@ -22,8 +22,8 @@ JSONArray jsArray = new JSONArray(list);
 
     */
     
-    public ArrayList<Author> getFromObra(String uuid) {
-        ArrayList<Author> authors = new ArrayList<>();
+    public ArrayList<Artist> getFromObra(String uuid) {
+        ArrayList<Artist> authors = new ArrayList<>();
         
         return authors;
     }

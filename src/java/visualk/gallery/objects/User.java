@@ -8,6 +8,6 @@ public class User {
     private String password;
     private String secret;
     private String estrelles;    
-    private Picture photo;
-    private ArrayList<Author> autors = new ArrayList<>();  //autors que gestiona aquest usuari
+    private Resource photo;
+    private ArrayList<Artist> autors = new ArrayList<>();  //autors que gestiona aquest usuari
 }

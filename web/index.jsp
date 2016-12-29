@@ -54,11 +54,11 @@
         <a href="art/editorMixed.html"><img id="mixed"  src="/visualk/art/Mixed?mx=150&my=150&cellw=23&d=1"/></a>
         <a href="art/editorArab.html"><img id="arab"  src="/visualk/art/Arab?mx=75&my=75&cellw=9&d=1"/></a>
         <a href="art/liveMosaic.html"><img  src="/visualk/art/LiveMosaic?mx=75&my=75&cellw=9&d=1"/></a>
-        <a href="tubs/index.html"><img  src="/visualk/tubs/img/logo.png"/></a>
-        <a href="hrz/index.html"><img  src="/visualk/hrz/Hrz?option=firma"/></a>
-        <!--a href="nine/index.html"><img src="/visualk/nine/img/logo.png"/></a>
-        <!--a href="ss/index.html"><img  src="/visualk/ss/img/logo.jpeg"/></a>
-        <!--a href="gallery/index.html"><img src="/visualk/gallery/img/logo.jpeg"/></a>
+        <a href="tubs"><img  src="/visualk/tubs/img/logo.png"/></a>
+        <a href="hrz"><img  src="/visualk/hrz/Hrz?option=firma"/></a>
+        <!--a href="nine"><img src="/visualk/nine/img/logo.png"/></a>
+        <!--a href="ss"><img  src="/visualk/ss/img/logo.jpeg"/></a-->
+        <a href="gallery"><img src="/visualk/gallery/img/logo.jpeg"/>gallery</a>
     </div>
 
 </body>

@@ -19,21 +19,25 @@ body{
     z-index:-100;
     left:0px;
     bottom:0px;
-    position:absolute;
+    position: fixed;
 }
 
 #statusBar{
-    position: absolute; 
-    bottom: 10px; 
-    left: 50px; 
-    height: 10px; 
+    position: fixed;
+    bottom: 0px; 
+    left: 0px;
+    bottom:0px;
+    height: 15px; 
     overflow: hidden;
     color: lime;
-    right: 50px; 
+    right: 0px; 
     padding:2px 2px 2px 2px;
     cursor:pointer; 	
     z-index: 100;
     text-align:center;
+    background-color: black;
+    
+    
 }
 #titleBar{
     visibility: hidden;
@@ -46,13 +50,14 @@ body{
     right: 50px; 
     padding:2px 2px 5px 5px;
     z-index: 100;
+    
     text-align:center;
     
 }
 
 #desconectar{
     visibility: hidden;
-    position: absolute; 
+    position: fixed; 
     bottom: 10px; 
     right: 10px; 
     height: 10px; 

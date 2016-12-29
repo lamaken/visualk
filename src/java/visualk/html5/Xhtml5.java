@@ -66,13 +66,17 @@ public class Xhtml5 {
         vsFunctions.addVar("SERVLET_URL", SERVLET_URL);
         vsFunctions.addFile(JSXHTML);
 
+        addingBasicFunctions();
+
+    }
+
+    private void addingBasicFunctions() {
         vsFunctions.addFunction("statusBar", "content", "document.getElementById('statusBar').innerHTML=content;");
         vsFunctions.addFunction("fes", "actions,params", "document.fmain.actions.value=actions;document.fmain.params.value=params;document.fmain.submit();");
         vsFunctions.addFunction("fes2", "actions,params,more", "document.fmain.actions.value=actions;document.fmain.params.value=params;document.fmain.more.value=more;document.fmain.submit();");
 
         vsFunctions.addFunction("messageBox", "data", "alert(data);");
         vsFunctions.addFunction("load", "", "init();");
-
     }
 
     public final void clearBodyData() {
@@ -109,10 +113,6 @@ public class Xhtml5 {
                 = "<input type=\"hidden\" name=\"more\"/>"
                 + "<input name=\"actions\" type=\"hidden\"/>"
                 + "<input name=\"params\" type=\"hidden\"/>";
-
-//        this.data_form += "<input type=\"hidden\" name=\"where\" value=\"" + this.form_where + "\"/>";
-//        this.data_form += "<input type=\"hidden\" name=\"what\" value=\"\"/>";
-//        this.data_form += "<input type=\"hidden\" name=\"option\" value=\"\"/>";
     }
 
     public void addDataForm(String data) {
