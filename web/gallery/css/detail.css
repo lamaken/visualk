@@ -1,18 +1,15 @@
 body{
-    background-color:black;
-    color:white;
+    background-color:white;
+    color:black;
     font-family:monospace;
 }	
 a{
     color:yellow;
 }
 
-
-
-
 #cssWorkTitle{
     overflow: hidden;
-    color: lime;
+    color: blue;
     padding:5px 5px 5px 5px;
     cursor:pointer; 	
     z-index: 100;
@@ -27,25 +24,50 @@ a{
     text-align:center;
 }
 
-#cssWorkImage{
+.cssImage{
     text-align:center;
-    right:50px;
-    padding:5px 5px 5px 5px;
-    test-align:center;
-
+    width: 80%;
+    height: 100%;
+    padding:10px 10px 10px 10px;
+    border:#ffffff;
 }
-#imgWorkImage{
+
+#cssImages{
+    text-align:center;
+    
     width:auto;
-    height:auto;
-    max-width:70%; 
-    max-height:70%;
-    padding: 15px;
+    height: auto;
 }
-
 #cssWorkDescription
 {
     right:50px;
     padding:5px 5px 5px 5px;
-    test-align:center;
-    text-align:justify;
+    
+    text-align:center;
+    
+}
+
+
+#anteriorBar{
+    position: absolute; 
+    top:10px;
+    left:10px;
+    z-index: 100;
+    text-align:center;
+    border-color: red;
+
+    background:rgb(20,30,30);
+    opacity: 0.8;
+}
+
+#seguentBar{
+    position: absolute; 
+    top:10px;
+    right:10px;
+    z-index: 100;
+    text-align:center;
+    border-color: red;
+
+    background:rgb(20,30,30);
+    opacity: 0.8;
 }

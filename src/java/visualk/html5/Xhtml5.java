@@ -5,14 +5,14 @@ import visualk.Main;
 public class Xhtml5 {
 
     private static final String JSXHTML = Main.HOST_NAME + Main.HOST_VISUALK + "/js/xhtml5.js";
-    private static final String doctype = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\" ?><!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\"><html xmlns=\"http://www.w3.org/1999/xhtml\" >";
+    private static final String doctype = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\" ?><!DOCTYPE html>";
     private static final String open_html = "<html>";
     private static final String open_head = "<head>";
     private static final String meta = "<meta charset=\"ISO-8859-1\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0\">";
     private static final String open_title = "<title>";
     private static final String close_title = "</title>";
     private static final String close_head = "</head>";
-    private static final String open_body = "<body style=\"background-image:url('" + Main.HOST_NAME + Main.HOST_VISUALK + "/img/fondo.png')\" onload=\"load()\">";
+    private static String open_body = "<body style=\"background-image:url('" + Main.HOST_NAME + Main.HOST_VISUALK + "/img/fondo.png')\" onload=\"load()\">";
     private static final String close_body = "</body>";
     private static final String close_html = "</html>";
     private static final String close_form = "</form>";
@@ -70,6 +70,10 @@ public class Xhtml5 {
 
     }
 
+    public void useBackgroundRemoteMediaImage(String mediaImage){
+        open_body="<body style=\"background-image:url('" + mediaImage+"')\" onload=\"load()\">";
+    }
+    
     private void addingBasicFunctions() {
         vsFunctions.addFunction("statusBar", "content", "document.getElementById('statusBar').innerHTML=content;");
         vsFunctions.addFunction("fes", "actions,params", "document.fmain.actions.value=actions;document.fmain.params.value=params;document.fmain.submit();");

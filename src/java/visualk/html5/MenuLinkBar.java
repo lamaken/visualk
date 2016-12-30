@@ -40,12 +40,12 @@ public class MenuLinkBar{
 		optionsMenu= new LinkedList<LinkHtml>();
 	}
 	public void addMenuLink(String label,String onclick, String status,ClassCSS css){
-            this.cssMenuBar=css;
-		optionsMenu.add(new LinkHtml(css.getId(),label,"#",onclick,"",status));
+            
+		optionsMenu.add(new LinkHtml(did,label,"#",onclick,"",status));
 	}
 	public void addMenuLink(String label,String onclick, String params,String status,ClassCSS css){
-            this.cssMenuBar=css;
-		optionsMenu.add(new LinkHtml(css.getId(),label,"#",onclick,params,status));
+            
+		optionsMenu.add(new LinkHtml(did,label,"#",onclick,params,status));
 	}
 	
 	public int eliminaOption(String id){
@@ -87,7 +87,7 @@ public class MenuLinkBar{
 		}
 		returnHtml += "</div>";
 		
-		String table= "<div id=\""+this.cssMenuBar.getId()+"\"\">"+
+		String table= "<div id=\""+this.cssMenuBar.getId()+"\">"+
 					  "<table style=\"width: 100%;\" border=\"0\" backgroundcolor=\"black\" cellpadding=\"0\" cellspacing=\"0\">"+
 					  "<tbody><tr><td><img src='/visualk/img/c1.png'/></td><td background='/visualk/img/c2.png'>"+this.title+"</td><td><img src='/visualk/img/c3.png'/></td></tr>"+
 					  "<tr><td background='/visualk/img/c4.png'></td><td>"+ returnHtml + "</td><td background='/visualk/img/c5.png'></td></tr>"+

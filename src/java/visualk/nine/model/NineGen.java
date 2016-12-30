@@ -43,7 +43,7 @@ public class NineGen {
         this.oldiff = oldiff;
     }
 
-    private int sumDig(Integer number) {
+    private Integer sumDig(Integer number) {
        /* String temp = number + "";
         
         Integer i=0;
@@ -79,7 +79,7 @@ public class NineGen {
         String numberBefore = "";
         iterations = 0;
         diff = 1;
-        List magic= new ArrayList<Integer>();
+        ArrayList<Integer> magic= new ArrayList<>();
         while (!number.equals("9") && !number.equals("")) {
             x0 = Integer.parseInt(number) * 9;
             number = String.valueOf(x0);
