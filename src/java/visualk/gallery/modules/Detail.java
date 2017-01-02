@@ -10,7 +10,7 @@ import visualk.gallery.db.DbWorks;
 import visualk.gallery.objects.Artist;
 import visualk.gallery.objects.Resource;
 import visualk.gallery.objects.Work;
-import visualk.hrz.Hrz;
+
 import visualk.html5.*;
 
 /**
@@ -42,23 +42,16 @@ public class Detail extends Xhtml5 {
 
     public Detail(String title, String jsonWork) {
         super("Gallery", title, "detail");
-        ClassCSS cssLink = new ClassCSS();
-        cssLink.setColor("yellow");
-        cssLink.setId("myId");
-        
-        
-        cssStyles.addStyle(cssLink);
-        
         
         addMyStyles();
         
         upperSeguentMenuBar = new MenuLinkBar("seguentBar", cssSeguentMenuBar);
         upperSeguentMenuBar.setHorizontal();
-        upperSeguentMenuBar.addMenuLink("seguent >>", "seguent", "passes a la següent obra.", cssLink);//label,function,help
+        upperSeguentMenuBar.addMenuLink("seguent >>", "seguent", "passes a la següent obra.", cssSeguentMenuBar);//label,function,help
         
         upperAnteriorMenuBar = new MenuLinkBar("anteriorBar", cssAnteriorMenuBar);
         upperAnteriorMenuBar.setHorizontal();
-        upperAnteriorMenuBar.addMenuLink("<< anterior", "anterior", "passes a l`anterior obra.", cssLink);//label,function,help
+        upperAnteriorMenuBar.addMenuLink("<< anterior", "anterior", "passes a l`anterior obra.", cssAnteriorMenuBar);//label,function,help
      
         JSONObject o = new JSONObject(jsonWork);
         idWork = o.get("idWork").toString();
