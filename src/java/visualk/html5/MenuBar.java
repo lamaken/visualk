@@ -21,7 +21,7 @@ public class MenuBar {
     private int orientation = HORIZONTAL_ALIGN;
     private LinkedList<MenuItem> optionsMenu;
     public LinkedList<ClassCSS> cssMenuBar;
-    private VsFunctions my_js;
+    private VsFunctions vsFunctions;
 
     public void setVertical() {
         this.orientation = VERTICAL_ALIGN;
@@ -41,11 +41,16 @@ public class MenuBar {
         this.cssMenuBar.add(cssMenuBar2);
         optionsMenu = new LinkedList<>();
 
-        my_js = new VsFunctions();
-        my_js.addFile(FILE_JS);
+        vsFunctions = new VsFunctions();
+        vsFunctions.addFile(FILE_JS);
 
     }
 
+    
+    public void addMenuItem(String id, String label, String onclick, String params, String status, String parent) {
+        optionsMenu.add(new MenuItem(id, label, onclick, params, status, parent, did));
+    }
+    
     public void addMenuLink(String label, String onclick, String status, ClassCSS css) {
         optionsMenu.add(new MenuItem(css.getId(), label, "#", onclick, "", status, "parent"));
     }
@@ -63,7 +68,8 @@ public class MenuBar {
     public void clear() {
         optionsMenu.clear();
     }
-
+    
+ 
     public String toHtml() {
         String htmlChar = "";
         SpaceHtml space = new SpaceHtml();
@@ -77,8 +83,8 @@ public class MenuBar {
             htmlChar = enter.toHtml();
         }
 
-        String returnHtml = my_js.toHtml()
-                + "<div id=\"" + this.cssMenuBar.get(0).getId() + "\">";
+        String returnHtml = vsFunctions.toHtml()
+                + "<div id=\"" + this.cssMenuBar.get(0).getId() + "\" style=\"padding:10px\">";
 
         if (!this.title.equals("")) {
             returnHtml += this.title + htmlChar + MenuSeparatorHtml + htmlChar;
@@ -104,9 +110,11 @@ public class MenuBar {
             if (optionsMenu.get(n).parent.equals(""))//nomes el principal
             {
                 listparent.add(optionsMenu.get(n).id_item);
-                returnHtml += optionsMenu.get(n).toHtml();
-                if (n < numItems + 1) {
-                    returnHtml += htmlChar + MenuSeparatorHtml + htmlChar;
+                returnHtml += "<div style=\"padding:10px\">"+optionsMenu.get(n).toHtml()+"</div>";
+                if (n < numItems-1 ) {
+                    
+                    if(htmlChar.equals(enter.toHtml()))returnHtml += htmlChar;
+                    else returnHtml += MenuSeparatorHtml + htmlChar;
                 }
             }
             rawMenu += optionsMenu.get(n).raw(",");
@@ -143,10 +151,10 @@ public class MenuBar {
         returnFillsHtml += "</table>";
 
         String table
-                = "<table style=\"width: 100%;background:rgb(210,210,210);line-height: 0;\" border=\"0\"  cellpadding=\"0\" cellspacing=\"0\">"
-                + "<tbody><tr><td><img src='" + " + Main.HOST_NAME + Main.HOST_VISUALK + " + "/img/c1.png'/></td><td background='" + Main.HOST_NAME + Main.HOST_VISUALK + "/img/c2.png'>" + this.title + "</td><td><img src='" + " + Main.HOST_NAME + Main.HOST_VISUALK + " + "/img/c3.png'/></td></tr>"
-                + "<tr><td background='" + " + Main.HOST_NAME + Main.HOST_VISUALK + " + "/img/c4.png'></td><td>" + returnHtml + "</td><td background='" + " + Main.HOST_NAME + Main.HOST_VISUALK + " + "/img/c5.png'></td></tr>"
-                + "<tr><td><img src='" + " + Main.HOST_NAME + Main.HOST_VISUALK + " + "/img/c6.png'/></td><td background='" + " + Main.HOST_NAME + Main.HOST_VISUALK + " + "/img/c7.png'></td><td><img src='" + " + Main.HOST_NAME + Main.HOST_VISUALK + " + "/img/c8.png'/></td></tr></tbody></table>";
+                = "<table style=\"width: 100%;line-height: 0;\" border=\"0\"  cellpadding=\"0\" cellspacing=\"0\">"
+                + "<tbody><tr><td><img src='" + Main.HOST_NAME + Main.HOST_VISUALK + "/img/c1.png'/></td><td background='" + Main.HOST_NAME + Main.HOST_VISUALK + "/img/c2.png'>" + this.title + "</td><td><img src='" + Main.HOST_NAME + Main.HOST_VISUALK + "/img/c3.png'/></td></tr>"
+                + "<tr><td background='" + Main.HOST_NAME + Main.HOST_VISUALK + "/img/c4.png'></td><td>" + returnHtml + "</td><td background='" + Main.HOST_NAME + Main.HOST_VISUALK + "/img/c5.png'></td></tr>"
+                + "<tr><td><img src='" + Main.HOST_NAME + Main.HOST_VISUALK + "/img/c6.png'/></td><td background='" + Main.HOST_NAME + Main.HOST_VISUALK + "/img/c7.png'></td><td><img src='" + Main.HOST_NAME + Main.HOST_VISUALK + "/img/c8.png'/></td></tr></tbody></table>";
 
         /*
          creem els popups
@@ -154,11 +162,11 @@ public class MenuBar {
         String htmlFills
                 = "<div id=\"submenu\">"
                 + "<table style=\"width: 100%;background:rgb(210,210,210);line-height: 0;\" border=\"0\"  cellpadding=\"0\" cellspacing=\"0\">"
-                + " <tbody><tr><td><img src='" + " + Main.HOST_NAME + Main.HOST_VISUALK + " + "/img/c9.png'/></td><td ></td><td><img src='" + " + Main.HOST_NAME + Main.HOST_VISUALK + " + "/img/c10.png'/></td></tr> <tr><td background='" + " + Main.HOST_NAME + Main.HOST_VISUALK + " + "img/c4.png'></td><td><div id=\"kk\">";
+                + " <tbody><tr><td><img src='" + Main.HOST_NAME + Main.HOST_VISUALK + "/img/c9.png'/></td><td ></td><td><img src='" + Main.HOST_NAME + Main.HOST_VISUALK + "/img/c10.png'/></td></tr> <tr><td background='" + Main.HOST_NAME + Main.HOST_VISUALK + "/img/c4.png'></td><td><div id=\"kk\">";
 
         htmlFills += returnFillsHtml;
-        htmlFills += "</div></td><td background='" + " + Main.HOST_NAME + Main.HOST_VISUALK + " + "/img/c5.png'></td></tr>"
-                + "<tr><td><img src='" + " + Main.HOST_NAME + Main.HOST_VISUALK + " + "/img/c6.png'/></td><td background='" + " + Main.HOST_NAME + Main.HOST_VISUALK + " + "/img/c7.png'></td><td><img src='" + " + Main.HOST_NAME + Main.HOST_VISUALK + " + "/img/c8.png'/></td></tr></tbody></table>"
+        htmlFills += "</div></td><td background='" + Main.HOST_NAME + Main.HOST_VISUALK + "/img/c5.png'></td></tr>"
+                + "<tr><td><img src='" + Main.HOST_NAME + Main.HOST_VISUALK + "/img/c6.png'/></td><td background='" + Main.HOST_NAME + Main.HOST_VISUALK + "/img/c7.png'></td><td><img src='" + Main.HOST_NAME + Main.HOST_VISUALK + "/img/c8.png'/></td></tr></tbody></table>"
                 + "</div>";
 
         DivHtml divfills = new DivHtml("fills_" + this.did);

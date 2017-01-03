@@ -4,6 +4,7 @@
 package visualk.html5;
 
 import java.util.LinkedList;
+import visualk.Main;
 
 /**
  * @author �lex
@@ -43,12 +44,12 @@ public class MenuLinkBar {
     }
 
     public void addMenuLink(String label, String onclick, String status, ClassCSS css) {
-       
+       this.cssMenuBar=css;
         optionsMenu.add(new LinkHtml(css.getId(), label, "#", onclick, "", status));
     }
 
     public void addMenuLink(String label, String onclick, String params, String status, ClassCSS css) {
-        
+        this.cssMenuBar = css;
         optionsMenu.add(new LinkHtml(css.getId(), label, "#", onclick, params, status));
     }
 
@@ -85,19 +86,20 @@ public class MenuLinkBar {
         }
 
         for (int n = 0; n < optionsMenu.size(); n++) {
-            returnHtml += optionsMenu.get(n).toHtml();
+             returnHtml += "<div style=\"padding:10px\">"+optionsMenu.get(n).toHtml()+"</div>";
             if (n < optionsMenu.size() - 1) {
-                returnHtml += htmlChar + htmlChar;
+                returnHtml += htmlChar;
             }
         }
         returnHtml += "</div>";
 
-        String table = "<div id=\"" + this.cssMenuBar.getId() + "\">"
-                + "<table style=\"width: 100%;\" border=\"0\" backgroundcolor=\"black\" cellpadding=\"0\" cellspacing=\"0\">"
-                + "<tbody><tr><td><img src='/visualk/img/c1.png'/></td><td background='/visualk/img/c2.png'>" + this.title + "</td><td><img src='/visualk/img/c3.png'/></td></tr>"
-                + "<tr><td background='/visualk/img/c4.png'></td><td>" + returnHtml + "</td><td background='/visualk/img/c5.png'></td></tr>"
-                + "<tr><td><img src='/visualk/img/c6.png'/></td><td background='/visualk/img/c7.png'></td><td><img src='/visualk/img/c8.png'/></td></tr></tbody></table>"
-                + "</div>";
+     
+        
+        String table = "<table style=\"width: 100%;line-height: 0;\" border=\"0\"  cellpadding=\"0\" cellspacing=\"0\">"
+                + "<tbody><tr><td><img src='" + Main.HOST_NAME + Main.HOST_VISUALK + "/img/c1.png'/></td><td background='" + Main.HOST_NAME + Main.HOST_VISUALK + "/img/c2.png'>" + this.title + "</td><td><img src='" + Main.HOST_NAME + Main.HOST_VISUALK + "/img/c3.png'/></td></tr>"
+                + "<tr><td background='" + Main.HOST_NAME + Main.HOST_VISUALK + "/img/c4.png'></td><td>" + returnHtml + "</td><td background='" + Main.HOST_NAME + Main.HOST_VISUALK + "/img/c5.png'></td></tr>"
+                + "<tr><td><img src='" + Main.HOST_NAME + Main.HOST_VISUALK + "/img/c6.png'/></td><td background='" + Main.HOST_NAME + Main.HOST_VISUALK + "/img/c7.png'></td><td><img src='" + Main.HOST_NAME + Main.HOST_VISUALK + "/img/c8.png'/></td></tr></tbody></table>";
+
 
         return (new DivHtml(this.did).toHtml(table));
     }

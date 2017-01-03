@@ -1,11 +1,14 @@
+
 body{
-    background-color:white;
-    color:black;
+    background-color:black;
+    color:white;
     font-family:monospace;
+    
 }	
 a{
     color:yellow;
 }
+
 
 #cssWorkTitle{
     overflow: hidden;
@@ -34,7 +37,7 @@ a{
 
 #cssImages{
     text-align:center;
-    
+
     width:auto;
     height: auto;
 }
@@ -42,31 +45,42 @@ a{
 {
     right:50px;
     padding:5px 5px 5px 5px;
-    
+
     text-align:center;
-    
+
 }
 
 
-#anteriorBar{
-    position: absolute; 
-    top:10px;
-    left:10px;
-    z-index: 100;
-    text-align:center;
 
-    background:rgb(20,30,30);
-    opacity: 0.8;
-}
-
-#seguentBar{
+#navigateBar{
     position: absolute; 
     top:10px;
     right:10px;
-    z-index: 100;
     text-align:center;
-    border-color: red;
+    opacity: 0.6;
+    background:rgb(20,30,40);
+}
 
-    background:rgb(20,30,30);
-    opacity: 0.8;
+
+#menuBar{
+    position: absolute; 
+    top:10px;
+    left:10px;
+    text-align: center;
+    opacity: 0.6;
+    background:rgb(20,30,40);
+    
+}
+#submenu {
+    position: absolute;
+    top: 54px;
+    left: 30px;
+    text-align: center;
+    z-index: 100;
+    visibility: hidden;
+}
+#cmenuitem{
+    padding: 8px;
+
+
 }

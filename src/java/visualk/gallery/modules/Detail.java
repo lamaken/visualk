@@ -22,45 +22,58 @@ public class Detail extends Xhtml5 {
     private static final String CSS_DETAIL_FILE_NAME = Main.HOST_NAME + Main.HOST_VISUALK + "/gallery/css/detail.css";
     private static final String JS_DETAIL_FILE_NAME = Main.HOST_NAME + Main.HOST_VISUALK + "/gallery/js/detail.js";
 
-    private final MenuLinkBar upperSeguentMenuBar,upperAnteriorMenuBar;
+    private final MenuLinkBar navigateMenuLinkBar;
+   // private final MenuBar menuBar;
     private final ClassCSS cssSeguentMenuBar = new ClassCSS();
     private final ClassCSS cssAnteriorMenuBar = new ClassCSS();
+ //   private final ClassCSS cssMenuBar = new ClassCSS();
+    
     
 
     private String idWork;
 
     private void addMyStyles() {
         cssStyles.addFileCSS(CSS_DETAIL_FILE_NAME);
-        
+
         cssSeguentMenuBar.setColor("green");
-        cssAnteriorMenuBar.setColor("green");
+        cssAnteriorMenuBar.setColor("blue");
+  //      cssMenuBar.setColor("red");
+        
         cssStyles.addStyle(cssSeguentMenuBar);
         cssStyles.addStyle(cssAnteriorMenuBar);
+ //       cssStyles.addStyle(cssMenuBar);
         
-        
+
     }
 
     public Detail(String title, String jsonWork) {
         super("Gallery", title, "detail");
-        
+
         addMyStyles();
+
+        navigateMenuLinkBar = new MenuLinkBar("navigateBar", cssSeguentMenuBar);
+        navigateMenuLinkBar.setVertical();
+        navigateMenuLinkBar.addMenuLink("seguent >>", "seguent", "passes a la següent obra.", cssSeguentMenuBar);//label,function,help
+        navigateMenuLinkBar.addMenuLink("<< anterior", "anterior", "passes a l'obra anterior.", cssAnteriorMenuBar);//label,function,help
         
-        upperSeguentMenuBar = new MenuLinkBar("seguentBar", cssSeguentMenuBar);
-        upperSeguentMenuBar.setHorizontal();
-        upperSeguentMenuBar.addMenuLink("seguent >>", "seguent", "passes a la següent obra.", cssSeguentMenuBar);//label,function,help
-        
-        upperAnteriorMenuBar = new MenuLinkBar("anteriorBar", cssAnteriorMenuBar);
-        upperAnteriorMenuBar.setHorizontal();
-        upperAnteriorMenuBar.addMenuLink("<< anterior", "anterior", "passes a l`anterior obra.", cssAnteriorMenuBar);//label,function,help
-     
+/*
+        menuBar = new MenuBar("menuBar", cssAnteriorMenuBar);
+        menuBar.setVertical();
+        menuBar.addMenuItem("1", "Gestió de llogaters", "funcio obrir llogaters", "parametres de la funcio",
+                "lo que surt a l`estatus",
+                "");//parent
+        menuBar.addMenuItem("2", "Hola", "funcio obrir llogaters", "parametres de la funcio",
+                "lo que surt a l`estatus",
+                "");//parent
+*/
         JSONObject o = new JSONObject(jsonWork);
         idWork = o.get("idWork").toString();
         System.out.println("idWork:".contains(idWork));
     }
 
     public String toHtml() {
-        
-        this.useBackgroundRemoteMediaImage("http://alkasoft.org/visualk/art/Mixed?mx=5&my=5&cellw=2");
+
+        //this.useBackgroundRemoteMediaImage("http://alkasoft.org/visualk/art/Mixed?mx=5&my=5&cellw=2");
 
         this.clearBodyData();
         this.clearDataForm();
@@ -69,13 +82,12 @@ public class Detail extends Xhtml5 {
 
         this.vsFunctions.addFile(JS_DETAIL_FILE_NAME);
 
-        vsFunctions.addFunction("seguent", "", "document.fmain.what.value='seguent';document.fmain.submit();}");
-        vsFunctions.addFunction("anterior", "", "document.fmain.what.value='anterior';document.fmain.submit();}");
-        
+        vsFunctions.addFunction("seguent", "", "document.fmain.what.value='seguent';document.fmain.submit();");
+        vsFunctions.addFunction("anterior", "", "document.fmain.what.value='anterior';document.fmain.submit();");
 
         this.addDataForm("<input type=\"hidden\" name=\"where\" value=\"detail\"/>");       //detail    
         this.addDataForm("<input type=\"hidden\" name=\"what\" value=\"\"/>");              //next,prev,zoom,buy
-        this.addDataForm("<input type=\"hidden\" name=\"option\" value=\""+idWork+"\"/>");  //idWork
+        this.addDataForm("<input type=\"hidden\" name=\"option\" value=\"" + idWork + "\"/>");  //idWork
 
         String workTitle = "";
         String authorName = "";
@@ -119,16 +131,12 @@ public class Detail extends Xhtml5 {
         this.addBodyData(new DivHtml("cssAuthorName").toHtml(authorName));
         this.addBodyData(new DivHtml("cssWorkDescription").toHtml(workDescription));
         this.addBodyData(new DivHtml("cssImages").toHtml(workImage));
- 
+
         String footer = "<br/><br/>";
         this.addBodyData(new DivHtml("cssFooter").toHtml(footer));
-        
-        
-        
-        this.addBodyData(upperAnteriorMenuBar.toHtml());
-        this.addBodyData(upperSeguentMenuBar.toHtml());
-        
-        
+
+       // this.addBodyData(menuBar.toHtml());
+        this.addBodyData(navigateMenuLinkBar.toHtml());
 
         String ret = this.getHtml();
         System.out.println("return Detail.");

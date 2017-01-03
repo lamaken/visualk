@@ -40,7 +40,7 @@ public class MenuItem extends LinkHtml{
         String tagOnClick = "";
         tagStatus = "onmouseout=\"statusBar('" + "CMCB.MAIN_TITLE" + "')\" onmouseover=\"statusBar(\'" + this.status + "\')\"";       
         tagOnClick = "onclick=\"" + this.onclickAction + "\"";
-        return ("<a   id=\""+this.id_item+"\" " + tagStatus + " " + tagOnClick + " href=\"" + this.link + "\" >" + this.label.toHtml() + "</a>");
+        return ("<a  id=\""+this.id_item+"\" " + tagStatus + " " + tagOnClick + " href=\"" + this.link + "\" >" + this.label.toHtml() + "</a>");
     }
     
     public String raw(String ch){
