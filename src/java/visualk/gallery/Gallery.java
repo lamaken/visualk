@@ -33,6 +33,8 @@ public class Gallery extends HttpServlet {
     public static final String URL_PATH = Main.HOST_NAME + Main.HOST_VISUALK + "/gallery";
 
     private User user;
+    
+    Integer idWork=0; //ara es comu a tothom hauria destar 
 
     //Session sessioN;
     /**
@@ -66,11 +68,22 @@ public class Gallery extends HttpServlet {
             if (!what.equals("marxar")) {
 
                 if (where.equals("detail")) {
-                    String idWork = request.getParameter("idWork");
-                    if ((idWork == null) || (idWork.isEmpty())) {
-                        idWork = "0";
-                    }
-
+                    
+                    String option = request.getParameter("option");
+                    
+                    if(option!=null)
+                    idWork = Integer.parseInt(option);
+                    
+                    
+                    
+                    
+                    if(what.equals("anterior"))idWork--;
+                    if(what.equals("seguent"))idWork++;
+                            
+                    if(idWork<0)idWork=0;
+                    if(idWork>4)idWork=4;
+                    
+                    
                     JSONObject parameters = new JSONObject();
                     parameters.put("idWork", idWork);
 

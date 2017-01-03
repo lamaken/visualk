@@ -117,6 +117,7 @@ public class Detail extends Xhtml5 {
                     }
                 }
             }
+                  
 
         } catch (Exception e) {
             workTitle = "TITULO DE LA OBRA";

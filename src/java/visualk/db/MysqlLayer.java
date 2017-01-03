@@ -19,8 +19,19 @@ public class MysqlLayer {
     protected ResultSet result = null;
     protected PreparedStatement sql = null;
 
-    public MysqlLayer(String user,String pass,String db) {
-        setDBValues("127.0.0.1",user,pass,db);
+    public MysqlLayer(String user, String pass, String db) {
+        setDBValues("127.0.0.1", user, pass, db);
+
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+        } catch (Exception e) {
+        }
+        String cadenaConn = "jdbc:mysql://" + dbServer + ":3306/" + dbDataBase;
+        try {
+            dbConn = DriverManager.getConnection(cadenaConn, dbUser, dbPassword);
+        } catch (Exception e) {
+        }
+
         result = null;
     }
 
@@ -80,34 +91,15 @@ public class MysqlLayer {
         disconnect();
     }
 
-    public ResultSet queryDB(String sqlQuery) {
+    public ResultSet queryDB(String sqlQuery) throws SQLException, ClassNotFoundException {
         PreparedStatement sql = null;
 
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        try {
-            String cadenaConn = "jdbc:mysql://" + dbServer + ":3306/" + dbDataBase;
-            dbConn = DriverManager.getConnection(cadenaConn, dbUser, dbPassword);
-            sql = dbConn.prepareStatement(sqlQuery);
-            result = sql.executeQuery();
-            
-            if (result == null){
-                System.out.println("SQL Error mysql, result is null");
-                
-            }
+        sql = dbConn.prepareStatement(sqlQuery);
+        result = sql.executeQuery();
 
-            // Close the result set, statement and the connection
-        } catch (SQLException s) {
-            s.printStackTrace();
-            System.out.println("SQL Error on Open jdbc:mysql://" + dbServer + ":3306/" + dbDataBase);
-            System.out.println("SQL Error on Open:" + dbUser + "," + dbPassword);
-            //TODO:control d'excepcio
+        if (result == null) {
+            System.out.println("SQL Error mysql, result is null");
             disconnect();
-
         }
 
         return (result);
