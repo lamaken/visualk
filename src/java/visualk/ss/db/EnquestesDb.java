@@ -2,6 +2,8 @@ package visualk.ss.db;
 
 import java.sql.*;
 import java.util.LinkedList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import visualk.db.MysqlLayer;
 
 import visualk.ss.modules.generator.ComboForm;
@@ -45,7 +47,14 @@ public class EnquestesDb extends MysqlLayer {
         }
 
         String sql = "select (max(" + id + ")+1) as ret from " + table;
-        ResultSet myResult = this.queryDB(sql);
+        ResultSet myResult = null;
+        try {
+            myResult = this.queryDB(sql);
+        } catch (SQLException ex) {
+            Logger.getLogger(EnquestesDb.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(EnquestesDb.class.getName()).log(Level.SEVERE, null, ex);
+        }
         try {
             while (myResult.next()) {
                 ret = myResult.getString("ret");//eliminem totes les opcions
@@ -95,7 +104,14 @@ public class EnquestesDb extends MysqlLayer {
     private void eliminaPregunta(String id_pregunta) {
         //seleccionem totes les opcions de selecció per una pregunta
         String sql = "select tp.id_select as op from tipusPreg tp where  tp.id_select and tp.id_tipus=\"00000000000000000003\" and tp.id_pregunta = \"" + id_pregunta + "\";";
-        ResultSet myResult = this.queryDB(sql);
+        ResultSet myResult = null;
+        try {
+            myResult = this.queryDB(sql);
+        } catch (SQLException ex) {
+            Logger.getLogger(EnquestesDb.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(EnquestesDb.class.getName()).log(Level.SEVERE, null, ex);
+        }
         try {
             while (myResult.next()) {
                 String option = myResult.getString("op");//eliminem totes les opcions
@@ -109,9 +125,15 @@ public class EnquestesDb extends MysqlLayer {
     }
 
     private void eliminaTotAbans(String id_enquesta) {
-        ResultSet myResult;
+        ResultSet myResult = null;
         String sql = "select id_pregunta from preguntes where id_enquesta = \"" + id_enquesta + "\"";
-        myResult = this.queryDB(sql);
+        try {
+            myResult = this.queryDB(sql);
+        } catch (SQLException ex) {
+            Logger.getLogger(EnquestesDb.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(EnquestesDb.class.getName()).log(Level.SEVERE, null, ex);
+        }
         try {
             while (myResult.next()) {
                 String id_pregunta = myResult.getString("id_pregunta");//eliminem totes les opcions
@@ -125,40 +147,76 @@ public class EnquestesDb extends MysqlLayer {
     }
 
     public ResultSet getPreguntes(String id) {
-        ResultSet myResult;
-        myResult = this.queryDB("SELECT id_pregunta FROM preguntes where id_enquesta=\"" + id + "\" order by ordre;");
+        ResultSet myResult = null;
+        try {
+            myResult = this.queryDB("SELECT id_pregunta FROM preguntes where id_enquesta=\"" + id + "\" order by ordre;");
+        } catch (SQLException ex) {
+            Logger.getLogger(EnquestesDb.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(EnquestesDb.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return (myResult);
     }
 
     public ResultSet getSelectsLabels(String id) {
-        ResultSet myResult;
-        myResult = this.queryDB("SELECT caption FROM selectt where id_object=\"" + id + "\" order by ordre");
+        ResultSet myResult = null;
+        try {
+            myResult = this.queryDB("SELECT caption FROM selectt where id_object=\"" + id + "\" order by ordre");
+        } catch (SQLException ex) {
+            Logger.getLogger(EnquestesDb.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(EnquestesDb.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         return (myResult);
     }
 
     public ResultSet getObjects(String id) {
-        ResultSet myResult;
-        myResult = this.queryDB("SELECT t.id_select as id_select,t.id_tp,t.id_pregunta,tp.name as name,t.caption as caption,t.ordre FROM tipusPreg t, tipus tp"
-                + " where t.id_tipus = tp.id and t.id_pregunta=\"" + id + "\" order by t.ordre;");
+        ResultSet myResult = null;
+        try {
+            myResult = this.queryDB("SELECT t.id_select as id_select,t.id_tp,t.id_pregunta,tp.name as name,t.caption as caption,t.ordre FROM tipusPreg t, tipus tp"
+                    + " where t.id_tipus = tp.id and t.id_pregunta=\"" + id + "\" order by t.ordre;");
+        } catch (SQLException ex) {
+            Logger.getLogger(EnquestesDb.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(EnquestesDb.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return (myResult);
     }
 
     public ResultSet getEnquesta(String id) {
-        ResultSet myResult;
-        myResult = this.queryDB("select id_enquesta,nm_enquesta,dsc_enquesta,dt_creacio,propietari from enquesta where id_enquesta=\"" + id + "\" and propietari=\"" + this.propietari + "\";");
+        ResultSet myResult = null;
+        try {
+            myResult = this.queryDB("select id_enquesta,nm_enquesta,dsc_enquesta,dt_creacio,propietari from enquesta where id_enquesta=\"" + id + "\" and propietari=\"" + this.propietari + "\";");
+        } catch (SQLException ex) {
+            Logger.getLogger(EnquestesDb.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(EnquestesDb.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return (myResult);
     }
 
     public ResultSet getLlista() {
-        ResultSet myResult;
-        myResult = this.queryDB("select id_enquesta,nm_enquesta,dt_creacio,propietari from enquesta where propietari=\"" + this.propietari + "\" and id_enquesta not in (select id_enquesta from publicacions) order by dt_creacio;");
+        ResultSet myResult = null;
+        try {
+            myResult = this.queryDB("select id_enquesta,nm_enquesta,dt_creacio,propietari from enquesta where propietari=\"" + this.propietari + "\" and id_enquesta not in (select id_enquesta from publicacions) order by dt_creacio;");
+        } catch (SQLException ex) {
+            Logger.getLogger(EnquestesDb.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(EnquestesDb.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return (myResult);
     }
 
     public ResultSet getLlistaPub() {
-        ResultSet myResult;
-        myResult = this.queryDB("select a.id_pub as id_pub, b.id_enquesta as id_enquesta,b.nm_enquesta as nm_enquesta from publicacions a, enquesta b where a.id_enquesta=b.id_enquesta and b.propietari=\"" + this.propietari + "\" order by b.dt_creacio;");
+        ResultSet myResult = null;
+        try {
+            myResult = this.queryDB("select a.id_pub as id_pub, b.id_enquesta as id_enquesta,b.nm_enquesta as nm_enquesta from publicacions a, enquesta b where a.id_enquesta=b.id_enquesta and b.propietari=\"" + this.propietari + "\" order by b.dt_creacio;");
+        } catch (SQLException ex) {
+            Logger.getLogger(EnquestesDb.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(EnquestesDb.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return (myResult);
     }
 

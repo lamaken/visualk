@@ -2,6 +2,8 @@ package visualk.gallery.db;
 
 import java.awt.Color;
 import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import visualk.db.MysqlLayer;
 import visualk.gallery.objects.Artist;
@@ -70,8 +72,14 @@ public class DbGallery extends MysqlLayer{
     }
 
     public ResultSet listHrzns() {
-        ResultSet myResult;
-        myResult = queryDB("SELECT * FROM hrzns WHERE namehrz<>'wellcome' order by dt desc;");
+        ResultSet myResult = null;
+        try {
+            myResult = queryDB("SELECT * FROM hrzns WHERE namehrz<>'wellcome' order by dt desc;");
+        } catch (SQLException ex) {
+            Logger.getLogger(DbGallery.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DbGallery.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         return (myResult);
 

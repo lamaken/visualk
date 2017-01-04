@@ -1,6 +1,8 @@
 package visualk.ss.db;
 
 import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import visualk.db.AuthAdapter;
 import visualk.db.MysqlLayer;
 
@@ -10,7 +12,13 @@ public class Auth implements AuthAdapter {
     private ResultSet myResult;
 
     public boolean canEnter(String alias, String clau) {
-        this.myResult = mySQL.queryDB("select * from login where USER_NAME=\"" + alias + "\" and USER_PASSW=\"" + clau + "\"");
+        try {
+            this.myResult = mySQL.queryDB("select * from login where USER_NAME=\"" + alias + "\" and USER_PASSW=\"" + clau + "\"");
+        } catch (SQLException ex) {
+            Logger.getLogger(Auth.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Auth.class.getName()).log(Level.SEVERE, null, ex);
+        }
         if (myResult != null) {
             try {
                 if (this.myResult.first()) {
@@ -32,7 +40,13 @@ public class Auth implements AuthAdapter {
         String sentence;
         sentence = "select * from usuaris where (passw is NULL or passw=\"" + password + "\") and email=\"" + email + "\"";
         System.out.print(sentence);
-        this.myResult = mySQL.queryDB(sentence);
+        try {
+            this.myResult = mySQL.queryDB(sentence);
+        } catch (SQLException ex) {
+            Logger.getLogger(Auth.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Auth.class.getName()).log(Level.SEVERE, null, ex);
+        }
         if (myResult != null) {
             try {
                 if (this.myResult.first()) {
@@ -54,7 +68,13 @@ public class Auth implements AuthAdapter {
         String sentence;
         sentence = "select id_pub from publicacions where anonima=1 and codi_access=\"" + code + "\" and dt_start<NOW() and NOW()<dt_end";
 
-        this.myResult = mySQL.queryDB(sentence);
+        try {
+            this.myResult = mySQL.queryDB(sentence);
+        } catch (SQLException ex) {
+            Logger.getLogger(Auth.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Auth.class.getName()).log(Level.SEVERE, null, ex);
+        }
         if (myResult != null) {
             try {
                 if (this.myResult.first()) {

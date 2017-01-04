@@ -4,21 +4,33 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import visualk.db.MysqlLayer;
 import visualk.gallery.objects.Artist;
 import visualk.gallery.objects.Resource;
 import visualk.gallery.objects.Work;
 
 public class DbWorks extends MysqlLayer {
+    
+    private static final String dbUser = "hrzmkr_user";
+    private static final String dbPassword = "hrzmkr_password";
+    private static final String dbDb = "hrzmkr_db";
+    
+    
 
-    public DbWorks(String user, String pass, String db) {
-        super(user, pass, db);
+    public DbWorks() {
+        super(dbUser, dbPassword, dbDb);
     }
 
     public Work getWorkById(Integer id) throws SQLException {
         Work work = new Work();
-        ResultSet myResult;
-        myResult = queryDB("SELECT * FROM works where idwork = " + id);
+        ResultSet myResult=null;
+        try {
+            myResult = queryDB("SELECT * FROM works where idwork = " + id);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DbWorks.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         if (myResult != null) {
             while (myResult.next()) {
@@ -41,8 +53,12 @@ public class DbWorks extends MysqlLayer {
 
     private ArrayList<Artist> getArtistsFromWorkId(Integer id) throws SQLException {
         ArrayList<Artist> artists = new ArrayList<Artist>();
-        ResultSet myResult;
-        myResult = queryDB("SELECT * FROM artists,artists_works where artists.idartist=artists_works.idartist AND artists_works.idwork = " + id);
+        ResultSet myResult = null;
+        try {
+            myResult = queryDB("SELECT * FROM artists,artists_works where artists.idartist=artists_works.idartist AND artists_works.idwork = " + id);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DbWorks.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         if (myResult != null) {
             while (myResult.next()) {
@@ -63,8 +79,12 @@ public class DbWorks extends MysqlLayer {
 
     private ArrayList<Resource> getResourcesFromWorkId(Integer id) throws SQLException {
         ArrayList<Resource> resources = new ArrayList<>();
-        ResultSet myResult;
-        myResult = queryDB("SELECT * FROM resources WHERE idwork = " + id);
+        ResultSet myResult=null;
+        try {
+            myResult = queryDB("SELECT * FROM resources WHERE idwork = " + id);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DbWorks.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         if (myResult != null) {
             while (myResult.next()) {

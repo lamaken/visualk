@@ -2,6 +2,8 @@ package visualk.hrz.db;
 
 import java.awt.Color;
 import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import visualk.db.MysqlLayer;
 import visualk.hrz.objects.Horizon;
@@ -77,17 +79,29 @@ public class DbHorizons extends MysqlLayer {
     }
 
     public ResultSet listHrzns() {
-        ResultSet myResult;
-        myResult = this.queryDB("SELECT * FROM hrzns WHERE namehrz<>'wellcome' order by dt desc;");
+        ResultSet myResult=null;
+        try {
+            myResult = this.queryDB("SELECT * FROM hrzns WHERE namehrz<>'wellcome' order by dt desc;");
+        } catch (SQLException ex) {
+            Logger.getLogger(DbHorizons.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DbHorizons.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         return (myResult);
 
     }
 
     public ResultSet listHrzns(Integer offset, Integer limit, Integer width, Integer height) {
-        ResultSet myResult;
+        ResultSet myResult=null;
         String onlySize = "(canvasWidth<=" + width + " and  canvasHeigth<=" + height + ")";
-        myResult = this.queryDB("SELECT * FROM hrzns WHERE namehrz<>'wellcome' and " + onlySize + " order by dt desc limit " + offset + "," + limit + " ;");
+        try {
+            myResult = this.queryDB("SELECT * FROM hrzns WHERE namehrz<>'wellcome' and " + onlySize + " order by dt desc limit " + offset + "," + limit + " ;");
+        } catch (SQLException ex) {
+            Logger.getLogger(DbHorizons.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DbHorizons.class.getName()).log(Level.SEVERE, null, ex);
+        }
         System.out.print(onlySize);
         return (myResult);
 
@@ -96,8 +110,14 @@ public class DbHorizons extends MysqlLayer {
     public Horizon getHrznBD(String name) {
 
         Horizon temp = new Horizon(name);
-        ResultSet myResult;
-        myResult = this.queryDB("SELECT * FROM hrzns where nameHrz='" + name + "'");
+        ResultSet myResult=null;
+        try {
+            myResult = this.queryDB("SELECT * FROM hrzns where nameHrz='" + name + "'");
+        } catch (SQLException ex) {
+            Logger.getLogger(DbHorizons.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DbHorizons.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         if (myResult != null) {
 

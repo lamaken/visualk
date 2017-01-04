@@ -73,7 +73,7 @@ public class Detail extends Xhtml5 {
 
     public String toHtml() {
 
-        //this.useBackgroundRemoteMediaImage("http://alkasoft.org/visualk/art/Mixed?mx=5&my=5&cellw=2");
+        this.useBackgroundRemoteMediaImage("");
 
         this.clearBodyData();
         this.clearDataForm();
@@ -96,16 +96,16 @@ public class Detail extends Xhtml5 {
 
         Work work = null;
         try {
-            work = new DbWorks("user", "pass", "gallery_db").getWorkById(Integer.parseInt(idWork));
+            work = new DbWorks().getWorkById(Integer.parseInt(idWork));
 
             if (work != null) {
-                workTitle = work.getTitle();
+                workTitle = work.getTitle();  
                 workDescription = work.getDescription();
 
                 ArrayList<Artist> artists = work.getArtists();
                 if (artists != null) {
                     for (int i = 0; i < artists.size(); i++) {
-                        authorName += " & " + artists.get(i).getName();
+                        authorName += artists.get(i).getSurname()+", "+artists.get(i).getName();
                     }
                 }
                 ArrayList<Resource> resources = work.getResources();
@@ -129,13 +129,16 @@ public class Detail extends Xhtml5 {
 
         workDescription = workDescription + workDescription;
         this.addBodyData(new DivHtml("cssWorkTitle").toHtml(workTitle));
-        this.addBodyData(new DivHtml("cssAuthorName").toHtml(authorName));
+        
         this.addBodyData(new DivHtml("cssWorkDescription").toHtml(workDescription));
-        this.addBodyData(new DivHtml("cssImages").toHtml(workImage));
 
+        this.addBodyData(new DivHtml("cssImages").toHtml(workImage));
+        this.addBodyData(new DivHtml("cssAuthorName").toHtml(authorName));
+
+        
         String footer = "<br/><br/>";
         this.addBodyData(new DivHtml("cssFooter").toHtml(footer));
-
+        
        // this.addBodyData(menuBar.toHtml());
         this.addBodyData(navigateMenuLinkBar.toHtml());
 

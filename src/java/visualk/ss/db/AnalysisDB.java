@@ -1,6 +1,9 @@
 package visualk.ss.db;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import visualk.db.MysqlLayer;
 
 public class AnalysisDB extends MysqlLayer {
@@ -10,7 +13,7 @@ public class AnalysisDB extends MysqlLayer {
     }
 
     public ResultSet getRespostes(int tipus, String tp) {
-        ResultSet myResult;
+        ResultSet myResult = null;
         String sentence = "";
 
         if (tipus == 3) {
@@ -20,13 +23,19 @@ public class AnalysisDB extends MysqlLayer {
             sentence = "select a.respuesta as resposta,a.usuari as usuari from respuestas a where a.id_tp = \"" + tp + "\"";
         }
 
-        myResult = this.queryDB(sentence);
+        try {
+            myResult = this.queryDB(sentence);
+        } catch (SQLException ex) {
+            Logger.getLogger(AnalysisDB.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(AnalysisDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         return (myResult);
     }
 
     public ResultSet getPreguntes(String id_enquesta) {
-        ResultSet myResult;
+        ResultSet myResult = null;
         String sentence = "select"
                 + " a.caption as caption,"
                 + " a.id_tipus as id_tipus,"
@@ -39,14 +48,26 @@ public class AnalysisDB extends MysqlLayer {
                 + " a.id_pregunta = b.id_pregunta and "
                 + " b.id_enquesta = \"" + id_enquesta + "\" "
                 + " order by b.ordre,a.ordre ";
-        myResult = this.queryDB(sentence);
+        try {
+            myResult = this.queryDB(sentence);
+        } catch (SQLException ex) {
+            Logger.getLogger(AnalysisDB.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(AnalysisDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return (myResult);
     }
 
     public ResultSet getLlista(String email) {
-        ResultSet myResult;
+        ResultSet myResult = null;
         String sentence = "select a.id_pub as id_pub, b.id_enquesta as id_enquesta,b.nm_enquesta as nm_enquesta from publicacions a, enquesta b where a.id_enquesta=b.id_enquesta and a.activa=1 and b.propietari=\"" + email + "\"";
-        myResult = this.queryDB(sentence);
+        try {
+            myResult = this.queryDB(sentence);
+        } catch (SQLException ex) {
+            Logger.getLogger(AnalysisDB.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(AnalysisDB.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return (myResult);
     }
 }

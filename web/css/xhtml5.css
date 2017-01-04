@@ -7,17 +7,12 @@
 */
 
 
-body{
-    background-color:black;
-    color:white;
-    font-family:monospace;
-    
-}
+
 
 
 
 #logo{
-    z-index:100;
+    z-index:50;
     left:0px;
     bottom:16px;
     position: fixed;
@@ -47,7 +42,7 @@ body{
     right: 50px; 
     height: 10px; 
     overflow: hidden;
-    color: white;
+    
     right: 50px; 
     padding:2px 2px 5px 5px;
     z-index: 100;

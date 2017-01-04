@@ -2,7 +2,7 @@
 
 
 
-window.addEventListener('resize', function (event) {
+window.addEventListener('onload', function (event) {
     console.log('resized');
     refresca();
 })

@@ -39,7 +39,7 @@
 
     <body bgcolor="black"   style="color: white">
        
-      <div style="font-size:120%;line-height:1.2;text-align:center">
+      <div style="font-size:55%;line-height:1.2;text-align:center">
         <h1><a href="https://github.com/lamaken/visualk.git">https://github.com/lamaken/visualk.git</a>
         <br/><br/>
         lamaken@gmail.com <br/>
@@ -56,9 +56,9 @@
         <a href="art/liveMosaic.html"><img  src="/visualk/art/LiveMosaic?mx=75&my=75&cellw=9&d=1"/></a>
         <a href="tubs"><img  src="/visualk/tubs/img/logo.png"/></a>
         <a href="hrz"><img  src="/visualk/hrz/Hrz?option=firma"/></a>
-        <!--a href="nine"><img src="/visualk/nine/img/logo.png"/></a>
+        <!--a href="nine"><img src="/visualk/nine/img/logo.png"/></a-->
         <!--a href="ss"><img  src="/visualk/ss/img/logo.jpeg"/></a-->
-        <a href="gallery"><img src="/visualk/gallery/img/logo.jpeg"/>gallery</a>
+        <!--a href="gallery"><img src="/visualk/gallery/img/logo.jpeg"/>gallery</a-->
     </div>
 
 </body>

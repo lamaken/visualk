@@ -2,6 +2,8 @@ package visualk.ss.db;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import visualk.db.MysqlLayer;
@@ -16,7 +18,14 @@ public class PublicacionsDb extends MysqlLayer {
 
     private String getUserId(String eml) {
         String ret = "mm";
-        ResultSet myResult = this.queryDB("select id_usuari from usuaris where email=\"" + eml + "\"");
+        ResultSet myResult = null;
+        try {
+            myResult = this.queryDB("select id_usuari from usuaris where email=\"" + eml + "\"");
+        } catch (SQLException ex) {
+            Logger.getLogger(PublicacionsDb.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(PublicacionsDb.class.getName()).log(Level.SEVERE, null, ex);
+        }
         try {
             while (myResult.next()) {
                 ret = myResult.getString("id_usuari");//eliminem totes les opcions
@@ -42,7 +51,14 @@ public class PublicacionsDb extends MysqlLayer {
         }
 
         String sql = "select (max(" + id + ")+1) as ret from " + table;
-        ResultSet myResult = this.queryDB(sql);
+        ResultSet myResult = null;
+        try {
+            myResult = this.queryDB(sql);
+        } catch (SQLException ex) {
+            Logger.getLogger(PublicacionsDb.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(PublicacionsDb.class.getName()).log(Level.SEVERE, null, ex);
+        }
         try {
             while (myResult.next()) {
                 ret = myResult.getString("ret");//eliminem totes les opcions
@@ -57,15 +73,27 @@ public class PublicacionsDb extends MysqlLayer {
     }
 
     public ResultSet loadUsuaris(String id_grup) {
-        ResultSet myResult;
+        ResultSet myResult = null;
         String sentence = "select a.email from usuaris a, grups_usuari b where a.id_usuari=b.id_usuari and b.id_grup=\"" + id_grup + "\"";
-        myResult = this.queryDB(sentence);
+        try {
+            myResult = this.queryDB(sentence);
+        } catch (SQLException ex) {
+            Logger.getLogger(PublicacionsDb.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(PublicacionsDb.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return (myResult);
     }
 
     public ResultSet loadPub(String id_pub) {
-        ResultSet myResult;
-        myResult = this.queryDB("SELECT a.id_enquesta as id_enquesta,a.id_grup as grup,a.dt_start as dt_start,a.dt_end as dt_end,a.codi_access as codi,a.activa as activa,a.anonima as anonima,b.nm_enquesta as nom,b.dsc_enquesta as descr FROM publicacions a, enquesta b where a.id_enquesta = b.id_enquesta and id_pub=" + id_pub);
+        ResultSet myResult = null;
+        try {
+            myResult = this.queryDB("SELECT a.id_enquesta as id_enquesta,a.id_grup as grup,a.dt_start as dt_start,a.dt_end as dt_end,a.codi_access as codi,a.activa as activa,a.anonima as anonima,b.nm_enquesta as nom,b.dsc_enquesta as descr FROM publicacions a, enquesta b where a.id_enquesta = b.id_enquesta and id_pub=" + id_pub);
+        } catch (SQLException ex) {
+            Logger.getLogger(PublicacionsDb.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(PublicacionsDb.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return (myResult);
     }
 
