@@ -74,7 +74,7 @@ a{
     position:absolute;
     text-align:center;
     color:yellow;
-    z-index: 0;
+    z-index: 50;
 
 
 }
@@ -88,7 +88,7 @@ a{
     position:absolute;
     text-align:center;
     color:red;
-    z-index: 0;
+    z-index: 50;
 }
 
 
