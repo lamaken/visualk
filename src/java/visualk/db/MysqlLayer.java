@@ -94,6 +94,14 @@ public class MysqlLayer {
     public ResultSet queryDB(String sqlQuery) throws SQLException, ClassNotFoundException {
         PreparedStatement sql = null;
 
+        String cadenaConn = "jdbc:mysql://" + dbServer + ":3306/" + dbDataBase;
+        try {
+            dbConn = DriverManager.getConnection(cadenaConn, dbUser, dbPassword);
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        
         sql = dbConn.prepareStatement(sqlQuery);
         result = sql.executeQuery();
 

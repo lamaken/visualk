@@ -68,7 +68,7 @@ public class Horizon implements Serializable {
         name = name.replace("\"", "`");
         setNameHrz(new UniqueName(8).getName());
         db.addHorizon(this, name);
-        carrega(this.getNameHrz());
+        carrega(nameHrz);
 
     }
 

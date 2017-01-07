@@ -124,11 +124,12 @@ public class Hrz extends HttpServlet {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        hrz = (Horizon) hrzns.get(INICIAL_HORIZON_NAME_SESSION);
+        
         if (hrzns.containsKey(sessionId)) {
             hrz = (Horizon) hrzns.get(sessionId);
-        } else {
-            hrz = (Horizon) hrzns.get(INICIAL_HORIZON_NAME_SESSION);
         }
+        
         ImageIO.write(hrz.getHrzImage(), "png", response.getOutputStream());
     }
 
