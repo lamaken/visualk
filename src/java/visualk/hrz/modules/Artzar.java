@@ -73,11 +73,12 @@ public class Artzar extends Xhtml5 {
 
         leftMenuBar = new MenuLinkBar("optionsBar", cssMenuBar);
         leftMenuBar.setVertical();
-        leftMenuBar.addMenuLink(Hrz.getString("label.generate.artzar.hrzmkr"), "refresca", Hrz.getString("help.generate.artzar.hrzmkr"), cssLink);//label,function,help
+        
         leftMenuBar.addMenuLink(Hrz.getString("label.save.artzar.hrzmkr"), "guarda", "'" + cssInputBox.getId()+"'", Hrz.getString("help.save.artzar.hrzmkr"), cssLink);//label,function,help
         leftMenuBar.addMenuLink(Hrz.getString("label.load.artzar.hrzmkr"), "carrega", Hrz.getString("help.load.artzar.hrzmkr"), cssLink);//label,function,help
 
         randomMenuBar = new MenuLinkBar("randomBar", cssMenuBar);
+        randomMenuBar.addMenuLink(Hrz.getString("label.generate.artzar.hrzmkr"), "refresca", Hrz.getString("help.generate.artzar.hrzmkr"), cssLink);//label,function,help
         randomMenuBar.addMenuLink(Hrz.getString("label.changeColors.artzar.hrzmkr"), "colorsRnd", Hrz.getString("help.changeColors.artzar.hrzmkr"), cssLink);//label,function,help
         randomMenuBar.addMenuLink(Hrz.getString("label.changePosition.artzar.hrzmkr"), "posicioRnd", Hrz.getString("help.changePosition.artzar.hrzmkr"), cssLink);//label,function,help
         //randomMenuBar.addMenuLink(Hrz.getString("label.changeShadow.artzar.hrzmkr"), "hombraRnd", Hrz.getString("help.changeShadow.artzar.hrzmkr"), cssLink);//label,function,help

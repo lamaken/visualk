@@ -283,7 +283,7 @@ public class Horizon implements Serializable {
         makeRandomTextura();
 
         makeRandomHorizontal();
-        makeRandomAureo();
+        
 
         makeRandomCanvas(mx, my);
 
