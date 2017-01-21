@@ -126,8 +126,10 @@ public class Hrz extends HttpServlet {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        final Horizon hrzLoaded= new Horizon(name);
+        hrzLoaded.carrega(name);
         
-        hrzns.get(sessionId).carrega(name);
+        hrzns.put(sessionId,hrzLoaded);
         ImageIO.write(hrzns.get(sessionId).getHrzImage(), "png", response.getOutputStream());
     }
 
@@ -139,9 +141,15 @@ public class Hrz extends HttpServlet {
         String sessionId = INICIAL_HORIZON_NAME_SESSION;
         try {
             sessionId = session.getId();
-
+            System.out.println("session:"+sessionId);
+            
         } catch (Exception e) {
             e.printStackTrace();
+        }
+        
+         if (!hrzns.containsKey(sessionId)) {
+             System.out.println("new session:"+sessionId);
+             hrzns.put(sessionId, new Horizon(FIRST_HRZ_NAME));
         }
 
         ImageIO.write(hrzns.get(sessionId).getHrzImage(), "png", response.getOutputStream());
@@ -220,14 +228,15 @@ public class Hrz extends HttpServlet {
             lan = Locale.getDefault();//DEFAULT_LANGUAGE
         }
 
-        HttpSession session = request.getSession(true);
         String sessionId = INICIAL_HORIZON_NAME_SESSION;
+        HttpSession session = request.getSession(true);
         try {
             sessionId = session.getId();
-
-            //hrzns.put(sessionId, hrzns.get(INICIAL_HORIZON_NAME_SESSION));
         } catch (Exception e) {
             e.printStackTrace();
+        }
+        if (!hrzns.containsKey(sessionId)) {
+            hrzns.put(sessionId, new Horizon(FIRST_HRZ_NAME));
         }
 
         ResourceBundle.clearCache();
@@ -239,10 +248,7 @@ public class Hrz extends HttpServlet {
             e.printStackTrace();
         }
 
-        if (!hrzns.containsKey(sessionId)) {
-            hrzns.put(sessionId, new Horizon(FIRST_HRZ_NAME));
-        }
-
+        
         if (pino == null) {
             pino = "0";
         }
@@ -281,8 +287,14 @@ public class Hrz extends HttpServlet {
                 switch (what) {
                     case "carrega":
                         //entra a artzar
+                        
+        
                         if(hrzns.get(sessionId).getNameHrz().equals(FIRST_HRZ_NAME))
                             hrzns.get(sessionId).makeRandom(Integer.parseInt(mx), Integer.parseInt(my));
+                        
+                       
+                       
+                       
                         break;
                     case "gen_atzar":
                         hrzns.get(sessionId).setNameHrz(new UniqueName(8).getName());
@@ -302,6 +314,7 @@ public class Hrz extends HttpServlet {
                         break;
                     case "guarda":
                         hrzns.get(sessionId).saveToFile(option); // random del pal
+                        
                         break;
                     default:
                         break;
