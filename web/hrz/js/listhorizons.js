@@ -10,7 +10,7 @@ function torna() {
     document.fmain.mx.value = window.innerWidth - 100;
     document.fmain.my.value = window.innerHeight - 100;
 
-    document.fmain.what.value = "carrega";//carrega inicial
+    document.fmain.what.value = "";//carrega inicial
 
     document.fmain.submit();
 }

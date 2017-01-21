@@ -28,7 +28,7 @@ public class Horizon implements Serializable {
      *
      */
     private static final long serialVersionUID = 24L;
-    private static final String HRZMKR_VERSION = "hrzmkr v0.32";
+    private static final String HRZMKR_VERSION = "alkasoft.hrzmkr v0.41";
 
     private final static int MAX_WIDTH = 601;
     private final static int MAX_HEIGTH = 601;
@@ -44,16 +44,16 @@ public class Horizon implements Serializable {
     private Image bmpCel;
 
     private String version = HRZMKR_VERSION;
-    private String nameHrz = "void";
-    private int topHrz = 50;
+    private String nameHrz_codiUnicIdentificador = "void";
+    private int topHrz = 250;
     private Color topHrzColor = Color.red;
     private Color bottomHrzColor = Color.blue;
-    private int canvasWidth = 300;
-    private int canvasHeigth = 100;
-    private String authorHrz = "auto";
-    private int xPal, yPal = 10;
-    private int hPalx, hPaly = 20;
-    private int alcada = 20;
+    private int canvasWidth = 500;
+    private int canvasHeigth = 500;
+    private String authorHrz_texteFooter = "auto-author Hrz_texteFooter";
+    private int xPal, yPal = 100;
+    private int hPalx, hPaly = 200;
+    private int alcada = 200;
     private Color colPal = Color.red;
     private boolean horizontal = true;
     private boolean aureaProp = false;
@@ -69,7 +69,7 @@ public class Horizon implements Serializable {
         name = name.replace("\"", "`");
         setNameHrz(new UniqueName(8).getName());
         db.addHorizon(this, name);
-        carrega(nameHrz);
+        carrega(nameHrz_codiUnicIdentificador);
 
     }
 
@@ -97,7 +97,7 @@ public class Horizon implements Serializable {
         
         System.out.println("Creating a new Horizon, name:"+name);
         
-        this.nameHrz = name;
+        this.nameHrz_codiUnicIdentificador = name;
         max_width = mx;
         max_height = my;
 
@@ -119,13 +119,13 @@ public class Horizon implements Serializable {
 
         Horizon tmp = db.getHrznBD(nom);
 
-        this.nameHrz = tmp.nameHrz;
+        this.nameHrz_codiUnicIdentificador = tmp.nameHrz_codiUnicIdentificador;
         this.topHrz = tmp.topHrz;
         this.topHrzColor = tmp.topHrzColor;
         this.bottomHrzColor = tmp.bottomHrzColor;
         this.canvasWidth = tmp.canvasWidth;
         this.canvasHeigth = tmp.canvasHeigth;
-        this.authorHrz = tmp.authorHrz;
+        this.authorHrz_texteFooter = tmp.authorHrz_texteFooter;
         this.xPal = tmp.xPal;
         this.yPal = tmp.yPal;
         this.hPalx = tmp.hPalx;
@@ -448,7 +448,7 @@ public class Horizon implements Serializable {
         g2.setColor(Color.white);
         g2.fillRect(0, this.getCanvasHeigth() + 1, this.getCanvasWidth(), 20);
         g2.setColor(Color.gray);
-        g2.drawString(this.authorHrz, 2, this.getCanvasHeigth() + 15);
+        g2.drawString(this.authorHrz_texteFooter, 2, this.getCanvasHeigth() + 15);
 
         g2.drawRect(0, 0, this.getCanvasWidth() - 1, this.getCanvasHeigth() + 20);
         g2.dispose();
@@ -457,11 +457,11 @@ public class Horizon implements Serializable {
     }
 
     public String getNameHrz() {
-        return nameHrz;
+        return nameHrz_codiUnicIdentificador;
     }
 
     public void setNameHrz(String nameHrz) {
-        this.nameHrz = nameHrz;
+        this.nameHrz_codiUnicIdentificador = nameHrz;
     }
 
     public int getTopHrz() {
@@ -505,11 +505,11 @@ public class Horizon implements Serializable {
     }
 
     public String getAuthorHrz() {
-        return authorHrz;
+        return authorHrz_texteFooter;
     }
 
     public void setAuthorHrz(String authorHrz) {
-        this.authorHrz = authorHrz;
+        this.authorHrz_texteFooter = authorHrz;
     }
 
     public int getxPal() {

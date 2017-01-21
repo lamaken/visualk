@@ -151,7 +151,7 @@ public class Hrz extends HttpServlet {
              System.out.println("new session:"+sessionId);
              hrzns.put(sessionId, new Horizon(FIRST_HRZ_NAME));
         }
-
+        
         ImageIO.write(hrzns.get(sessionId).getHrzImage(), "png", response.getOutputStream());
     }
 
@@ -286,16 +286,9 @@ public class Hrz extends HttpServlet {
                 // }
                 switch (what) {
                     case "carrega":
-                        //entra a artzar
+                      
+                        hrzns.get(sessionId).makeRandom(Integer.parseInt(mx), Integer.parseInt(my));
                         
-        
-                        if(hrzns.get(sessionId).getNameHrz().equals(FIRST_HRZ_NAME))
-                            hrzns.get(sessionId).makeRandom(Integer.parseInt(mx), Integer.parseInt(my));
-                        
-                       
-                       
-                       
-                        break;
                     case "gen_atzar":
                         hrzns.get(sessionId).setNameHrz(new UniqueName(8).getName());
                         hrzns.get(sessionId).makeRandom(Integer.parseInt(mx), Integer.parseInt(my));//random de tot
