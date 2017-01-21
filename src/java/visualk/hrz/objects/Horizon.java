@@ -30,8 +30,8 @@ public class Horizon implements Serializable {
     private static final long serialVersionUID = 24L;
     private static final String HRZMKR_VERSION = "alkasoft.hrzmkr v0.41";
 
-    private final static int MAX_WIDTH = 601;
-    private final static int MAX_HEIGTH = 601;
+    private final static int MAX_WIDTH = 151;
+    private final static int MAX_HEIGTH = 303;
 
     private int max_width = MAX_WIDTH;
     private int max_height = MAX_HEIGTH;
@@ -48,8 +48,8 @@ public class Horizon implements Serializable {
     private int topHrz = 250;
     private Color topHrzColor = Color.red;
     private Color bottomHrzColor = Color.blue;
-    private int canvasWidth = 500;
-    private int canvasHeigth = 500;
+    private int canvasWidth = 150;
+    private int canvasHeigth = 50;
     private String authorHrz_texteFooter = "auto-author Hrz_texteFooter";
     private int xPal, yPal = 100;
     private int hPalx, hPaly = 200;
@@ -90,7 +90,8 @@ public class Horizon implements Serializable {
     }
 
     public Horizon(String name) {
-       this(name,MAX_WIDTH,MAX_HEIGTH);
+        this(name,MAX_WIDTH,MAX_HEIGTH);
+        
     }
 
     public Horizon(String name, int mx, int my) {
@@ -108,7 +109,8 @@ public class Horizon implements Serializable {
         loadTextura();// carreguem textura del terra
 
         loadCel();// carreguem textura del cel
-
+        
+        makeRandom(mx,my);//si es penja com a minim que sigui bonics
     }
 
     private int getAureo(int mida) {
@@ -117,7 +119,15 @@ public class Horizon implements Serializable {
 
     public void carrega(String nom) {
 
-        Horizon tmp = db.getHrznBD(nom);
+        Horizon tmp=null;
+        try{
+            tmp = db.getHrznBD(nom);
+        }catch (Exception e){
+            tmp = new Horizon(new UniqueName(8).getName(),350,250);
+            
+            
+            tmp.authorHrz_texteFooter="eps! "+e.getMessage();
+        }
 
         this.nameHrz_codiUnicIdentificador = tmp.nameHrz_codiUnicIdentificador;
         this.topHrz = tmp.topHrz;
@@ -235,6 +245,8 @@ public class Horizon implements Serializable {
     }
 
     public void makeRandom(int mx, int my) {
+        this.nameHrz_codiUnicIdentificador=new UniqueName(8).getName();
+        
         makeRandomTextura();
 
         makeRandomHorizontal();
