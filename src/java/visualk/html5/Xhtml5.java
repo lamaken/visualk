@@ -19,6 +19,8 @@ public class Xhtml5 {
     
     private static String SERVLET_URL;
     
+    int instance=0;
+    
     
     private String title = "default title";
     public VsFunctions vsFunctions;
@@ -40,6 +42,7 @@ public class Xhtml5 {
             + "}(document, 'script', 'facebook-jssdk'));</script>";
 
     public Xhtml5(String appServlet,String title, String where) {
+        System.out.println("xhtml5 new instance!:"+instance);
 
         SERVLET_URL = Main.HOST_NAME + Main.HOST_VISUALK +"/"+ appServlet;
         this.vsFunctions = new VsFunctions();

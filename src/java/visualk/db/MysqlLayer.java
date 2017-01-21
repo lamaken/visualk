@@ -27,10 +27,11 @@ public class MysqlLayer {
         } catch (Exception e) {
         }
         String cadenaConn = "jdbc:mysql://" + dbServer + ":3306/" + dbDataBase;
+          if(dbConn==null){
         try {
             dbConn = DriverManager.getConnection(cadenaConn, dbUser, dbPassword);
         } catch (Exception e) {
-        }
+        }}
 
         result = null;
     }

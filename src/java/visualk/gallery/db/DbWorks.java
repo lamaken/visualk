@@ -17,14 +17,16 @@ public class DbWorks extends MysqlLayer {
     private static final String dbPassword = "hrzmkr_password";
     private static final String dbDb = "hrzmkr_db";
     
+    Work work = new Work();
+    ArrayList<Artist> artists = new ArrayList<Artist>();
+    Artist artist = new Artist();
     
-
     public DbWorks() {
         super(dbUser, dbPassword, dbDb);
     }
 
     public Work getWorkById(Integer id) throws SQLException {
-        Work work = new Work();
+        
         ResultSet myResult=null;
         try {
             myResult = queryDB("SELECT * FROM works where idwork = " + id);
@@ -52,7 +54,7 @@ public class DbWorks extends MysqlLayer {
     }
 
     private ArrayList<Artist> getArtistsFromWorkId(Integer id) throws SQLException {
-        ArrayList<Artist> artists = new ArrayList<Artist>();
+        artists.clear();
         ResultSet myResult = null;
         try {
             myResult = queryDB("SELECT * FROM artists,artists_works where artists.idartist=artists_works.idartist AND artists_works.idwork = " + id);
@@ -62,7 +64,7 @@ public class DbWorks extends MysqlLayer {
 
         if (myResult != null) {
             while (myResult.next()) {
-                Artist artist = new Artist();
+                
                 artist.setIdartist(myResult.getInt("idartist"));
                 artist.setAlias(myResult.getString("alias"));
                 artist.setName(myResult.getString("name"));

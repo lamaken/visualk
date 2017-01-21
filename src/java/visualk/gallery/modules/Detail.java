@@ -46,12 +46,15 @@ public class Detail extends Xhtml5 {
 
     }
     public Detail() {
+
      super("Gallery", "idle.", "detail");
      
     }
 
-    public Detail(String title, String jsonWork) {
+    public Detail(String title) {
         super("Gallery", title, "detail");
+
+    
 
         addMyStyles();
 
@@ -60,11 +63,13 @@ public class Detail extends Xhtml5 {
         navigateMenuLinkBar.addMenuLink("seguent >>", "seguent", "passes a la següent obra.", cssSeguentMenuBar);//label,function,help
         navigateMenuLinkBar.addMenuLink("<< anterior", "anterior", "passes a l'obra anterior.", cssAnteriorMenuBar);//label,function,help
         
-        idWork = jsonWork.split("=")[1];
-        System.out.println("idWork:".contains(idWork));
+
     }
 
-    public String toHtml() {
+    public String toHtml(String jsonWork) {
+        
+        idWork = jsonWork.split("=")[1];
+        System.out.println("idWork:".contains(idWork));
 
         this.useBackgroundRemoteMediaImage("");
 
@@ -108,6 +113,7 @@ public class Detail extends Xhtml5 {
                        workImage += "<img src=\"";
                        workImage += Main.HOST_NAME+resources.get(i).getUrl();
                        workImage += "\" class=\"cssImage\"/>";
+
 
                     }
                 }

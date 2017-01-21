@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import visualk.Main;
 import visualk.gallery.modules.Detail;
-import visualk.gallery.objects.User;
+
 
 /**
  * Servlet implementation class
@@ -86,9 +86,9 @@ public class Gallery extends HttpServlet {
                     String parameters;
                     parameters="idWork="+idWork;
 
-                    Detail detail = new Detail("title",parameters);
+                    Detail detail = new Detail("title");
                     
-                    out.println(detail.toHtml());
+                    out.println(detail.toHtml(parameters));
                 } else {
                     response.sendRedirect("/visualk/gallery");
                 }

@@ -186,7 +186,7 @@ public class Horizon implements Serializable {
         // nuemero aureo
         //this.aureaProp = (r.nextInt(2) == 1);
         this.aureaProp = true;
-        System.out.println("exit makeRandomAureo");
+        System.out.println("makeRandomAureo");
 
     }
 
@@ -194,13 +194,13 @@ public class Horizon implements Serializable {
         Random r = new Random();
 
         this.horizontal = (r.nextInt(2) == 1);
-        System.out.println("exit makeRandomHorizontal");
+        System.out.println("makeRandomHorizontal");
     }
 
     public void makeRandomAlçadaHoritzo() {
         Random r = new Random();
         this.topHrz = getAureo(r.nextInt(this.canvasHeigth));
-        System.out.println("exit makeRandomAlçadaHoritzo");
+        System.out.println("makeRandomAlçadaHoritzo");
     }
 
     public void makeRandomPal() {
@@ -223,8 +223,8 @@ public class Horizon implements Serializable {
         this.hPaly = yPal + 15;//this.canvasHeigth - 50;
         
         System.out.println("makeRandomHombra");
-    }
-
+        }
+        
     public void makeRandomColors() {
         Random r = new Random();
 
@@ -253,7 +253,7 @@ public class Horizon implements Serializable {
         } else {
             setAuthorHrz("" + this.version);
         }
-        System.out.println("exit makeRandom");
+        System.out.println("makeRandom");
     }
 
     public BufferedImage getHrzSmallImage(int w, int h) {
