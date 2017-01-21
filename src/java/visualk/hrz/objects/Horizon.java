@@ -21,7 +21,7 @@ import visualk.html5.UniqueName;
 
 public class Horizon implements Serializable {
 
-    private static final String URL_IMG = Main.HOST_NAME+Main.HOST_VISUALK + "/hrz/img/";
+    private static final String URL_IMG = Main.HOST_NAME + Main.HOST_VISUALK + "/hrz/img/";
     //private static final String URL_IMG = "http://hrzmkr.com/img/";
 
     /**
@@ -90,21 +90,13 @@ public class Horizon implements Serializable {
     }
 
     public Horizon(String name) {
-        this.nameHrz = name;
-        max_width = MAX_WIDTH;
-        max_height = MAX_HEIGTH;
-
-        this.version = HRZMKR_VERSION;
-
-        loadSuperNova();// carreguem imatge de la llum
-
-        loadTextura();// carreguem textura del terra
-
-        loadCel();// carreguem textura del cel
-
+       this(name,MAX_WIDTH,MAX_HEIGTH);
     }
 
     public Horizon(String name, int mx, int my) {
+        
+        System.out.println("Creating a new Horizon, name:"+name);
+        
         this.nameHrz = name;
         max_width = mx;
         max_height = my;
@@ -120,9 +112,7 @@ public class Horizon implements Serializable {
     }
 
     private int getAureo(int mida) {
-        int ret = mida;
-        if(aureaProp) ret = ((int) (mida * 0.618033988272397));
-        return ret;
+        return ((int) (mida * 0.618033988272397));
     }
 
     public void carrega(String nom) {
@@ -194,8 +184,8 @@ public class Horizon implements Serializable {
     public void makeRandomAureo() {
         Random r = new Random();
         // nuemero aureo
-        this.aureaProp = (r.nextInt(2) == 1);
-        
+        //this.aureaProp = (r.nextInt(2) == 1);
+        this.aureaProp = true;
         System.out.println("exit makeRandomAureo");
 
     }
@@ -230,12 +220,9 @@ public class Horizon implements Serializable {
         if (superX <= xPal) {
             hPalx = xPal + (xPal - superX);
         }
+        this.hPaly = yPal + 15;//this.canvasHeigth - 50;
         
-       /*
-          hPalx = superX;
-        */
-        hPaly = yPal - (superY-yPal);
-        
+        System.out.println("makeRandomHombra");
     }
 
     public void makeRandomColors() {
@@ -252,15 +239,12 @@ public class Horizon implements Serializable {
 
         makeRandomHorizontal();
         
-        makeRandomAureo();
 
         makeRandomCanvas(mx, my);
 
         makeRandomAlçadaHoritzo();
         makeRandomPal();
         makeRandomSuperNova();
-        
-        
 
         makeRandomColors();
 
@@ -309,18 +293,15 @@ public class Horizon implements Serializable {
     }
 
     private void loadSuperNova() {
-        System.out.println("Loading supernova: " + URL_IMG + "llum2.png");
+        System.out.print("Loading supernova...");
 
-        URL url;
+        
         try {
-            //    url = new URL(URL_IMG + "llum2.png");
-
-            //bmpSuperNova = Toolkit.getDefaultToolkit().getImage(url);
-            url = new URL(URL_IMG + "llum2.png");
-            bmpSuperNova = ImageIO.read(url);
-
+            URL url = new URL(URL_IMG + "llum2.png");
+            
             if (bmpSuperNova == null) {
-                System.out.println("... error");
+                bmpSuperNova = ImageIO.read(url);
+                System.out.println("... idle");
             } else {
                 System.out.println("... ok");
             }
@@ -335,33 +316,34 @@ public class Horizon implements Serializable {
     private void loadTextura() {
         System.out.print("Loading textura");
 
-        URL url;
+      
         try {
-            url = new URL(URL_IMG + "textura.png");
-            bmpTextura = Toolkit.getDefaultToolkit().getImage(url);
+            URL url = new URL(URL_IMG + "textura.png");
+            
 
             if (bmpTextura == null) {
-                System.out.println("... error");
+                bmpTextura = Toolkit.getDefaultToolkit().getImage(url);
+                System.out.println("... idle.");
             } else {
                 System.out.println("... ok");
             }
         } catch (Exception e) {
             // TODO Auto-generated catch block
             System.out.print(".. ERROR url.");
-            e.printStackTrace();
         }
     }
 
     private void loadCel() {
         System.out.print("Loading cel");
 
-        URL url;
+        
         try {
-            url = new URL(URL_IMG + "celgran.png");
-            bmpCel = Toolkit.getDefaultToolkit().getImage(url);
+            URL url = new URL(URL_IMG + "celgran.png");
+            
 
             if (bmpCel == null) {
-                System.out.println("... error");
+                bmpCel = Toolkit.getDefaultToolkit().getImage(url);
+                System.out.println("... idle");
             } else {
                 System.out.println("... ok");
             }
@@ -387,7 +369,7 @@ public class Horizon implements Serializable {
         g2.clipRect(0, 0, this.getCanvasWidth(), this.getCanvasHeigth() + 21);
 
         //cel
-        g2.setColor(Color.BLUE);
+        g2.setColor(this.getTopHrzColor());
         g2.fillRect(0, 0, this.getCanvasWidth(), this.getTopHrz());
 
         if (bmpCel == null) {

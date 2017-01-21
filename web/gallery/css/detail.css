@@ -3,7 +3,7 @@ body{
     background-color:white;
     color:black;
     font-family:monospace;
-
+    padding: 20px;
 }	
 a{
     color:yellow;
@@ -17,15 +17,19 @@ a{
     font-size: large;
     background-color: black;
     color:white;
+    z-index: 50;
+    padding: 20px;
 }
 
 #cssWorkDescription
 {
     right:50px;
-    padding:5px 5px 5px 5px;
+    padding: 20px;
     text-align:justify;
     font-family: serif;
-    font-size: medium;   
+    font-size: medium;
+    z-index: 50;
+    
 }
 
 #cssAuthorName
@@ -33,19 +37,23 @@ a{
     text-align:center;   
     font-family: cursive;
     font-size: large;
-
+    z-index: 50;
+padding: 20px;
 }
 
 .cssImage{
-    right:5px;
-    width:100%;
-    text-align:center;
-    display: inline-block;
+     width: 40%;
+    height: 90%;
+    z-index: 220;
+    padding: 20px;
+    
 }
 
 #cssImages{
     width: 100%;
     height: 90%;
+    z-index: 220;
+    padding: 20px;
 }
 
 
@@ -95,5 +103,5 @@ a{
     position:absolute;
     text-align:center;
     color:red;
-    z-index: 0;
+    z-index: 50;
 }

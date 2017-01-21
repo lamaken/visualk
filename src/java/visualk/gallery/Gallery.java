@@ -86,7 +86,7 @@ public class Gallery extends HttpServlet {
                     String parameters;
                     parameters="idWork="+idWork;
 
-                    Detail detail = new Detail();
+                    Detail detail = new Detail("title",parameters);
                     
                     out.println(detail.toHtml());
                 } else {

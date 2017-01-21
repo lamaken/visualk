@@ -107,7 +107,7 @@ public class Detail extends Xhtml5 {
                     for (int i = 0; i < resources.size(); i++) {
                        workImage += "<img src=\"";
                        workImage += Main.HOST_NAME+resources.get(i).getUrl();
-                       workImage += "\" id=\"cssImage\"/>";
+                       workImage += "\" class=\"cssImage\"/>";
 
                     }
                 }

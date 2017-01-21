@@ -68,12 +68,15 @@ public class MysqlLayer {
             e.printStackTrace();
         }
         String cadenaConn = "jdbc:mysql://" + dbServer + ":3306/" + dbDataBase;
-        try {
+         if(dbConn==null){
+           try {
             dbConn = DriverManager.getConnection(cadenaConn, dbUser, dbPassword);
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
+        } 
         }
+        
         try {
             sql = dbConn.prepareStatement(sqlQuery);
 
@@ -95,13 +98,9 @@ public class MysqlLayer {
         PreparedStatement sql = null;
 
         String cadenaConn = "jdbc:mysql://" + dbServer + ":3306/" + dbDataBase;
-        try {
+        if(dbConn==null){
             dbConn = DriverManager.getConnection(cadenaConn, dbUser, dbPassword);
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
         }
-        
         sql = dbConn.prepareStatement(sqlQuery);
         result = sql.executeQuery();
 
