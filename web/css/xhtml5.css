@@ -12,7 +12,7 @@
 
 
 #logo{
-    z-index:5;
+    z-index:-1;
     left:0px;
     bottom:16px;
     position: fixed;
