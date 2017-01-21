@@ -14,14 +14,15 @@ import java.net.URL;
 
 import java.util.Random;
 import javax.imageio.ImageIO;
+import visualk.Main;
 
 import visualk.hrz.db.DbHorizons;
 import visualk.html5.UniqueName;
 
 public class Horizon implements Serializable {
 
-//    private static final String URL_IMG = Main.HOST_NAME + Main.HOST_VISUALK + "/hrz/img/";
-    private static final String URL_IMG = "http://hrzmkr.com/img/";
+    private static final String URL_IMG = Main.HOST_NAME+Main.HOST_VISUALK + "/hrz/img/";
+    //private static final String URL_IMG = "http://hrzmkr.com/img/";
 
     /**
      *
@@ -119,7 +120,9 @@ public class Horizon implements Serializable {
     }
 
     private int getAureo(int mida) {
-        return ((int) (mida * 0.618033988272397));
+        int ret = mida;
+        if(aureaProp) ret = ((int) (mida * 0.618033988272397));
+        return ret;
     }
 
     public void carrega(String nom) {
@@ -191,8 +194,8 @@ public class Horizon implements Serializable {
     public void makeRandomAureo() {
         Random r = new Random();
         // nuemero aureo
-        //this.aureaProp = (r.nextInt(2) == 1);
-        this.aureaProp = true;
+        this.aureaProp = (r.nextInt(2) == 1);
+        
         System.out.println("exit makeRandomAureo");
 
     }
@@ -221,53 +224,18 @@ public class Horizon implements Serializable {
     }
 
     public void makeRandomHombra() {
-
-        //Random r = new Random();
-/*
-        float m = (-this.yPal + this.superY) / (this.xPal - this.superX);
-
-        this.hPaly = this.canvasHeigth - 50;
-        this.hPalx = (int) ((this.hPaly - this.superY) / m) + this.superX;
-        //this.hPalx = this.xPal;
-         */
         if (superX > xPal) {
             hPalx = xPal - (superX - xPal);
         }
         if (superX <= xPal) {
             hPalx = xPal + (xPal - superX);
         }
-
-        this.hPaly = yPal + 15;//this.canvasHeigth - 50;
-
-        /*
         
-        // hombra
-       // this.hPalx = r.nextInt(this.canvasWidth);
-       // this.hPaly = r.nextInt(this.canvasHeigth - this.topHrz);
-
-        this.hPalx = this.xPal * 2 - this.superX;
+       /*
+          hPalx = superX;
+        */
+        hPaly = yPal - (superY-yPal);
         
-        if (this.xPal * 2 - this.superX > this.canvasWidth) {
-            this.hPalx = this.canvasWidth;
-        }
-        if (this.xPal * 2 - this.superX < 0) {
-            this.hPalx = 0;
-        }
-        
-        this.hPaly = this.yPal+(this.canvasHeigth - this.topHrz+this.superY);//(this.yPal) + Math.abs(this.canvasHeigth - this.topHrz);
-
-        
-        
-        
-         */
-        System.out.println("exit makeRandomHombra");
-
-        /*
-        if (this.gethPaly() < this.getyPal() ) {
-            sethPaly(this.getyPal());
-        }
-         */
-//        g2.drawLine(this.getxPal(), this.getyPal() + this.getTopHrz(), rotation, this.getTopHrz() + this.gethPaly());
     }
 
     public void makeRandomColors() {
@@ -284,12 +252,15 @@ public class Horizon implements Serializable {
 
         makeRandomHorizontal();
         
+        makeRandomAureo();
 
         makeRandomCanvas(mx, my);
 
         makeRandomAlçadaHoritzo();
         makeRandomPal();
         makeRandomSuperNova();
+        
+        
 
         makeRandomColors();
 
@@ -416,7 +387,7 @@ public class Horizon implements Serializable {
         g2.clipRect(0, 0, this.getCanvasWidth(), this.getCanvasHeigth() + 21);
 
         //cel
-        g2.setColor(this.getTopHrzColor());
+        g2.setColor(Color.BLUE);
         g2.fillRect(0, 0, this.getCanvasWidth(), this.getTopHrz());
 
         if (bmpCel == null) {

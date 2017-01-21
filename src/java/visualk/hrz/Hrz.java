@@ -145,7 +145,7 @@ public class Hrz extends HttpServlet {
 
         if (option == null) {
             option = "";
-        }else
+        }
 
         if (option.equals("paint")) {// a mida real
             if (namehrz == null) {
@@ -158,7 +158,7 @@ public class Hrz extends HttpServlet {
         }else
         if (option.equals("peque")) {// mida small
             peque(namehrz, response);
-        }
+        }else
         if (option.equals("firma")) {// firma petita
             firma(UUID.randomUUID().toString(), response);
         }else
