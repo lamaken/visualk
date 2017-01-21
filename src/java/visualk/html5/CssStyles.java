@@ -40,14 +40,3 @@ public class CssStyles {
 }
 
 
-/*
-#optionsBar{
-position: absolute; 
-right:50px;
-top:10px;
-z-index: 100;
-text-align:center;
-padding:10px;
-background:rgb(90,80,90);
-}
-*/

@@ -4,7 +4,7 @@
 package visualk.gallery.modules;
 
 import java.util.ArrayList;
-import org.json.JSONObject;
+
 import visualk.Main;
 import visualk.gallery.db.DbWorks;
 import visualk.gallery.objects.Artist;
@@ -22,7 +22,7 @@ public class Detail extends Xhtml5 {
     private static final String CSS_DETAIL_FILE_NAME = Main.HOST_NAME + Main.HOST_VISUALK + "/gallery/css/detail.css";
     private static final String JS_DETAIL_FILE_NAME = Main.HOST_NAME + Main.HOST_VISUALK + "/gallery/js/detail.js";
 
-    private final MenuLinkBar navigateMenuLinkBar;
+    private MenuLinkBar navigateMenuLinkBar=null;
    // private final MenuBar menuBar;
     private final ClassCSS cssSeguentMenuBar = new ClassCSS();
     private final ClassCSS cssAnteriorMenuBar = new ClassCSS();
@@ -45,29 +45,22 @@ public class Detail extends Xhtml5 {
         
 
     }
+    public Detail() {
+     super("Gallery", "idle.", "detail");
+     
+    }
 
     public Detail(String title, String jsonWork) {
         super("Gallery", title, "detail");
 
         addMyStyles();
 
-        navigateMenuLinkBar = new MenuLinkBar("navigateBar", cssSeguentMenuBar);
+        if(navigateMenuLinkBar==null)navigateMenuLinkBar = new MenuLinkBar("navigateBar", cssSeguentMenuBar);
         navigateMenuLinkBar.setVertical();
         navigateMenuLinkBar.addMenuLink("seguent >>", "seguent", "passes a la següent obra.", cssSeguentMenuBar);//label,function,help
         navigateMenuLinkBar.addMenuLink("<< anterior", "anterior", "passes a l'obra anterior.", cssAnteriorMenuBar);//label,function,help
         
-/*
-        menuBar = new MenuBar("menuBar", cssAnteriorMenuBar);
-        menuBar.setVertical();
-        menuBar.addMenuItem("1", "Gestió de llogaters", "funcio obrir llogaters", "parametres de la funcio",
-                "lo que surt a l`estatus",
-                "");//parent
-        menuBar.addMenuItem("2", "Hola", "funcio obrir llogaters", "parametres de la funcio",
-                "lo que surt a l`estatus",
-                "");//parent
-*/
-        JSONObject o = new JSONObject(jsonWork);
-        idWork = o.get("idWork").toString();
+        idWork = jsonWork.split("=")[1];
         System.out.println("idWork:".contains(idWork));
     }
 
@@ -112,7 +105,9 @@ public class Detail extends Xhtml5 {
                 if (resources != null) {
                     workImage = "";
                     for (int i = 0; i < resources.size(); i++) {
-                        workImage += "<img class=\"cssImage\" src=\"" + resources.get(i).getUrl() + "\" />";
+                       workImage += "<img src=\"";
+                       workImage += Main.HOST_NAME+resources.get(i).getUrl();
+                       workImage += "\" id=\"cssImage\"/>";
 
                     }
                 }
@@ -122,8 +117,8 @@ public class Detail extends Xhtml5 {
         } catch (Exception e) {
             workTitle = "TITULO DE LA OBRA";
             authorName = "Antoni Tapies";
-            workImage = "<img id='imgWorkImage' src='img/tapies.jpeg'/>";
-            workDescription = "<p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer purus ipsum, condimentum a hendrerit at, egestas id leo. Nam pellentesque bibendum dolor, ac molestie urna viverra eget. Suspendisse potenti. Praesent arcu justo, porta a tellus et, vulputate dapibus nunc. Sed dictum sagittis felis eget eleifend. In scelerisque tristique tortor, ut auctor quam. Mauris a dictum lorem, ut ultrices quam. Sed ullamcorper lorem et luctus iaculis. Vivamus risus lacus, porta ut finibus eu, lacinia et tellus.\n</p>";
+            workImage = "<img class='cssImage' src='img/tapies.jpeg'/>";
+            workDescription = "<p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer purus ipsum, condimentum a hendrerit at, egestas id leo. Nam pellentesque bibendum dolor, ac molestie urna viverra eget. \n</p>";
 
         }
 

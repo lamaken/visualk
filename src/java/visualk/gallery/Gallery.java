@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.JSONObject;
+
 
 import visualk.Main;
 import visualk.gallery.modules.Detail;
@@ -32,8 +32,7 @@ public class Gallery extends HttpServlet {
     public static final String SERVLET_URL = "/visualk/gallery/Gallery";
     public static final String URL_PATH = Main.HOST_NAME + Main.HOST_VISUALK + "/gallery";
 
-    private User user;
-    
+   
     Integer idWork=0; //ara es comu a tothom hauria destar 
 
     //Session sessioN;
@@ -84,10 +83,11 @@ public class Gallery extends HttpServlet {
                     if(idWork>4)idWork=4;
                     
                     
-                    JSONObject parameters = new JSONObject();
-                    parameters.put("idWork", idWork);
+                    String parameters;
+                    parameters="idWork="+idWork;
 
-                    Detail detail = new Detail("work detail", parameters.toString());
+                    Detail detail = new Detail();
+                    
                     out.println(detail.toHtml());
                 } else {
                     response.sendRedirect("/visualk/gallery");
