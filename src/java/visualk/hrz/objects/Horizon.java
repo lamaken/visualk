@@ -123,9 +123,7 @@ public class Horizon implements Serializable {
         try{
             tmp = db.getHrznBD(nom);
         }catch (Exception e){
-            tmp = new Horizon(new UniqueName(8).getName(),350,250);
-            
-            
+            tmp = new Horizon(new UniqueName(8).getName(),350,250);            
             tmp.authorHrz_texteFooter="eps! "+e.getMessage();
         }
 

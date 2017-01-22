@@ -43,6 +43,10 @@ public class Hrz extends HttpServlet {
 
     private final Horizon hrzFirma = new Horizon("idle.");
     
+    private final Artzar artzar = new Artzar(getString("title.artzar.hrzmkr"));
+    
+    ListHorizons listH = new ListHorizons(getString("title.gallery.hrzmkr"));
+    // Wizard wizard; 	 	// asistent per la ceracio
     
     
     private static final String FIRST_HRZ_NAME ="I'm the first!";
@@ -198,9 +202,7 @@ public class Hrz extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // TODO Auto-generated method stub
 
-        Artzar artzar = null; 		// artzar horitzons a l'atzar
-        ListHorizons listH = null;  // galeria d'horitzons
-        // Wizard wizard; 	 	// asistent per la ceracio
+       
 
         Locale lan;
         String where = request.getParameter("where");
@@ -282,7 +284,7 @@ public class Hrz extends HttpServlet {
             ////////// control atzar
             if (where.equals("artzar")) {
                 //if (artzar == null) {
-                artzar = new Artzar(getString("title.artzar.hrzmkr"));
+                
                 // }
                 switch (what) {
                     case "carrega":
@@ -324,14 +326,13 @@ public class Hrz extends HttpServlet {
             //////// control llista per carregar
 
             if (where.equals("listhorizons")) {
-                listH = new ListHorizons(getString("title.gallery.hrzmkr"));
+                
                 if (what.equals("carrega")) {
                     listH.setSize(Integer.parseInt(mx), Integer.parseInt(my));
                     out.println(listH.toHtml());
                     out.close();
                 } else if (what.equals("selecciona")) {
                     hrzns.get(sessionId).carrega(nom);
-                    artzar = new Artzar(getString("title.artzar.hrzmkr"));
                     out.println(artzar.toHtml());
                     out.close();
                 }
