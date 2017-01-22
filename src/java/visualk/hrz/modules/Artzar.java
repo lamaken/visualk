@@ -58,6 +58,10 @@ public class Artzar extends Xhtml5 {
         cssStyles.addFileCSS(CSS_ARTZAR_FILE_NAME);
 
     }
+    
+    public Artzar(){
+        this("initial Artzar");
+    }
 
     public Artzar(String title) {
         super("hrz/Hrz",title,"artzar");

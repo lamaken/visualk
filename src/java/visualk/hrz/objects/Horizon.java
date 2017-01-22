@@ -68,9 +68,8 @@ public class Horizon implements Serializable {
         name = name.replace("'", "`");
         name = name.replace("\"", "`");
         setNameHrz(new UniqueName(8).getName());
+        setAuthorHrz(name);
         db.addHorizon(this, name);
-        carrega(nameHrz_codiUnicIdentificador);
-
     }
 
     public boolean isAurea() {
