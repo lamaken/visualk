@@ -206,7 +206,8 @@ public class Horizon implements Serializable {
 
     public void makeRandomAlçadaHoritzo() {
         Random r = new Random();
-        this.topHrz = getAureo(r.nextInt(this.canvasHeigth));
+        if(isAureaProp()) this.topHrz = getAureo(r.nextInt(this.canvasHeigth));
+        else this.topHrz = r.nextInt(this.canvasHeigth);
         System.out.println("makeRandomAlçadaHoritzo");
     }
 
