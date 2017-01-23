@@ -27,9 +27,11 @@ public class MysqlLayer {
         } catch (Exception e) {
         }
         String cadenaConn = "jdbc:mysql://" + dbServer + ":3306/" + dbDataBase;
-        if (dbConn == null) {
+        if (dbConn != null) {
             try {
-                if(dbConn.isClosed())dbConn = DriverManager.getConnection(cadenaConn, dbUser, dbPassword);
+                if (dbConn.isClosed()) {
+                    dbConn = DriverManager.getConnection(cadenaConn, dbUser, dbPassword);
+                }
             } catch (Exception e) {
             }
         }
@@ -70,18 +72,8 @@ public class MysqlLayer {
             e.printStackTrace();
         }
         String cadenaConn = "jdbc:mysql://" + dbServer + ":3306/" + dbDataBase;
-
         try {
-            if (dbConn.isClosed()) {
-                dbConn = DriverManager.getConnection(cadenaConn, dbUser, dbPassword);
-            }
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-
-        }
-
-        try {
+            if(dbConn==null)dbConn = DriverManager.getConnection(cadenaConn, dbUser, dbPassword);
             sql = dbConn.prepareStatement(sqlQuery);
 
         } catch (SQLException e) {
@@ -102,8 +94,8 @@ public class MysqlLayer {
         PreparedStatement sql = null;
 
         String cadenaConn = "jdbc:mysql://" + dbServer + ":3306/" + dbDataBase;
-          
-        if ( ( dbConn==null ) || ( dbConn.isClosed()) ) {
+
+        if ((dbConn == null) || (dbConn.isClosed())) {
             dbConn = DriverManager.getConnection(cadenaConn, dbUser, dbPassword);
         }
 

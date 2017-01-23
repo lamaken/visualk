@@ -274,7 +274,7 @@ public class Hrz extends HttpServlet {
             Horizon hrz = new Horizon(sessionId);
             hrzns.put(sessionId, hrz);
             hrzns.get(sessionId).makeRandom(Integer.parseInt(mx), Integer.parseInt(my));
-            hrzns.get(sessionId).setAuthorHrz("Initial Post ("+sessionId+")");
+            hrzns.get(sessionId).setAuthorHrz("WelCome to hrzmkr");
         }
 
         

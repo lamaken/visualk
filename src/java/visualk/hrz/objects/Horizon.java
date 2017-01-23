@@ -444,13 +444,13 @@ public class Horizon implements Serializable {
 // firma
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                 RenderingHints.VALUE_ANTIALIAS_ON);
-        //g2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,
-        //        RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+        g2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,
+                RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 
         g2.setColor(Color.white);
         g2.fillRect(0, this.getCanvasHeigth() + 1, this.getCanvasWidth(), 20);
         g2.setColor(Color.gray);
-        g2.drawString(this.authorHrz_texteFooter+this.nameHrz_codiUnicIdentificador, 2, this.getCanvasHeigth() + 15);
+        g2.drawString(this.authorHrz_texteFooter, 2, this.getCanvasHeigth() + 15);
 
         g2.drawRect(0, 0, this.getCanvasWidth() - 1, this.getCanvasHeigth() + 20);
         g2.dispose();
