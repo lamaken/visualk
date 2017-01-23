@@ -38,6 +38,7 @@ import visualk.html5.UniqueName;
 public class Hrz extends HttpServlet {
 
     private static final long serialVersionUID = 1024371973219L;
+    public static final String SERVLET_URL = "/visualk/hrz/Hrz";
 
     private final Hashtable<String, Horizon> hrzns = new Hashtable<String, Horizon>();
 
@@ -45,7 +46,7 @@ public class Hrz extends HttpServlet {
 
     private static String HORIZON_SESSION_PRIVATE_KEY = new UniqueName(3).getName();
     public static String HORIZON_SESSION_PUBLIC_KEY = new UniqueName(3).getName();
-    public static String sessionId = new UniqueName(3).getName();
+    public static String sessionId;
 
     //Session sessioN;
     /**
@@ -53,7 +54,6 @@ public class Hrz extends HttpServlet {
      */
     public Hrz() {
         super();
-        hrzns.put(sessionId, new Horizon(sessionId));
     }
 
     public static String getString(String key) {
@@ -99,16 +99,6 @@ public class Hrz extends HttpServlet {
     public void peque(String name, HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("image/PNG");
         response.setHeader("Transfer-Encoding", "PNG");
-
-        HttpSession session = request.getSession(true);
-        
-        try {
-            sessionId = session.getId();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
         hrzns.get(sessionId).carrega(name);
         ImageIO.write(hrzns.get(sessionId).getHrzSmallImage(200, 200), "png", new MemoryCacheImageOutputStream(response.getOutputStream()));
     }
@@ -118,7 +108,7 @@ public class Hrz extends HttpServlet {
         response.setContentType("image/PNG");
         response.setHeader("Transfer-Encoding", "PNG");
 
-        Horizon hrzLoad = new Horizon(new UniqueName(8).getName());
+        Horizon hrzLoad = new Horizon("Horizon to load.");
         hrzLoad.carrega(name);
 
         ImageIO.write(hrzLoad.getHrzImage(), "png", new MemoryCacheImageOutputStream(response.getOutputStream()));
@@ -149,9 +139,16 @@ public class Hrz extends HttpServlet {
     public void getAtzar(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("image/PNG");
         response.setHeader("Transfer-Encoding", "PNG");
-
-      
+        
+        HttpSession session = request.getSession(true);
+        try {
+            sessionId = (String) session.getAttribute("sessionId");;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if(sessionId==null) sessionId = new UniqueName(5).getName();
         if (!hrzns.containsKey(sessionId)) {
+            
             Horizon hrz = new Horizon(sessionId);
             hrzns.put(sessionId, hrz);
             hrzns.get(sessionId).makeRandom(300, 300);
@@ -264,7 +261,23 @@ public class Hrz extends HttpServlet {
         System.out.println("opt:" + option);
         System.out.println("nom:" + nom);
 
-       
+        HttpSession session = request.getSession(true);
+        sessionId = (String) session.getAttribute("sessionId");;
+        
+        if(sessionId == null )sessionId="refactorizame";
+        
+        if( !hrzns.containsKey(sessionId) ){
+            
+            sessionId = new UniqueName(5).getName();
+            session.setAttribute("sessionId", sessionId);
+            
+            Horizon hrz = new Horizon(sessionId);
+            hrzns.put(sessionId, hrz);
+            hrzns.get(sessionId).makeRandom(Integer.parseInt(mx), Integer.parseInt(my));
+            hrzns.get(sessionId).setAuthorHrz("Initial Post ("+sessionId+")");
+        }
+
+        
 
         if (!what.equals("marxar")) {
 
@@ -277,6 +290,8 @@ public class Hrz extends HttpServlet {
                         break;
 
                     case "gen_atzar":
+                        sessionId = new UniqueName(5).getName();
+                        session.setAttribute("sessionId", sessionId);
                         
                         hrzns.put(sessionId,new Horizon(sessionId));
                         hrzns.get(sessionId).makeRandom(Integer.parseInt(mx), Integer.parseInt(my));//random de tot

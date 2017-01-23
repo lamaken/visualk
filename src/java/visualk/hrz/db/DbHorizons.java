@@ -72,6 +72,8 @@ public class DbHorizons extends MysqlLayer {
                         + "', '"
                         + hrz.getVersion() + "')");
             } catch (Exception e) {
+                e.printStackTrace();
+                System.out.println("Error save hrz: "+e.getMessage());
             } finally {
                 this.disconnect();
             }
@@ -96,8 +98,8 @@ public class DbHorizons extends MysqlLayer {
         ResultSet myResult=null;
         String onlySize = "(canvasWidth<=" + width + " and  canvasHeigth<=" + height + ")";
         try {
-            //myResult = this.queryDB("SELECT * FROM hrzns WHERE namehrz<>'wellcome' and " + onlySize + " order by dt desc limit " + offset + "," + limit + " ;");
-            myResult = this.queryDB("SELECT * FROM hrzns order by dt desc;");
+            myResult = this.queryDB("SELECT * FROM hrzns WHERE namehrz<>'wellcome' and " + onlySize + " order by dt desc limit " + offset + "," + limit + " ;");
+            //myResult = this.queryDB("SELECT * FROM hrzns order by dt desc;");
         } catch (SQLException ex) {
             Logger.getLogger(DbHorizons.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
