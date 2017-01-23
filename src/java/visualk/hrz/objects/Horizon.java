@@ -242,19 +242,12 @@ public class Horizon implements Serializable {
     }
 
     public void makeRandom(int mx, int my) {
-        this.nameHrz_codiUnicIdentificador=new UniqueName(8).getName();
-        
         makeRandomTextura();
-
         makeRandomHorizontal();
-        
-
         makeRandomCanvas(mx, my);
-
         makeRandomAlçadaHoritzo();
         makeRandomPal();
         makeRandomSuperNova();
-
         makeRandomColors();
 
         if (isAurea()) {

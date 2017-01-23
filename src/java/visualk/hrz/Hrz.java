@@ -20,6 +20,7 @@ import javax.imageio.ImageIO;
 import javax.imageio.stream.MemoryCacheImageOutputStream;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -42,13 +43,9 @@ public class Hrz extends HttpServlet {
 
     private static ResourceBundle bundle;
 
-    private final Horizon hrzFirma = new Horizon("idle.");
-    
-   
-    // Wizard wizard; 	 	// asistent per la ceracio
-    
-    
-   // private static final String FIRST_HRZ_NAME ="_hrz_name";
+    private static String HORIZON_SESSION_PRIVATE_KEY = new UniqueName(3).getName();
+    public static String HORIZON_SESSION_PUBLIC_KEY = new UniqueName(3).getName();
+    public static String sessionId = new UniqueName(3).getName();
 
     //Session sessioN;
     /**
@@ -56,10 +53,8 @@ public class Hrz extends HttpServlet {
      */
     public Hrz() {
         super();
-        hrzns.put(INICIAL_HORIZON_NAME_SESSION, new Horizon(new UniqueName(8).getName()));
+        hrzns.put(sessionId, new Horizon(sessionId));
     }
-
-    private static final String INICIAL_HORIZON_NAME_SESSION = "Inicial";
 
     public static String getString(String key) {
         String result = "";
@@ -90,12 +85,13 @@ public class Hrz extends HttpServlet {
 
         response.setHeader("Transfer-Encoding", "PNG");
 
+        Horizon hrzFirma = new Horizon("hrz-signature-" + new UniqueName(5).getName());
+
         hrzFirma.setNameHrz(name);
-        
+
         hrzFirma.makeRandom(150, 93);
         hrzFirma.setAuthorHrz("http://alkasoft.org");
 
-        
         ImageIO.write(hrzFirma.getHrzImage(), "png", new MemoryCacheImageOutputStream(response.getOutputStream()));
     }
 
@@ -103,16 +99,16 @@ public class Hrz extends HttpServlet {
     public void peque(String name, HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("image/PNG");
         response.setHeader("Transfer-Encoding", "PNG");
-        
+
         HttpSession session = request.getSession(true);
-        String sessionId = INICIAL_HORIZON_NAME_SESSION;
+        
         try {
             sessionId = session.getId();
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
         hrzns.get(sessionId).carrega(name);
         ImageIO.write(hrzns.get(sessionId).getHrzSmallImage(200, 200), "png", new MemoryCacheImageOutputStream(response.getOutputStream()));
     }
@@ -121,33 +117,48 @@ public class Hrz extends HttpServlet {
     public void loadAtzar(String name, HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("image/PNG");
         response.setHeader("Transfer-Encoding", "PNG");
-        
+
         Horizon hrzLoad = new Horizon(new UniqueName(8).getName());
         hrzLoad.carrega(name);
-        
-        
+
         ImageIO.write(hrzLoad.getHrzImage(), "png", new MemoryCacheImageOutputStream(response.getOutputStream()));
+    }
+
+    private String getCookie(HttpServletRequest request, String key) {
+        String cookie = null;
+        Cookie[] cookies = request.getCookies();
+        if (cookies != null) {
+            for (int n = 0; n < cookies.length; n++) {
+                if (cookies[n].getName().equals(key)) {
+                    cookie = cookies[n].getValue();
+                }
+            }
+        }
+        return cookie;
+    }
+
+    private void saveCookie(HttpServletResponse response, String key, String value) {
+        Cookie cookie = new Cookie(key, value);
+        cookie.setMaxAge(24 * 60 * 60);
+        cookie.setPath("/visualk/hrz/Hrz");
+        response.addCookie(cookie);
+
     }
 
     //retorna dibuix
     public void getAtzar(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("image/PNG");
         response.setHeader("Transfer-Encoding", "PNG");
-        HttpSession session = request.getSession(true);
-        String sessionId = INICIAL_HORIZON_NAME_SESSION;
-        try {
-            sessionId = session.getId();
-            System.out.println("session:"+sessionId);
-            
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        
-        
-        hrzns.put(sessionId, hrzns.get(sessionId));
 
-        
+      
+        if (!hrzns.containsKey(sessionId)) {
+            Horizon hrz = new Horizon(sessionId);
+            hrzns.put(sessionId, hrz);
+            hrzns.get(sessionId).makeRandom(300, 300);
+            hrzns.get(sessionId).setAuthorHrz("Hrz/getAtzar("+sessionId+"). NotFound!");
+        }
         ImageIO.write(hrzns.get(sessionId).getHrzImage(), "png", response.getOutputStream());
+
     }
 
     /**
@@ -162,29 +173,24 @@ public class Hrz extends HttpServlet {
 
         if (option == null) {
             response.sendRedirect("/visualk/hrz");
-        } else {
-            if (option.equals("paint")) {// a mida real
-                if (namehrz == null) {
-                    getAtzar(request, response);
-
-                } else {
-                    loadAtzar(namehrz, request,response);
-                }
+        } else if (option.equals("paint")) {// a mida real
+            if (namehrz == null) {
+                getAtzar(request, response);
 
             } else {
-                if (option.equals("peque")) {// mida small
-                    peque(namehrz, request,response);
-                } else {
-                    if (option.equals("firma")) {// firma petita
-                        firma(UUID.randomUUID().toString(), response);
-                    } else {
-                        response.sendRedirect("/visualk/hrz");
-                    }
-                }
+                loadAtzar(namehrz, request, response);
             }
+
+        } else if (option.equals("peque")) {// mida small
+            peque(namehrz, request, response);
+        } else if (option.equals("firma")) {// firma petita
+            firma(UUID.randomUUID().toString(), response);
+        } else {
+            response.sendRedirect("/visualk/hrz");
         }
 
     }
+
 
     /**
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
@@ -192,8 +198,6 @@ public class Hrz extends HttpServlet {
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // TODO Auto-generated method stub
-
-       
 
         Locale lan;
         String where = request.getParameter("where");
@@ -221,18 +225,6 @@ public class Hrz extends HttpServlet {
             lan = Locale.getDefault();//DEFAULT_LANGUAGE
         }
 
-        String sessionId = INICIAL_HORIZON_NAME_SESSION;
-        HttpSession session = request.getSession(true);
-        try {
-            sessionId = session.getId();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        if (!hrzns.containsKey(sessionId)) {
-            hrzns.put(sessionId, new Horizon(new UniqueName(8).getName()));
-            hrzns.get(sessionId).makeRandom(Integer.parseInt(mx), Integer.parseInt(my));
-        }
-
         ResourceBundle.clearCache();
         try {
             System.out.println("language:" + lan);
@@ -241,11 +233,9 @@ public class Hrz extends HttpServlet {
             System.out.println("language:" + e.getMessage());
             e.printStackTrace();
         }
-        
-        final Artzar artzar = new Artzar(getString("title.artzar.hrzmkr"));
-        final ListHorizons listH = new ListHorizons(getString("title.gallery.hrzmkr"));
 
-        
+        final Artzar artzar = new Artzar(getString("title.artzar.hrzmkr"));
+
         if (pino == null) {
             pino = "0";
         }
@@ -273,32 +263,33 @@ public class Hrz extends HttpServlet {
         System.out.println("what:" + what);
         System.out.println("opt:" + option);
         System.out.println("nom:" + nom);
-        
-        hrzns.get(sessionId).setAuthorHrz(sessionId);
+
+       
 
         if (!what.equals("marxar")) {
 
             ////////// control atzar
             if (where.equals("artzar")) {
-                //if (artzar == null) {
-                
-                // }
+
                 switch (what) {
                     case "carrega":
-                      
-                        //hrzns.get(sessionId).makeRandom(Integer.parseInt(mx), Integer.parseInt(my));
-                        
-                    case "gen_atzar":
-                        hrzns.get(sessionId).setNameHrz(new UniqueName(8).getName());
-                        hrzns.get(sessionId).makeRandom(Integer.parseInt(mx), Integer.parseInt(my));//random de tot
+                        //no hace nada carga la de por defecto
                         break;
+
+                    case "gen_atzar":
+                        
+                        hrzns.put(sessionId,new Horizon(sessionId));
+                        hrzns.get(sessionId).makeRandom(Integer.parseInt(mx), Integer.parseInt(my));//random de tot
+                        
+                        break;
+                     
                     case "colorsRnd":
                         hrzns.get(sessionId).makeRandomColors(); //random de colors
                         break;
                     case "posicioRnd":
                         hrzns.get(sessionId).makeRandomPal(); // random del pal
                         break;
-                    case "hombraRnd":                    
+                    case "hombraRnd":
                         hrzns.get(sessionId).makeRandomHombra(); // random del pal
                         break;
                     case "superRnd":
@@ -310,7 +301,7 @@ public class Hrz extends HttpServlet {
                     default:
                         break;
                 }
-                
+
                 if (pino.equals("0")) {
                     out.println(artzar.toHtml());// + "<script>alert(\"" + lan.getDisplayLanguage()+ "\")</script>");
                 } else {
@@ -322,8 +313,9 @@ public class Hrz extends HttpServlet {
             //////// control llista per carregar
 
             if (where.equals("listhorizons")) {
-                
+
                 if (what.equals("carrega")) {
+                    final ListHorizons listH = new ListHorizons(getString("title.gallery.hrzmkr"));
                     listH.setSize(Integer.parseInt(mx), Integer.parseInt(my));
                     out.println(listH.toHtml());
                     out.close();
@@ -338,6 +330,12 @@ public class Hrz extends HttpServlet {
             response.sendRedirect("/visualk/");
         }
 
+    }
+
+    
+      
+    void openNewSession() {
+        sessionId = "test-" + new UniqueName(8).getName();
     }
 
 }
