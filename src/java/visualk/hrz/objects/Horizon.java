@@ -28,7 +28,7 @@ public class Horizon implements Serializable {
      *
      */
     private static final long serialVersionUID = 24L;
-    private static final String HRZMKR_VERSION = "alkasoft.hrzmkr v0.41";
+    private static final String HRZMKR_VERSION = "alk@soft.hrzmkr v0.4";//SIZE 20
 
     private final static int MAX_WIDTH = 151;
     private final static int MAX_HEIGTH = 303;
@@ -297,13 +297,12 @@ public class Horizon implements Serializable {
 
     private void loadSuperNova() {
         System.out.print("Loading supernova...");
-
         
         try {
             URL url = new URL(URL_IMG + "llum2.png");
             
             if (bmpSuperNova == null) {
-                bmpSuperNova = ImageIO.read(url);
+                bmpSuperNova = ImageIO.read(url.openStream());
                 System.out.println("... idle");
             } else {
                 System.out.println("... ok");
@@ -325,7 +324,7 @@ public class Horizon implements Serializable {
             
 
             if (bmpTextura == null) {
-                bmpTextura = Toolkit.getDefaultToolkit().getImage(url);
+                bmpTextura = ImageIO.read(url.openStream());
                 System.out.println("... idle.");
             } else {
                 System.out.println("... ok");
@@ -345,7 +344,7 @@ public class Horizon implements Serializable {
             
 
             if (bmpCel == null) {
-                bmpCel = Toolkit.getDefaultToolkit().getImage(url);
+                bmpCel = ImageIO.read(url.openStream());
                 System.out.println("... idle");
             } else {
                 System.out.println("... ok");

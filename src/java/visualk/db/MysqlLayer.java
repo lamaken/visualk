@@ -20,8 +20,8 @@ public class MysqlLayer {
     protected PreparedStatement sql = null;
 
     public MysqlLayer(String user, String pass, String db) {
-        setDBValues("127.0.0.1", user, pass, db);
-
+       //setDBValues("127.0.0.1", user, pass, db);
+        setDBValues("localhost", user, pass, db);
         try {
             Class.forName("com.mysql.jdbc.Driver");
         } catch (Exception e) {

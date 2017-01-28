@@ -73,7 +73,7 @@ public class DbHorizons extends MysqlLayer {
                         + hrz.getVersion() + "')");
             } catch (Exception e) {
                 e.printStackTrace();
-                System.out.println("Error save hrz: "+e.getMessage());
+                System.out.println(authorName+" Error save hrz: "+e.getMessage());
             } finally {
                 this.disconnect();
             }
