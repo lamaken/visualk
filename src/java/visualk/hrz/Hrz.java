@@ -164,11 +164,15 @@ public class Hrz extends HttpServlet {
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // TODO Auto-generated method stub
+        
+        
+        
 
         String option = request.getParameter("option");
         String namehrz = request.getParameter("namehrz");
 
         if (option == null) {
+            response.setContentType("text/html");
             response.sendRedirect("/visualk/hrz");
         } else if (option.equals("paint")) {// a mida real
             if (namehrz == null) {
@@ -183,6 +187,7 @@ public class Hrz extends HttpServlet {
         } else if (option.equals("firma")) {// firma petita
             firma(UUID.randomUUID().toString(), response);
         } else {
+            response.setContentType("text/html");
             response.sendRedirect("/visualk/hrz");
         }
 
@@ -204,8 +209,8 @@ public class Hrz extends HttpServlet {
         String option = request.getParameter("option");
         String nom = request.getParameter("nom");
 
-        String mx = "";
-        String my = "";
+        String mx = "150";
+        String my = "150";
 
         mx = request.getParameter("mx");
         my = request.getParameter("my");
