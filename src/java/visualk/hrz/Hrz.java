@@ -7,7 +7,6 @@ package visualk.hrz;
  * publica
  * fer Debug xivato 
  */
-import com.oracle.webservices.internal.api.message.ContentType;
 import java.io.IOException;
 
 import java.io.PrintWriter;
