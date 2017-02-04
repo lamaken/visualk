@@ -87,10 +87,6 @@ public class ListHorizons extends Xhtml5 {
             table = "<table border=0 cellspacing=10px padding=10px><tr>";
 
             if (rs == null) {
-                namehrz = "UNABLE MYSQL";
-                Horizon hrz = new Horizon(namehrz);
-
-                hrz.carrega(namehrz);
                 String id_div = new UniqueName(8).getName();
 
                 html_image = "DATABASE ERROR";

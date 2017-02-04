@@ -47,10 +47,14 @@ public class Hrz extends HttpServlet {
     private static String HORIZON_SESSION_PRIVATE_KEY = new UniqueName(3).getName();
     public static String HORIZON_SESSION_PUBLIC_KEY = new UniqueName(3).getName();
     public static String sessionId;
+    
     private static Horizon hrzLoad = new Horizon("Horizon to load.");
     private static Horizon hrzFirma = new Horizon("hrz-signature-" + new UniqueName(5).getName());
-    //Session sessioN;
-    private static Horizon hrzPaint = new Horizon("initsession");
+    private static Horizon hrzPaint = new Horizon("Horizon-to-paint_" + new UniqueName(5).getName());
+    
+    final static Artzar artzar = new Artzar(getString("title.artzar.hrzmkr"));
+    final ListHorizons listH = new ListHorizons(getString("title.gallery.hrzmkr"));
+    
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -82,35 +86,25 @@ public class Hrz extends HttpServlet {
 
     //signature for emails
     public void firma(String name, HttpServletResponse response) throws IOException {
-
-        response.setContentType("image/PNG");
+        response.setContentType("image/jpeg");
         
-
-        response.setHeader("Transfer-Encoding", "PNG");
-
-        
-
         hrzFirma.setNameHrz(name);
-
         hrzFirma.makeRandom(150, 93);
         hrzFirma.setAuthorHrz(new UniqueName(5).getName());
 
-        ImageIO.write(hrzFirma.getHrzImage(), "png", response.getOutputStream());
+        ImageIO.write(hrzFirma.getHrzImage(), "jpeg", response.getOutputStream());
     }
 
     //For the list to load. Small image
     public void peque(String name, HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.setContentType("image/PNG");
-        response.setHeader("Transfer-Encoding", "PNG");
+        response.setContentType("image/jpeg");
         hrzns.get(sessionId).carrega(name);
         ImageIO.write(hrzns.get(sessionId).getHrzSmallImage(200, 200), "png", new MemoryCacheImageOutputStream(response.getOutputStream()));
     }
 
     //carrega un dibuix existent
     public void loadAtzar(String name, HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.setContentType("image/PNG");
-        response.setHeader("Transfer-Encoding", "PNG");
-
+        response.setContentType("image/jpeg");
         
         hrzLoad.carrega(name);
 
@@ -140,8 +134,7 @@ public class Hrz extends HttpServlet {
 
     //retorna dibuix
     public void getAtzar(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.setContentType("image/PNG");
-        response.setHeader("Transfer-Encoding", "PNG");
+        response.setContentType("image/jpeg");
         
         HttpSession session = request.getSession(true);
         try {
@@ -240,7 +233,7 @@ public class Hrz extends HttpServlet {
             e.printStackTrace();
         }
 
-        final Artzar artzar = new Artzar(getString("title.artzar.hrzmkr"));
+        
 
         if (pino == null) {
             pino = "0";
@@ -339,7 +332,7 @@ public class Hrz extends HttpServlet {
             if (where.equals("listhorizons")) {
 
                 if (what.equals("carrega")) {
-                    final ListHorizons listH = new ListHorizons(getString("title.gallery.hrzmkr"));
+                    
                     listH.setSize(Integer.parseInt(mx), Integer.parseInt(my));
                     out.println(listH.toHtml());
                     out.close();

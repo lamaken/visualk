@@ -118,11 +118,11 @@ public class Horizon implements Serializable {
 
     public void carrega(String nom) {
 
-        Horizon tmp=null;
+        Horizon tmp=new Horizon(nom);
         try{
-            tmp = db.getHrznBD(nom);
+            db.getHrznBD(nom,tmp);
         }catch (Exception e){
-            tmp = new Horizon(new UniqueName(8).getName(),350,250);            
+            tmp = new Horizon(new UniqueName(8).getName(),550,350);            
             tmp.authorHrz_texteFooter="eps! "+e.getMessage();
         }
 

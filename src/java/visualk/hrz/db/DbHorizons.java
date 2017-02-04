@@ -111,9 +111,9 @@ public class DbHorizons extends MysqlLayer {
 
     }
 
-    public Horizon getHrznBD(String name) throws ClassNotFoundException, SQLException {
+    public void getHrznBD(String name, Horizon temp) throws ClassNotFoundException, SQLException {
 
-        Horizon temp = new Horizon(name);
+        
         ResultSet myResult=null;
        
         myResult = this.queryDB("SELECT * FROM hrzns where nameHrz='" + name + "'");
@@ -203,7 +203,7 @@ public class DbHorizons extends MysqlLayer {
             }
 
         }
-        return (temp);
+        
     }
 
 }
