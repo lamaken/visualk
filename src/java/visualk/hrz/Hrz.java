@@ -7,6 +7,7 @@ package visualk.hrz;
  * publica
  * fer Debug xivato 
  */
+import com.oracle.webservices.internal.api.message.ContentType;
 import java.io.IOException;
 
 import java.io.PrintWriter;
@@ -47,13 +48,14 @@ public class Hrz extends HttpServlet {
     private static String HORIZON_SESSION_PRIVATE_KEY = new UniqueName(3).getName();
     public static String HORIZON_SESSION_PUBLIC_KEY = new UniqueName(3).getName();
     public static String sessionId;
-
+    private static Horizon hrzLoad = new Horizon("Horizon to load.");
+    private static Horizon hrzFirma = new Horizon("hrz-signature-" + new UniqueName(5).getName());
     //Session sessioN;
     /**
      * @see HttpServlet#HttpServlet()
      */
     public Hrz() {
-        super();
+        super(); 
     }
 
     public static String getString(String key) {
@@ -82,17 +84,18 @@ public class Hrz extends HttpServlet {
     public void firma(String name, HttpServletResponse response) throws IOException {
 
         response.setContentType("image/PNG");
+        
 
         response.setHeader("Transfer-Encoding", "PNG");
 
-        Horizon hrzFirma = new Horizon("hrz-signature-" + new UniqueName(5).getName());
+        
 
         hrzFirma.setNameHrz(name);
 
         hrzFirma.makeRandom(150, 93);
-        hrzFirma.setAuthorHrz("http://alkasoft.org");
+        hrzFirma.setAuthorHrz(new UniqueName(5).getName());
 
-        ImageIO.write(hrzFirma.getHrzImage(), "png", new MemoryCacheImageOutputStream(response.getOutputStream()));
+        ImageIO.write(hrzFirma.getHrzImage(), "png", response.getOutputStream());
     }
 
     //For the list to load. Small image
@@ -108,10 +111,10 @@ public class Hrz extends HttpServlet {
         response.setContentType("image/PNG");
         response.setHeader("Transfer-Encoding", "PNG");
 
-        Horizon hrzLoad = new Horizon("Horizon to load.");
+        
         hrzLoad.carrega(name);
 
-        ImageIO.write(hrzLoad.getHrzImage(), "png", new MemoryCacheImageOutputStream(response.getOutputStream()));
+        ImageIO.write(hrzLoad.getHrzImage(), "png", response.getOutputStream());
     }
 
     private String getCookie(HttpServletRequest request, String key) {

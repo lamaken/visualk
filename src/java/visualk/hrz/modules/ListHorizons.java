@@ -101,8 +101,6 @@ public class ListHorizons extends Xhtml5 {
                 while (rs.next()) {
                     namehrz = rs.getString("nameHrz");
                     System.out.println("nameHrz:" + namehrz);
-                    Horizon hrz = new Horizon(namehrz);
-                    //hrz.carrega(namehrz);
                     String id_div = new UniqueName(8).getName();
 
                     html_image = "<img "
