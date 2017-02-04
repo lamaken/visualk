@@ -51,6 +51,7 @@ public class Hrz extends HttpServlet {
     private static Horizon hrzLoad = new Horizon("Horizon to load.");
     private static Horizon hrzFirma = new Horizon("hrz-signature-" + new UniqueName(5).getName());
     //Session sessioN;
+    private static Horizon hrzPaint = new Horizon("initsession");
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -152,8 +153,9 @@ public class Hrz extends HttpServlet {
         if(sessionId==null) sessionId = new UniqueName(5).getName();
         if (!hrzns.containsKey(sessionId)) {
             
-            Horizon hrz = new Horizon(sessionId);
-            hrzns.put(sessionId, hrz);
+            
+            hrzPaint.setNameHrz(sessionId);
+            hrzns.put(sessionId, hrzPaint);
             hrzns.get(sessionId).makeRandom(300, 300);
             hrzns.get(sessionId).setAuthorHrz("Hrz/getAtzar("+sessionId+"). NotFound!");
         }
