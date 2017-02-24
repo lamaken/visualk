@@ -5,6 +5,7 @@
  */
 package visualk;
 
+//firma amb gif animat
 
 /**
  *

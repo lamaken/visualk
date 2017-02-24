@@ -193,7 +193,7 @@ public class Horizon implements Serializable {
         // nuemero aureo
         //this.aureaProp = (r.nextInt(2) == 1);
         this.aureaProp = true;
-        System.out.println("makeRandomAureo");
+        System.out.println("makeRandomAureo<");
 
     }
 
@@ -201,14 +201,14 @@ public class Horizon implements Serializable {
         Random r = new Random();
 
         this.horizontal = (r.nextInt(2) == 1);
-        System.out.println("makeRandomHorizontal");
+        System.out.println("makeRandomHorizontal<");
     }
 
     public void makeRandomAlçadaHoritzo() {
         Random r = new Random();
         if(isAureaProp()) this.topHrz = getAureo(r.nextInt(this.canvasHeigth));
         else this.topHrz = r.nextInt(this.canvasHeigth);
-        System.out.println("makeRandomAlçadaHoritzo");
+        System.out.println("makeRandomAlçadaHoritzo<");
     }
 
     public void makeRandomPal() {
@@ -218,7 +218,7 @@ public class Horizon implements Serializable {
         this.yPal = this.topHrz + getAureo(r.nextInt(this.canvasHeigth - this.topHrz));
         this.alcada = getAureo(r.nextInt(this.canvasHeigth - this.yPal));
 
-        makeRandomHombra();
+        System.out.println("makeRandomPal<");
     }
 
     public void makeRandomHombra() {
@@ -230,7 +230,7 @@ public class Horizon implements Serializable {
         }
         this.hPaly = yPal + 15;//this.canvasHeigth - 50;
         
-        System.out.println("makeRandomHombra");
+        System.out.println("makeRandomHombra<");
         }
         
     public void makeRandomColors() {
@@ -243,8 +243,8 @@ public class Horizon implements Serializable {
     }
 
     public void makeRandom(int mx, int my) {
-        makeRandomTextura();
-        makeRandomHorizontal();
+        //makeRandomTextura();
+        //makeRandomHorizontal();
         makeRandomCanvas(mx, my);
         makeRandomAlçadaHoritzo();
         makeRandomPal();

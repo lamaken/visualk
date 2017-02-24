@@ -5,7 +5,7 @@ import visualk.Main;
 public class Xhtml5 {
 
     private static final String JSXHTML = Main.HOST_NAME + Main.HOST_VISUALK + "/js/xhtml5.js";
-    private static final String doctype = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\" ?><!DOCTYPE html>";
+    private static final String doctype = "<!DOCTYPE html>";
     private static final String open_html = "<html>";
     private static final String open_head = "<head>";
     private static final String meta = "<meta charset=\"ISO-8859-1\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0\">";
