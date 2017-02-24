@@ -94,19 +94,19 @@ public class Detail extends Xhtml5 {
 
         Work work = null;
         try {
-            work = new DbWorks().getWorkById(Integer.parseInt(idWork));
+            work = new DbWorks().getWorkById(idWork);
 
             if (work != null) {
-                workTitle = work.getTitle();  
-                workDescription = work.getDescription();
+                workTitle = work.title; 
+                workDescription = work.description;
 
-                ArrayList<Artist> artists = work.getArtists();
+                ArrayList<Artist> artists = work.artists;
                 if (artists != null) {
                     for (int i = 0; i < artists.size(); i++) {
                         authorName += artists.get(i).getSurname()+", "+artists.get(i).getName();
                     }
                 }
-                ArrayList<Resource> resources = work.getResources();
+                ArrayList<Resource> resources = work.resources;
                 if (resources != null) {
                     workImage = "";
                     for (int i = 0; i < resources.size(); i++) {

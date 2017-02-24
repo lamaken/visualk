@@ -87,6 +87,10 @@ public class Horizon implements Serializable {
     public void setvertical() {
         horizontal = false;
     }
+    
+    public Horizon(){
+        this(new UniqueName(5).getName());
+    }
 
     public Horizon(String name) {
         this(name,MAX_WIDTH,MAX_HEIGTH);
