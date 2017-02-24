@@ -30,25 +30,24 @@
 
             function init() {
                 var seed = generateUUID();
-                for (n = 0; n < 10; n++) {
+                for (n = 0; n < 50; n++) {
                     var inner = document.getElementById("hrz").innerHTML;
                     var idName = n;
-                    inner += "<img id='" + idName + "' onclick=\"reload('" + idName + "')\" alt='loading..' src='/visualk/art/Mixed?mx=70&my=70&cellw=15&uuid=" + idName + "'/>";
+                    
+                    inner += "<img id='" + idName + "' onclick=\"reload('" + idName + "')\" alt='loading..' src='/visualk/art/Rounded?mx=170&my=170&cellw=4 5&uuid=" + idName + "'/>";
+                    inner += "<img id='" + idName + "' onclick=\"reload('" + idName + "')\" alt='loading..' src='/visualk/art/Squared?mx=170&my=170&cellw=4 5&uuid=" + idName + "'/>";
+                    inner += "<img id='" + idName + "' onclick=\"reload('" + idName + "')\" alt='loading..' src='/visualk/art/Mixed?mx=170&my=170&cellw=4 5&uuid=" + idName + "'/>";
+                    
                     document.getElementById("hrz").innerHTML = inner;
                 }
-                for (n = 9; n > 0; n--) {
-                    var inner = document.getElementById("hrz").innerHTML;
-                    var idName = n;
-                    inner += "<img id='" + idName + "' onclick=\"reload('" + idName + "')\" alt='loading..' src='/visualk/art/Mixed?mx=70&my=70&cellw=15&uuid=" + idName + "'/>";
-                    document.getElementById("hrz").innerHTML = inner;
-                }
+                
             }
         </script>
 
 
     </head>
     <body onload="init();">
-        <div id=""/>
+        
         <div id="hrz"/>
     </body>
 </html> 

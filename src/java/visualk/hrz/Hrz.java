@@ -48,9 +48,7 @@ public class Hrz extends HttpServlet {
     public static String HORIZON_SESSION_PUBLIC_KEY = new UniqueName(3).getName();
     public static String sessionId;
     
-    private final Horizon hrzLoad = new Horizon("Horizon to load.");
-    private final Horizon hrzFirma = new Horizon("hrz-signature-" + new UniqueName(5).getName(),150,93);
-    private final Horizon hrzPaint = new Horizon("Horizon-to-paint_" + new UniqueName(5).getName());
+    
     
     /**
      * @see HttpServlet#HttpServlet()
@@ -86,7 +84,7 @@ public class Hrz extends HttpServlet {
         response.setContentType("image/gif");
         
         
-        
+        final Horizon hrzFirma = new Horizon("hrz-signature-" + new UniqueName(5).getName(),150,93);
         /*
                 */
         hrzFirma.setNameHrz(name);
@@ -108,7 +106,8 @@ public class Hrz extends HttpServlet {
     //carrega un dibuix existent
     public void loadAtzar(String name, HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("image/jpeg");
-        
+        final Horizon hrzLoad = new Horizon("Horizon to load. "+new UniqueName(5).getName());
+    
         hrzLoad.carrega(name);
 
         ImageIO.write(hrzLoad.getHrzImage(), "jpeg", response.getOutputStream());
@@ -149,6 +148,7 @@ public class Hrz extends HttpServlet {
         if (!hrzns.containsKey(sessionId)) {
             
             
+            final Horizon hrzPaint = new Horizon("Horizon-to-paint_" + new UniqueName(5).getName());
             hrzPaint.setNameHrz(sessionId);
             hrzns.put(sessionId, hrzPaint);
             hrzns.get(sessionId).makeRandom(300, 300);

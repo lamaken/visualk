@@ -74,50 +74,12 @@ public class ListHorizons extends Xhtml5 {
         this.addBodyData(upperMenuBar.toHtml());
 
         DbHorizons db = new DbHorizons(); //connexio a la BD
-        int tre = new Random().nextInt(50);
+        
 
         ResultSet rs = db.listHrzns(0, 100, maxWidth, maxHeight);//TODO:search good number till 100
-        String namehrz = "";
         String table = "";
-        String notable = "";
-
-        String tds = "";
-
         try {
-            table = "<table border=0 cellspacing=10px padding=10px><tr>";
-
-            if (rs == null) {
-                String id_div = new UniqueName(8).getName();
-
-                html_image = "DATABASE ERROR";
-
-                tds += "<td>" + new DivHtml(id_div).toHtml(html_image) + "</td>";
-
-            } else {
-                while (rs.next()) {
-                    namehrz = rs.getString("nameHrz");
-                    System.out.println("nameHrz:" + namehrz);
-                    String id_div = new UniqueName(8).getName();
-
-                    html_image = "<img "
-                            + "title=\"" +namehrz+ "\" "
-                            + "alt=\"" + Hrz.getString("label.loading.gallery.hrzmkr") + "\" "
-                            //+ "onclick=\"selecciona('" + id_div + "')\" "
-                            //+ "ondblclick=\"edita('" + namehrz + "')\" "
-                            + "src=\"" + Main.HOST_NAME + Main.HOST_VISUALK + "/hrz/Hrz?option=paint&amp;namehrz=" + namehrz + "\" "
-                            + "data-src=\"" + Main.HOST_NAME + Main.HOST_VISUALK + "/hrz/Hrz?option=paint&amp;namehrz=" + namehrz + "\"/>";
-
-                    String html_google = googlePlusTagBefore + Main.HOST_NAME + Main.HOST_VISUALK + "/hrz/Hrz?option=paint&amp;namehrz=" + namehrz + googlePlusAfter;
-
-                    String html_facebook = facebookLikeTagBefore + Main.HOST_NAME + Main.HOST_VISUALK + "/hrz/Hrz?option=paint&amp;namehrz=" + namehrz + facebookLikeTagAfter;
-
-                    tds += "<td><table border=0 padding=5px><tr><td colspan=2>" + new DivHtml(id_div).toHtml(html_image) + "</td></tr><tr><td width=50% align=right>" + html_facebook + "</td><td align=left width=50% >" + html_google + "</td></tr></table></td>";
-
-                    notable += html_image;
-                }
-                rs.close();
-            }
-            table += tds + "</tr></table>";
+            table = htmlGenerateList(rs);
 
         } catch (SQLException e) {
             // TODO Auto-generated catch block
@@ -125,11 +87,51 @@ public class ListHorizons extends Xhtml5 {
         }
 
         this.addBodyData(new DivHtml("HrzListDiv").toHtml(table));
-        //this.addBodyData(new DivHtml("HrzListDiv").toHtml(notable));
-
+        
         String ret = this.getHtml();
         db.disconnect();
         return (ret);
     }
 
+    private String htmlGenerateList(ResultSet rs) throws SQLException {
+        String html_image;
+        String namehrz="";
+        String table="";
+        String tds="";
+        
+        table = "<table border=0 cellspacing=10px padding=10px><tr>";
+        if (rs == null) {
+            String id_div = new UniqueName(8).getName();
+            
+            html_image = "DATABASE ERROR";
+            
+            tds += "<td>" + new DivHtml(id_div).toHtml(html_image) + "</td>";
+            
+        } else {
+            while (rs.next()) {
+                namehrz = rs.getString("nameHrz");
+                System.out.println("nameHrz:" + namehrz);
+                String id_div = new UniqueName(8).getName();
+                
+                html_image = "<img "
+                        + "title=\"" +namehrz+ "\" "
+                        + "alt=\"" + Hrz.getString("label.loading.gallery.hrzmkr") + "\" "
+                        //+ "onclick=\"selecciona('" + id_div + "')\" "
+                        //+ "ondblclick=\"edita('" + namehrz + "')\" "
+                        + "src=\"" + Main.HOST_NAME + Main.HOST_VISUALK + "/hrz/Hrz?option=paint&amp;namehrz=" + namehrz + "\" "
+                        + "data-src=\"" + Main.HOST_NAME + Main.HOST_VISUALK + "/hrz/Hrz?option=paint&amp;namehrz=" + namehrz + "\"/>";
+                
+                String html_google = googlePlusTagBefore + Main.HOST_NAME + Main.HOST_VISUALK + "/hrz/Hrz?option=paint&amp;namehrz=" + namehrz + googlePlusAfter;
+                
+                String html_facebook = facebookLikeTagBefore + Main.HOST_NAME + Main.HOST_VISUALK + "/hrz/Hrz?option=paint&amp;namehrz=" + namehrz + facebookLikeTagAfter;
+                
+                tds += "<td><table border=0 padding=5px><tr><td colspan=2>" + new DivHtml(id_div).toHtml(html_image) + "</td></tr><tr><td width=50% align=right>" + html_facebook + "</td><td align=left width=50% >" + html_google + "</td></tr></table></td>";
+                
+                
+            }
+            rs.close();
+        }
+        table += tds + "</tr></table>";
+        return table;
+    }
 }

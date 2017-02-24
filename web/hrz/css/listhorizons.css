@@ -1,12 +1,5 @@
 
 
-
-body{
-    background-color:black;
-    color:white;
-    font-family:monospace;
-    
-}	
 a{
     color:yellow;
 }
@@ -27,7 +20,7 @@ a{
 }
 
 #tornarBar{
-    position: absolute; 
+    position: fixed; 
     top:10px;
     left:10px;
     z-index: 100;
@@ -39,7 +32,7 @@ a{
 }
 
 
-#HrzListDiv{
+#borrarHrzListDiv{
     
     left:20px;
     right:20px;

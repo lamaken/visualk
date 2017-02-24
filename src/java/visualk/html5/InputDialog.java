@@ -1,5 +1,7 @@
 package visualk.html5;
 
+import visualk.hrz.Hrz;
+
 public class InputDialog {
 
 	private ClassCSS css;
@@ -38,12 +40,12 @@ public class InputDialog {
 				+ new LabelHtml(this.defaultValue).toHtml()
 				+ "\""
 				+ " type=\"text\"/><br>"
-				+ "</tr></td><tr><td><input type=\"button\" value=\"Acceptar\" onclick=\"doneDialog(document."
+				+ "</tr></td><tr><td><input type=\"button\" value=\""+Hrz.getString("button.aceptar.artzar.hrzmkr")+"\" onclick=\"doneDialog(document."
 				+ this.formName
 				+ "."
 				+ this.inputName
 				+ ".value)\"/>"
-				+ "<input type=\"button\" value=\"Anular\" onclick=\"closeDialog('"
+				+ "<input type=\"button\" value=\""+Hrz.getString("button.cancelar.artzar.hrzmkr")+"\" onclick=\"closeDialog('"
 				+ this.css.getId() + "')\"/>" +
 
 				"</tr></td></table>" +"</tr></td></table>" + "</form>";
