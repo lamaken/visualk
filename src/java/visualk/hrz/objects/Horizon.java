@@ -23,7 +23,7 @@ import visualk.html5.UniqueName;
 
 public class Horizon implements Serializable {
 
-    private static final String URL_IMG = Main.HOST_NAME + Main.HOST_VISUALK + "/hrz/img/";
+    private static final String URL_IMG = Main.HOST_NAME +":8080"+ Main.HOST_VISUALK + "/hrz/img/";
     //private static final String URL_IMG = "http://hrzmkr.com/img/";
     
 
@@ -309,7 +309,6 @@ public class Horizon implements Serializable {
             URL url = new URL(URL_IMG + "llum2.png");
             URLConnection conn = url.openConnection();
             InputStream in = conn.getInputStream();
-
             
             if (bmpSuperNova == null) {
                 bmpSuperNova = ImageIO.read(in);
