@@ -64,9 +64,7 @@ public class WorkTest {
     public void getWorkFromDB() {
         System.out.println("newWorkPutData");
         String expected = "1";
-
         Work work = Work.getWorkByIdWork(expected);
-
         assertNotNull(work);
         assertEquals(work.idwork, expected);
     }

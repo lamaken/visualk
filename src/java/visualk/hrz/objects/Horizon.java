@@ -7,10 +7,12 @@ import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
+import java.io.InputStream;
 
 import java.io.Serializable;
 
 import java.net.URL;
+import java.net.URLConnection;
 
 import java.util.Random;
 import javax.imageio.ImageIO;
@@ -21,8 +23,9 @@ import visualk.html5.UniqueName;
 
 public class Horizon implements Serializable {
 
-    //private static final String URL_IMG = Main.HOST_NAME + Main.HOST_VISUALK + "/hrz/img/";
-    private static final String URL_IMG = "http://hrzmkr.com/img/";
+    private static final String URL_IMG = Main.HOST_NAME + Main.HOST_VISUALK + "/hrz/img/";
+    //private static final String URL_IMG = "http://hrzmkr.com/img/";
+    
 
     /**
      *
@@ -304,9 +307,12 @@ public class Horizon implements Serializable {
         
         try {
             URL url = new URL(URL_IMG + "llum2.png");
+            URLConnection conn = url.openConnection();
+            InputStream in = conn.getInputStream();
+
             
             if (bmpSuperNova == null) {
-                bmpSuperNova = ImageIO.read(url.openStream());
+                bmpSuperNova = ImageIO.read(in);
                 System.out.println("... idle");
             } else {
                 System.out.println("... ok");
@@ -325,10 +331,12 @@ public class Horizon implements Serializable {
       
         try {
             URL url = new URL(URL_IMG + "textura.png");
+            URLConnection conn = url.openConnection();
+            InputStream in = conn.getInputStream();
             
 
             if (bmpTextura == null) {
-                bmpTextura = ImageIO.read(url.openStream());
+                bmpTextura = ImageIO.read(in);
                 System.out.println("... idle.");
             } else {
                 System.out.println("... ok");
@@ -345,10 +353,12 @@ public class Horizon implements Serializable {
         
         try {
             URL url = new URL(URL_IMG + "celgran.png");
+            URLConnection conn = url.openConnection();
+            InputStream in = conn.getInputStream();
             
 
             if (bmpCel == null) {
-                bmpCel = ImageIO.read(url.openStream());
+                bmpCel = ImageIO.read(in);
                 System.out.println("... idle");
             } else {
                 System.out.println("... ok");

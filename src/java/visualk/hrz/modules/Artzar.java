@@ -35,16 +35,16 @@ public class Artzar extends Xhtml5 {
     private void addMyStyles() {
 
         /////////////////////// input dialog
-        cssInputBox.setLeft("30px");
+        cssInputBox.setLeft("100px");
         cssInputBox.setTop("30%");
-        cssInputBox.setRight("30px");
+        cssInputBox.setRight("100px");
         cssInputBox.setHeight("102px");
         cssInputBox.setPosition("absolute");
         cssInputBox.setTextalign("center");
         cssInputBox.setColor("black");
         cssInputBox.setPadding("5px");
         cssInputBox.setBackground("black");
-        cssInputBox.setZindex("200");
+        cssInputBox.setZindex("400");
         cssInputBox.setVisible("hidden");
 
         cssStyles.addStyle(cssInputBox);
