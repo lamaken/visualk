@@ -10,11 +10,14 @@ package visualk.hrz;
 import java.io.IOException;
 
 import java.io.PrintWriter;
+import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.Locale;
 
 import java.util.ResourceBundle;
 import java.util.UUID;
+import java.util.jar.Attributes;
+import java.util.jar.Manifest;
 
 import javax.imageio.ImageIO;
 import javax.imageio.stream.MemoryCacheImageOutputStream;
@@ -25,6 +28,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import visualk.Main;
 
 import visualk.hrz.modules.Artzar;
 import visualk.hrz.modules.ListHorizons;
@@ -49,13 +53,14 @@ public class Hrz extends HttpServlet {
     public static String sessionId;
     
     
-    
     /**
      * @see HttpServlet#HttpServlet()
      */
     public Hrz() {
-        super(); 
+        super();
     }
+
+    
 
     public static String getString(String key) {
         String result = "";
@@ -82,16 +87,13 @@ public class Hrz extends HttpServlet {
     //signature for emails
     public void firma(String name, HttpServletResponse response) throws IOException {
         response.setContentType("image/gif");
-        
-        
-        final Horizon hrzFirma = new Horizon("hrz-signature-" + new UniqueName(5).getName(),150,93);
+
+        final Horizon hrzFirma = new Horizon("hrz-signature-" + new UniqueName(5).getName(), 150, 93);
         /*
-                */
+         */
         hrzFirma.setNameHrz(name);
-        hrzFirma.setVersion("signature v0.312");
+        hrzFirma.setVersion("signature "+Main.VISUALK_VERSION);
         hrzFirma.makeRandom(150, 93);
-        
-        
 
         ImageIO.write(hrzFirma.getHrzImage(), "gif", response.getOutputStream());
     }
@@ -102,15 +104,15 @@ public class Hrz extends HttpServlet {
         hrzns.get(sessionId).carrega(name);
         ImageIO.write(hrzns.get(sessionId).getHrzSmallImage(200, 200), "jpeg", new MemoryCacheImageOutputStream(response.getOutputStream()));
     }
-    
+
     //carrega un dibuix existent
     public void loadAtzar(String name, HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.setContentType("image/jpeg");
-        final Horizon hrzLoad = new Horizon("Horizon to load. "+new UniqueName(5).getName());
-    
+        response.setContentType("image/gif");
+        final Horizon hrzLoad = new Horizon("Horizon to load. " + new UniqueName(5).getName());
+
         hrzLoad.carrega(name);
 
-        ImageIO.write(hrzLoad.getHrzImage(), "jpeg", response.getOutputStream());
+        ImageIO.write(hrzLoad.getHrzImage(), "gif", response.getOutputStream());
     }
 
     private String getCookie(HttpServletRequest request, String key) {
@@ -136,25 +138,26 @@ public class Hrz extends HttpServlet {
 
     //retorna dibuix
     public void getAtzar(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.setContentType("image/jpeg");
-        
+        response.setContentType("image/gif");
+
         HttpSession session = request.getSession(true);
         try {
             sessionId = (String) session.getAttribute("sessionId");;
         } catch (Exception e) {
             e.printStackTrace();
         }
-        if(sessionId==null) sessionId = new UniqueName(5).getName();
+        if (sessionId == null) {
+            sessionId = new UniqueName(5).getName();
+        }
         if (!hrzns.containsKey(sessionId)) {
-            
-            
+
             final Horizon hrzPaint = new Horizon("Horizon-to-paint_" + new UniqueName(5).getName());
             hrzPaint.setNameHrz(sessionId);
             hrzns.put(sessionId, hrzPaint);
             hrzns.get(sessionId).makeRandom(300, 300);
-            hrzns.get(sessionId).setAuthorHrz("Hrz/getAtzar("+sessionId+"). NotFound!");
+            hrzns.get(sessionId).setAuthorHrz("Hrz/getAtzar(" + sessionId + "). NotFound!");
         }
-        ImageIO.write(hrzns.get(sessionId).getHrzImage(), "jpeg", response.getOutputStream());
+        ImageIO.write(hrzns.get(sessionId).getHrzImage(), "gif", response.getOutputStream());
 
     }
 
@@ -164,9 +167,6 @@ public class Hrz extends HttpServlet {
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // TODO Auto-generated method stub
-        
-        
-        
 
         String option = request.getParameter("option");
         String namehrz = request.getParameter("namehrz");
@@ -192,7 +192,6 @@ public class Hrz extends HttpServlet {
         }
 
     }
-
 
     /**
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
@@ -236,10 +235,7 @@ public class Hrz extends HttpServlet {
             e.printStackTrace();
         }
 
-        
         final Artzar artzar = new Artzar(getString("title.artzar.hrzmkr"));
-        
-    
 
         if (pino == null) {
             pino = "0";
@@ -271,21 +267,21 @@ public class Hrz extends HttpServlet {
 
         HttpSession session = request.getSession(true);
         sessionId = (String) session.getAttribute("sessionId");;
-        
-        if(sessionId == null )sessionId="refactorizame";
-        
-        if( !hrzns.containsKey(sessionId) ){
-            
+
+        if (sessionId == null) {
+            sessionId = "refactorizame";
+        }
+
+        if (!hrzns.containsKey(sessionId)) {
+
             sessionId = new UniqueName(5).getName();
             session.setAttribute("sessionId", sessionId);
-            
+
             Horizon hrz = new Horizon(sessionId);
             hrzns.put(sessionId, hrz);
             hrzns.get(sessionId).makeRandom(Integer.parseInt(mx), Integer.parseInt(my));
             hrzns.get(sessionId).setAuthorHrz("WelCome to hrzmkr");
         }
-
-        
 
         if (!what.equals("marxar")) {
 
@@ -300,12 +296,12 @@ public class Hrz extends HttpServlet {
                     case "gen_atzar":
                         sessionId = new UniqueName(5).getName();
                         session.setAttribute("sessionId", sessionId);
-                        
-                        hrzns.put(sessionId,new Horizon(sessionId));
+
+                        hrzns.put(sessionId, new Horizon(sessionId));
                         hrzns.get(sessionId).makeRandom(Integer.parseInt(mx), Integer.parseInt(my));//random de tot
-                        
+
                         break;
-                     
+
                     case "colorsRnd":
                         hrzns.get(sessionId).makeRandomColors(); //random de colors
                         break;
@@ -355,8 +351,6 @@ public class Hrz extends HttpServlet {
 
     }
 
-    
-      
     void openNewSession() {
         sessionId = "test-" + new UniqueName(8).getName();
     }
