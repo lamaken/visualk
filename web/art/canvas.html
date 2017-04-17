@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<!--
+Copyright (C) 2017 lamaken
+
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation; either version 2
+of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <canvas id="myCanvas" width="200" height="200"></canvas>
+        <script>
+            var canvas = document.getElementById('myCanvas');
+            var context = canvas.getContext('2d');
+            var centerX = canvas.width / 2;
+            var centerY = canvas.height / 2;
+            var radius = 20;
+            var lw=3;
+            
+    
+    
+            context.fillStyle = 'green';        
+            context.fillRect(0,0,canvas.width,canvas.height);
+            
+            for (var x = radius; x < canvas.width; x+=(radius+lw+1)*2) {
+                for (var y = radius; y < canvas.height; y+=(radius+lw+1)*2) {
+                    context.beginPath();
+                    context.arc(x+1+lw*2,y+1+lw*2, radius-lw , 0, 2 * Math.PI, false);
+                    context.fillStyle = 'green';
+                    context.fill();
+                    context.lineWidth = 1;
+                    context.strokeStyle = '#003300';
+                    context.stroke();
+                }
+            }
+        </script>
+    </body>
+</html>

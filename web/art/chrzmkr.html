@@ -5,6 +5,7 @@
         <style>
             body {
                 background-color: black;
+                padding: 0px;
             }
         </style>
 
@@ -30,21 +31,26 @@
 
             function init() {
                 var seed = generateUUID();
-                for (n = 0; n < 50; n++) {
+                
+                rnd=6;
+                for (n = 0; n < 8; n++) {
                     var inner = document.getElementById("hrz").innerHTML;
                     var idName = n;
                     
-                    inner += "<img id='" + idName + "' onclick=\"reload('" + idName + "')\" alt='loading..' src='/visualk/art/Rounded?mx=170&my=170&cellw=4 5&uuid=" + idName + "'/>";
-                    inner += "<img id='" + idName + "' onclick=\"reload('" + idName + "')\" alt='loading..' src='/visualk/art/Squared?mx=170&my=170&cellw=4 5&uuid=" + idName + "'/>";
-                    inner += "<img id='" + idName + "' onclick=\"reload('" + idName + "')\" alt='loading..' src='/visualk/art/Mixed?mx=170&my=170&cellw=4 5&uuid=" + idName + "'/>";
-                    
+                    //inner += "<img id='" + idName + "' onclick=\"reload('" + idName + "')\" alt='loading..' src='/visualk/art/Rounded?mx=170&my=170&cellw=4 5&uuid=" + idName + "'/>";
+                    //inner += "<img id='" + idName + "' onclick=\"reload('" + idName + "')\" alt='loading..' src='/visualk/art/Squared?mx=170&my=170&cellw=45&uuid=" + idName + "'/>";
+                    //inner += "<img id='" + idName + "' onclick=\"reload('" + idName + "')\" alt='loading..' src='/visualk/art/Mixed?mx=170&my=170&cellw=45&uuid=" + idName + "'/>";
+                    inner += "<img id='" + idName + "' onclick=\"reload('" + idName + "')\" alt='loading..' src='/visualk/art/LiveMosaic?mx=50&my=50&cellw=11&uuid=" + idName + "'/>";
+            
                     document.getElementById("hrz").innerHTML = inner;
                 }
                 
             }
+                    
+        
+
         </script>
-
-
+        
     </head>
     <body onload="init();">
         

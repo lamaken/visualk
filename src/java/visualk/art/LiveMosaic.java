@@ -11,26 +11,28 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-
 import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import static visualk.art.Mixed.CANVASX_SIZE;
+import static visualk.art.Mixed.CANVASY_SIZE;
+import static visualk.art.Mixed.counter;
 
 /**
  *
  * @author lamaken
  */
 @WebServlet(name = "LiveMosaic", urlPatterns = {"/LiveMosaic"})
-public class LiveMosaic extends HttpServlet {
-
+public class LiveMosaic extends Mosaic{
+    
+    public static float counter = 0;
+    public static boolean show_number = false;
     public static Integer CANVASX_SIZE = 100;
     public static Integer CANVASY_SIZE = 100;
     public static Integer cellw = 10;
-    public static float counter = 0;
-    public static boolean show_number = false;
+    
 
     static BufferedImage getMosaic(float seed) {
         BufferedImage buf = new BufferedImage(CANVASX_SIZE, CANVASY_SIZE, 2);
@@ -43,25 +45,35 @@ public class LiveMosaic extends HttpServlet {
         g2.fillRect(0, 0, CANVASX_SIZE + cellw, CANVASY_SIZE + cellw);
 
         g2.setStroke(new BasicStroke(1));
-        double angle = 0;
-        float ratio = (float) (LiveMosaic.CANVASX_SIZE * CANVASY_SIZE) / 360;
+    //    double angle = 0;
+    //  float ratio = (float) (CANVASX_SIZE * CANVASY_SIZE) / 360;
 
+        
+  /*      
+        if (counter % 13 == 0) {
+            CANVASX_SIZE += 10;
+            CANVASY_SIZE += 10;
+        } else {
+            CANVASX_SIZE -= 10;
+            CANVASY_SIZE -= 10;
+        }
+*/
         //generar nomes el quadradet dadalt a lesquerra 
         //i despres clonarlo per ocupar tot lespai
-        for (int n = 0; n < new Float(LiveMosaic.CANVASX_SIZE).intValue(); n += cellw) {
+        for (int n = -10; n < new Float(CANVASX_SIZE).intValue(); n += cellw) {
 
-            for (int m = 0; m < new Float(LiveMosaic.CANVASY_SIZE).intValue(); m += cellw) {
+            for (int m = -10; m < new Float(CANVASY_SIZE).intValue(); m += cellw) {
 
-                int joe = (int) (seed * Math.cos(angle));
-                angle += ratio;
+                //int joe = (int) (seed * Math.cos(angle));
+                //angle += ratio;
 
-                g2.setColor(Color.getHSBColor((m + n ) / seed, (m + n ) / seed, (m + n ) / seed));
+                g2.setColor(Color.getHSBColor((m + n) / seed, (m + n) / seed, (m + n) / seed));
 
-                // int x =  n + joe -LiveMosaic.CANVASX_SIZE/cellw;
-                //int y = m + joe -LiveMosaic.CANVASY_SIZE/cellw;
+                // int x =  n + joe -CANVASX_SIZE/cellw;
+                //int y = m + joe -CANVASY_SIZE/cellw;
+               // g2.fillArc(n, m, cellw * 3, cellw * 3, n, m);
+                g2.fillArc(n, m,  cellw, cellw ,180+n,260-m);
 
-                g2.fillArc(m, n, cellw*3, cellw*3, n, m);
-                
             }
         }
 
@@ -87,70 +99,52 @@ public class LiveMosaic extends HttpServlet {
         String cell = request.getParameter("cellw");
         String d = request.getParameter("d");
 
-        LiveMosaic.show_number = false;
+        show_number = false;
         if (d != null) {
-            LiveMosaic.show_number = true;
+            show_number = true;
         }
 
         if (mx != null) {
             try {
-                LiveMosaic.CANVASX_SIZE = Integer.parseInt(mx);
+                CANVASX_SIZE = Integer.parseInt(mx);
             } catch (Exception e) {
 
-                LiveMosaic.CANVASX_SIZE = 150;
+                CANVASX_SIZE = 150;
             }
         }
         if (my != null) {
             try {
-                LiveMosaic.CANVASY_SIZE = Integer.parseInt(my);
+                CANVASY_SIZE = Integer.parseInt(my);
             } catch (Exception e) {
 
-                LiveMosaic.CANVASY_SIZE = 150;
+                CANVASY_SIZE = 150;
             }
         }
         if (cell
                 != null) {
             try {
-                LiveMosaic.cellw = Integer.parseInt(cell);
+                cellw = Integer.parseInt(cell);
             } catch (Exception e) {
 
-                LiveMosaic.cellw = 23;
+                cellw = 23;
             }
 
         }
 
         //coud be infinite of course
-        if (LiveMosaic.counter
-                > 0.3) {
-            LiveMosaic.counter = 0;
-        }
-        LiveMosaic.counter += 0.001;
+        if (counter > 0.3) {
+            counter = 0;
+        };
+        counter += 0.001;
 
-        // BufferedImage squared = generateSquared(LiveMosaic.counter);
-        BufferedImage mixed = getMosaic(LiveMosaic.counter);
+        // BufferedImage squared = generateSquared(counter);
+        BufferedImage mixed = this.getMosaic(counter);
         mixed = spill(mixed);
         mixed = negativo(mixed);
 
         ImageIO.write(mixed, "png", response.getOutputStream());
     }
-
-    public static BufferedImage negativo(BufferedImage image) {
-        int width = image.getWidth();
-        int height = image.getHeight();
-        for (int i = 0; i < width; i++) {
-            for (int j = 0; j < height; j++) {
-                int rgb = image.getRGB(i, j);               //a cor inversa é dado por 255 menos o valor da cor                 
-                int r = (int) ((rgb & 0xFF));
-                int g = (int) ((rgb >> 8 & 0xFF));
-                int b = (int) ((rgb >> 16 & 0xFF));
-                Color color = new Color(r, g, b);
-                image.setRGB(i, j, color.getRGB());
-            }
-        }
-        return image;
-    }
-
-// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -189,37 +183,5 @@ public class LiveMosaic extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    public static BufferedImage spill(BufferedImage image) {
-
-        int width = image.getWidth() * 2;
-        int height = image.getHeight() * 2;
-
-        BufferedImage buf = new BufferedImage(width, height, 2);
-        Graphics2D g2 = buf.createGraphics();
-
-        g2.setColor(Color.BLACK);
-
-        g2.fillRect(0, 0, width, height);
-
-        for (int i = 0; i < width / 2; i++) {
-            for (int j = 0; j < height / 2; j++) {
-                int rgb = image.getRGB(i, j);
-
-                Color color = new Color(rgb);
-                g2.setColor(color);
-                g2.fillRect(i, j, 1, 1);
-                g2.fillRect(width - i - 1, j, 1, 1);
-                g2.fillRect(width - i - 1, height - j - 1, 1, 1);
-                g2.fillRect(i, height - j - 1, 1, 1);
-
-            }
-        }
-        g2.setColor(Color.BLACK);
-        if (LiveMosaic.show_number) {
-            g2.drawString(Math.round(LiveMosaic.counter * 1000) + "", 0, LiveMosaic.CANVASY_SIZE * 2 - 4);
-        }
-
-        g2.dispose();
-        return (buf);
-    }
+    
 }

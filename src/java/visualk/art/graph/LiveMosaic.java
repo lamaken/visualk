@@ -239,7 +239,7 @@ public class LiveMosaic {
         }
         BufferedImage[] frames = new BufferedImage[names.length];
         for (int ii = 0; ii < names.length; ii++) {
-            Mixed.step();
+            Mixed.counter++;
             frames[ii] = getFace(Mixed.counter);
         }
 
