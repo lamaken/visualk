@@ -16,9 +16,6 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import static visualk.art.Mixed.CANVASX_SIZE;
-import static visualk.art.Mixed.CANVASY_SIZE;
-import static visualk.art.Mixed.counter;
 
 /**
  *
@@ -63,16 +60,9 @@ public class LiveMosaic extends Mosaic{
         for (int n = -10; n < new Float(CANVASX_SIZE).intValue(); n += cellw) {
 
             for (int m = -10; m < new Float(CANVASY_SIZE).intValue(); m += cellw) {
-
-                //int joe = (int) (seed * Math.cos(angle));
-                //angle += ratio;
-
                 g2.setColor(Color.getHSBColor((m + n) / seed, (m + n) / seed, (m + n) / seed));
-
-                // int x =  n + joe -CANVASX_SIZE/cellw;
-                //int y = m + joe -CANVASY_SIZE/cellw;
                // g2.fillArc(n, m, cellw * 3, cellw * 3, n, m);
-                g2.fillArc(n, m,  cellw, cellw ,180+n,260-m);
+                g2.fillArc(n, m,  cellw, cellw ,180-n,270-m);
 
             }
         }
