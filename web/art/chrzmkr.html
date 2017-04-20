@@ -33,13 +33,13 @@
                 var seed = generateUUID();
                 
                 rnd=6;
-                for (n = 0; n < 8; n++) {
+                for (n = 0; n < 18; n++) {
                     var inner = document.getElementById("hrz").innerHTML;
                     var idName = n;
                     
-                    //inner += "<img id='" + idName + "' onclick=\"reload('" + idName + "')\" alt='loading..' src='/visualk/art/Rounded?mx=170&my=170&cellw=4 5&uuid=" + idName + "'/>";
-                    //inner += "<img id='" + idName + "' onclick=\"reload('" + idName + "')\" alt='loading..' src='/visualk/art/Squared?mx=170&my=170&cellw=45&uuid=" + idName + "'/>";
-                    //inner += "<img id='" + idName + "' onclick=\"reload('" + idName + "')\" alt='loading..' src='/visualk/art/Mixed?mx=170&my=170&cellw=45&uuid=" + idName + "'/>";
+                    inner += "<img id='" + idName + "' onclick=\"reload('" + idName + "')\" alt='loading..' src='/visualk/art/Rounded?mx=100&my=100&cellw=5&uuid=" + idName + "'/>";
+                    inner += "<img id='" + idName + "' onclick=\"reload('" + idName + "')\" alt='loading..' src='/visualk/art/Squared?mx=100&my=100&cellw=5&uuid=" + idName + "'/>";
+                    inner += "<img id='" + idName + "' onclick=\"reload('" + idName + "')\" alt='loading..' src='/visualk/art/Mixed?mx=100&my=100&cellw=5&uuid=" + idName + "'/>";
                     inner += "<img id='" + idName + "' onclick=\"reload('" + idName + "')\" alt='loading..' src='/visualk/art/LiveMosaic?mx=50&my=50&cellw=11&uuid=" + idName + "'/>";
             
                     document.getElementById("hrz").innerHTML = inner;
