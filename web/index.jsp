@@ -6,7 +6,7 @@
         <meta http-equiv="refresh" content="10">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Welcome to visualk v0.1</title>
+        <title>Welcome to visualk v0.3</title>
 
         <meta name="Keywords"
               content="experiments, horizon maker, hrzmkr, mosaics, mosaic editor" />
@@ -37,25 +37,30 @@
 
     </head>
 
-    <body bgcolor="black"   style="color: white">
+    <body bgcolor="black"   style="color: activeborder">
        
       <div style="font-size:55%;line-height:1.2;text-align:center">
         <h1><a href="https://github.com/lamaken/visualk.git">https://github.com/lamaken/visualk.git</a>
         <br/><br/>
         lamaken@gmail.com <br/>
         </h1>
-        
+          <h2>mosaics</h2>
     </div>
     
 
     <div style="background-color: black;font-family: monospace;text-align:center">
-        <a href="art/editorSquared.html"><img id="squared"  src="/visualk/art/Squared?mx=150&my=150&cellw=23&d=1"/></a>
-        <a href="art/editorRounded.html"><img id="roundedd"  src="/visualk/art/Rounded?mx=150&my=150&cellw=23&d=1"/></a>
-        <a href="art/editorMixed.html"><img id="mixed"  src="/visualk/art/Mixed?mx=150&my=150&cellw=23&d=1"/></a>
-        <a href="art/editorArab.html"><img id="arab"  src="/visualk/art/Arab?mx=75&my=75&cellw=9&d=1"/></a>
-        <a href="art/liveMosaic.html"><img  src="/visualk/art/LiveMosaic?mx=75&my=75&cellw=9&d=1"/></a>
-        <a href="tubs"><img  src="/visualk/tubs/img/logo.png"/></a>
-        <a href="hrz"><img  src="/visualk/hrz/Hrz?option=firma"/></a>
+        <a  href="art/editorSquared.html"><img alt="squared" style="border: activeborder double medium " id="squared"  src="/visualk/art/Squared?mx=150&my=150&cellw=21&d=1"/></a>
+        <a  href="art/editorRounded.html"><img  alt="rounded" style="border:  activeborder double medium " id="roundedd"  src="/visualk/art/Rounded?mx=150&my=150&cellw=21&d=1"/></a>
+        <a alt="mixed" href="art/editorMixed.html"><img   alt="arab" style="border:  activeborder double medium " id="mixed"  src="/visualk/art/Mixed?mx=150&my=150&cellw=21&d=1"/></a>
+        <a href="art/editorArab.html"><img  style="border:  activeborder double medium " id="arab"  src="/visualk/art/Arab?mx=75&my=75&cellw=9&d=1"/></a>
+        <a href="art/liveMosaic.html"><img  alt="animated" style="border:  activeborder double medium " src="/visualk/art/LiveMosaic?mx=75&my=75&cellw=21&d=1"/></a>
+        
+        <!--a href="art/canvas.html">canvas</a-->
+        <a  href="art/chrzmkr.html"><img alt="interact" style="border:  activeborder double medium " src='/visualk/art/LiveMosaic?mx=75&my=75&cellw=11'></img></a>
+        <a href="art/"><img alt="screensaver"   style="border:  activeborder double medium " src='/visualk/art/LiveMosaic?mx=75&my=75&cellw=31'></img></a>
+        
+        <a href="tubs"><img   src="/visualk/tubs/img/logo.png"/></a>
+        <a href="hrz"><img   src="/visualk/hrz/Hrz?option=firma"/></a>
         <!--a href="nine"><img src="/visualk/nine/img/logo.png"/></a-->
         <!--a href="ss"><img  src="/visualk/ss/img/logo.jpeg"/></a-->
         <!--a href="gallery"><img src="/visualk/gallery/img/logo.jpeg"/>gallery</a-->

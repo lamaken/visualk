@@ -18,23 +18,41 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 -->
 <html>
     <head>
-        <title>mosaicjs</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Mosaic Editor v0.32</title>
+        <meta name="Keywords"
+              content="mosaic,round, mosaic editor" />
+        <meta name="Description"
+              content="Design your own mosaics. Let computer draw or paint for you." />
+        <meta name="Author" content="lamaken@gmail.com" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
         <link rel="icon" type="img/ico" href="/visualk/favicon.ico">
+        <style>
+            canvas {
+                image-rendering: optimizeSpeed;             /* Older versions of FF          */
+                image-rendering: -moz-crisp-edges;          /* FF 6.0+                       */
+                image-rendering: -webkit-optimize-contrast; /* Safari                        */
+                image-rendering: -o-crisp-edges;            /* OS X & Windows Opera (12.02+) */
+                image-rendering: pixelated;                 /* Awesome future-browsers       */
+                -ms-interpolation-mode: nearest-neighbor;   /* IE                            */
+            }
+        </style>
 
     </head>
     <body onload="updateMain()">
-        <div id="idMosaic" style="position: fixed;padding: 30px;border: 1px activeborder solid;background-color: black;left:30px;top:15px;">
+        <div id="idMosaic" style="position: fixed;padding: 30px;border: 1px activeborder solid;background-color: white;left:30px;top:15px;">
             <center>
 
-                <div id="container" style="background-color: black">
+                <div id="container" style="background-color: white">
 
                 </div>
-                <input onchange="updateMain()" id="mx" type="range" name="mx" min="50" max="400" value="250"/><div id="lmx"  style="color:yellow;font-family: monospace; text-decoration: activecaption solid ">a</div>
-                <input onchange="updateMain()" id="my" type="range" name="my" min="50" max="400" value="250"/><div id="lmy" style="color:yellow;font-family: monospace; text-decoration: activecaption solid ">c</div>
-                <input onchange="updateMain()" id="cell" type="range" name="cell" min="1" max="320" value="13"/><div style="color:yellow;font-family: monospace; text-decoration: activecaption solid " id="lcell">m</div> 
+
+                <input onchange="updateMain()"  id="mx" type="range" name="mx" min="50" max="200" value="75"/><div id="lmx"  style="color:blue;font-family: monospace; text-decoration: activecaption solid;font-size:  smaller">a</div>
+                <input onchange="updateMain()" id="my" type="range" name="my" min="50" max="200" value="75"/><div id="lmy" style="color:blue;font-family: monospace; text-decoration: activecaption solid ;font-size:  smaller">c</div>
+                <input onchange="updateMain()" id="cell" type="range" name="cell" min="1" max="500" value="153"/><div style="color:blue;font-family: monospace; text-decoration: activecaption solid ;font-size:  smaller" id="lcell">m</div> 
                 <br/><input value="colorize" type="button" onclick="updateMain();"/>
+
             </center>
         </div>
 
@@ -43,143 +61,175 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
         <script>
             var seed = 0;
-
             function HSVtoRGB(h, s, v) {
-                var r, g, b, i, f, p, q, t;
-                if (arguments.length === 1) {
-                    s = h.s, v = h.v, h = h.h;
-                }
-                i = Math.floor(h * 6);
-                f = h * 6 - i;
-                p = v * (1 - s);
-                q = v * (1 - f * s);
-                t = v * (1 - (1 - f) * s);
-                switch (i % 6) {
-                    case 0:
-                        r = v, g = t, b = p;
-                        break;
-                    case 1:
-                        r = q, g = v, b = p;
-                        break;
-                    case 2:
-                        r = p, g = v, b = t;
-                        break;
-                    case 3:
-                        r = p, g = q, b = v;
-                        break;
-                    case 4:
-                        r = t, g = p, b = v;
-                        break;
-                    case 5:
-                        r = v, g = p, b = q;
-                        break;
-                }
-                return {
-                    r: Math.round(r * 255),
-                    g: Math.round(g * 255),
-                    b: Math.round(b * 255)
-                };
+
+            h = parseInt(h, 10);
+            s = parseInt(s, 10);
+            v = parseInt(v, 10);
+            var r, g, b;
+            if (s !== 0) {
+            s /= 100;
+            }
+            if (v !== 0) {
+            v /= 100;
             }
 
+            if (s === 0) {
+            console.log("s === 0");
+            r = v;
+            g = v;
+            b = v;
+            return "#" + Math.floor(r * 0xff).toString(16) +
+                    Math.floor(g * 0xff).toString(16) +
+                    Math.floor(b * 0xff).toString(16);
+            }
+
+            var i, f, m, n, k;
+            i = Math.floor(h / 60);
+            f = h / 60 - i;
+            m = v * (1 - s);
+            n = v * (1 - s * f);
+            k = v * (1 - s * (1 - f));
+            switch (i) {
+            case 0:
+                    r = v;
+            g = k;
+            b = m;
+            break;
+            case 1:
+                    r = n;
+            g = v;
+            b = m;
+            break;
+            case 2:
+                    r = m;
+            g = v;
+            b = k;
+            break;
+            case 3:
+                    r = m;
+            g = n;
+            b = v;
+            break;
+            case 4:
+                    r = k;
+            g = m;
+            b = v;
+            break;
+            case 5:
+                    r = v;
+            g = m;
+            b = n;
+            break;
+            default:
+                    break;
+            }
+
+
+            r = Math.floor(r * 0xff).toString(16);
+            g = Math.floor(g * 0xff).toString(16);
+            b = Math.floor(b * 0xff).toString(16);
+            r = r.length == 1 ? r = '0' + r : r;
+            g = g.length == 1 ? g = '0' + g : g;
+            b = b.length == 1 ? b = '0' + b : b;
+            return getColor(r, g, b);
+            }
+
+
+
+
             function updateMain() {
-                var mx = document.getElementById("mx").value;
-                var my = document.getElementById("my").value;
-                var cell = document.getElementById("cell").value;
+            var mx = document.getElementById("mx").value;
+            var my = document.getElementById("my").value;
+            var cell = document.getElementById("cell").value;
+            var lmx = document.getElementById("lmx");
+            var lmy = document.getElementById("lmy");
+            var lcell = document.getElementById("lcell");
+            lmx.innerHTML = mx;
+            lmy.innerHTML = my;
+            lcell.innerHTML = cell;
+            // document.getElementById('mostra').width = mx;
+            // document.getElementById('mostra').height = my;
 
-                var lmx = document.getElementById("lmx");
-                var lmy = document.getElementById("lmy");
-                var lcell = document.getElementById("lcell");
-
-
-                lmx.innerHTML = mx;
-                lmy.innerHTML = my;
-                lcell.innerHTML = cell;
-
-                // document.getElementById('mostra').width = mx;
-                // document.getElementById('mostra').height = my;
-
-                if (document.getElementById("mostra") != null) {
-                    document.getElementById("container").removeChild(document.getElementById("mostra"));
-                }
-                var mostra = document.createElement('canvas');
-                mostra.id = "mostra";
-                mostra.setAttribute("width", mx);
-                mostra.setAttribute("height", my);
-
-                document.getElementById("container").appendChild(mostra);
-
-
-                var mosaic = document.getElementById('mosaic');
-                mosaic.width = window.outerWidth;
-                mosaic.height = window.outerHeight;
-
-                var ctxmostra = mostra.getContext('2d');
-                var ctxmosaic = mosaic.getContext('2d');
-
-                var radiusX = (mostra.width / cell);
-                var radiusY = (mostra.height / cell);
+            if (document.getElementById("mostra") != null) {
+            document.getElementById("container").removeChild(document.getElementById("mostra"));
+            }
+            var mostra = document.createElement('canvas');
+            mostra.id = "mostra";
+            mostra.setAttribute("width", mx);
+            mostra.setAttribute("height", my);
+            document.getElementById("container").appendChild(mostra);
+            var mosaic = document.getElementById('mosaic');
+            mosaic.width = window.outerWidth;
+            mosaic.height = window.outerHeight;
+            var ctxmostra = mostra.getContext('2d');
+            var ctxmosaic = mosaic.getContext('2d');
+            var radiusX = (mx / cell);
+            var radiusY = (my / cell);
+//                ctxmostra.imageSmoothingEnabled = false;
+//               ctxmosaic.imageSmoothingEnabled = false;
 
 
+            seed += 0;
+            if (seed > 0.3)
+                    seed = 0.001;
+            //ctxmostra.fillStyle = "black";
+            //ctxmostra.fillRect(0, 0, mostra.width, mostra.height);
+            
+            for (var x = 0; x < mostra.width / 2 ; x += radiusX) {
+
+            for (var y = 0; y < mostra.height / 2 ; y += radiusY) {
+
+            var rgb = HSVtoRGB((y + x) / seed, (y + x) / seed, (y + x) / seed);
+//                        var r = ((y + x)) % 256;
+//                        var g = ((y * x)) % 256;
+//                        var b = ((y + x)) % 256;
 
 
-
-
-                seed += 0.001;
-                if (seed > 0.3)
-                    seed = 0;
-
-                //ctxmostra.fillStyle = "black";
-                //ctxmostra.fillRect(0, 0, mostra.width, mostra.height);
-                for (var x = 0; x < mostra.width; x += radiusX) {
-                    for (var y = 0; y < mostra.height; y += radiusY) {
-
-                        var rgb = HSVtoRGB((y + x) / seed, (y + x) / seed, (y + x) / seed);
-
-                        color = getColor(rgb.r, rgb.g, rgb.b);
-
-
-
-
-                        ctxmostra.fillStyle = color;
-
-                           ctxmostra.fillRect(x, y, radiusX, radiusY);
-                           ctxmostra.fillRect(mostra.width - x - radiusX, y, radiusX, radiusY);
-                           ctxmostra.fillRect(x, mostra.height - y - radiusY, radiusX, radiusY);
-                           ctxmostra.fillRect(mostra.width - x - radiusX, mostra.height - y - radiusY, radiusX, radiusY);
-/*
-                        ctxmostra.fillRect(x - radiusX, y - radiusY*2, radiusX, radiusY);
-                        ctxmostra.fillRect(mostra.width - x - radiusX, y - radiusY, radiusX, radiusY);
-                        ctxmostra.fillRect(x - radiusX, mostra.height - y - radiusY, radiusX, radiusY);
-                        ctxmostra.fillRect(mostra.width - x - radiusX, mostra.height - y - radiusY, radiusX, radiusY);
+            var color = "rgb(" + rgb.r + "," + rgb.g + "," + rgb.b + ")";
+            /*
+            for (int n = 0; n < new Float(Rounded.CANVASX_SIZE / 2).intValue() + 2; n += cellw) {
+            for (int m = 0; m < new Float(Rounded.CANVASY_SIZE / 2).intValue() + 2; m += cellw) {
+            g2.setColor((Color.getHSBColor((m + n) / seed, (m + n) / seed, (m + n) / seed)));
+            g2.fillOval(n - cellw, m - cellw, cellw * 2, cellw * 2);
+            g2.fillOval(Rounded.CANVASX_SIZE - n - cellw, m - cellw, cellw * 2, cellw * 2);
+            g2.fillOval(n - cellw, Rounded.CANVASY_SIZE - m - cellw, cellw * 2, cellw * 2);
+            g2.fillOval(Rounded.CANVASX_SIZE - n - cellw, Rounded.CANVASY_SIZE - m - cellw, cellw * 2, cellw * 2);
+            }
+            }
 */
+            ctxmostra.fillStyle = "red";
+            ctxmostra.rect(x, y,radiusX, radiusY);
+            //ctxmostra.fillStyle = "red";
+            //ctxmostra.fillRect(mostra.width - x, y - radiusY, radiusX, radiusY);
+            //ctxmostra.fillRect(x, mostra.height - y - radiusY, radiusX, radiusY);
+            //ctxmostra.fillRect(mostra.width - x, mostra.height - y - radiusY, radiusX, radiusY);
+            }
+            }
 
-                    }
-                }
-                
-                
-                
 
 
-                /*
-                 * 
-                 * 
-                 */
-                var raxola = ctxmostra.getImageData(0, 0, mostra.width, mostra.height);
-                ctxmostra.fillStyle = "white";
-                ctxmostra.rect(1, 1, mostra.width-2, mostra.height-2);
-                ctxmostra.stroke();
 
-                //muntem el mosaic
-                for (var mx = 0; mx < mosaic.width; mx += mostra.width) {//mostra.width){
-                    for (var my = 0; my < mosaic.height; my += mostra.height) {
-                        ctxmosaic.putImageData(raxola, mx, my);
-                    }
 
-                }
+            /*
+             * 
+             * 
+             */
+            var raxola = ctxmostra.getImageData(0, 0, mostra.width, mostra.height);
+            ctxmostra.fillStyle = "white";
+            ctxmostra.rect(1, 1, mostra.width - 2, mostra.height - 2);
+            ctxmostra.stroke();
+            //muntem el mosaic
+            for (var mx = 0; mx < mosaic.width; mx += mostra.width) {//mostra.width){
+            for (var my = 0; my < mosaic.height; my += mostra.height) {
+            ctxmosaic.putImageData(raxola, mx, my);
+            }
+
+            }
             }
 
             function getColor(r, g, b) {
-                return "rgb(" + r + "," + g + "," + b + ")";
+            return "rgb(" + r + "," + g + "," + b + ")";
             }
 
 
