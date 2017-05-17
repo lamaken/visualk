@@ -125,13 +125,23 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                 b = b.length == 1 ? b = '0' + b : b;
                 return getColor(r, g, b);
             }
+            function ellipse(context, cx, cy, rx, ry) {
+                context.save(); // save state
+                context.beginPath();
 
+                context.translate(cx - rx, cy - ry);
+                context.scale(rx, ry);
+                context.arc(1, 1, 1, 0, 2 * Math.PI, false);
+
+                context.restore(); // restore to original state
+                context.stroke();
+            }
             function getRndColor() {
-                var r = Math.round(Math.random() * 156);
+                var r = Math.round(Math.random() * 256);
                 var g = Math.round(Math.random() * 256);
-                var b = Math.round(Math.random() * 156);
-                
-                
+                var b = Math.round(Math.random() * 256);
+
+
                 return getColor(r, g, b);
             }
 
@@ -162,49 +172,32 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                 mosaic.height = window.outerHeight;
                 var ctxmostra = mostra.getContext('2d');
                 var ctxmosaic = mosaic.getContext('2d');
-                var radiusX = Math.round((mx/2 / cell));
-                var radiusY = Math.round(my/2 /cell);
+                var radiusX = Math.round((mx / 2 / cell));
+                var radiusY = Math.round(my / 2 / cell);
 //                ctxmostra.imageSmoothingEnabled = false;
 //               ctxmosaic.imageSmoothingEnabled = false;
 
                 var mod = 0;
-                seed += 0;
+                seed += 0.001;
                 if (seed > 0.3)
-                    seed = 0.001;
-                //ctxmostra.fillStyle = "black";
-                //ctxmostra.fillRect(0, 0, mostra.width, mostra.height);
+                    seed = 0;
+                ctxmostra.fillStyle = "black";
+                ctxmostra.fillRect(0, 0, mostra.width, mostra.height);
 
-                for (var x = 0; x < Math.round(mx/2)+2; x += radiusX) {
+                for (var x = 0; x < Math.round(cell * radiusX); x += radiusX) {
 
-                    for (var y = 0; y < Math.round(my/2)+2; y += radiusY) {
+                    for (var y = 0; y < Math.round(cell * radiusY); y += radiusY) {
+                        var color = getRndColor();
 
-                       
-                        var color = "red";
-
-                        mod = mod + 1;
-                        if (mod % 2 == 0)
-                            color = "blue";
-
-
-
-                        color = getRndColor();
-
-                        /*
-                         for (int n = 0; n < new Float(Rounded.CANVASX_SIZE / 2).intValue() + 2; n += cellw) {
-                         for (int m = 0; m < new Float(Rounded.CANVASY_SIZE / 2).intValue() + 2; m += cellw) {
-                         g2.setColor((Color.getHSBColor((m + n) / seed, (m + n) / seed, (m + n) / seed)));
-                         g2.fillOval(n - cellw, m - cellw, cellw * 2, cellw * 2);
-                         g2.fillOval(Rounded.CANVASX_SIZE - n - cellw, m - cellw, cellw * 2, cellw * 2);
-                         g2.fillOval(n - cellw, Rounded.CANVASY_SIZE - m - cellw, cellw * 2, cellw * 2);
-                         g2.fillOval(Rounded.CANVASX_SIZE - n - cellw, Rounded.CANVASY_SIZE - m - cellw, cellw * 2, cellw * 2);
-                         }
-                         }
-                         */
                         ctxmostra.fillStyle = color;
                         ctxmostra.fillRect(x, y, radiusX, radiusY);
+                        
+                //        ellipse(ctxmostra,x+radiusX,y+radiusY,radiusX,radiusY);
+                        
                         ctxmostra.fillRect(mostra.width - x - radiusX, y, radiusX, radiusY);
                         ctxmostra.fillRect(x, mostra.height - y - radiusY, radiusX, radiusY);
                         ctxmostra.fillRect(mostra.width - x - radiusX, mostra.height - y - radiusY, radiusX, radiusY);
+                
                     }
                 }
 
@@ -218,12 +211,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                  */
                 var raxola = ctxmostra.getImageData(0, 0, mostra.width, mostra.height);
                 //ctxmostra.fillStyle = "white";
-                //ctxmostra.rect(0, 0, mx/2, my/2);
+                //ctxmostra.rect(0, 0, mostra.width, mostra.height);
+                //ctxmostra.rect(0, 0, mostra.width/2, mostra.height/2);
+
                 //ctxmostra.stroke();
                 //muntem el mosaic
-                for (var mx = 0; mx < mosaic.width; mx += mostra.width) {//mostra.width){
-                    for (var my = 0; my < mosaic.height; my += mostra.height) {
-                        ctxmosaic.putImageData(raxola, mx, my);
+                for (var mmx = 0; mmx < mosaic.width; mmx += mostra.width) {//mostra.width){
+                    for (var mmy = 0; mmy < mosaic.height; mmy += mostra.height) {
+                        ctxmosaic.putImageData(raxola, mmx, mmy);
                     }
 
                 }
