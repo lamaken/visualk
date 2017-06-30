@@ -61,9 +61,9 @@
         
         <a href="tubs"><img   src="/visualk/tubs/img/logo.png"/></a>
         <a href="hrz"><img   src="/visualk/hrz/Hrz?option=firma"/></a>
-        <!--a href="nine"><img src="/visualk/nine/img/logo.png"/></a-->
-        <!--a href="ss"><img  src="/visualk/ss/img/logo.jpeg"/></a-->
-        <!--a href="gallery"><img src="/visualk/gallery/img/logo.jpeg"/>gallery</a-->
+        <a href="nine"><img src="/visualk/nine/img/logo.png"/></a>
+        <a href="ss"><img  src="/visualk/ss/img/logo.jpeg"/></a>
+        <a href="gallery"><img src="/visualk/gallery/img/logo.jpeg"/>gallery</a>
     </div>
 
 </body>
