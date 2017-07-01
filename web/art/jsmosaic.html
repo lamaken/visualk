@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <!--
 Copyright (C) 2017 lamaken
+https://github.com/lamaken/visualk/blob/master/web/art/jsmosaic.html
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
@@ -19,7 +20,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Mosaic Editor v0.32</title>
+        <title>jsMosaic Editor v0.1</title>
         <meta name="Keywords"
               content="mosaic,round, mosaic editor" />
         <meta name="Description"
@@ -32,23 +33,25 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     </head>
     <body onload="updateMain()">
-        <div id="idMosaic" style="position: fixed;padding: 30px;border: 1px activeborder solid;background-color: white;left:30px;top:15px;">
+        <div id="idMosaic" style="left:15px;top:15px;border: 10;background-color: white;position: fixed;padding: 30px;color:blue;font-family: monospace; text-decoration: activecaption solid ;font-size:  smaller">
             <center>
-
-                <div id="container" style="background-color: white">
+                jsMosaicEditor v0.1<br>
+                <a target="black" href="https://github.com/lamaken/visualk/blob/master/web/art/canvas.html">jsMosaic</a>
+                <br/>
+                <br><div id="container" style="background-color: white">
 
                 </div>
 
-                <input onchange="updateMain()"  id="mx" type="range" name="mx" min="5" max="100" value="50"/><div id="lmx"  style="color:blue;font-family: monospace; text-decoration: activecaption solid;font-size:  smaller">width:a</div>
-                <input onchange="updateMain()" id="my" type="range" name="my" min="5" max="100" value="50"/><div id="lmy" style="color:blue;font-family: monospace; text-decoration: activecaption solid ;font-size:  smaller">c</div>
-                <input onchange="updateMain()" id="cell" type="range" name="cell" min="1" max="8" value="3"/><div style="color:blue;font-family: monospace; text-decoration: activecaption solid ;font-size:  smaller" id="lcell">m</div> 
-                <input onchange="updateMain()" id="rbright" type="range" name="rbright" min="0" max="255" value="100"/><div style="color:blue;font-family: monospace; text-decoration: activecaption solid ;font-size:  smaller" id="lrbright">r</div> 
-                <input onchange="updateMain()" id="gbright" type="range" name="gbright" min="0" max="255" value="100"/><div style="color:blue;font-family: monospace; text-decoration: activecaption solid ;font-size:  smaller" id="lgbright">g</div> 
-                <input onchange="updateMain()" id="bbright" type="range" name="bbright" min="0" max="255" value="100"/><div style="color:blue;font-family: monospace; text-decoration: activecaption solid ;font-size:  smaller" id="lbbright">b</div> 
-                <input onchange="updateMain()" id="domain" type="range" name="domain" min="0" max="255" value="100"/><div style="color:blue;font-family: monospace; text-decoration: activecaption solid ;font-size:  smaller" id="ldomain">domain</div> 
-                
+                <input onchange="updateMain()"  id="mx" type="range" name="mx" min="5" max="100" value="50"/><div id="lmx"  >width:a</div>
+                <input onchange="updateMain()" id="my" type="range" name="my" min="5" max="100" value="50"/><div id="lmy" >c</div>
+                <input onchange="updateMain()" id="cell" type="range" name="cell" min="1" max="8" value="3"/><div  id="lcell">m</div> 
+                <input onchange="updateMain()" id="rbright" type="range" name="rbright" min="0" max="255" value="100"/><div id="lrbright">r</div> 
+                <input onchange="updateMain()" id="gbright" type="range" name="gbright" min="0" max="255" value="100"/><div id="lgbright">g</div> 
+                <input onchange="updateMain()" id="bbright" type="range" name="bbright" min="0" max="255" value="100"/><div id="lbbright">b</div> 
+                <input onchange="updateMain()" id="domain" type="range" name="domain" min="0" max="255" value="100"/><div id="ldomain">domain</div> 
+
                 <br/><input value="colorize" type="button" onclick="updateMain();"/>
-                
+
             </center>
         </div>
 
@@ -57,13 +60,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
         <script>
             var seed = 0;
-            
-    var rIntes = 200;//0..256 
-    var gIntes = 200;
-    var bIntes = 200;
-    var domini=200;
-            
-            
+
+            var rIntes = 200;//0..256 
+            var gIntes = 200;
+            var bIntes = 200;
+            var domini = 200;
+
+
             function HSVtoRGB(h, s, v) {
 
                 h = parseInt(h, 10);
@@ -148,51 +151,45 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                 context.restore(); // restore to original state
                 context.stroke();
             }
-            function getSpecialRndColor() {
-                var r = Math.round(Math.random() * (256-rIntes));
-                var g = Math.round(Math.random() * (256-gIntes));
-                var b = Math.round(Math.random() * (256-bIntes));
-
-                return getColor(r+rIntes, g+gIntes, b+bIntes);
-            }
-
             function getRndColor() {
-                var r = Math.round(Math.random() * (rIntes))+(rIntes-domini);
-                var g = Math.round(Math.random() * (gIntes))+(gIntes-domini);
-                var b = Math.round(Math.random() * (bIntes))+(bIntes-domini);
-                
-                
+                var r = Math.round(Math.random() * (domini)) + (rIntes - domini);
+                var g = Math.round(Math.random() * (domini)) + (gIntes - domini);
+                var b = Math.round(Math.random() * (domini)) + (bIntes - domini);
 
                 return getColor(r, g, b);
             }
+
 
             function updateMain() {
                 var mx = document.getElementById("mx").value;
                 var my = document.getElementById("my").value;
                 var cell = document.getElementById("cell").value;
-                domini =  document.getElementById("domain").value;
-                
+                domini = document.getElementById("domain").value;
+
                 var rbright = document.getElementById("rbright").value;
                 var gbright = document.getElementById("gbright").value;
                 var bbright = document.getElementById("bbright").value;
-                
+
                 var lmx = document.getElementById("lmx");
                 var lmy = document.getElementById("lmy");
-                
+
                 var lcell = document.getElementById("lcell");
                 var lrbright = document.getElementById("lrbright");
                 var lgbright = document.getElementById("lgbright");
                 var lbbright = document.getElementById("lbbright");
-                
-                
-                lmx.innerHTML = "width:"+mx;
-                lmy.innerHTML = "height:"+my;
-                lcell.innerHTML = "cell:"+cell;
-                
-                lrbright.innerHTML = "red:"+rbright;
-                lgbright.innerHTML = "green:"+gbright;
-                lbbright.innerHTML = "blue:"+bbright;
-                
+                var ldomini = document.getElementById("ldomain");
+
+
+                lmx.innerHTML = "width:" + mx;
+                lmy.innerHTML = "height:" + my;
+                lcell.innerHTML = "cell:" + cell;
+
+                lrbright.innerHTML = "red:" + rbright;
+                lgbright.innerHTML = "green:" + gbright;
+                lbbright.innerHTML = "blue:" + bbright;
+                ldomini.innerHTML = "bright:" + domini;
+
+
                 // document.getElementById('mostra').width = mx;
                 // document.getElementById('mostra').height = my;
 
@@ -203,29 +200,29 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                 var mostra = document.createElement('canvas');
                 var tosave = document.createElement('canvas');
                 mostra.id = "mostra";
-                tosave.id="tosave";
+                tosave.id = "tosave";
                 var radiusX = Math.round((mx / 2 / cell));
                 var radiusY = Math.round(my / 2 / cell);
-                
+
                 mostra.setAttribute("width", mx);
                 mostra.setAttribute("height", my);
-                
-                mostra.style.display="none";
-                
-                tosave.setAttribute("width", mx-radiusX);
-                tosave.setAttribute("height", my-radiusY);
-                
+
+                mostra.style.display = "none";
+
+                tosave.setAttribute("width", mx - radiusX);
+                tosave.setAttribute("height", my - radiusY);
+
                 document.getElementById("container").appendChild(mostra);
                 document.getElementById("container").appendChild(tosave);
-                
+
                 var mosaic = document.getElementById('mosaic');
                 mosaic.width = window.outerWidth;
                 mosaic.height = window.outerHeight;
                 var ctxmostra = mostra.getContext('2d');
                 var ctxtosave = tosave.getContext('2d');
-                
+
                 var ctxmosaic = mosaic.getContext('2d');
-                
+
 //                ctxmostra.imageSmoothingEnabled = false;
 //               ctxmosaic.imageSmoothingEnabled = false;
 
@@ -239,50 +236,50 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                 rIntes = rbright;//0..256 
                 gIntes = gbright;
                 bIntes = bbright;
-    
+
 
                 for (var x = 0; x < Math.round(cell * radiusX); x += radiusX) {
 
                     for (var y = 0; y < Math.round(cell * radiusY); y += radiusY) {
 
-                        
+
                         var color = getRndColor();
                         ctxmostra.fillStyle = color;
-                        
-                
+
+
                         ctxmostra.fillRect(x, y, radiusX, radiusY);
 
                         //ellipse(ctxmostra,x+radiusX+1,y+radiusY+1,radiusX-2,radiusY-2);
 
-                        ctxmostra.fillRect(mostra.width - x - radiusX*2, y, radiusX, radiusY);
-                        ctxmostra.fillRect(x, mostra.height - y - radiusY*2, radiusX, radiusY);
-                        ctxmostra.fillRect(mostra.width - x - radiusX*2, mostra.height - y - radiusY*2, radiusX, radiusY);
+                        ctxmostra.fillRect(mostra.width - x - radiusX * 2, y, radiusX, radiusY);
+                        ctxmostra.fillRect(x, mostra.height - y - radiusY * 2, radiusX, radiusY);
+                        ctxmostra.fillRect(mostra.width - x - radiusX * 2, mostra.height - y - radiusY * 2, radiusX, radiusY);
 
                     }
                 }
 
-/*
-                var ctximg=ctxmostra.getImageData(0,0,mostra.width-(radiusX), mostra.height-radiusY);
-                mostra.data = ctximg;   
-*/
+                /*
+                 var ctximg=ctxmostra.getImageData(0,0,mostra.width-(radiusX), mostra.height-radiusY);
+                 mostra.data = ctximg;   
+                 */
 
                 //mostra.setAttribute("width", 100);
-                
-                
+
+
                 /*
                  * 
                  * 
                  */
-                var raxola = ctxmostra.getImageData(0, 0, mostra.width-(radiusX), mostra.height-radiusY);
-                ctxtosave.putImageData(raxola, 0,0);
+                var raxola = ctxmostra.getImageData(0, 0, mostra.width - (radiusX), mostra.height - radiusY);
+                ctxtosave.putImageData(raxola, 0, 0);
                 //ctxmostra.fillStyle = "white";
                 //ctxmostra.rect(0, 0, mostra.width, mostra.height);
                 //ctxmostra.rect(0, 0, mostra.width/2, mostra.height/2);
 
                 ctxmostra.stroke();
                 //muntem el mosaic
-                for (var mmx = 0; mmx < mosaic.width-radiusX; mmx += mostra.width-radiusX) {//mostra.width){
-                    for (var mmy = 0; mmy < mosaic.height; mmy += mostra.height-radiusY) {
+                for (var mmx = 0; mmx < mosaic.width - radiusX; mmx += mostra.width - radiusX) {//mostra.width){
+                    for (var mmy = 0; mmy < mosaic.height; mmy += mostra.height - radiusY) {
                         ctxmosaic.putImageData(raxola, mmx, mmy);
                     }
 
