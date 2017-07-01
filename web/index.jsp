@@ -58,7 +58,7 @@
         <a  href="art/jsmosaic.html"><img alt="jsmosaic" style="border: activeborder double medium " id="squared"  src="/visualk/art/Squared?mx=150&my=150&cellw=10"/></a>
         <a href="art/liveMosaic.html"><img  alt="animated" style="border:  activeborder double medium " src="/visualk/art/LiveMosaic?mx=75&my=75&cellw=21&d=1"/></a>
         
-        <a href="tubs"><img   src="/visualk/tubs/img/logo.png"/></a>
+        <a href="tubs"><img   width="150px" height="150px"  src="/visualk/tubs/img/logo.png"/></a>
         <a href="hrz"><img   src="/visualk/hrz/Hrz?option=firma"/></a>
       <!--  <a href="nine"><img src="/visualk/nine/img/logo.png"/></a>
         <a href="ss"><img  src="/visualk/ss/img/logo.jpeg"/></a>
