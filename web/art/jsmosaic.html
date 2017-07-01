@@ -193,9 +193,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                 // document.getElementById('mostra').width = mx;
                 // document.getElementById('mostra').height = my;
 
-                if (document.getElementById("tosave") != null) {
-                    document.getElementById("container").removeChild(document.getElementById("mostra"));
-                    document.getElementById("container").removeChild(document.getElementById("tosave"));
+                if (document.getElementById("imageFoo") != null) {
+                    document.getElementById("container").removeChild(document.getElementById("imageFoo"));
+                   // document.getElementById("container").removeChild(document.getElementById("tosave"));
                 }
                 var mostra = document.createElement('canvas');
                 var tosave = document.createElement('canvas');
@@ -212,8 +212,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                 tosave.setAttribute("width", mx - radiusX);
                 tosave.setAttribute("height", my - radiusY);
 
-                document.getElementById("container").appendChild(mostra);
-                document.getElementById("container").appendChild(tosave);
 
                 var mosaic = document.getElementById('mosaic');
                 mosaic.width = window.outerWidth;
@@ -284,6 +282,24 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                     }
 
                 }
+                
+                
+                dataUrl = tosave.toDataURL();
+                imageFoo = document.createElement('img');
+                imageFoo.src = dataUrl;
+                imageFoo.id="imageFoo";    
+// Style your image here
+                imageFoo.style.width = mx - radiusX;
+                imageFoo.style.height = my - radiusY;
+                
+                
+                
+
+// After you are done styling it, append it to the BODY element
+                
+
+                //document.getElementById("container").appendChild(mostra);
+                document.getElementById("container").appendChild(imageFoo);
             }
 
             function getColor(r, g, b) {
