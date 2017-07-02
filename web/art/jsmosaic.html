@@ -33,6 +33,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
     </head>
     <body onload="updateMain()">
+        
+        
+        
+   
         <div id="idMosaic" style="left:15px;top:15px;border: 10;background-color: white;position: fixed;padding: 30px;color:blue;font-family: monospace; text-decoration: activecaption solid ;font-size:  smaller">
             <center>
                 jsMosaicEditor v0.1<br>
@@ -160,69 +164,57 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             }
 
 
+            function updateMain2() {
+
+            }
+
+
             function updateMain() {
+                /*init*/
                 var mx = document.getElementById("mx").value;
                 var my = document.getElementById("my").value;
                 var cell = document.getElementById("cell").value;
                 domini = document.getElementById("domain").value;
-
                 var rbright = document.getElementById("rbright").value;
                 var gbright = document.getElementById("gbright").value;
                 var bbright = document.getElementById("bbright").value;
-
                 var lmx = document.getElementById("lmx");
                 var lmy = document.getElementById("lmy");
-
                 var lcell = document.getElementById("lcell");
                 var lrbright = document.getElementById("lrbright");
                 var lgbright = document.getElementById("lgbright");
                 var lbbright = document.getElementById("lbbright");
                 var ldomini = document.getElementById("ldomain");
-
-
                 lmx.innerHTML = "width:" + mx;
                 lmy.innerHTML = "height:" + my;
                 lcell.innerHTML = "cell:" + cell;
-
                 lrbright.innerHTML = "red:" + rbright;
                 lgbright.innerHTML = "green:" + gbright;
                 lbbright.innerHTML = "blue:" + bbright;
                 ldomini.innerHTML = "bright:" + domini;
+                /**/
 
 
-                // document.getElementById('mostra').width = mx;
-                // document.getElementById('mostra').height = my;
 
-                if (document.getElementById("imageFoo") != null) {
-                    document.getElementById("container").removeChild(document.getElementById("imageFoo"));
-                   // document.getElementById("container").removeChild(document.getElementById("tosave"));
-                }
                 var mostra = document.createElement('canvas');
                 var tosave = document.createElement('canvas');
                 mostra.id = "mostra";
                 tosave.id = "tosave";
                 var radiusX = Math.round((mx / 2 / cell));
                 var radiusY = Math.round(my / 2 / cell);
-
                 mostra.setAttribute("width", mx);
                 mostra.setAttribute("height", my);
-
                 mostra.style.display = "none";
-
                 tosave.setAttribute("width", mx - radiusX);
                 tosave.setAttribute("height", my - radiusY);
-
-
                 var mosaic = document.getElementById('mosaic');
                 mosaic.width = window.outerWidth;
                 mosaic.height = window.outerHeight;
                 var ctxmostra = mostra.getContext('2d');
                 var ctxtosave = tosave.getContext('2d');
-
                 var ctxmosaic = mosaic.getContext('2d');
-
-//                ctxmostra.imageSmoothingEnabled = false;
-//               ctxmosaic.imageSmoothingEnabled = false;
+                ctxmostra.imageSmoothingEnabled = false;
+                ctxmosaic.imageSmoothingEnabled = false
 
                 var mod = 0;
                 seed += 0.001;
@@ -230,12 +222,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                     seed = 0;
                 ctxmostra.fillStyle = "red";
                 ctxmostra.fillRect(0, 0, mostra.width, mostra.height);
-
-                rIntes = rbright;//0..256 
+                rIntes = rbright; //0..256 
                 gIntes = gbright;
                 bIntes = bbright;
-
-
                 for (var x = 0; x < Math.round(cell * radiusX); x += radiusX) {
 
                     for (var y = 0; y < Math.round(cell * radiusY); y += radiusY) {
@@ -243,16 +232,12 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
                         var color = getRndColor();
                         ctxmostra.fillStyle = color;
-
-
                         ctxmostra.fillRect(x, y, radiusX, radiusY);
-
                         //ellipse(ctxmostra,x+radiusX+1,y+radiusY+1,radiusX-2,radiusY-2);
 
                         ctxmostra.fillRect(mostra.width - x - radiusX * 2, y, radiusX, radiusY);
                         ctxmostra.fillRect(x, mostra.height - y - radiusY * 2, radiusX, radiusY);
                         ctxmostra.fillRect(mostra.width - x - radiusX * 2, mostra.height - y - radiusY * 2, radiusX, radiusY);
-
                     }
                 }
 
@@ -276,30 +261,35 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
                 ctxmostra.stroke();
                 //muntem el mosaic
-                for (var mmx = 0; mmx < mosaic.width - radiusX; mmx += mostra.width - radiusX) {//mostra.width){
-                    for (var mmy = 0; mmy < mosaic.height; mmy += mostra.height - radiusY) {
-                        ctxmosaic.putImageData(raxola, mmx, mmy);
+
+
+
+
+                dataUrl = tosave.toDataURL();
+                imageFoo = document.createElement('img');
+                imageFoo.src = dataUrl;
+                imageFoo.id = "imageFoo";
+                imageFoo.style.width = mx - radiusX;
+                imageFoo.style.height = my - radiusY;
+                
+                if (document.getElementById("imageFoo") != null) {
+                    document.getElementById("container").removeChild(document.getElementById("imageFoo"));
+                }
+                document.getElementById("container").appendChild(imageFoo);
+                
+                imageFoo.onload = function () {
+                    var topaint = document.getElementById("imageFoo");
+                    for (var mmx = 0; mmx < mosaic.width; mmx += topaint.width) {//mostra.width){
+                        for (var mmy = 0; mmy < mosaic.height; mmy += topaint.height) {
+                            ctxmosaic.drawImage(topaint, mmx, mmy);
+                        }
                     }
 
                 }
                 
-                
-                dataUrl = tosave.toDataURL();
-                imageFoo = document.createElement('img');
-                imageFoo.src = dataUrl;
-                imageFoo.id="imageFoo";    
-// Style your image here
-                imageFoo.style.width = mx - radiusX;
-                imageFoo.style.height = my - radiusY;
-                
                 ctxmosaic.stroke();
                 
 
-// After you are done styling it, append it to the BODY element
-                
-
-                //document.getElementById("container").appendChild(mostra);
-                document.getElementById("container").appendChild(imageFoo);
             }
 
             function getColor(r, g, b) {
