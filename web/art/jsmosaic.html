@@ -37,23 +37,40 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
 
-        <div id="idMosaic" style="left:15px;top:15px;border: 5;background-color: white;position: fixed;padding: 30px;color:blue;font-family: monospace; text-decoration: activecaption solid ;font-size:  smaller">
+        <div id="idMosaic" style="opacity: 0.9;left:15px;top:15px;border: 5;background-color: white;position: fixed;padding: 30px;color:blue;font-family: monospace; text-decoration: activecaption solid ;font-size:  smaller">
             <center>
-
-                <a target="black" href="https://github.com/lamaken/visualk/blob/master/web/art/jsmosaic.html">jsMosaic</a>
+                jsMosaicEditor<br/>
+                <a target="black" href="https://github.com/lamaken/visualk/blob/master/web/art/jsmosaic.html">sources</a>
                 <br/>
                 <br><div id="container" style="background-color: white">
 
                 </div>
+                <table>
+                    <tr><td>
 
-                <input onchange="updateMain()"  id="mx" type="range" name="mx" min="5" max="100" value="50"/><div id="lmx"  >width:a</div>
-                <input onchange="updateMain()" id="my" type="range" name="my" min="5" max="100" value="50"/><div id="lmy" >c</div>
-                <input onchange="updateMain()" id="cell" type="range" name="cell" min="1" max="28" value="3"/><div  id="lcell">m</div> 
-                <input onchange="updateMain()" id="rbright" type="range" name="rbright" min="0" max="255" value="100"/><div id="lrbright">r</div> 
-                <input onchange="updateMain()" id="gbright" type="range" name="gbright" min="0" max="255" value="100"/><div id="lgbright">g</div> 
-                <input onchange="updateMain()" id="bbright" type="range" name="bbright" min="0" max="255" value="100"/><div id="lbbright">b</div> 
-                <input onchange="updateMain()" id="domain" type="range" name="domain" min="0" max="255" value="100"/><div id="ldomain">domain</div> 
+                            <input onchange="updateMain()"  id="mx" type="range" name="mx" min="15" max="150" value="50"/>
+                        </td><td><div id="lmx"  >width:a</div></td></tr>
+                    <tr><td>    
+                            <input onchange="updateMain()" id="my" type="range" name="my" min="15" max="150" value="50"/>
+                        </td><td><div id="lmy" >c</div></td></tr>
+                    <tr><td>
+                            <input onchange="updateMain()" id="rbright" type="range" name="rbright" min="0" max="255" value="175"/> 
+                        </td><td><div id="lrbright">r</div></td></tr>
+                    <tr><td>
+                            <input onchange="updateMain()" id="gbright" type="range" name="gbright" min="0" max="255" value="175"/> 
+                        </td><td><div id="lgbright">g</div></td></tr>
+                    <tr><td>
+                            <input onchange="updateMain()" id="bbright" type="range" name="bbright" min="0" max="255" value="175"/>
+                        </td><td><div id="lbbright">b</div> </td></tr>
+                    <tr><td>
+                            <input onchange="updateMain()" id="cell" type="range" name="cell" min="1" max="9" value="3"/>
+                        </td><td><div  id="lcell">m</div> </td></tr>
 
+                    <tr><td>
+
+                            <input onchange="updateMain()" id="domain" type="range" name="domain" min="0" max="555" value="100"/>
+                        </td><td><div id="ldomain">domain</div> </td></tr>
+                </table>
                 <input value="colorize" type="button" onclick="updateMain();"/>
 
             </center>
@@ -164,7 +181,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             }
 
 
-            function circle(color,ctx,x,y,radX,radY) {
+            function circle(color, ctx, x, y, radX, radY) {
                 /*
                  * 
                  context.beginPath();
@@ -176,9 +193,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                  context.stroke();
                  */
                 ctx.beginPath();
-                ctx.arc(x, y, radX, radY, 2* Math.PI , false);
+                ctx.arc(x, y, radX, radY, 2 * Math.PI, false);
                 ctx.fillStyle = 'color';
-                     
+
                 ctx.fill();
                 ctx.lineWidth = 0;
                 ctx.strokeStyle = color;
@@ -189,7 +206,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
             function updateMain() {
-                
+
                 /*init*/
                 var mx = document.getElementById("mx").value;
                 var my = document.getElementById("my").value;
@@ -205,13 +222,13 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                 var lgbright = document.getElementById("lgbright");
                 var lbbright = document.getElementById("lbbright");
                 var ldomini = document.getElementById("ldomain");
-                lmx.innerHTML = "width:" + mx;
-                lmy.innerHTML = "height:" + my;
-                lcell.innerHTML = "cell:" + cell;
-                lrbright.innerHTML = "red:" + rbright;
-                lgbright.innerHTML = "green:" + gbright;
-                lbbright.innerHTML = "blue:" + bbright;
-                ldomini.innerHTML = "bright:" + domini;
+                lmx.innerHTML = "w";// + mx;
+                lmy.innerHTML = "h";// + my;
+                lcell.innerHTML = "c";// + cell;
+                lrbright.innerHTML = "r";// + rbright;
+                lgbright.innerHTML = "g";// + gbright;
+                lbbright.innerHTML = "b";// + bbright;
+                ldomini.innerHTML = "a";// + domini;
                 /**/
 
 
@@ -253,7 +270,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                         ctxmostra.fillStyle = color;
 
                         ctxmostra.fillRect(x, y, radiusX, radiusY);
-                    //circle(color,ctxmostra,x, y, radiusX/2, radiusY/2);
+                        //circle(color,ctxmostra,x, y, radiusX/2, radiusY/2);
                         ctxmostra.fillRect(mostra.width - x - radiusX * 2, y, radiusX, radiusY);
                         ctxmostra.fillRect(x, mostra.height - y - radiusY * 2, radiusX, radiusY);
                         ctxmostra.fillRect(mostra.width - x - radiusX * 2, mostra.height - y - radiusY * 2, radiusX, radiusY);
