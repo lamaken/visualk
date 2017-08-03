@@ -1,1 +1,1 @@
-Manifest-Version: 2.94
+Manifest-Version: 3.00
