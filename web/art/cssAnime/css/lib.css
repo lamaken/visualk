@@ -1,0 +1,43 @@
+body {
+  background-color:black;
+}
+@keyframes animation-keyframe{
+  0%{
+    background:blue;
+    transform: translateY(0px);
+    transform: translateX(0px);
+     }
+  35%{
+    background:purple;
+    transform: translateX(100px)
+  rotate(130deg);
+    
+  }
+  65%{
+    background:red;
+    transform: translateX(0px) translateY(100px)  rotate(30deg);
+    
+  }
+  100%{
+    background:red;
+    transform: translateX(100px) translateY(100px) rotate(530deg);
+    
+    
+  }
+}
+.hidden {
+    visibility: hidden;
+}
+.ball{
+  background:black;
+  
+ /*border-radius:50%;*/
+  
+  animation-name: animation-keyframe;
+  animation-duration:2s;
+  animation-delay:2s;
+  animation-iteration-count:9000;
+  animation-direction:alternate;
+  animation-timing-function:ease-in-out;
+  animation-fill-mode:forwards;
+}

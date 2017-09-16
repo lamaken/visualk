@@ -22,6 +22,6 @@ public class LabelHtml {
     }
 
     public String toHtml() {
-        return (EscapeString.escapeHTML(this.label));
+        return EscapeString.escapeHTML(this.label);
     }
 }
