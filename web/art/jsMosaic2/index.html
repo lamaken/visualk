@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<!--
+Copyright (C) 2017 lamaken
+https://github.com/lamaken/visualk/blob/master/web/art/jsMosaic2/index.html
+
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation; either version 2
+of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+-->
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>jsMosaic Editor v0.1</title>
+        <meta name="Keywords"
+              content="mosaic,round, mosaic editor" />
+        <meta name="Description"
+              content="Design your own mosaics. Let computer draw or paint for you." />
+        <meta name="Author" content="lamaken@gmail.com" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="img/ico" href="favicon.ico">
+
+
+    </head>
+    <body onload="updateMain()">
+
+
+
+
+        <div id="idMosaic" style="opacity: 0.9;left:15px;top:15px;border: 5;background-color: white;position: fixed;padding: 30px;color:blue;font-family: monospace; text-decoration: activecaption solid ;font-size:  smaller">
+            <center>
+                jsMosaicEditor<br/>
+                <a target="black" href="https://github.com/lamaken/visualk/blob/master/web/art/jsmosaic.html">sources</a>
+                <br/>
+                <br><div id="container" style="background-color: white">
+
+                </div>
+                <table>
+                    <tr><td>
+
+                            <input onchange="updateMain()"  id="mx" type="range" name="mx" min="15" max="150" value="50"/>
+                        </td><td><div id="lmx"  >width:a</div></td></tr>
+                    <tr><td>    
+                            <input onchange="updateMain()" id="my" type="range" name="my" min="15" max="150" value="50"/>
+                        </td><td><div id="lmy" >c</div></td></tr>
+                    <tr><td>
+                            <input onchange="updateMain()" id="rbright" type="range" name="rbright" min="0" max="255" value="175"/> 
+                        </td><td><div id="lrbright">r</div></td></tr>
+                    <tr><td>
+                            <input onchange="updateMain()" id="gbright" type="range" name="gbright" min="0" max="255" value="175"/> 
+                        </td><td><div id="lgbright">g</div></td></tr>
+                    <tr><td>
+                            <input onchange="updateMain()" id="bbright" type="range" name="bbright" min="0" max="255" value="175"/>
+                        </td><td><div id="lbbright">b</div> </td></tr>
+                    <tr><td>
+                            <input onchange="updateMain()" id="cell" type="range" name="cell" min="1" max="9" value="3"/>
+                        </td><td><div  id="lcell">m</div> </td></tr>
+                    <tr><td>
+
+                            <input onchange="updateMain()" id="domain" type="range" name="domain" min="0" max="555" value="400"/>
+                        </td><td><div id="ldomain">domain</div> </td></tr>
+                    <tr><td>
+                            <input onchange="updateMain()" id="multi" type="range" name="multi" min="1" max="4" value="1"/>
+                        </td><td><div  id="lmulti">x</div> </td></tr>
+                    <tr><td>
+                </table>
+                <input value="colorize" type="button" onclick="updateMain();"/>
+
+            </center>
+        </div>
+
+
+        <canvas id="mosaic" ></canvas>
+
+        <script>
+            var seed = 0;
+            var rotate = 0;
+            var rIntes = 200;//0..256 
+            var gIntes = 200;
+            var bIntes = 200;
+            var domini = 200;
+
+            var mosaicName = "initial";
+
+            function reset() {
+                mosaicName = "rnd_" + 333 * Math.random();
+            }
+
+            function ellipse(context, cx, cy, rx, ry) {
+                context.save(); // save state
+                context.beginPath();
+
+                context.translate(cx - rx, cy - ry);
+                context.scale(rx, ry);
+                context.arc(1, 1, 1, 0, 2 * Math.PI, false);
+
+                context.restore(); // restore to original state
+                context.stroke();
+            }
+            function getRndColor() {
+                var r = Math.round(Math.random() * (domini)) + (rIntes - domini);
+                var g = Math.round(Math.random() * (domini)) + (gIntes - domini);
+                var b = Math.round(Math.random() * (domini)) + (bIntes - domini);
+
+                return getColor(r, g, b);
+            }
+
+
+            function circle(color, ctx, x, y, radX, radY) {
+                ctx.beginPath();
+                ctx.arc(x, y, radX, radY, 2 * Math.PI, false);
+                ctx.fillStyle = 'color';
+
+                ctx.fill();
+                ctx.lineWidth = 0;
+                ctx.strokeStyle = color;
+
+                ctx.stroke();
+
+            }
+
+            function drawRotated(image, ctx, canvas, degrees, mx, my) {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.save();
+                ctx.translate(canvas.width / 2, canvas.height / 2);
+                ctx.rotate(degrees * Math.PI / 180);
+                ctx.drawImage(image, mx, my);
+                ctx.restore();
+
+            }
+
+            function rotateAndPaintImage(context, image, angleInRad, positionX, positionY, axisX, axisY) {
+                context.translate(positionX, positionY);
+                context.rotate(angleInRad);
+                context.drawImage(image, -axisX, -axisY);
+                context.rotate(-angleInRad);
+                context.translate(-positionX, -positionY);
+            }
+
+
+            function updateMain() {
+
+                /*init*/
+                var mx = document.getElementById("mx").value;
+                var my = document.getElementById("my").value;
+                var cell = document.getElementById("cell").value;
+                var multi = document.getElementById("multi").value;
+                domini = document.getElementById("domain").value;
+                var rbright = document.getElementById("rbright").value;
+                var gbright = document.getElementById("gbright").value;
+                var bbright = document.getElementById("bbright").value;
+                var lmx = document.getElementById("lmx");
+                var lmy = document.getElementById("lmy");
+                var lcell = document.getElementById("lcell");
+                var lrbright = document.getElementById("lrbright");
+                var lgbright = document.getElementById("lgbright");
+                var lbbright = document.getElementById("lbbright");
+                var ldomini = document.getElementById("ldomain");
+                var lmulti = document.getElementById("lmulti");
+
+                lmx.innerHTML = "w";// + mx;
+                lmy.innerHTML = "h";// + my;
+                lcell.innerHTML = "c";// + cell;
+                lrbright.innerHTML = "r";// + rbright;
+                lgbright.innerHTML = "g";// + gbright;
+                lbbright.innerHTML = "b";// + bbright;
+                ldomini.innerHTML = "a";// + domini;
+                lmulti.innerHTML = "m";
+                /**/
+
+
+
+                var mostra = document.createElement('canvas');
+                var tosave = document.createElement('canvas');
+                mostra.id = "mostra";
+                tosave.id = "tosave";
+                var radiusX = Math.round((mx / 2 / cell));
+                var radiusY = Math.round(my / 2 / cell);
+                mostra.setAttribute("width", mx);
+                mostra.setAttribute("height", my);
+                mostra.style.display = "none";
+                tosave.setAttribute("width", mx - radiusX);
+                tosave.setAttribute("height", my - radiusY);
+                var mosaic = document.getElementById('mosaic');
+                mosaic.width = window.innerWidth;
+                mosaic.height = window.innerHeight;
+                var ctxmostra = mostra.getContext('2d');
+                var ctxtosave = tosave.getContext('2d');
+                var ctxmosaic = mosaic.getContext('2d');
+                ctxmostra.imageSmoothingEnabled = false;
+                ctxmosaic.imageSmoothingEnabled = false
+
+                var mod = 0;
+                seed += 0.001;
+                if (seed > 0.3)
+                    seed = 0;
+                ctxmostra.fillStyle = "red";
+                ctxmostra.fillRect(0, 0, mostra.width, mostra.height);
+                rIntes = rbright; //0..256 
+                gIntes = gbright;
+                bIntes = bbright;
+
+
+                for (var x = 0; x < Math.round(cell * radiusX); x += radiusX) {
+
+                    for (var y = 0; y < Math.round(cell * radiusY); y += radiusY) {
+                        var color = getRndColor();
+
+                        ctxmostra.fillStyle = color;
+
+                        ctxmostra.fillRect(x, y, radiusX, radiusY);
+                        //circle(color,ctxmostra,x, y, radiusX/2, radiusY/2);
+                        ctxmostra.fillRect(mostra.width - x - radiusX * 2, y, radiusX, radiusY);
+                        ctxmostra.fillRect(x, mostra.height - y - radiusY * 2, radiusX, radiusY);
+                        ctxmostra.fillRect(mostra.width - x - radiusX * 2, mostra.height - y - radiusY * 2, radiusX, radiusY);
+
+                    }
+                }
+
+
+
+                var raxola = ctxmostra.getImageData(0, 0, mostra.width - (radiusX), mostra.height - radiusY);
+                ctxtosave.putImageData(raxola, 0, 0);
+
+                ctxmostra.stroke();
+
+
+
+
+                dataUrl = tosave.toDataURL();
+                imageFoo = document.createElement('img');
+
+                if (multi == 2) {
+                    imageFoo.onload = function () {
+                        var topaint = document.getElementById("imageFoo");
+                        for (var mmx = 0; mmx < mosaic.width; mmx += topaint.width * 2) {//mostra.width){
+                            for (var mmy = 0; mmy < mosaic.height; mmy += topaint.height * 2) {
+                                //ctxmosaic.drawImage(imageFoo, mmx, mmy);
+                                ctxmosaic.drawImage(imageFoo, mmx, mmy * 2);
+                                imageFoo.style.transform = "rotate("deg)";
+                                ctxmosaic.drawImage(imageFoo, mmx + topaint.width, mmy * 2);
+                                imageFoo.style.transform = "rotate(40deg)";
+
+                            }
+                        }
+                    }
+                }
+
+
+                rotate = rotate + 0.25;
+                if (rotate > 45)
+                    rotate = 0;
+
+
+
+                if (multi == 1) {
+                    imageFoo.onload = function () {
+
+                        var topaint = document.getElementById("imageFoo");
+
+                        for (var mmx = -topaint.width; mmx < mosaic.width; mmx += topaint.width) {//mostra.width){
+                            for (var mmy = -topaint.height; mmy < mosaic.height; mmy += topaint.height) {
+                                
+                                var x = topaint.width / 2;
+                                var y = topaint.height / 2;
+                                
+                                    rotateAndPaintImage(ctxmosaic, imageFoo, rotate, mmx, mmy, x, y)
+/*
+                                var x = topaint.width / 2;
+                                var y = topaint.height / 2;
+                                var width = imageFoo.width;
+                                var height = imageFoo.height;
+                                ctxmosaic.translate(x, y);
+                                ctxmosaic.rotate(120);
+                                ctxmosaic.drawImage(imageFoo, -width / 2, -height / 2, width, height);
+                                ctxmosaic.rotate(-120);
+                                ctxmosaic.translate(-x, -y);
+*/
+                            }
+                        }
+                    }
+                }
+                if (multi == 3) {
+                    imageFoo.onload = function () {
+                        var topaint = document.getElementById("imageFoo");
+                        for (var mmx = 0; mmx < mosaic.width; mmx += topaint.width) {//mostra.width){
+                            for (var mmy = 0; mmy < mosaic.height; mmy += topaint.height) {
+
+                                drawRotated(imageFoo, ctxmosaic, tosave, 15, mmx, mmy);
+                                //ctxmosaic.drawImage(imageFoo, mmx, mmy);
+                            }
+                        }
+                    }
+                }
+                if (multi == 4) {
+                    imageFoo.onload = function () {
+                        var topaint = document.getElementById("imageFoo");
+                        for (var mmx = 0; mmx < mosaic.width; mmx += topaint.width) {//mostra.width){
+                            for (var mmy = 0; mmy < mosaic.height; mmy += topaint.height) {
+                                ctxmosaic.drawImage(imageFoo, mmx, mmy);
+                            }
+                        }
+
+                    }
+                }
+                imageFoo.src = dataUrl;
+                imageFoo.id = "imageFoo";
+                imageFoo.style.width = mx - radiusX;
+                imageFoo.style.height = my - radiusY;
+
+                if (document.getElementById("imageFoo") != null) {
+                    document.getElementById("container").removeChild(document.getElementById("imageFoo"));
+                }
+                document.getElementById("container").appendChild(imageFoo);
+            }
+
+            function getColor(r, g, b) {
+                return "rgb(" + r + "," + g + "," + b + ")";
+            }
+
+
+        </script>
+    </body>
+</html>

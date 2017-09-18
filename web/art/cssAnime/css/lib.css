@@ -32,7 +32,7 @@ body {
   background:black;
   
  /*border-radius:50%;*/
-  
+  opacity: 50%;
   animation-name: animation-keyframe;
   animation-duration:2s;
   animation-delay:2s;

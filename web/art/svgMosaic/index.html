@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>svg Mosaic Editor </title>
+        <meta name="Keywords"
+              content="mosaic,round, mosaic editor" />
+        <meta name="Description"
+              content="Design your own mosaics. Let computer draw or paint for you." />
+        <meta name="Author" content="lamaken@gmail.com" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+
+
+        <script>
+
+
+
+            function setCookie(cname, cvalue, exdays) {
+                var d = new Date();
+                d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+                var expires = "expires=" + d.toGMTString();
+                document.cookie = cname + "=" + cvalue + "; " + expires;
+            }
+
+            function getCookie(cname) {
+                var name = cname + "=";
+                var ca = document.cookie.split(';');
+                for (var i = 0; i < ca.length; i++) {
+                    var c = ca[i];
+                    while (c.charAt(0) == ' ')
+                        c = c.substring(1);
+                    if (c.indexOf(name) == 0) {
+                        return c.substring(name.length, c.length);
+                    }
+                }
+                return "";
+            }
+
+            function checkCookie() {
+                var user = getCookie("username");
+                if (user != "") {
+                    alert("Welcome again " + user);
+                } else {
+                    user = prompt("Please enter your name:", "");
+                    if (user != "" && user != null) {
+                        setCookie("username", user, 30);
+                    }
+                }
+            }
+
+
+            function guid() {
+                function _p8(s) {
+                    var p = (Math.random().toString(16) + "000000000").substr(2, 8);
+                    return s ? "-" + p.substr(0, 4) + "-" + p.substr(4, 4) : p;
+                }
+                return _p8() + _p8(true) + _p8(true) + _p8();
+            }
+
+            function saveData() {
+                mx = document.getElementById("mx").value;
+                my = document.getElementById("my").value;
+                cellw = document.getElementById("cellw").value;
+                rnd = guid();
+
+                setCookie("svg_mx", mx);
+                setCookie("svg_my", my);
+                setCookie("svg_rnd", rnd);
+                setCookie("svg_cellw", cellw);
+            }
+
+            function loadData() {
+                mx = getCookie("svg_mx");
+                my = getCookie("svg_my");
+                cellw = getCookie("svg_cellw");
+                rnd = getCookie("svg_rnd");
+
+                document.getElementById("mx").value = mx;
+                document.getElementById("my").value = my;
+                document.getElementById("cellw").value = cellw;
+
+                /*  
+                 document.getElementById("myCanvas").width = w;
+                 document.getElementById("myCanvas").height = h;
+                 document.getElementById("myCanvas").top = 0;
+                 document.getElementById("myCanvas").left = 0;
+                 
+                 
+                 
+                 if (mx == "")
+                 mx = 55;
+                 if (my == "")
+                 my = 55;
+                 if (cellw == "")
+                 cellw = 13;
+                 
+                 
+                 document.getElementById("mx").value = mx;
+                 document.getElementById("my").value = my;
+                 document.getElementById("cellw").value = cellw;
+                 
+                 
+                 */
+
+            }
+
+
+            function reload() {
+                document.location.reload();
+            }
+
+            function updateMain() {
+
+                /*
+                 
+                 rnd = guid();
+                 
+                 mx = document.getElementById("mx").value;
+                 my = document.getElementById("my").value;
+                 cellw = document.getElementById("cellw").value;
+                 
+                 
+                 rnd = guid();
+                 
+                 saveData();
+                 
+                 var StringImage = "/visualk/art/Arab?mx=" + mx + "&my=" + my + "&cellw=" + cellw + "&rnd=" + rnd;
+                 
+                 
+                 
+                 var mostra = document.getElementById("mostra");
+                 
+                 
+                 mostra.onload = function () {
+                 myCanvas();
+                 };
+                 
+                 mostra.src = StringImage;
+                 */;
+            }
+
+        </script>
+
+
+
+
+    </head>
+    <body onload="dibuixa();">
+
+        <div id="svg"></div>
+
+        <div  id="mydiv" style="z-index:10;position: fixed;top: 30px; font-family: sans-serif;color: black; left:30px;padding: 10px;background-color: white; text-align: right">
+            <center>
+
+                <br>
+                <br> width: <input onchange="saveData();
+                        dibuixa();" id="mx" type="range" name="mx" min="5" max="900" value="100"/> 
+                <br> height: <input onchange="saveData();dibuixa();" id="my" type="range" name="my" min="5" max="900" value="100"/> 
+                <br> cw: <input onchange="saveData();dibuixa();"  id="cellw" type="range" name="cellw" min="2" max="7" value="3"/> 
+                <br><br><input value="create" type="button" onclick="saveData();dibuixa();"/>
+
+        </div>
+
+        <script type="text/javascript">
+            function getNode(n, v) {
+                n = document.createElementNS("http://www.w3.org/2000/svg", n);
+                for (var p in v)
+                    n.setAttributeNS(null, p.replace(/[A-Z]/g, function (m, p, o, s) {
+                        return "-" + m.toLowerCase();
+                    }), v[p]);
+                return n
+            }
+
+            function dibuixa_good() {
+                var w = window.innerWidth;
+                var h = window.innerHeight;
+                var svg = getNode("svg", {width: w, height: h});
+
+                var x = w - w / 2 - mx / 2;
+                var y = h - h / 2 - my / 2;
+
+                var r = getNode('rect', {x: x, y: y, width: mx, height: my, fill: '#ff00ff'}); //mar principal
+                svg.appendChild(r)
+                document.getElementById("svg").innerHTML = "";//clear
+                document.getElementById("svg").appendChild(svg);//put svg 
+            }
+            function getColor(r, g, b) {
+                return "rgb(" + r + "," + g + "," + b + ")";
+            }
+            function getRndColor() {
+                var r = Math.round(Math.random() * 200) + 100;
+                var g = Math.round(Math.random() * 200) + 100;
+                var b = Math.round(Math.random() * 200) + 100;
+
+                return getColor(r, g, b);
+            }
+
+            function dibuixa() {
+                loadData();
+
+                var w = window.innerWidth;
+                var h = window.innerHeight;
+                var svgId = guid();
+                var svg = getNode("svg", {id: svgId, width: w, height: h});
+
+                var radiusX = Math.round((mx / 2 / cellw));
+                var radiusY = Math.round(my / 2 / cellw);
+
+                var ca = getRndColor();
+                var cb = getRndColor();
+                var cc = getRndColor();
+                var cd = getRndColor();
+                var ce = getRndColor();
+                var cf = getRndColor();
+                var cg = getRndColor();
+                var ch = getRndColor();
+                var ci = getRndColor();
+
+                var trama = [ca, cb, cc, cd, ce, cf, cg, ch, ci];
+                var colors = [  ca, cb, cc, cb, ca,
+                                cd, ce, cf, ce, cd,
+                                cg, ch, ci, ch, cg,
+                                cd, ce, cf, ce, cd,
+                                ca, cb, cc, cb, ca];
+
+                var index = 0;
+                for (var x = 0; x < Math.round(cellw * radiusX); x += radiusX) {
+                    for (var y = 0; y < Math.round(cellw * radiusY); y += radiusY) {
+                        var color = colors[index++];
+                        var uidId = guid();
+                        var r = getNode('rect', {id: uidId, x: x + w / 2 - cellw * radiusX / 2, y: y + h / 2 - cellw * radiusY / 2, width: radiusX, height: radiusY, fill: color}); //mar principal
+                        svg.appendChild(r);
+                    }
+                }
+
+                document.getElementById("svg").innerHTML = "";//clear
+                document.getElementById("svg").appendChild(svg);//put svg 
+            }
+
+            </script>
+
+
+
+
+    </body>
+</html>
