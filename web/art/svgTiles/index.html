@@ -234,8 +234,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
                 var index;
-                for (xx = 0; xx < 30; xx++) {//w/cellw*radiusX/2; xx++) {
-                    for (yy = 0; yy < 30; yy++) {//h/cellw*radiusY/2; yy++) {
+                for (xx = 0; xx < w/(cellw*radiusX); xx++) {
+                    for (yy = 0; yy < h/(cellw*radiusY); yy++) {
                         index=0;
                         for (var x = 0; x < Math.round(cellw * radiusX); x += radiusX) {
                             for (var y = 0; y < Math.round(cellw * radiusY); y += radiusY) {
@@ -248,6 +248,8 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                     }
                 }
                 console.log("index.size=" + index);
+                console.log("cell*radX=" +w/(cellw*radiusX));
+                
                 svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
                 svg.setAttribute("xmlns:xlink", "http://www.w3.org/1999/xlink");
                 svg.setAttribute("version", "1.1");
