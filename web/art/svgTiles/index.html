@@ -106,15 +106,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
     </head>
-    <body onload="newColors();loadData();dibuixa();">
+    <body onload="newColors();loadData();">
 
         <div id="svg"></div>
 
         <div  id="mydiv" style="opacity: 0.9; background-color: yellow;z-index:10;position: fixed;top: 0px; font-family: sans-serif;color: black; left:0px; text-align: right">
 
-            <input onchange="saveData();loadData();dibuixa();" id="mx" type="range" name="mx" min="5" max="900" value="100"/><br> 
-            <input onchange="saveData();loadData();dibuixa();" id="my" type="range" name="my" min="5" max="900" value="100"/> <br>
-            <input onchange="saveData();loadData();dibuixa();"  id="cellw" type="range" name="cellw" min="3" step="2" max="11" value="10"/> 
+            <input onchange="saveData();loadData();dibuixa();" id="mx" type="range" name="mx" min="100" max="700" value="350"/><br> 
+            <input onchange="saveData();loadData();dibuixa();" id="my" type="range" name="my" min="100" max="700" value="350"/> <br>
+            <input onchange="saveData();loadData();dibuixa();"  id="cellw" type="range" name="cellw" min="3" step="2" max="17" value="13"/> 
             <!--br> scale: <input onchange="saveData();dibuixa();" id="scale" type="range" name="scale" min="1" step="0.1" max="3" value="1"/--> 
 
             <br><input value="colorize! >>" type="button" onclick="saveData();loadData();newColors();dibuixa();"/>
@@ -129,8 +129,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
             function newColors() {
                 trama = []
-                for (var n = 0; n < 90000; n++)
+                for (var n = 0; n < 9000; n++)
+                {    
                     trama.push(getRndColor());
+                }
             }
 
             function getNode(n, v) {
@@ -234,8 +236,9 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 
                 var index;
-                for (xx = 0; xx < w/(cellw*radiusX); xx++) {
-                    for (yy = 0; yy < h/(cellw*radiusY); yy++) {
+                for (var xx = 0; xx < w/(cellw*radiusX); xx++) {
+                    
+                    for (var yy = 0; yy < h/(cellw*radiusY); yy++) {
                         index=0;
                         for (var x = 0; x < Math.round(cellw * radiusX); x += radiusX) {
                             for (var y = 0; y < Math.round(cellw * radiusY); y += radiusY) {
