@@ -29,7 +29,7 @@ function init(){
     for (var n=0;n<100;n++)
     {    
      var name = "rnd_"+999*Math.random();   
-     str += "<img class=ball src='http://alkasoft.org/visualk/art/graph/LiveMosaic?mx=100&my=100&cellw=35&rnd="+name+"'/>";//Arab
+     str += "<img class=ball src='http://alkasoft.org/visualk/art/Arab?mx=100&my=100&cellw="+(n/2+35)+"&rnd="+name+"'/>";//Arab
     }
     balls.innerHTML=str;
 }

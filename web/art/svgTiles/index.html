@@ -20,109 +20,55 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>svg Tiles Mosaic Editor </title>
+        <title>svg Mosaic Pattern Editor v0.1</title>
         <meta name="Keywords"
-              content="tiles, tiles mosaic, svg, svg editor, mosaic, mosaic editor" />
+              content="tiles, tiles mosaic, svg, svg editor, mosaic, mosaic editor, patterns" />
         <meta name="Description"
               content="Design your own tiles mosaics. Let computer draw or paint for you." />
         <meta name="Author" content="lamaken@gmail.com" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <style>
             svg {background-color: black;}
-            h1   {color: blue;}
-            p    {color: red;}
-
         </style>
 
 
 
 
         <script>
-            function setCookie(cname, cvalue, exdays) {
-                var d = new Date();
-                d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-                var expires = "expires=" + d.toGMTString();
-                document.cookie = cname + "=" + cvalue + "; " + expires;
-            }
-            function getCookie(cname) {
-                var name = cname + "=";
-                var ca = document.cookie.split(';');
-                for (var i = 0; i < ca.length; i++) {
-                    var c = ca[i];
-                    while (c.charAt(0) == ' ')
-                        c = c.substring(1);
-                    if (c.indexOf(name) == 0) {
-                        return c.substring(name.length, c.length);
-                    }
-                }
-                return "";
-            }
-            function checkCookie() {
-                var user = getCookie("username");
-                if (user != "") {
-                    alert("Welcome again " + user);
-                } else {
-                    user = prompt("Please enter your name:", "");
-                    if (user != "" && user != null) {
-                        setCookie("username", user, 30);
-                    }
-                }
-            }
             function guid() {
-                function _p8(s) {
+                        function _p8(s) {
                     var p = (Math.random().toString(16) + "000000000").substr(2, 8);
                     return s ? "-" + p.substr(0, 4) + "-" + p.substr(4, 4) : p;
                 }
                 return _p8() + _p8(true) + _p8(true) + _p8();
             }
 
-            function saveData() {
+
+            function loadData() {
                 mx = document.getElementById("mx").value;
                 my = document.getElementById("my").value;
                 cellw = document.getElementById("cellw").value;
                 rnd = guid();
-
-                setCookie("svg_mx", mx);
-                setCookie("svg_my", my);
-                setCookie("svg_rnd", rnd);
-                setCookie("svg_cellw", cellw);
-            }
-
-            function loadData() {
-                mx = getCookie("svg_mx");
-                my = getCookie("svg_my");
-                cellw = getCookie("svg_cellw");
-                rnd = getCookie("svg_rnd");
-
-                document.getElementById("mx").value = mx;
-                document.getElementById("my").value = my;
-                document.getElementById("cellw").value = cellw;
-
-                //scale = document.getElementById("scale").value;
             }
 
 
-//            function reload() {
-//                document.location.reload();
-//            }
         </script>
 
 
 
 
     </head>
-    <body onload="newColors();loadData();">
+    <body onload="newColors();loadData();dibuixa();">
 
         <div id="svg"></div>
 
         <div  id="mydiv" style="opacity: 0.9; background-color: yellow;z-index:10;position: fixed;top: 0px; font-family: sans-serif;color: black; right:10px;"/>
 
-        <input onchange="saveData();loadData();dibuixa();" id="mx" type="range" name="mx" min="100" max="700" value="350"/><br> 
-        <input onchange="saveData();loadData();dibuixa();" id="my" type="range" name="my" min="100" max="700" value="350"/> <br>
-        <input onchange="saveData();loadData();dibuixa();"  id="cellw" type="range" name="cellw" min="3" step="2" max="17" value="13"/> 
-        <!--br> scale: <input onchange="saveData();dibuixa();" id="scale" type="range" name="scale" min="1" step="0.1" max="3" value="1"/--> 
-
-        <br><input value="colorize! >>" type="button" onclick="saveData();loadData();newColors();dibuixa();"/>
+        <input onchange="loadData();dibuixa();" id="mx" type="range" name="mx" min="100" max="2000" value="350"/><br> 
+        <input onchange="loadData();dibuixa();" id="my" type="range" name="my" min="100" max="2000" value="350"/> <br>
+        <input onchange="loadData();dibuixa();"  id="cellw" type="range" name="cellw" min="3" step="2" max="50" value="13"/> 
+        
+        <br><input value="colorize! >>" type="button" onclick="loadData();newColors();dibuixa();"/>
     </div>
     <canvas id="canvas"></canvas>
 
@@ -149,50 +95,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             return n
         }
 
-        function dibuixaERROR() {
-            var w = window.innerWidth;
-            var h = window.innerHeight;
-            var svg = getNode("svg", {width: w, height: h});
-
-            var gn = getNode('pattern', {id: 'trama', patternUnits: 'objectBoundingBox', width: '2.5%', height: '2.5%', patternTransform: 'rotate(25)'});
-            svg.appendChild(gn)
-
-            var x = w - w / 2 - mx / 2;
-            var y = h - h / 2 - my / 2;
-
-            var r = getNode('rect', {x: x, y: y, width: mx, height: my, fill: '#trama'}); //mar principal
-            svg.appendChild(r)
-            document.getElementById("svg").innerHTML = "";//clear
-            document.getElementById("svg").appendChild(svg);//put svg 
-        }
         function getColor(r, g, b) {
             return "rgb(" + r + "," + g + "," + b + ")";
         }
         function getRndColor() {
-            var r = Math.round(Math.random() * 200) + 100;
-            var g = Math.round(Math.random() * 200) + 100;
-            var b = Math.round(Math.random() * 200) + 100;
+            var r = Math.round(Math.random() * 190);
+            var g = Math.round(Math.random() * 190);
+            var b = Math.round(Math.random() * 190);
 
             return getColor(r, g, b);
-        }
-
-
-
-
-
-        function triggerDownload(imgURI) {
-            var evt = new MouseEvent('click', {
-                view: window,
-                bubbles: false,
-                cancelable: true
-            });
-
-            var a = document.createElement('a');
-            a.setAttribute('download', 'MY_COOL_IMAGE.png');
-            a.setAttribute('href', imgURI);
-            a.setAttribute('target', '_blank');
-
-            a.dispatchEvent(evt);
         }
 
         function dibuixa() {
@@ -251,12 +162,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
                     var color = colors[index++];
                     var uidId = guid();
 
-                    var ellipse = getNode('ellipse', {id: uidId, cx: x + xx * cellw * radiusX + radiusX / 2, cy: y + yy * cellw * radiusY + radiusY / 2, rx: radiusX / 2, ry: radiusY / 2, fill: color}); //mar principal}
+                    var ellipse = getNode('ellipse', {id: uidId, cx: x + xx * cellw * radiusX + radiusX / 2, cy: y + yy * cellw * radiusY + radiusY / 2, rx: radiusX / 2, ry: radiusY/2, fill: color}); //mar principal}
                     pattern.appendChild(ellipse);
-                    color = colors[index-2];
                     
-                   
-                    var ellipse = getNode('ellipse', {id: uidId, cx: x + xx * cellw * radiusX + radiusX / 2, cy: y + yy * cellw * radiusY + radiusY / 2, rx: radiusX / 4, ry: radiusY / 4, fill: color}); //mar principal}
+                    if (index%2==0)color="black";
+                    else color="white";
+                    ellipse = getNode('ellipse', {id: uidId, cx: x + xx * cellw * radiusX + radiusX / 2, cy: y + yy * cellw * radiusY + radiusY / 2, rx: radiusX / 4, ry: radiusY/4 , fill: color, opacity:0.3}); //mar principal}
+                    pattern.appendChild(ellipse);
+                    
+                    ellipse = getNode('ellipse', {id: uidId, cx: x + xx * cellw * radiusX + radiusX / 2, cy: y + yy * cellw * radiusY + radiusY / 2, rx: radiusX / 16, ry: radiusY/16 , fill: color, opacity:0.3}); //mar principal}
                     pattern.appendChild(ellipse);
                     
                 }
@@ -273,160 +187,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
             svg.setAttribute("xmlns:xlink", "http://www.w3.org/1999/xlink");
             svg.setAttribute("version", "1.1");
-
-
-            var canvas = document.getElementById('canvas');
-            var ctx = canvas.getContext('2d');
-            var data = (new XMLSerializer()).serializeToString(svg);
-            var DOMURL = window.URL || window.webkitURL || window;
-            var img = new Image();
-            var svgBlob = new Blob([data], {type: 'image/svg+xml;charset=utf-8'});
-            var url = DOMURL.createObjectURL(svgBlob);
-            img.onload = function () {
-                ctx.drawImage(img, 0, 0);
-                DOMURL.revokeObjectURL(url);
-                var imgURI = canvas
-                        .toDataURL('image/png')
-                        .replace('image/png', 'image/octet-stream');
-                console.log(imgURI);
-                img.src = imgURI;
-            };
-            //document.body.appendChild(img);
-
-
-            document.getElementById("svg").appendChild(svg);
-        }
-
-        function dibuixaKK() {
-            loadData();
-            var w = window.innerWidth;
-            var h = window.innerHeight;
-            var svgId = guid();
-            var svg = getNode("svg", {id: svgId, width: w, height: h});
-            var radiusX = Math.round((mx / 2 / cellw));
-            var radiusY = Math.round(my / 2 / cellw);
-            var ca = getRndColor();
-            var cb = getRndColor();
-            var cc = getRndColor();
-            var cd = getRndColor();
-            var ce = getRndColor();
-            var cf = getRndColor();
-            var cg = getRndColor();
-            var ch = getRndColor();
-            var ci = getRndColor();
-            var trama = [ca, cb, cc, cd, ce, cf, cg, ch, ci];
-            var colors = [ca, cb, cc, cb, ca,
-                cd, ce, cf, ce, cd,
-                cg, ch, ci, ch, cg,
-                cd, ce, cf, ce, cd,
-                ca, cb, cc, cb, ca];
-            var index = 0;
-            for (var x = 0; x < Math.round(cellw * radiusX); x += radiusX) {
-                for (var y = 0; y < Math.round(cellw * radiusY); y += radiusY) {
-                    var color = colors[index++];
-                    var uidId = guid();
-                    var r = getNode('rect', {id: uidId, x: x + w / 2 - cellw * radiusX / 2, y: y + h / 2 - cellw * radiusY / 2, width: radiusX, height: radiusY, fill: 'url(#trama)'}); //mar principal
-                    svg.appendChild(r);
-                }
-            }
-
-            document.getElementById("svg").innerHTML = ""; //clear
-            document.getElementById("svg").appendChild(svg); //put svg 
-            //svg.setAttribute("transform", "scale(" + scale + "," + scale + ")");
-        }
-
-
-        function dibuixaGOOOOOD() {
-            document.getElementById("svg").innerHTML = ""; //clear                        
-
-            var w = window.innerWidth;
-            var h = window.innerHeight;
-            var svgId = guid();
-//cellw 3 for default
-
-            var colors = [];
-            var radiusX = Math.round((mx / 2 / cellw));
-            var radiusY = Math.round(my / 2 / cellw);
-            /*
-             var svg = getNode("svg", {  id: svgId,
-             version:"1.1",
-             width: radiusX*cellw, 
-             height: radiusY*cellw});
-             */
-            var svg = getNode("svg", {id: svgId, width: w, height: h});
-            console.log("radX:" + radiusX + ",radY:" + radiusX + "cellw:" + cellw);
-            var rows = 0;
-            for (rows = 0; rows < cellw / 2; rows++) {//primera fila de colors ca cb cc
-                //colors.push("trama[" + rows + "]");
-                colors.push(trama[rows]);
-            }
-            for (var row = rows - 1; row > 0; row--) {//afegim els que falten cb ca
-                //colors.push("trama[" + (row - 1) + "]");
-                colors.push(trama[(row - 1)]);
-            }
-
-            var ofs = rows + row;
-            var kk = ofs;
-            for (var col = 0; col < (cellw / 2) - 1; col++) {//seguents files de colors
-                for (rows = 0; rows < cellw / 2; rows++) {
-
-                    colors.push(trama[col * cellw + (rows + kk)]);
-                }
-                for (var row = rows - 1; row > 0; row--) {
-
-                    colors.push(trama[(col * cellw + kk + row - 1)]);
-                }
-            }
-
-            var size = colors.length;
-            for (var k = (cellw * cellw) - size - 1; k >= 0; k--) {
-                colors.push(colors[k]);
-            }
-
-
-            var index;
-            for (var xx = 0; xx < w / (cellw * radiusX); xx++) {
-
-                for (var yy = 0; yy < h / (cellw * radiusY); yy++) {
-                    index = 0;
-                    for (var x = 0; x < Math.round(cellw * radiusX); x += radiusX) {
-                        for (var y = 0; y < Math.round(cellw * radiusY); y += radiusY) {
-                            var color = colors[index++];
-                            var uidId = guid();
-                            var r = getNode('ellipse', {id: uidId, cx: x + xx * cellw * radiusX, cy: y + yy * cellw * radiusY, rx: radiusX / 2, ry: radiusY / 2, fill: color}); //mar principal}
-
-                            //<circle cx="50" cy="50" r="40" stroke="black" stroke-width="3" fill="red" />
-                            svg.appendChild(r);
-
-                        }
-                    }
-                }
-            }
-            console.log("index.size=" + index);
-            console.log("cell*radX=" + w / (cellw * radiusX));
-
-            svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
-            svg.setAttribute("xmlns:xlink", "http://www.w3.org/1999/xlink");
-            svg.setAttribute("version", "1.1");
-
-
-            var canvas = document.getElementById('canvas');
-            var ctx = canvas.getContext('2d');
-            var data = (new XMLSerializer()).serializeToString(svg);
-            var DOMURL = window.URL || window.webkitURL || window;
-            var img = new Image();
-            var svgBlob = new Blob([data], {type: 'image/svg+xml;charset=utf-8'});
-            var url = DOMURL.createObjectURL(svgBlob);
-            img.onload = function () {
-                ctx.drawImage(img, 0, 0);
-                DOMURL.revokeObjectURL(url);
-                var imgURI = canvas
-                        .toDataURL('image/png')
-                        .replace('image/png', 'image/octet-stream');
-                console.log(imgURI);
-                img.src = imgURI;
-            };
-            //document.body.appendChild(img);
 
 
             document.getElementById("svg").appendChild(svg);
