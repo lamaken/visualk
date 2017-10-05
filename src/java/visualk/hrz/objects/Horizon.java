@@ -413,7 +413,7 @@ public class Horizon implements Serializable {
                 }
             }
         }*/
-        g2.drawImage(bmpTextura, 0, this.getTopHrz(), null);
+        g2.drawImage(bmpTextura, 0, this.getTopHrz(),mx, my-this.getTopHrz(),null);
         
 
         //cenit
