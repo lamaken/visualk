@@ -36,11 +36,11 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
         <script>
             function guid() {
-                        function _p8(s) {
+                function _p8(s) {
                     var p = (Math.random().toString(16) + "000000000").substr(2, 8);
                     return s ? "-" + p.substr(0, 4) + "-" + p.substr(4, 4) : p;
                 }
-                return _p8() + _p8(true) + _p8(true) + _p8();
+                return "u" + _p8() + _p8(true) + _p8(true) + _p8();
             }
 
 
@@ -67,7 +67,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
         <input onchange="loadData();dibuixa();" id="mx" type="range" name="mx" min="100" max="2000" value="350"/><br> 
         <input onchange="loadData();dibuixa();" id="my" type="range" name="my" min="100" max="2000" value="350"/> <br>
         <input onchange="loadData();dibuixa();"  id="cellw" type="range" name="cellw" min="3" step="2" max="50" value="13"/> 
-        
+
         <br><input value="colorize! >>" type="button" onclick="loadData();newColors();dibuixa();"/>
     </div>
     <canvas id="canvas"></canvas>
@@ -118,7 +118,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
             var radiusY = Math.round(my / 2 / cellw);
             var svg = getNode("svg", {id: svgId, width: w, height: h});
             var rows = 0;
-            
+
             for (rows = 0; rows < cellw / 2; rows++) {//primera fila de colors ca cb cc
                 colors.push(trama[rows]);
             }
@@ -128,7 +128,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
             var ofs = rows + row;
             var kk = ofs;
-            
+
             for (var col = 0; col < (cellw / 2) - 1; col++) {//seguents files de colors
                 for (rows = 0; rows < cellw / 2; rows++) {
                     colors.push(trama[col * cellw + (rows + kk)]);
@@ -164,15 +164,22 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
                     var ellipse = getNode('ellipse', {id: uidId, cx: x + xx * cellw * radiusX + radiusX / 2, cy: y + yy * cellw * radiusY + radiusY / 2, rx: radiusX / 2, ry: radiusY/2, fill: color}); //mar principal}
                     pattern.appendChild(ellipse);
-                    
+
                     if (index%2==0)color="black";
                     else color="white";
                     ellipse = getNode('ellipse', {id: uidId, cx: x + xx * cellw * radiusX + radiusX / 2, cy: y + yy * cellw * radiusY + radiusY / 2, rx: radiusX / 4, ry: radiusY/4 , fill: color, opacity:0.3}); //mar principal}
                     pattern.appendChild(ellipse);
-                    
+
                     ellipse = getNode('ellipse', {id: uidId, cx: x + xx * cellw * radiusX + radiusX / 2, cy: y + yy * cellw * radiusY + radiusY / 2, rx: radiusX / 16, ry: radiusY/16 , fill: color, opacity:0.3}); //mar principal}
                     pattern.appendChild(ellipse);
-                    
+            /*        var ellipse = getNode('ellipse', {id: uidId, cx: x + xx * cellw * radiusX + radiusX / 2, cy: y + yy * cellw * radiusY + radiusY / 2, rx: radiusX / 2, ry: radiusY / 2, fill: color}); //mar principal}
+                    pattern.appendChild(ellipse);
+
+                    var rect = getNode('rect', {id: guid(), x: x + xx * cellw * radiusX + radiusX + radiusX / 2.5, y: y + yy * cellw * radiusY, width: radiusX / 12, height: radiusY, fill: color}); //mar principal}
+                    pattern.appendChild(rect);
+
+                    var rect = getNode('rect', {id: guid(), x: x + xx * cellw * radiusX, y: y + yy * cellw * radiusY + radiusY + radiusY / 2.5, width: radiusX, height: radiusY / 12, fill: color}); //mar principal}
+                    pattern.appendChild(rect);*/
                 }
             }
 
