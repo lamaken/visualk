@@ -29,11 +29,11 @@ public class UniqueName {
 			   te=r.nextInt(62);
 			   sb.append(str.charAt(te));
 		   }
-		this.name = sb.toString();
+		this.name = "u".concat(sb.toString());
 		 
 	    }
 	     
 	public UniqueName(int size){
-		genName(size);
+		genName(size-1);
 	}
 }
