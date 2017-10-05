@@ -21,7 +21,7 @@ body{
 
 
 #logo{
-    z-index:1000;
+    z-index:60;
     left:0px;
     bottom:15px;
     position: fixed;
