@@ -22,10 +22,10 @@ public class Main {
 
     private static final long serialVersionUID = 0x1a47a56c77L;
 
-    public final static String HOST_NAME = "http://localhost:8081";
+    //public final static String HOST_NAME = "http://localhost:8081";
     //public final static String HOST_NAME = "http://192.168.0.192:8081";
     //public final static String HOST_NAME="http://localhost:8084";    
-    //public final static String HOST_NAME = "http://alkasoft.org";
+    public final static String HOST_NAME = "http://alkasoft.org";
 
     //public final static String IMG_HOST_NAME = "http://localhost:8081";
     public final static String IMG_HOST_NAME = "http://alkasoft.org:8080";
@@ -34,7 +34,7 @@ public class Main {
 
     public final static String HOST_VISUALK = "/visualk";
 
-    public final static String VISUALK_VERSION = "4.1.b";
+    public final static String VISUALK_VERSION = "4.2";
 
 //    public void SetVersion(String ver) {
 //        String impVersion = ver;
