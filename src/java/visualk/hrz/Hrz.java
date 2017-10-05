@@ -51,16 +51,13 @@ public class Hrz extends HttpServlet {
     private static String HORIZON_SESSION_PRIVATE_KEY = new UniqueName(3).getName();
     public static String HORIZON_SESSION_PUBLIC_KEY = new UniqueName(3).getName();
     public static String sessionId;
-    
-    
+
     /**
      * @see HttpServlet#HttpServlet()
      */
     public Hrz() {
         super();
     }
-
-    
 
     public static String getString(String key) {
         String result = "";
@@ -92,7 +89,7 @@ public class Hrz extends HttpServlet {
         /*
          */
         hrzFirma.setNameHrz(name);
-        hrzFirma.setVersion("signature "+Main.VISUALK_VERSION);
+        hrzFirma.setVersion("signature " + Main.VISUALK_VERSION);
         hrzFirma.makeRandom(150, 93);
 
         ImageIO.write(hrzFirma.getHrzImage(), "gif", response.getOutputStream());
@@ -216,10 +213,10 @@ public class Hrz extends HttpServlet {
 
         lan = request.getLocale();
 
-        if ((mx == null)||(mx.equals(""))) {
+        if ((mx == null) || (mx.equals(""))) {
             mx = "150";
         }
-        if((my == null)||(my.equals(""))) {
+        if ((my == null) || (my.equals(""))) {
             my = "150";
         }
         if (lan == null) {
@@ -303,19 +300,19 @@ public class Hrz extends HttpServlet {
                         break;
 
                     case "colorsRnd":
-                        hrzns.get(sessionId).makeRandomColors(); //random de colors
+                        hrzns.get(sessionId).makeRandomColors();
                         break;
                     case "posicioRnd":
-                        hrzns.get(sessionId).makeRandomPal(); // random del pal
+                        hrzns.get(sessionId).makeRandomPal();
                         break;
                     case "hombraRnd":
-                        hrzns.get(sessionId).makeRandomHombra(); // random del pal
+                        hrzns.get(sessionId).makeRandomHombra();
                         break;
                     case "superRnd":
-                        hrzns.get(sessionId).makeRandomSuperNova(); // random del pal
+                        hrzns.get(sessionId).makeRandomSuperNova();
                         break;
                     case "guarda":
-                        hrzns.get(sessionId).saveToFile(option); // random del pal                        
+                        hrzns.get(sessionId).saveToFile(option);
                         break;
                     default:
                         break;
