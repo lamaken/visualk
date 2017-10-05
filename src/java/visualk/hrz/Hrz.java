@@ -10,14 +10,11 @@ package visualk.hrz;
 import java.io.IOException;
 
 import java.io.PrintWriter;
-import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.Locale;
 
 import java.util.ResourceBundle;
 import java.util.UUID;
-import java.util.jar.Attributes;
-import java.util.jar.Manifest;
 
 import javax.imageio.ImageIO;
 import javax.imageio.stream.MemoryCacheImageOutputStream;
@@ -89,7 +86,7 @@ public class Hrz extends HttpServlet {
         /*
          */
         hrzFirma.setNameHrz(name);
-        hrzFirma.setVersion("signature " + Main.VISUALK_VERSION);
+        hrzFirma.setVersion("alk@soft.org v" + Main.VISUALK_VERSION);
         hrzFirma.makeRandom(150, 93);
 
         ImageIO.write(hrzFirma.getHrzImage(), "gif", response.getOutputStream());
