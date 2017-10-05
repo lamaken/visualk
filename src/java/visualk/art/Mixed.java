@@ -6,22 +6,12 @@
 package visualk.art;
 
 import java.awt.Color;
-import java.awt.color.ColorSpace;
-
-import java.awt.image.ColorConvertOp;
-
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
-
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-
 import javax.imageio.ImageIO;
-
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -29,29 +19,15 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author lamaken
  */
-public class Mixed extends HttpServlet {
+public class Mixed extends Mosaic {
 
     public static float counter = 0;
     public static boolean show_number = false;
 
-    public void copy(final InputStream in, final OutputStream out) throws IOException {
-        byte[] buffer = new byte[1024];
-        int count;
+    public static Integer CANVASX_SIZE = 100;
+    public static Integer CANVASY_SIZE = 100;
+    public static Integer cellw = 10;
 
-        while ((count = in.read(buffer)) != -1) {
-            out.write(buffer, 0, count);
-        }
-
-        // Flush out stream, to write any remaining buffered data
-        out.flush();
-    }
-
-    static public void step() {
-        counter += 0.01;
-        if (counter > 10.3) {
-            counter = 0;
-        }
-    }
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -159,10 +135,6 @@ public class Mixed extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    public static Integer CANVASX_SIZE = 100;
-    public static Integer CANVASY_SIZE = 100;
-    public static Integer cellw = 10;
-
     public BufferedImage generateMixed(float seed) {
         BufferedImage buf = new BufferedImage(CANVASX_SIZE, CANVASY_SIZE, 2);
         Graphics2D g2 = buf.createGraphics();
@@ -197,31 +169,6 @@ public class Mixed extends HttpServlet {
         }
         g2.dispose();
         return (buf);
-    }
-
-
-    public static BufferedImage desaturate(BufferedImage source) {
-        ColorConvertOp colorConvert = new ColorConvertOp(ColorSpace
-                .getInstance(ColorSpace.CS_GRAY + 1), null);
-        colorConvert.filter(source, source);
-
-        return source;
-    }
-
-    public static BufferedImage negativo(BufferedImage image) {
-        int width = image.getWidth();
-        int height = image.getHeight();
-        for (int i = 0; i < width; i++) {
-            for (int j = 0; j < height; j++) {
-                int rgb = image.getRGB(i, j);               //a cor inversa é dado por 255 menos o valor da cor                 
-                int r = (int) ((rgb & 0xFF));
-                int g = (int) ((rgb >> 8 & 0xFF));
-                int b = (int) ((rgb >> 16 & 0xFF));
-                Color color = new Color(r, g, b);
-                image.setRGB(i, j, color.getRGB());
-            }
-        }
-        return image;
     }
 
 }

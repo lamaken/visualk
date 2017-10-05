@@ -22,52 +22,26 @@ public class Detail extends Xhtml5 {
     private static final String CSS_DETAIL_FILE_NAME = Main.HOST_NAME + Main.HOST_VISUALK + "/gallery/css/detail.css";
     private static final String JS_DETAIL_FILE_NAME = Main.HOST_NAME + Main.HOST_VISUALK + "/gallery/js/detail.js";
 
-    private MenuLinkBar navigateMenuLinkBar=null;
-   // private final MenuBar menuBar;
-    private final ClassCSS cssSeguentMenuBar = new ClassCSS();
-    private final ClassCSS cssAnteriorMenuBar = new ClassCSS();
- //   private final ClassCSS cssMenuBar = new ClassCSS();
-    
-    
-
     private String idWork;
 
     private void addMyStyles() {
         cssStyles.addFileCSS(CSS_DETAIL_FILE_NAME);
-
-        cssSeguentMenuBar.setColor("green");
-        cssAnteriorMenuBar.setColor("blue");
-  //      cssMenuBar.setColor("red");
-        
-        cssStyles.addStyle(cssSeguentMenuBar);
-        cssStyles.addStyle(cssAnteriorMenuBar);
- //       cssStyles.addStyle(cssMenuBar);
-        
-
     }
+
     public Detail() {
 
-     super("Gallery", "idle.", "detail");
-     
+        super("Gallery", "idle.", "detail");
+
     }
 
     public Detail(String title) {
         super("Gallery", title, "detail");
 
-    
-
         addMyStyles();
-
-        if(navigateMenuLinkBar==null)navigateMenuLinkBar = new MenuLinkBar("navigateBar", cssSeguentMenuBar);
-        navigateMenuLinkBar.setVertical();
-        navigateMenuLinkBar.addMenuLink("seguent >>", "seguent", "passes a la següent obra.", cssSeguentMenuBar);//label,function,help
-        navigateMenuLinkBar.addMenuLink("<< anterior", "anterior", "passes a l'obra anterior.", cssAnteriorMenuBar);//label,function,help
-        
-
     }
 
     public String toHtml(String jsonWork) {
-        
+
         idWork = jsonWork.split("=")[1];
         System.out.println("idWork:".contains(idWork));
 
@@ -93,57 +67,55 @@ public class Detail extends Xhtml5 {
         String workDescription = "";
 
         Work work = null;
+        String allImagesPath = "";
         try {
-            work = new DbWorks().getWorkById(Integer.parseInt(idWork));
+            work = new DbWorks().getWorkById(idWork);
 
             if (work != null) {
-                workTitle = work.getTitle();  
-                workDescription = work.getDescription();
+                workTitle = work.title;
+                workDescription = work.description;
 
-                ArrayList<Artist> artists = work.getArtists();
+                ArrayList<Artist> artists = work.artists;
                 if (artists != null) {
                     for (int i = 0; i < artists.size(); i++) {
-                        authorName += artists.get(i).getSurname()+", "+artists.get(i).getName();
+                        authorName += artists.get(i).getSurname() + ", " + artists.get(i).getName();
                     }
                 }
-                ArrayList<Resource> resources = work.getResources();
+                ArrayList<Resource> resources = work.resources;
                 if (resources != null) {
                     workImage = "";
                     for (int i = 0; i < resources.size(); i++) {
-                       workImage += "<img src=\"";
-                       workImage += Main.HOST_NAME+resources.get(i).getUrl();
-                       workImage += "\" class=\"cssImage\"/>";
-
-
+                        allImagesPath = allImagesPath.concat("<img alt='"+work.title+"' id='"+new UniqueName(3).getName()+"' class='cssImage' src='"+Main.HOST_NAME + resources.get(i).getUrl()+"'/>");
                     }
                 }
             }
-                  
 
         } catch (Exception e) {
             workTitle = "TITULO DE LA OBRA";
             authorName = "Antoni Tapies";
             workImage = "<img class='cssImage' src='img/tapies.jpeg'/>";
-            workDescription = "<p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer purus ipsum, condimentum a hendrerit at, egestas id leo. Nam pellentesque bibendum dolor, ac molestie urna viverra eget. \n</p>";
+            workDescription = e.getMessage() + "<p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer purus ipsum, condimentum a hendrerit at, egestas id leo. Nam pellentesque bibendum dolor, ac molestie urna viverra eget. \n</p>";
 
         }
+        
 
         workDescription = workDescription + workDescription;
         this.addBodyData(new DivHtml("cssWorkTitle").toHtml(workTitle));
-        
-        this.addBodyData(new DivHtml("cssWorkDescription").toHtml(workDescription));
-
-        this.addBodyData(new DivHtml("cssImages").toHtml(workImage));
         this.addBodyData(new DivHtml("cssAuthorName").toHtml(authorName));
+        this.addBodyData(new DivHtml("cssWorkDescription").toHtml(workDescription));       
+        this.addBodyData(new DivHtml("cssImages").toHtml(allImagesPath));
 
-        
         String footer = "<br/><br/>";
         this.addBodyData(new DivHtml("cssFooter").toHtml(footer));
-        
-       // this.addBodyData(menuBar.toHtml());
-        this.addBodyData(navigateMenuLinkBar.toHtml());
 
+        LinkHtml linkNext = new LinkHtml("seguent", "seg --->", "#", "seguent", "", "Passa a la seguent obra.");
+        LinkHtml linkPrev = new LinkHtml("anterior", "<--- prev", "#", "anterior", "", "Passa a l`obra anterior.");
+        
+        this.addBodyData(new DivHtml("nextButton").toHtml(linkNext.toHtml()));
+        this.addBodyData(new DivHtml("prevButton").toHtml(linkPrev.toHtml()));
+        
         String ret = this.getHtml();
+
         System.out.println("return Detail.");
         return (ret);
     }

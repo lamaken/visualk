@@ -24,7 +24,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author lamaken
  */
 @WebServlet(name = "Arab", urlPatterns = {"/Arab"})
-public class Arab extends HttpServlet {
+public class Arab extends Mosaic {
 
     public static Integer CANVASX_SIZE = 100;
     public static Integer CANVASY_SIZE = 100;
@@ -144,21 +144,7 @@ public class Arab extends HttpServlet {
         ImageIO.write(mixed, "png", response.getOutputStream());
     }
 
-    public static BufferedImage negativo(BufferedImage image) {
-        int width = image.getWidth();
-        int height = image.getHeight();
-        for (int i = 0; i < width; i++) {
-            for (int j = 0; j < height; j++) {
-                int rgb = image.getRGB(i, j);               //a cor inversa é dado por 255 menos o valor da cor                 
-                int r = (int) ((rgb & 0xFF));
-                int g = (int) ((rgb >> 8 & 0xFF));
-                int b = (int) ((rgb >> 16 & 0xFF));
-                Color color = new Color(r, g, b);
-                image.setRGB(i, j, color.getRGB());
-            }
-        }
-        return image;
-    }
+    
 
 // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -199,37 +185,6 @@ public class Arab extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    public static BufferedImage spill(BufferedImage image) {
+    
 
-        int width = image.getWidth() * 2;
-        int height = image.getHeight() * 2;
-
-        BufferedImage buf = new BufferedImage(width, height, 2);
-        Graphics2D g2 = buf.createGraphics();
-
-        g2.setColor(Color.BLACK);
-
-        g2.fillRect(0, 0, width, height);
-
-        for (int i = 0; i < width / 2; i++) {
-            for (int j = 0; j < height / 2; j++) {
-                int rgb = image.getRGB(i, j);
-
-                Color color = new Color(rgb);
-                g2.setColor(color);
-                g2.fillRect(i, j, 1, 1);
-                g2.fillRect(width - i - 1, j, 1, 1);
-                g2.fillRect(width - i - 1, height - j - 1, 1, 1);
-                g2.fillRect(i, height - j - 1, 1, 1);
-
-            }
-        }
-        g2.setColor(Color.BLACK);
-        if (Arab.show_number) {
-            g2.drawString(Math.round(Arab.counter * 1000) + "", 0, Arab.CANVASY_SIZE * 2 - 4);
-        }
-
-        g2.dispose();
-        return (buf);
-    }
 }

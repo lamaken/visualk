@@ -98,7 +98,8 @@ public class DbHorizons extends MysqlLayer {
         ResultSet myResult=null;
         String onlySize = "(canvasWidth<=" + width + " and  canvasHeigth<=" + height + ")";
         try {
-            myResult = this.queryDB("SELECT * FROM hrzns WHERE namehrz<>'wellcome' and " + onlySize + " order by dt desc limit " + offset + "," + limit + " ;");
+            //myResult = this.queryDB("SELECT * FROM hrzns WHERE namehrz<>'wellcome' and " + onlySize + " order by dt desc limit " + offset + "," + limit + " ;");
+            myResult = this.queryDB("SELECT * FROM hrzns WHERE " + onlySize + " order by dt desc;");
             //myResult = this.queryDB("SELECT * FROM hrzns order by dt desc;");
         } catch (SQLException ex) {
             Logger.getLogger(DbHorizons.class.getName()).log(Level.SEVERE, null, ex);
@@ -110,9 +111,9 @@ public class DbHorizons extends MysqlLayer {
 
     }
 
-    public Horizon getHrznBD(String name) throws ClassNotFoundException, SQLException {
+    public void getHrznBD(String name, Horizon temp) throws ClassNotFoundException, SQLException {
 
-        Horizon temp = new Horizon(name);
+        
         ResultSet myResult=null;
        
         myResult = this.queryDB("SELECT * FROM hrzns where nameHrz='" + name + "'");
@@ -202,7 +203,7 @@ public class DbHorizons extends MysqlLayer {
             }
 
         }
-        return (temp);
+        
     }
 
 }

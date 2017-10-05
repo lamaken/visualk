@@ -25,7 +25,7 @@ public class DbWorks extends MysqlLayer {
         super(dbUser, dbPassword, dbDb);
     }
 
-    public Work getWorkById(Integer id) throws SQLException {
+    public Work getWorkById(String id) throws SQLException {
         
         ResultSet myResult=null;
         try {
@@ -36,24 +36,24 @@ public class DbWorks extends MysqlLayer {
 
         if (myResult != null) {
             while (myResult.next()) {
-                work.setIdwork(myResult.getInt("idwork"));
-                work.setDescription(myResult.getString("description"));
-                work.setTitle(myResult.getString("title"));
+                work.idwork=myResult.getString("idwork");
+                work.description=myResult.getString("description");
+                work.title=myResult.getString("title");
 
                 ArrayList<Artist> artists = new ArrayList<>();
                 artists.addAll(getArtistsFromWorkId(id));
-                work.setArtists(artists);
+                work.artists=artists;
 
                 ArrayList<Resource> resources = new ArrayList<>();
                 resources.addAll(getResourcesFromWorkId(id));
-                work.setResources(resources);
+                work.resources=resources;
             }
             myResult.close();
         }
         return work;
     }
 
-    private ArrayList<Artist> getArtistsFromWorkId(Integer id) throws SQLException {
+    private ArrayList<Artist> getArtistsFromWorkId(String id) throws SQLException {
         artists.clear();
         ResultSet myResult = null;
         try {
@@ -79,7 +79,7 @@ public class DbWorks extends MysqlLayer {
         return artists;
     }
 
-    private ArrayList<Resource> getResourcesFromWorkId(Integer id) throws SQLException {
+    private ArrayList<Resource> getResourcesFromWorkId(String id) throws SQLException {
         ArrayList<Resource> resources = new ArrayList<>();
         ResultSet myResult=null;
         try {

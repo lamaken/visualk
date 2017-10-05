@@ -1,13 +1,7 @@
-
-body{
-    background-color:black;
-    color:white;
-    font-family:monospace;
-    
-}	
+	
 a{
     color:yellow;
-    font-weight: lighter;
+    text-decoration:none; 
 }
 
 
@@ -49,21 +43,6 @@ a{
     opacity: 0.8;
 }
 
-#dialog {
-    position: absolute; 
-    top: 100px; 
-    left: 10px; 
-    height: 10px; 
-    overflow: hidden;
-    background: red;
-    color: yellow;
-    right: 10px; 
-    text-align:center;
-    padding:2px 2px 5px 5px;
-    z-index: 100;
-    text-align:center;
-
-}
 
 
 
