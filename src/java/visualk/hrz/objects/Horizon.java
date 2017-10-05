@@ -23,7 +23,7 @@ import visualk.html5.UniqueName;
 
 public class Horizon implements Serializable {
 
-    private static final String URL_IMG = Main.HOST_NAME +Main.HOST_VISUALK + "/hrz/img/";
+    private static final String URL_IMG = Main.IMG_HOST_NAME +Main.HOST_VISUALK + "/hrz/img/";
     //private static final String URL_IMG = "http://hrzmkr.com/img/";
     
 
@@ -431,6 +431,9 @@ public class Horizon implements Serializable {
                 .gethPalx(), this.gethPaly());
         g2.drawLine(this.getxPal() + 1, this.getyPal(), this
                 .gethPalx() + 1, this.gethPaly());
+        g2.drawLine(this.getxPal() + 2, this.getyPal(), this
+                .gethPalx() + 2, this.gethPaly());
+        
 
         // pal
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
@@ -449,10 +452,16 @@ public class Horizon implements Serializable {
         g2.drawLine(this.getxPal(), this.getyPal(), this
                 .getxPal(), this.getyPal()
                 - this.getAlçada());
+        g2.drawLine(this.getxPal()+1, this.getyPal(), this
+                .getxPal()+1, this.getyPal()
+                - this.getAlçada());
         g2.setColor(c2);//
 
-        g2.drawLine(this.getxPal() + 1, this.getyPal(), this
-                .getxPal() + 1, this.getyPal()
+        g2.drawLine(this.getxPal() + 2, this.getyPal(), this
+                .getxPal() + 2, this.getyPal()
+                - this.getAlçada());
+        g2.drawLine(this.getxPal()+3, this.getyPal(), this
+                .getxPal()+3, this.getyPal()
                 - this.getAlçada());
 
 // firma
