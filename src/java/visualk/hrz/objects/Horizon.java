@@ -404,16 +404,17 @@ public class Horizon implements Serializable {
         g2.fillRect(0, this.getTopHrz(), this.getCanvasWidth(), this
                 .getCanvasHeigth()
                 - this.getTopHrz());
-        // posem la textura per tot el terra
+        /* posem la textura per tot el terra
 
         for (nx = 0; nx <= ratiox; nx++) {
             for (ny = 0; ny <= ratioy; ny++) {
                 if (this.isTextura()) {
-                    g2.drawImage(bmpTextura, nx * 200, this.getTopHrz()
-                            + (ny * 200), null);
+                    g2.drawImage(bmpTextura, nx * 200, this.getTopHrz()+ (ny * 200), null);
                 }
             }
-        }
+        }*/
+        g2.drawImage(bmpTextura, 0, this.getTopHrz(), null);
+        
 
         //cenit
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
