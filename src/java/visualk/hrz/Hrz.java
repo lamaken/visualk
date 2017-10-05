@@ -212,10 +212,10 @@ public class Hrz extends HttpServlet {
 
         lan = request.getLocale();
 
-        if (mx == null) {
+        if ((mx == null)||(mx.equals(""))) {
             mx = "150";
         }
-        if (my == null) {
+        if((my == null)||(my.equals(""))) {
             my = "150";
         }
         if (lan == null) {
