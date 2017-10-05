@@ -55,8 +55,8 @@
         <a href="art/editorArab.html"><img  style="border:  activeborder double medium " id="arab"  src="/visualk/art/Arab?mx=75&my=75&cellw=9&d=1"/></a>
         
         <!--  href="art/chrzmkr.html"><img alt="interact" style="border:  activeborder double medium " src='/visualk/art/LiveMosaic?mx=75&my=75&cellw=11'></img></a-->
-        <a  href="art/jsmosaic.html"><img alt="jsmosaic" style="border: activeborder double medium " id="jssquad"  src="/visualk/art/Squared?mx=150&my=150&cellw=10"/></a>
-        <a  href="art/svgTiles/index.html"><img alt="svgTiles" style="border: activeborder double medium " id="tiles"  src="/visualk/art/Squared?mx=150&my=150&cellw=5"/></a>
+        <a  href="art/jsmosaic.html"><img alt="jsmosaic" style="border: activeborder double medium " id="jssquad"  width=150 height=150 src="/visualk/img/mostra.png"/></a>
+        <a  href="art/svgTiles/index.html"><img alt="svgTiles" style="border: activeborder double medium " id="tiles"  width=150 height=150 src="/visualk/img/patternsvg.png"/></a>
         
         <a href="art/liveMosaic.html"><img  alt="animated" style="border:  activeborder double medium " src="/visualk/art/LiveMosaic?mx=75&my=75&cellw=21&d=1"/></a>
         

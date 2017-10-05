@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<!--
+Copyright (C) 2017 lamaken
+https://github.com/lamaken/visualk/blob/master/web/art/tramas/index.html
+
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation; either version 2
+of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+-->
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Tramas v0.1 2on Grau en Belles Arts a la UB</title>
+        <meta name="Keywords"
+              content="tiles, tiles mosaic, svg, svg editor, mosaic, mosaic editor, patterns" />
+        <meta name="Description"
+              content="Let computer draw or paint for you." />
+        <meta name="Author" content="lamaken@gmail.com" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            svg {background-color: black;}
+        </style>
+
+
+
+
+        <script>
+            function guid() {
+                function _p8(s) {
+                    var p = (Math.random().toString(16) + "000000000").substr(2, 8);
+                    return s ? "-" + p.substr(0, 4) + "-" + p.substr(4, 4) : p;
+                }
+                return _p8() + _p8(true) + _p8(true) + _p8();
+            }
+
+
+            function loadData() {
+                mx = document.getElementById("mx").value;
+                my = document.getElementById("my").value;
+                cellw = document.getElementById("cellw").value;
+                rnd = guid();
+            }
+
+
+        </script>
+
+
+
+
+    </head>
+    <body onload="newColors();loadData();dibuixa();">
+
+        <div id="svg"></div>
+
+
+        <input style="visibility: hidden" onchange="loadData();dibuixa();" id="mx" type="range" name="mx" min="150" max="2000" value="150"/><br> 
+        <input style="visibility: hidden" onchange="loadData();dibuixa();" id="my" type="range" name="my" min="150" max="2000" value="150"/> <br>
+        <input style="visibility: hidden" onchange="loadData();dibuixa();"  id="cellw" type="range" name="cellw" min="3" step="2" max="50" value="3"/> 
+        <div  id="mydiv" style="opacity: 0.9; background-color: yellow;z-index:10;position: fixed;top: 0px; font-family: sans-serif;color: black; right:10px;"/>
+
+        <input value="check" type="checkbox" onclick="check();"/>
+
+        <br><input value="colorize! >>" type="button" onclick="loadData();newColors();dibuixa();"/>
+    </div>
+    <canvas id="canvas"></canvas>
+
+    <script type="text/javascript">
+
+
+        var trama = [];
+        var paintBackgroud = false;
+
+
+
+        function newColors() {
+            trama = []
+            for (var n = 0; n < 9000; n++)
+            {
+                trama.push(getRndColor());
+            }
+        }
+
+        function getNode(n, v) {
+            n = document.createElementNS("http://www.w3.org/2000/svg", n);
+            for (var p in v)
+                n.setAttributeNS(null, p.replace(/[A-Z]/g, function (m, p, o, s) {
+                    return "-" + m.toLowerCase();
+                }), v[p]);
+            return n
+        }
+
+        function getColor(r, g, b) {
+            return "rgb(" + r + "," + g + "," + b + ")";
+        }
+        function getRndColor() {
+            var r = Math.round(Math.random() * 190);
+            var g = Math.round(Math.random() * 190);
+            var b = Math.round(Math.random() * 190);
+
+            return getColor(r, g, b);
+        }
+
+        function dibuixa() {
+            document.getElementById("svg").innerHTML = ""; //clear                        
+
+            var w = window.innerWidth - 20;
+            var h = window.innerHeight - 20;
+            var svgId = guid();
+
+            var colors = [];
+            var radiusX = Math.round((mx / 2 / cellw));
+            var radiusY = Math.round(my / 2 / cellw);
+            var svg = getNode("svg", {id: svgId, width: cellw * radiusX * cellw, height: cellw * radiusY * cellw});
+            var rows = 0;
+
+            for (rows = 0; rows < cellw / 2; rows++) {//primera fila de colors ca cb cc
+                colors.push(trama[rows]);
+            }
+            for (var row = rows - 1; row > 0; row--) {//afegim els que falten cb ca
+                colors.push(trama[(row - 1)]);
+            }
+
+            var ofs = rows + row;
+            var kk = ofs;
+
+            for (var col = 0; col < (cellw / 2) - 1; col++) {//seguents files de colors
+                for (rows = 0; rows < cellw / 2; rows++) {
+                    colors.push(trama[col * cellw + (rows + kk)]);
+                }
+                for (var row = rows - 1; row > 0; row--) {
+                    colors.push(trama[(col * cellw + kk + row - 1)]);
+                }
+            }
+
+            var size = colors.length;
+            for (var k = (cellw * cellw) - size - 1; k >= 0; k--) {
+                colors.push(colors[k]);
+            }
+
+
+            var index;
+            var xx = 0;
+            var yy = 0;
+            x
+            index = 0;
+            var defs = getNode('defs', {});
+            svg.appendChild(defs);
+
+
+
+            var pattern = getNode('pattern', {id: 'trama', width: (cellw * radiusX) / w, height: (cellw * radiusY) / h, x: 0, y: 0, patternUnits: 'userSpaceOnUse'});
+            defs.appendChild(pattern)
+
+            for (var x = 0; x < Math.round(cellw * radiusX); x += radiusX) {
+                for (var y = 0; y < Math.round(cellw * radiusY); y += radiusY) {
+                    var color = colors[index++];
+                    var uidId = guid();
+
+
+
+
+                    var ellipse = getNode('ellipse', {id: uidId, cx: x + xx * cellw * radiusX + radiusX / 2, cy: y + yy * cellw * radiusY + radiusY / 2, rx: radiusX / 2, ry: radiusY / 2, fill: color}); //mar principal}
+                    pattern.appendChild(ellipse);
+
+
+
+                    color = "white";
+
+                    ellipse = getNode('ellipse', {id: uidId, cx: x + xx * cellw * radiusX + radiusX / 2, cy: y + yy * cellw * radiusY + radiusY / 2, rx: radiusX / 3, ry: radiusY / 3, fill: color}); //mar principal}
+                    pattern.appendChild(ellipse);
+
+                    color = colors[index - 1];
+                    var rect = getNode('rect', {id: uidId, x: x + xx * cellw * radiusX + radiusX / 4, y: y + yy * cellw * radiusY + radiusY / 4, width: radiusX / 2, height: radiusY / 2, fill: color}); //mar principal}
+                    pattern.appendChild(rect);
+
+                   
+                }
+
+            }
+
+
+
+
+            var rMosaic = getNode('rect', {id: 'Mosaic', fill: 'url(#trama)', stroke: 'cyan', width: w, height: h});
+            svg.appendChild(rMosaic);
+            console.log("index.size=" + index);
+            console.log("cell*radX=" + w / (cellw * radiusX));
+
+            svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+            svg.setAttribute("xmlns:xlink", "http://www.w3.org/1999/xlink");
+            svg.setAttribute("version", "1.1");
+
+
+            document.getElementById("svg").appendChild(svg);
+        }
+
+
+
+
+    </script>
+
+
+</body>
+</html>

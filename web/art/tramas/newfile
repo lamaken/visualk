@@ -1,0 +1,85 @@
+ function dibuixa() {
+            document.getElementById("svg").innerHTML = ""; //clear                        
+
+            var w = window.innerWidth - 20;
+            var h = window.innerHeight;
+            var svgId = guid();
+
+            var colors = [];
+            var radiusX = Math.round((mx / 2 / cellw));
+            var radiusY = Math.round(my / 2 / cellw);
+            var svg = getNode("svg", {id: svgId, width: w, height: h});
+            var rows = 0;
+
+            for (rows = 0; rows < cellw / 2; rows++) {//primera fila de colors ca cb cc
+                colors.push(trama[rows]);
+            }
+            for (var row = rows - 1; row > 0; row--) {//afegim els que falten cb ca
+                colors.push(trama[(row - 1)]);
+            }
+
+            var ofs = rows + row;
+            var kk = ofs;
+
+            for (var col = 0; col < (cellw / 2) - 1; col++) {//seguents files de colors
+                for (rows = 0; rows < cellw / 2; rows++) {
+                    colors.push(trama[col * cellw + (rows + kk)]);
+                }
+                for (var row = rows - 1; row > 0; row--) {
+                    colors.push(trama[(col * cellw + kk + row - 1)]);
+                }
+            }
+
+            var size = colors.length;
+            for (var k = (cellw * cellw) - size - 1; k >= 0; k--) {
+                colors.push(colors[k]);
+            }
+
+
+            var index;
+            var xx = 0;
+            var yy = 0;
+            x
+            index = 0;
+            var defs = getNode('defs', {});
+            svg.appendChild(defs);
+
+
+
+            var pattern = getNode('pattern', {id: 'trama', width: (cellw * radiusX) / w, height: (cellw * radiusY) / h, x: 0, y: 0, patternUnits: 'userSpaceOnUse'});
+            defs.appendChild(pattern)
+
+            for (var x = 0; x < Math.round(cellw * radiusX); x += radiusX) {
+                for (var y = 0; y < Math.round(cellw * radiusY); y += radiusY) {
+                    var color = colors[index++];
+                    var uidId = guid();
+
+
+
+                    var ellipse = getNode('ellipse', {id: uidId, cx: x + xx * cellw * radiusX + radiusX / 2, cy: y + yy * cellw * radiusY + radiusY / 2, rx: radiusX / 2, ry: radiusY / 2, fill: color}); //mar principal}
+                    pattern.appendChild(ellipse);
+                    color="black";
+                    ellipse = getNode('ellipse', {id: uidId, cx: x + xx * cellw * radiusX + radiusX / 2, cy: y + yy * cellw * radiusY + radiusY / 2, rx: radiusX / 3, ry: radiusY / 3, fill: color}); //mar principal}
+                    pattern.appendChild(ellipse);
+                 
+
+
+                }
+            }
+
+
+
+
+            var rMosaic = getNode('rect', {id: 'Mosaic', fill: 'url(#trama)', stroke: 'cyan', width: w, height: h});
+            svg.appendChild(rMosaic);
+            console.log("index.size=" + index);
+            console.log("cell*radX=" + w / (cellw * radiusX));
+
+            svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+            svg.setAttribute("xmlns:xlink", "http://www.w3.org/1999/xlink");
+            svg.setAttribute("version", "1.1");
+
+
+            document.getElementById("svg").appendChild(svg);
+        }
+
