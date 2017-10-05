@@ -26,14 +26,14 @@ public class Artzar extends Xhtml5 {
     private final MenuLinkBar leftMenuBar;
     private final MenuLinkBar randomMenuBar;
 
-    private final ClassCSS cssLink;
-    private final ClassCSS cssMenuBar = new ClassCSS();
-    private final ClassCSS cssInputBox = new ClassCSS();
+    private final ClassCSS cssLink = new ClassCSS();
+    private final ClassCSS cssMenuBar = new ClassCSS();;
+    private final ClassCSS cssInputBox = new ClassCSS();;
 
-    private final InputDialog inputDialog;
+    private InputDialog inputDialog;
 
     private void addMyStyles() {
-
+        
         /////////////////////// input dialog
         cssInputBox.setLeft("100px");
         cssInputBox.setTop("30%");
@@ -65,8 +65,7 @@ public class Artzar extends Xhtml5 {
 
     public Artzar(String title) {
         super("hrz/Hrz",title,"artzar");
-        this.cssLink = new ClassCSS();
-
+        
         addMyStyles(); 
 
         inputDialog = new InputDialog(cssInputBox);
