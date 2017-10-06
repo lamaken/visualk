@@ -31,7 +31,7 @@ public class Horizon implements Serializable {
      *
      */
     private static final long serialVersionUID = 24L;
-    private static final String HRZMKR_VERSION = "alk@soft.hrzmkr v0.4";//SIZE 20
+    private static final String HRZMKR_VERSION = "alk@soft.hrzmkr v"+Main.VISUALK_VERSION;//SIZE 20
 
     private final static int MAX_WIDTH = 151;
     private final static int MAX_HEIGTH = 303;
