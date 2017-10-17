@@ -5,7 +5,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.RenderingHints;
-import java.awt.Toolkit;
+
 import java.awt.image.BufferedImage;
 import java.io.InputStream;
 
@@ -24,7 +24,7 @@ import visualk.html5.UniqueName;
 public class Horizon implements Serializable {
 
     private static final String URL_IMG = Main.IMG_HOST_NAME +Main.HOST_VISUALK + "/hrz/img/";
-    //private static final String URL_IMG = "http://hrzmkr.com/img/";
+   
     
 
     /**
@@ -65,7 +65,7 @@ public class Horizon implements Serializable {
     private int superY = 50;
     private boolean textura = true;
 
-    private DbHorizons db = new DbHorizons();
+    private static DbHorizons db = new DbHorizons();
 
     public void save2Db(String name) {
         name = name.replace("'", "`");
@@ -676,7 +676,12 @@ public class Horizon implements Serializable {
     }
 
     public String getVersion() {
-        return version;
+        
+        int len = version.length();
+        
+        if(len>db.MAX_VERSION_DB_SIZE)len=db.MAX_VERSION_DB_SIZE;
+        
+        return version.substring(0, len);
     }
 
     public void setVersion(String version) {
@@ -711,4 +716,9 @@ public class Horizon implements Serializable {
         return aureaProp;
     }
 
+    public void logData(){
+        String line = "< horizon data >\n";
+        System.out.println(line);
+        
+    }
 }
