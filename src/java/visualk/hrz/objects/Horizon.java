@@ -42,9 +42,9 @@ public class Horizon implements Serializable {
     private final static int MIN_WIDTH = 310;
     private final static int MIN_HEIGTH = 310;
 
-    private Image bmpSuperNova;
-    private Image bmpTextura;
-    private Image bmpCel;
+    private static Image bmpSuperNova;
+    private static Image bmpTextura;
+    private static Image bmpCel;
 
     private String version = HRZMKR_VERSION;
     private String nameHrz_codiUnicIdentificador = "void";
@@ -129,7 +129,7 @@ public class Horizon implements Serializable {
         try{
             db.getHrznBD(nom,tmp);
         }catch (Exception e){
-            tmp = new Horizon(new UniqueName(8).getName(),550,350);            
+            tmp.setNameHrz(new UniqueName(8).getName());            
             tmp.authorHrz_texteFooter="eps! "+e.getMessage();
         }
 

@@ -34,7 +34,7 @@ public class Main {
 
     public final static String HOST_VISUALK = "/visualk";
 
-    public final static String VISUALK_VERSION = "4.2";
+    public final static String VISUALK_VERSION = "4.2b";
 
 //    public void SetVersion(String ver) {
 //        String impVersion = ver;
