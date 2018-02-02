@@ -44,7 +44,7 @@ public class Xhtml5 {
     public Xhtml5(String appServlet, String title, String where) {
         System.out.println("xhtml5 new instance!:" + instance);
 
-        SERVLET_URL = Main.HOST_NAME + Main.HOST_VISUALK + "/" + appServlet;
+        SERVLET_URL = Main.HOST_VISUALK + "/" + appServlet;
         this.vsFunctions = new VsFunctions();
         this.cssStyles = new CssStyles();
 
