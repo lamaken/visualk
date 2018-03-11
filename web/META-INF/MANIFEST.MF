@@ -1,1 +1,1 @@
-Manifest-Version: 4.2b
+Manifest-Version: 4.3

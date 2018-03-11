@@ -35,6 +35,6 @@ function redirect(){
 }
 
 
-
-
-   
+function setResizeImage(){
+    document.getElementById("")
+}

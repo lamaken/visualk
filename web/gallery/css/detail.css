@@ -3,19 +3,24 @@ a{
 }
 
 #cssWorkTitle{
-    z-index: 50;
+    background: black;
+    z-index: 50; 
     font-weight: bold;
     padding: 5px;  
 }
 
 #cssWorkDescription
 {
+    background: black;
+    top:60px;
     z-index: 50;
-    padding: 5px;  
+    padding: 5px; 
 }
 
 #cssAuthorName
 {
+    background: black;
+    bottom:200px;
     text-align:left;  
     z-index: 50;
     padding: 5px;  
@@ -24,13 +29,11 @@ a{
 
 
 .cssImage{
-    width: 90%;
+   width:30%;
     z-index: 50;  
-    font-size: large;
     padding: 5px;
 }
-#cssImages{
-    width: 90%;
+#cssImages{  
     z-index: 220;
     padding: 5px;
 }

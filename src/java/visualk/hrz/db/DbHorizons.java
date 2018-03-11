@@ -14,6 +14,8 @@ public class DbHorizons extends MysqlLayer {
     private static final String dbPassword = "hrzmkr_password";
     private static final String dbDb = "hrzmkr_db";
     
+    public static final int MAX_VERSION_DB_SIZE=200;
+    
     
     public DbHorizons() {
         super(dbUser, dbPassword, dbDb);

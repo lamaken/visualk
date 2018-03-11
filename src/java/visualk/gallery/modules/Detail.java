@@ -93,13 +93,13 @@ public class Detail extends Xhtml5 {
         } catch (Exception e) {
             workTitle = "TITULO DE LA OBRA";
             authorName = "Antoni Tapies";
-            workImage = "<img class='cssImage' src='img/tapies.jpeg'/>";
-            workDescription = e.getMessage() + "<p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer purus ipsum, condimentum a hendrerit at, egestas id leo. Nam pellentesque bibendum dolor, ac molestie urna viverra eget. \n</p>";
+            workImage = "<img class='cssImage' src='img/tapies.jpeg'/></iframe>";
+            workDescription = "¿DATABASE ERROR MAY BE DOWN? "+e.getMessage()+"<p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer purus ipsum, condimentum a hendrerit at, egestas id leo. Nam pellentesque bibendum dolor, ac molestie urna viverra eget. \n</p>";
 
         }
         
 
-        workDescription = workDescription + workDescription;
+        //workDescription = workDescription + workDescription;
         this.addBodyData(new DivHtml("cssWorkTitle").toHtml(workTitle));
         this.addBodyData(new DivHtml("cssAuthorName").toHtml(authorName));
         this.addBodyData(new DivHtml("cssWorkDescription").toHtml(workDescription));       

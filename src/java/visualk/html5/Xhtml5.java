@@ -6,7 +6,7 @@ public class Xhtml5 {
 
     private static final String JSXHTML = Main.HOST_NAME + Main.HOST_VISUALK + "/js/xhtml5.js";
     private static final String doctype = "<!DOCTYPE html>";
-    private static final String open_html = "<html>";
+    //private static final String open_html = "<html>";
     private static final String open_head = "<head>";
     private static final String meta = "<meta charset=\"ISO-8859-1\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0\">";
     private static final String open_title = "<title>";
@@ -16,12 +16,12 @@ public class Xhtml5 {
     private static final String close_body = "</body>";
     private static final String close_html = "</html>";
     private static final String close_form = "</form>";
-    
+
     private static String SERVLET_URL;
-    
-    int instance=0;
-    
-    
+
+    int instance = 0;
+    String id = "";
+
     private String title = "default title";
     public VsFunctions vsFunctions;
     public CssStyles cssStyles;
@@ -41,10 +41,10 @@ public class Xhtml5 {
             + "  fjs.parentNode.insertBefore(js, fjs);"
             + "}(document, 'script', 'facebook-jssdk'));</script>";
 
-    public Xhtml5(String appServlet,String title, String where) {
-        System.out.println("xhtml5 new instance!:"+instance);
+    public Xhtml5(String appServlet, String title, String where) {
+        System.out.println("xhtml5 new instance!:" + instance);
 
-        SERVLET_URL = Main.HOST_NAME + Main.HOST_VISUALK +"/"+ appServlet;
+        SERVLET_URL = Main.HOST_VISUALK + "/" + appServlet;
         this.vsFunctions = new VsFunctions();
         this.cssStyles = new CssStyles();
 
@@ -73,10 +73,10 @@ public class Xhtml5 {
 
     }
 
-    public void useBackgroundRemoteMediaImage(String mediaImage){
-        open_body="<body style=\"background-image:url('" + mediaImage+"')\" onload=\"load()\">";
+    public void useBackgroundRemoteMediaImage(String mediaImage) {
+        open_body = "<body style=\"background-image:url('" + mediaImage + "')\" onload=\"load()\">";
     }
-    
+
     private void addingBasicFunctions() {
         vsFunctions.addFunction("statusBar", "content", "document.getElementById('statusBar').innerHTML=content;");
         vsFunctions.addFunction("fes", "actions,params", "document.fmain.actions.value=actions;document.fmain.params.value=params;document.fmain.submit();");
@@ -126,14 +126,18 @@ public class Xhtml5 {
         this.data_form += data;
     }
 
+    private String fopen_html(String signature){
+        return new String("<html signature=\""+signature+"\">");
+    }
     public String getHtml() {
 
         String output = "";
 
         System.out.println("enter xhtml.");
+        
 
         output += doctype;
-        output += open_html;
+        output += fopen_html(new UniqueName(19).getName());
         output += open_head;
         output += meta;
         output += open_title;
@@ -152,7 +156,10 @@ public class Xhtml5 {
         output += this.body;
         output += close_body;
         output += close_html;
+        
+
         System.out.println("return xhtml.");
+
         return (output);
     }
 }
