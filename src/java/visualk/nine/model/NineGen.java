@@ -15,6 +15,8 @@ import java.util.List;
 public class NineGen {
 
     String result;
+    String result2;
+
     Integer iterations;
     Integer diff = 0;
     Integer oldiff = 0;
@@ -44,7 +46,7 @@ public class NineGen {
     }
 
     private Integer sumDig(Integer number) {
-       /* String temp = number + "";
+        /* String temp = number + "";
         
         Integer i=0;
         //while(number>9){
@@ -63,50 +65,68 @@ public class NineGen {
             temp = number + "";
             
         //}
-        */
-       if(number==null)number=0;
-       if(number==0)number=0;
-      
-       String snumber=number+"";
-       number = Integer.parseInt(snumber.substring(snumber.length()-1,snumber.length()));
+         */
+        if (number == null) {
+            number = 0;
+        }
+        if (number == 0) {
+            number = 0;
+        }
+
+        String snumber = number + "";
+        number = Integer.parseInt(snumber.substring(snumber.length() - 1, snumber.length()));
+
+        if ((snumber.equals("0")) || (snumber.equals("9"))) {
+            snumber = "<b>" + snumber + "</b>";
+        }
         return number;
     }
 
     public NineGen(String value) {
+        result2 = "";
         String number = value;
+        String value2 = "0";
         result = "";
         Integer x0 = 0;
         String numberBefore = "";
         iterations = 0;
         diff = 1;
-        ArrayList<Integer> magic= new ArrayList<>();
+        ArrayList<Integer> magic = new ArrayList<>();
+        ArrayList<Integer> magic2 = new ArrayList<>();
         while (!number.equals("9") && !number.equals("")) {
             x0 = Integer.parseInt(number) * 9;
             number = String.valueOf(x0);
-            if(number==null)number="0";
+            if (number == null) {
+                number = "0";
+            }
             numberBefore = number;
             number = number.substring(0, number.length() - 1);
             System.out.println(number);
             oldiff = diff;
             diff = (x0 / 9) - Integer.parseInt(number);
             String next = String.valueOf(Integer.parseInt(number) * 9);
-            result += "(" + value + "*" + "9=" + x0 + ")-" + next.concat("=" + number + "," + sumDig(x0) + "</br>");//+number+"*9="+next+"(") + diff + ","+oldiff+") "+(oldiff-diff)+"<br>";
+            result += "(" + value + "*" + "9=" + x0 + ")-" + next.concat("=" + number + "," + sumDig(x0) + "</br>");
+            result2 += "( " + value + " * " + " 9 = " + x0 + " ) " + " = " + number + " , " + sumDig(x0) + ", (" + x0 + " / " + "9 = " + x0 + ")" + "=" + value + "</br>";
+            
+                value2 = String.valueOf(Integer.parseInt(value2) + sumDig(x0));
+            
             value = String.valueOf(Integer.parseInt(value) - diff);
             iterations++;
             magic.add(sumDig(x0));
+
         }
 
-        result += "</br>"+magic+"</br>";
-        Integer c=9;
-        for (Integer n=0;n<iterations;n++){
-            result+=" c"+(n+1)+" = "+magic.get(n)+", ";
+        result2 += "</br>" + value2 + "</br>";
+        Integer c = 9;
+        for (Integer n = 0; n < iterations; n++) {
+            result2 += " c" + (n + 1) + " = " + magic.get(n) + ", ";
         }
-          
-        }
+
+    }
 
     @Override
     public String toString() {
-        return result;
+        return result2;
     }
 
     public Integer getIterations() {
